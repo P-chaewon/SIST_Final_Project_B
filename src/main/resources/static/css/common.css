@@ -1,2 +1,33 @@
 @charset "UTF-8";
 
+/************************************************************************
+* filename : common.css
+* description : 공통 css
+************************************************************************/
+/* AppleSDGothicNeoR */
+
+@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
+
+
+ @font-face {
+	font-family:'Apple SD BOLD'; 
+	src:url('resources/fonts/AppleSDGothicNeoR.ttf');
+}
+
+@font-face {
+	font-family:'Apple SD BOLD'; 
+	src:url('resources/fonts/AppleSDGothicNeoR.ttf');
+}
+ 
+ 
+@font-face {
+	font-family:'Nanum'; 
+	src:url('resources/fonts/NanumGothic.ttf') format('opentype');
+} 
+ 
+ body, html, h1 {
+ 	   
+    font-family: 'Nanum';
+ 	color: red;
+ }
+
