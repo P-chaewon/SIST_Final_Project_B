@@ -11,12 +11,12 @@
 /* ----------------------- font ----------------------- */
 
 @font-face {
-	font-family:'Apple SD'; 
-	src: url('/fonts/AppleSDGothicNeoUL.ttf');
+	font-family:'Apple SD Bold'; 
+	src: url('/fonts/AppleSDGothicNeoSB.ttf');
 }
 
 @font-face {
-	font-family:'Apple SD Bold'; 
+	font-family:'Apple SD'; 
 	src: url('/fonts/AppleSDGothicNeoR.ttf');
 }
 
@@ -27,5 +27,9 @@
  
 *, body { 
     font-family: 'Apple SD', 'Nanum';
+}
+
+h1 { 
+    font-family: 'Apple SD Bold', 'Nanum';
 }
 
