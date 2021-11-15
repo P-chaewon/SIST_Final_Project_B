@@ -8,26 +8,24 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
 
+/* ----------------------- font ----------------------- */
 
- @font-face {
-	font-family:'Apple SD BOLD'; 
-	src:url('resources/fonts/AppleSDGothicNeoR.ttf');
+@font-face {
+	font-family:'Apple SD'; 
+	src: url('/fonts/AppleSDGothicNeoUL.ttf');
 }
 
 @font-face {
-	font-family:'Apple SD BOLD'; 
-	src:url('resources/fonts/AppleSDGothicNeoR.ttf');
+	font-family:'Apple SD Bold'; 
+	src: url('/fonts/AppleSDGothicNeoR.ttf');
 }
- 
- 
+
 @font-face {
 	font-family:'Nanum'; 
-	src:url('resources/fonts/NanumGothic.ttf') format('opentype');
+	src: url('/fonts/NanumGothic.ttf') format('opentype');
 } 
  
- body, html, h1 {
- 	   
-    font-family: 'Nanum';
- 	color: red;
- }
+*, body { 
+    font-family: 'Apple SD', 'Nanum';
+}
 
