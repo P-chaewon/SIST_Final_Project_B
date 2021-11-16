@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sist.b.ad.AdRepository">
+	<select id="getAdList" resultType="AdVO">
+		select * from ad
+	</select>
+	<insert id="setAdInsert" parameterType="AdVO">
+		insert into ad (adNum, adContents, adDate, adFileName, adURL)
+		values (#{adNum}, #{adContents}, sysdate, #{adFileName}, #{adURL})
+	</insert>
+</mapper>

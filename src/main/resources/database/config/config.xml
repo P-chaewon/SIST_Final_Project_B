@@ -8,8 +8,9 @@
 
   	<typeAlias type="java.lang.Long" alias="Long"/>
   	<typeAlias type="java.util.List" alias="List"/>
-  
-  
+  	
+  	<typeAlias type="com.sist.b.ad.AdVO" alias="AdVO"/>
+  	
   </typeAliases>
   
   
