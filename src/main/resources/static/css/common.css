@@ -17,7 +17,7 @@
 
 @font-face {
 	font-family:'Apple SD'; 
-	src: url('/fonts/AppleSDGothicNeoR.ttf');
+	src: url('static/fonts/AppleSDGothicNeoR.ttf');
 }
 
 @font-face {
