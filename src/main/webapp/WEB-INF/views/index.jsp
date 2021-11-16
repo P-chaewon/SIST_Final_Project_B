@@ -9,6 +9,10 @@
 
 <c:import url="temp/head.jsp"></c:import>
 
+<style>
+	img {width: 20px; height: 20px;}
+</style>
+
 </head>
 <body>
 
@@ -18,5 +22,8 @@
 	</div>
 	<br>
 	<textarea rows="5" cols="10"> </textarea>
+	
+
+	
 </body>
 </html>
