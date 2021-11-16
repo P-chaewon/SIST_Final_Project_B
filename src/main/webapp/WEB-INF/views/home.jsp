@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<!-- navigation -->
+	<!-- nav -->
 		<nav>
 			<div class="nav_container">
 				
@@ -32,13 +32,46 @@
 					<img alt="post" src="icons/add.png">
 					<img alt="탐색" src="icons/global.png">
 					<img alt="알림" src="icons/bell.png">
-					<img alt="마이페이지" src="icons/user.jpg" class="user">
+					<img alt="마이페이지" src="icons/user.jpg" class="pic">
 				
 				</div>
 			</div>
-		
 		</nav>
-	
+		
+	<!-- main page -->
+		<main>
+			
+			<!-- left feed area -->
+			
+			<div class="main_feed">
+				
+				<!-- post foreach, db 추가 -->
+				
+				<article>
+					<!-- header -img, nickname, more -->
+					<header>
+						<div class="post_profile">
+							<img class="post_profile_img pic" alt="profile" src="images/kittens 2.jpg">
+							<span class="nickname main_nickname point_span">cogus196</span>
+						</div>
+						<img class="icon_react icont_more" alt="more" src="icons/more.png">
+					</header>
+					<!--//header  -->
+				
+				</article>
+			
+				<!--//post  -->
+			
+			
+			</div>
+			
+		
+			
+			
+			
+		
+			
+		</main>
 	
 
 </body>

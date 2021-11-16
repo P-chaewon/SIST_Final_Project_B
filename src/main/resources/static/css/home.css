@@ -48,13 +48,13 @@ nav{
     background-color: #fafafa;
     border: 1px solid #DBDBDB;
     border-radius: 3px;
-    background-image: url("../icons/search-bold.png");
-    background-size: 10px;
+    background-image: url("../icons/search.png");
+    background-size: 13px;
     background-repeat: no-repeat;
-    background-position: 8px center;
+    background-position: 10px center;
     text-indent: 10%;
     font-size: 14px;
-	
+	opacity: 0.8;
 }
 
 #search:focus {
