@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sist.b.user.UserRepository">
+  	<insert id="setSignup" parameterType="UserVO" useGeneratedKeys="true" keyProperty="userNum">
+  		insert into user (userNum, phone, email, nickname, username, password) 
+  		values (#{userNum}, #{phone}, #{email}, #{nickname}, #{username}, #{password})
+  	</insert>
+  	
+  	<insert id="setRoleInsert" parameterType="Map">
+  		insert into user_role (userNum, roleNum) 
+  		values (#{userNum}, #{roleNum})
+  	</insert>
+  	
+  	<select id="getLogin" parameterType="String" resultMap="getLoginResult">
+  		select U.*, R.* from user U 
+  			inner join user_role UR 
+			on U.userNum = UR.userNum 
+			inner join role R 
+			on UR.roleNum = R.roleNum 
+		where U.username=#{username}
+  	</select>
+  	
+  	<resultMap type="UserVO" id="getLoginResult">
+  		<id column="userNum" property="userNum"/>
+  		<result column="phone" property="phone"/>
+  		<result column="email" property="email"/>
+  		<result column="nickname" property="nickname"/>
+  		<result column="username" property="username"/>
+  		<result column="password" property="password"/>
+  		<result column="website" property="website"/>
+  		<result column="introduction" property="introduction"/>
+  		<result column="enabled" property="enabled"/>
+  		<collection property="roles" javaType="List" ofType="RoleVO">
+  			<result column="roleNum" property="roleNum"/>
+  			<result column="roleName" property="roleName"/>
+  		</collection>
+  	</resultMap>
+  </mapper>
