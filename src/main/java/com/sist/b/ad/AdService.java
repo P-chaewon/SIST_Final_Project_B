@@ -16,7 +16,11 @@ public class AdService {
 		return adRepository.getList();
 	}
 	
-	public int setList(AdVO adVO, MultipartFile file) throws Exception {
+	public AdVO getOne(AdVO adVO) throws Exception {
+		return adRepository.getOne(adVO);
+	}
+	
+	public int setInsert(AdVO adVO, MultipartFile file) throws Exception {
 		// file insert
 		return adRepository.setInsert(adVO);
 	}

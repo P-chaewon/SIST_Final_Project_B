@@ -29,13 +29,27 @@ public class AdController {
 		return mv;
 	}
 	
+	@GetMapping("select")
+	public ModelAndView getOne(ModelAndView mv, AdVO adVO) throws Exception {
+		adVO = adService.getOne(adVO);
+		mv.addObject("adVO", adVO);
+		mv.setViewName("ad/select");
+		return mv;
+	}
+	
 	@GetMapping("create")
 	public String setInsert(@ModelAttribute AdVO adVO) throws Exception {
 		return "ad/insert";
 	}
 	
-//	@PostMapping("create")
-//	public void setInsert(@Valid AdVO adVO, BindingResult bindingResult, MultipartFile file) throws Exception {
-//		
-//	}
+	@PostMapping("create")
+	public String setInsert(@Valid AdVO adVO, BindingResult bindingResult, MultipartFile file) throws Exception {
+		
+		if(bindingResult.hasErrors()) {
+			return "board/insert";
+		}
+		
+		int result = adService.setInsert(adVO, file);
+		return "redirect:./list";
+	}
 }

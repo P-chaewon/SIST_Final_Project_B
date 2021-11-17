@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+.wrapper {
+	padding: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+table {
+	width: 614px;
+	height: 614px;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table, tr, td {
+	border: 1px solid #E2E2E2;
+}
+
+#profile_img {
+	width: 32px;
+	height: 32px; 
+}
+
+#profile_td {
+	position: relative;
+}
+
+#profile_img {
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	transform:translate(0%, -50%); 
+}
+
+#profile_id {
+	font-family: 'Apple SD Bold', 'Nanum';
+	position: absolute;
+	top: 50%;
+	left: 65px;
+	transform:translate(0%, -50%); 
+}
+
+#more {
+	width: 24px; 
+	height: 24px;
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	transform:translate(0%, -50%); 
+}
+
+#url_td {
+	position: relative;
+}
+
+#url {
+	position: absolute;
+	top:60%;
+	left: 20px;
+	transform:translate(0%, -50%); 
+}
+
+#url_td {
+	border-bottom: none;
+}
+
+#date_td {
+	border-top: none;
+}
+
+#date_td {
+	position: relative;
+}
+
+#date {
+	position: absolute;
+	top:30%;
+	left: 20px;
+	transform:translate(0%, -50%);
+	color: #8e8e8e;
+	font-size: 14px;
+}
+
+#date_tr, #date_td, #url_tr, #url_td {
+	border: none;
+}
+
+#date_td {
+	padding-bottom: 10px; 
+}

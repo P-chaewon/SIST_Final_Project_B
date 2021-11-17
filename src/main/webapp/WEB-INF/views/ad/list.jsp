@@ -7,29 +7,30 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
+<c:import url="../temp/admin_nav.jsp"></c:import>
+<link rel="stylesheet" type="text/css" href="../static/css/ad/list.css">
 </head>
 <body>
-	<h1>Ad List</h1>
-	
-	<main>
-	
+	<main class="wrapper">
+		<table>
+			<tr>
+				<td>Num</td>
+				<td>Contents</td>
+				<td>Date</td>
+				<td>FileName</td>
+				<td>URL</td>
+			</tr>
+			<c:forEach items="${adVOs}" var="adVO">
+				<tr>
+					<td><a href="./select?adNum=${adVO.adNum}">${adVO.adNum}</a></td>
+					<td>${adVO.adContents}</td>
+					<td>${adVO.adDate}</td>
+					<td>${adVO.adFileName}</td>
+					<td>${adVO.adURL}</td>
+				</tr>
+			</c:forEach>
+		</table>
 	</main>
 	
-	<table>
-		<tr>
-			<td>Num</td>
-			<td>Contents</td>
-			<td>Date</td>
-			<td>FileName</td>
-			<td>URL</td>
-		</tr>
-		<c:forEach items="${adVOs}" var="adVO">
-			<td>${adVO.adNum}</td>
-			<td>${adVO.adContents}</td>
-			<td>${adVO.adDate}</td>
-			<td>${adVO.adFileName}</td>
-			<td>${adVO.adURL}</td>
-		</c:forEach>
-	</table>
 </body>
 </html>

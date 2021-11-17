@@ -7,8 +7,11 @@
 	<select id="getList" resultType="AdVO">
 		select * from ad
 	</select>
-	<insert id="setInsert" parameterType="AdVO">
+	<select id="getOne" resultType="AdVO">
+		select * from ad where adNum = #{adNum}
+	</select>
+	<insert id="setInsert" parameterType="AdVO" useGeneratedKeys="true" keyProperty="adNum">
 		insert into ad (adNum, adContents, adDate, adFileName, adURL)
-		values (#{adNum}, #{adContents}, sysdate, #{adFileName}, #{adURL})
+		values (#{adNum}, #{adContents}, now(), #{adFileName}, #{adURL})
 	</insert>
 </mapper>

@@ -10,6 +10,8 @@ public interface AdRepository {
 	
 	// ad list
 	public List<AdVO> getList() throws Exception;
+	// ad one
+	public AdVO getOne(AdVO adVO) throws Exception;
 	// ad insert
 	public int setInsert(AdVO adVO) throws Exception;
 	// file insert

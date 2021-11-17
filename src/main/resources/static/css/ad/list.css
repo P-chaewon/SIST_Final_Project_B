@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.wrapper {
+	padding: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table, tr {
+	border: 1px solid #E2E2E2;
+}
+
+td {
+	padding: 10px;
+}
