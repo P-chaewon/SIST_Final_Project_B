@@ -6,8 +6,6 @@
 ************************************************************************/
 /* AppleSDGothicNeoR */
 
-@import url('https://fonts.googleapis.com/css2?family=Slabo+27px&display=swap');
-
 /* ----------------------- font ----------------------- */
 
 @font-face {
@@ -17,7 +15,7 @@
 
 @font-face {
 	font-family:'Apple SD'; 
-	src: url('/gram/staticstatic/fonts/AppleSDGothicNeoR.ttf');
+	src: url('/gram/static/fonts/AppleSDGothicNeoR.ttf');
 }
 
 @font-face {
