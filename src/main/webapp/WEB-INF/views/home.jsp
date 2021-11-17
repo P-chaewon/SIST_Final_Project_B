@@ -9,7 +9,7 @@
 
 <title>HOME</title>
 
-<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
 
 </head>
 <body>
@@ -28,31 +28,31 @@
 					<!-- post header -img, nickname, more -->
 					<header>
 						<div class="post_profile">
-							<img class="post_profile_img pic" alt="profile" src="images/post/sample_profile.jpg">
+							<img class="post_profile_img pic" alt="profile" src="${pageContext.request.contextPath}/static/images/post/sample_profile.jpg">
 							<span class="nickname main_nickname point_span">cogus196</span>
 						</div>
-						<img class="icon_react icont_more" alt="more" src="icons/more.png">
+						<img class="icon_react icont_more" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 					</header>
 					<!--//header  -->
 					
 					<!-- post image -->
 					<div class="post_image">
-						<img alt="post" src="images/post/sample2.jpg">
+						<img alt="post" src="${pageContext.request.contextPath}/static/images/post/sample2.jpg">
 					</div>
 					<!-- post icon -->
 					<div class="icons_react">
 						<div class="icons_left">
-							<img class="icon_react" alt="heart" src="icons/heart.png">
-							<img class="icon_react" alt="speech" src="icons/bubble-chat.png">
-							<img class="icon_react" alt="dm" src="icons/dm.png">
+							<img class="icon_react" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
+							<img class="icon_react" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 						</div>
-						<img class="icon_react" alt="bookmark" src="icons/bookmark.png">
+						<img class="icon_react" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
 					</div>
 					
 					<!-- text  -->
 					<div class="reaction">
 			            <div class="liked_people">
-			              <img class="pic" src="images/kittens 2.jpg" alt="profile">
+			              <img class="pic" src="${pageContext.request.contextPath}/static/images/kittens 2.jpg" alt="profile">
 			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
 			            </div>
 			            <div class="description">
@@ -64,7 +64,7 @@
 			              <ul class="comments">
 			                <li>
 			                  <span><span class="point_span nickname">ch196</span>단추ㅠ</span>
-			                  <img class="comment_heart" src="icons/heart.png" alt="하트">
+			                  <img class="comment_heart" src="${pageContext.request.contextPath}/static/icons/heart.png" alt="하트">
 			                </li>
 			                <!-- input 값 여기에 추가 -->
 			              </ul>

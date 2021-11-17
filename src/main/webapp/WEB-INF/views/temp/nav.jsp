@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
 </head>
 <body>
 	<!-- nav -->
@@ -14,7 +14,7 @@
 				
 				<!-- logo 추가 -->
 				<div class="nav_logo">
-					<img class="logo_img" alt="logo" src="icons/instagram_logo.png">
+					<img class="logo_img" alt="logo" src="${pageContext.request.contextPath}/static/icons/instagram_logo.png">
 				</div>
 				
 				<!-- 검색창 -->
@@ -22,12 +22,12 @@
 				
 				<!-- icon -->
 				<div class="nav_icon">
-					<img alt="홈" src="icons/home.png">
-					<img alt="DM" src="icons/dm.png">
-					<img alt="post" src="icons/add.png">
-					<img alt="탐색" src="icons/global.png">
-					<img alt="알림" src="icons/bell.png">
-					<img alt="마이페이지" src="icons/user.jpg" class="pic">
+					<img alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
+					<img alt="DM" src="${pageContext.request.contextPath}/static/icons/dm.png">
+					<img alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
+					<img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
+					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
+					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
 				
 				</div>
 			</div>
