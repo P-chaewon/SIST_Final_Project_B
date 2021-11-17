@@ -12,17 +12,17 @@
 
 @font-face {
 	font-family:'Apple SD Bold'; 
-	src: url('/fonts/AppleSDGothicNeoSB.ttf');
+	src: url('/gram/static/fonts/AppleSDGothicNeoSB.ttf');
 }
 
 @font-face {
 	font-family:'Apple SD'; 
-	src: url('static/fonts/AppleSDGothicNeoR.ttf');
+	src: url('/gram/staticstatic/fonts/AppleSDGothicNeoR.ttf');
 }
 
 @font-face {
 	font-family:'Nanum'; 
-	src: url('/fonts/NanumGothic.ttf') format('opentype');
+	src: url('/gram/static/fonts/NanumGothic.ttf') format('opentype');
 } 
  
 *, body { 
