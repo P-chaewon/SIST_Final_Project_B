@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<c:import url="temp/head.jsp"></c:import>
+<c:import url="./temp/head.jsp"></c:import>
 
 <title>HOME</title>
 
@@ -14,7 +14,11 @@
 </head>
 <body>
 	<c:import url="./temp/nav.jsp"></c:import>
-
+		<script type="text/javascript">
+		$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
+	
+	</script>
+	
 	<!-- main page -->
 		<main>
 			
@@ -126,6 +130,6 @@
 			
 		</main>
 	
-
+	
 </body>
 </html>

@@ -5,10 +5,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<c:import url="../temp/head.jsp"></c:import>
 <title>Insert title here</title>
 </head>
 <body>
 	<c:import url="../temp/nav.jsp"></c:import>
-	<h1>post upload</h1>
+
+
+
+<script type="text/javascript">
+	$("#post_upload").attr("src", "${pageContext.request.contextPath}/static/icons/add-click.png");
+</script>
 </body>
 </html>
