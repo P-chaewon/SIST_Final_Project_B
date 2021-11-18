@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <c:import url="./temp/head.jsp"></c:import>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <title>HOME</title>
 
@@ -15,9 +16,8 @@
 <body>
 	<c:import url="./temp/nav.jsp"></c:import>
 		<script type="text/javascript">
-		$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
-	
-	</script>
+			$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
+		</script>
 	
 	<!-- main page -->
 		<main>

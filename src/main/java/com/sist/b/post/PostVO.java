@@ -10,6 +10,7 @@ public class PostVO {
 	private Long postNum;
 	private Long userNum;
 	private String contents;
+	private String tag;
 	private Date regDate;
 
 }

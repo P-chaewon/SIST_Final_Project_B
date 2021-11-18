@@ -9,7 +9,7 @@
   		INSERT INTO 
   				post
   		VALUES
-  				(#{postNum}, #{userNum}, #{contents}, now())
+  				(#{postNum}, #{userNum}, #{contents}, #{tag, jdbcType=VARCHAR}, now())
   	</insert>
   
   
