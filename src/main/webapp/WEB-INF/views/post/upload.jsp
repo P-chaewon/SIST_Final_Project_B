@@ -36,20 +36,37 @@
 						</div>
 						<input type="file" accept="image/*" name="file" class="img_file" onchange='openFile(event)' hidden="hidden">
 					</td>
-					<td class="tbl_td" style="height:400px;">
-						<!-- <textarea path="adContents" cssClass="contents" placeholder="문구 입력..."/> -->
+					<td class="tbl_td" style="height:300px;">
 						<textarea name="contents" class="contents" rows="" cols="" placeholder="문구입력..."></textarea>
+						
+						<div>						
+							<div id="result" class="result_txt"><span class="ui_inputLimitCount">0</span>/2,200</div>
+							<img class="icon_react" alt="emoticon" src="${pageContext.request.contextPath}/static/icons/emoticon.png">
+						</div>
 					</td>
 				</tr>
 				<tr>
 					<td class="tbl_td">
-						<input type="text" name="adURL" placeholder="URL 추가" Class="url"/>
+						<input type="text" name="tag" placeholder="태그 추가" Class="tag"/>
 					</td>
 				</tr>
 			</table>
 		</form>
 	</main>
 
-<script type="text/javascript" src="../static/js/ad/insert.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+    $('.contents').on('keyup', function() {
+        $('#result').html($(this).val().length+ '/ 2,200');
+        if($(this).val().length > 2200) {
+            $(this).val($(this).val().substring(0, 2200));
+            $('#result').html("2,200 / 2,200");
+        }
+    });
+});
+
+</script>
 </body>
-</html>>
+</html>
