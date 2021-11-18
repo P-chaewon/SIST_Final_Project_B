@@ -52,4 +52,10 @@ public class AdController {
 		int result = adService.setInsert(adVO, file);
 		return "redirect:./list";
 	}
+	
+	@GetMapping("delete")
+	public String setDelete(AdVO adVO) throws Exception {
+		int result = adService.setDelete(adVO);
+		return "redirect:./list";
+	}
 }

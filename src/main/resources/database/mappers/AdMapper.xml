@@ -14,4 +14,7 @@
 		insert into ad (adNum, adContents, adDate, adFileName, adURL)
 		values (#{adNum}, #{adContents}, now(), #{adFileName}, #{adURL})
 	</insert>
+	<delete id="setDelete" parameterType="AdVO">
+		delete from ad where adNum = #{adNum}
+	</delete>
 </mapper>
