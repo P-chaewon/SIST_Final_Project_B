@@ -1,5 +1,6 @@
 package com.sist.b.ad;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -40,9 +41,16 @@ public class AdService {
 	}
 	
 	public int setInsert(AdVO adVO, MultipartFile file) throws Exception {
-		// file save
+		// 글 insert
 		int result = adRepository.setInsert(adVO);
-		//File file = filePathGenerator
+		
+		File file2 = filePathGenerator.getUseServletContext(filePath);
+		String fileName = fileManager.saveTransferTo(file, file2);
+		AdFileVO adFileVO = new AdFileVO();
+		adFileVO.setAdNum(adVO.getAdNum());
+		adFileVO.setFileName(fileName);
+		adFileVO.setOriName(file.getOriginalFilename());
+		result = adRepository.setFileInsert(adFileVO);
 		
 		return result;
 	}

@@ -15,7 +15,7 @@ public interface AdRepository {
 	// ad insert
 	public int setInsert(AdVO adVO) throws Exception;
 	// file insert
-	
+	public int setFileInsert(AdFileVO adFileVO) throws Exception;
 	// ad delete
 	public int setDelete(AdVO adVO) throws Exception;
 }

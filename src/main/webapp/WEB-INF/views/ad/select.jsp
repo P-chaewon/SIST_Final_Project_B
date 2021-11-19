@@ -22,7 +22,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td height="614px">${adVO.adFileName}</td>
+				<!-- 사진 -->
+				<td height="614px">
+					<img alt="${adVO.adFile.oriName}" src="/static/upload/ad/logo.png">
+				</td>
 			</tr>
 			<tr id="url_tr">
 				<td height="45px" id="url_td">

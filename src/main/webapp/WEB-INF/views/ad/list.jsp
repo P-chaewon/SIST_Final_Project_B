@@ -16,16 +16,16 @@
 			<tr>
 				<td>Num</td>
 				<td>Contents</td>
-				<td>Date</td>
 				<td>FileName</td>
+				<td>Date</td>
 				<td>URL</td>
 			</tr>
 			<c:forEach items="${adVOs}" var="adVO">
 				<tr>
 					<td><a href="./select?adNum=${adVO.adNum}">${adVO.adNum}</a></td>
 					<td>${adVO.adContents}</td>
+					<td>${adVO.adFile.oriName}</td>
 					<td>${adVO.adDate}</td>
-					<td>${adVO.adFileName}</td>
 					<td>${adVO.adURL}</td>
 				</tr>
 			</c:forEach>

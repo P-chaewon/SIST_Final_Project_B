@@ -18,7 +18,7 @@ public class FilePathGenerator {
 		filePath = servletContext.getRealPath(filePath);
 		File file = new File(filePath);
 		if (!file.exists()) {
-			file.mkdir();
+			file.mkdirs();
 		}
 		System.out.println(filePath);
 		return file;

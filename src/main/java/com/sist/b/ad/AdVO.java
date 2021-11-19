@@ -9,6 +9,6 @@ public class AdVO {
 	private Long adNum;
 	private String adContents;
 	private Date adDate;
-	private String adFileName;
 	private String adURL;
+	private AdFileVO adFile;
 }
