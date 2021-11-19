@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		// 정적 자원 요청 URL은 Security 거치지 않고 통과
 		web.ignoring()
-					.antMatchers("/css/**")
+					.antMatchers("/gram/css/**")
 					.antMatchers("/js/**")
 					.antMatchers("/images/**")
 					.antMatchers("/fonts/**")
@@ -35,8 +35,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and()
 			.csrf().disable()
 			.authorizeRequests()
+								//.anyRequest().permitAll()
 								.antMatchers("/account/signup").permitAll()
-								.anyRequest().authenticated()
+								.antMatchers("/account/edit/*").hasRole("USER")
+								
+								.antMatchers("/").authenticated()
+								//.antMatchers("/account/signup").permitAll()
+								//.antMatchers("/account/signup").not().hasRole("USER")
+								//.anyRequest().authenticated()
 								.and()
 			.formLogin()
 						.loginPage("/account/login")

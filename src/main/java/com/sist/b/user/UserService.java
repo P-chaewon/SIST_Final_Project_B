@@ -44,6 +44,14 @@ public class UserService implements UserDetailsService{
 		return userVO;
 	}
 	
+	public UserVO getSelectOne(Long userNum) throws Exception {
+		return userRepository.getSelectOne(userNum);
+	}
+	
+	public UserVO getIdCheck(UserVO userVO) throws Exception {
+		return userRepository.getIdCheck(userVO);
+	}
+	
 	
 
 }
