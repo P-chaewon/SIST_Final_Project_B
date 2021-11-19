@@ -9,7 +9,7 @@
 <c:import url="../temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user.css">
 </head>
-<body>
+<body  onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div id="react-root">
 		<section class="account-section">
 			<div></div>
@@ -55,9 +55,12 @@
 										</div>
 									</div>
 									<div class="error-message">
-										<p aria-atomic="true" data-testid="login-error-message" id="errorAlert" role="alert">
-										
-										</p>
+										<c:if test="${not empty param.error}">
+											<p aria-atomic="true" data-testid="login-error-message" id="errorAlert" role="alert">
+												아이디 또는 비밀번호가 잘못 입력 되었습니다.<br>
+												아이디와 비밀번호를 정확히 입력해 주세요.
+											</p>
+										</c:if>
 									</div>
 									<a class="password-reset" href="/accounts/password/reset/" tabindex="0">비밀번호를 잊으셨나요?</a>
 								</form>
@@ -80,5 +83,10 @@
 		</section>
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/user.js"></script>
+	 <script type="text/javascript">
+		 window.history.forward();
+		 function noBack(){window.history.forward();}
+	</script>
+	
 </body>
 </html>

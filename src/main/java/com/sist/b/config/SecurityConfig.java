@@ -1,16 +1,28 @@
 package com.sist.b.config;
 
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.web.util.UrlPathHelper;
+
+import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
+@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
@@ -48,6 +60,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						.loginPage("/account/login")
 						.defaultSuccessUrl("/")
 						.permitAll()
+						.failureHandler(new AuthenticationFailureHandler() {
+							
+							@Override
+							public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+									AuthenticationException exception) throws IOException, ServletException {
+								// TODO Auto-generated method stub
+								System.out.println("A user has failed to login. ERROR : "+exception.getMessage());
+							//	UrlPathHelper helper = new UrlPathHelper();
+								
+								response.sendRedirect("/gram/account/login?error=true");
+							}
+						})
 						.and()
 			.logout()
 						.logoutUrl("/account/logout")

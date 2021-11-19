@@ -34,13 +34,17 @@ public class UserService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		System.out.println(username);
-		UserVO userVO=null;
+		UserVO userVO = null;
 		try {
 			userVO = userRepository.getLogin(username);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		if(userVO == null) {
+			throw new UsernameNotFoundException(username);
+		}
+		
 		return userVO;
 	}
 	
