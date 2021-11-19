@@ -22,7 +22,8 @@
 	</div>
 	<br>
 	<textarea rows="5" cols="10"> </textarea>
-	
+	<a href="./account/logout">로그아웃</a>
+	<a href="./account/edit">수정하기</a>
 
 	
 </body>

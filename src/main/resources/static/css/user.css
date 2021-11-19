@@ -1,0 +1,59 @@
+@charset "UTF-8";
+body {display: block; background: #fff; overflow-y: scroll; line-height: 1; }
+html, body, #react-root{height: 100%;}
+div {display: block;}
+body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px;}
+#react-root, article, div, footer, header, main, nav, section {
+	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
+	flex-shrink: 0; margin: 0; padding: 0; position: relative;
+}
+#react-root{z-index: 0;}
+
+.account-section {min-width: 100vh; overflow: hidden; display: flex; flex-direction: column; flex-grow: 1;}
+.account-main {background-color: #fafafa; flex-grow: 1; order: 4}
+.signup-space{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: center; flex: 1 1 auto; min-width: 0; margin-bottom: 44px; overflow: hidden; min-height: 100%;}
+.login-space{flex-direction: row; flex-grow: 1; justify-content: center; margin: 32px auto 0; max-width: 935px; padding-bottom: 32px; width: 100%;}
+.login-image{align-self: center; background-image: url("/gram/static/images/user/loginimage.png"); background-position: 0 0; background-size: 454px 618px; flex-basis: 454px; height: 618px; margin-left: -35px; margin-right: -15px;}
+.image-header {margin: 99px 0 0 151px; position: relative;}
+.basics{height: 427px; left: 0; opacity: 0; position: absolute; top: 0; visibility: hidden; width: 240px;}
+.present-image{transition: opacity 1.5s ease-in; z-index:2px;}
+.present-image, .next-image{ opacity: 1; visibility: visible; }
+.input-space{color: #262626; flex-grow: 1; justify-content: center; margin-top: 12px; max-width: 350px;}
+.input-part{align-items: center; background-color: #fff; border: 1px solid #dbdbdb; border-radius: 1px; margin: 0 0 10px; padding: 10px 0;}
+.sns-name{margin: 22px auto 12px; height: 51px; width: 175px; display: block; overflow: hidden; font-size: 40px; text-align: center; line-height: 51px;}
+.login-section{margin-bottom: 10px; max-width: 350px; width: 100%;}
+.signup-section{margin-bottom: 20px; max-width: 350px; width: 100%;}
+.login-form{display: flex; flex-direction: column;max-width: 350px;}
+.signup-form{display: flex; flex-direction: column; max-width: 350px;}
+.input-text{color: #8e8e8e; font-size: 16px; line-height: 20px; margin: 0 40px 10px; text-align: center;}
+.form-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.btn-space {margin: 8px 40px 8px 40px;}
+.login-input{margin: 0 40px 8px;}
+.signup-input{margin: 0 40px 6px;}
+.entry-text{align-items: center; background: #fafafa; border: 1px solid #dbdbdb; border-radius:3px; box-sizing: border-box; color: #262626; display: flex; flex-direction: row; font-size: 14px; position: relative; width: 100%;}
+.focus-visible{border: 1px solid #a8a8a8;}
+.label{display: flex;height: 36px; flex: 1 0 0; padding: 0; position: relative; margin: 0; min-width: 0;}
+.label-name{
+	color: #8e8e8e; font-size: 14px; height:36px; left: 8px; line-height: 36px; overflow: hidden; pointer-events:none; position: absolute; right: 0; text-overflow: ellipsis;  
+	user-select:none; white-space: nowrap;
+}
+.change-label{
+	color: #8e8e8e; font-size: 10px; height:36px; left: 8px; overflow: hidden; pointer-events:none; position: absolute; right: 0; text-overflow: ellipsis; 
+	user-select:none; white-space: nowrap;
+}
+.aInput{font-size: 16px; background: #fafafa; border: 0; flex: 1 0 auto; margin: 0; outline: 0; overflow: hidden; padding: 9px 0 7px 8px; text-overflow: ellipsis;}
+.aInput-change{padding: 14px 0 2px 8px;}
+.failOrPass{align-items: center; flex: 0 0 auto; flex-direction: row; height: 100%; padding-right: 8px; vertical-align: middle;}
+.pass-icon {margin-left: 8px; height: 22px; width: 22px; background-image: url("/gram/static/icons/signup-pass.png");}
+.fail-icon{margin-left: 8px; height: 22px; width: 22px; background-image: url("/gram/static/icons/signup-fail.png");}
+.fail-message {display: none; color: #ed4956;}
+.account-btn{
+	background-color: #0095f6; border: 1px solid transparent; border-radius: 4px; position: relative; color: #fff; box-sizing: border-box; cursor: pointer; display: block; font-weight: 500; padding: 5px 9px; text-align: center;
+	text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto;
+}
+.account-btn:disabled{background: rgba(0,149,246,.3); opacity: 1; cursor: default;}
+.error-message{color: #ed4956; margin: 10px 40px; font-size: 14px; line-height: 18px; text-align: center;}
+.password-reset{color: #00376b; font-size: 13px; line-height: 16px; margin-top: 12px; text-align: center; text-decoration: none;}
+.link-space{display: block; color: #8e8e8e; font-weight: 400; font-size: 14px; line-height: 18px; margin: -3px 0 -4px; }
+.link-account{color: #262626; font-size: 14px; margin: 15px; text-align: center;}
+.link-name{display: inline; margin-top: 0; margin-left:10px; color: #0095f6; font-weight: bold; font-size: 14px; line-height: 18px; text-decoration: none;}
