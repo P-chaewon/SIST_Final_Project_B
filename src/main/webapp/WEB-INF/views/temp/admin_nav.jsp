@@ -22,9 +22,9 @@
 				
 				<!-- icon -->
 				<div class="nav_icon">
-					<img alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
-					<%-- <img alt="DM" src="${pageContext.request.contextPath}/static/icons/dm.png"> --%>
-					<a href="${pageContext.request.contextPath}/ad/create"><img alt="post" src="${pageContext.request.contextPath}/static/icons/add.png"></a>
+					<a href="${pageContext.request.contextPath}/admin/"><img alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png"></a>
+					<a href="${pageContext.request.contextPath}/admin/ad/create"><img alt="post" src="${pageContext.request.contextPath}/static/icons/add.png"></a>
+					<a href="${pageContext.request.contextPath}/admin/payments"><img alt="payment" src="${pageContext.request.contextPath}/static/icons/payment.png"></a>
 					<%-- <img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
 					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
 					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic"> --%>

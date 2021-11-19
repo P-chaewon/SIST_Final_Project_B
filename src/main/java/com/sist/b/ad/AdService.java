@@ -1,10 +1,9 @@
 package com.sist.b.ad;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.util.List;
 
-import javax.validation.Valid;
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,6 +22,9 @@ public class AdService {
 	// 파일을 저장할 디렉토리 생성
 	@Autowired
 	private FilePathGenerator filePathGenerator; 
+	
+	@Autowired
+	private ServletContext servletContext;
 	
 	// 파일을 HDD에 저장할 클래스
 	@Autowired
@@ -56,6 +58,12 @@ public class AdService {
 	}
 	
 	public int setDelete(AdVO adVO) throws Exception {
+		// HDD에서 파일 삭제
+		String realPath = servletContext.getRealPath(filePath);
+		File file = new File(realPath, adVO.getAdFile().getFileName());
+		fileManager.fileDelete(file);
+		
+		// DB에서 글 삭제 (파일은 cascade)
 		return adRepository.setDelete(adVO);
 	}
 }

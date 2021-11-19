@@ -8,19 +8,17 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="../static/css/ad/list.css">
 </head>
 <body>
 	<main class="wrapper">
 		<table>
 			<tr>
-				<td>Num</td>
-				<td>Contents</td>
-				<td>FileName</td>
-				<td>Date</td>
-				<td>URL</td>
+				<td>userNum</td>
+				<td>membershipNum</td>
+				<td>paymentsDate</td>
+				<td>method</td>
 			</tr>
-			<c:forEach items="${adVOs}" var="adVO">
+			<%-- <c:forEach items="${adVOs}" var="adVO">
 				<tr>
 					<td><a href="./ad/select?adNum=${adVO.adNum}">${adVO.adNum}</a></td>
 					<td>${adVO.adContents}</td>
@@ -28,9 +26,8 @@
 					<td>${adVO.adDate}</td>
 					<td>${adVO.adURL}</td>
 				</tr>
-			</c:forEach>
+			</c:forEach> --%>
 		</table>
 	</main>
-	
 </body>
 </html>

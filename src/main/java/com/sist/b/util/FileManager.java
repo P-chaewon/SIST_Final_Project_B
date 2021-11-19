@@ -9,6 +9,12 @@ import org.springframework.web.multipart.MultipartFile;
 @Component
 public class FileManager {
 	
+	// file delete
+	public void fileDelete(File file) throws Exception {
+		file.delete();
+	}
+	
+	// file save
 	public String saveTransferTo(MultipartFile file, File dest) throws Exception {
 		String fileName = null;
 		fileName = UUID.randomUUID().toString()+"_"+file.getOriginalFilename();

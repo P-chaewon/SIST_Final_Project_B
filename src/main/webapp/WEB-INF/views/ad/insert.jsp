@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="../static/css/ad/insert.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/ad/insert.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -46,6 +46,6 @@
 		</form:form>
 	</main>
 
-<script type="text/javascript" src="../static/js/ad/insert.js"></script>
+<script type="text/javascript" src="../../static/js/ad/insert.js"></script>
 </body>
 </html>

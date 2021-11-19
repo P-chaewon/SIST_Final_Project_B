@@ -15,13 +15,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/ad/**")
+@RequestMapping("admin/**")
 public class AdController {
 	
 	@Autowired
 	private AdService adService;
 	
-	@GetMapping("list")
+	@GetMapping("/")
 	public ModelAndView getList(ModelAndView mv) throws Exception {
 		List<AdVO> ar = adService.getList();
 		mv.addObject("adVOs", ar);
@@ -29,7 +29,7 @@ public class AdController {
 		return mv;
 	}
 	
-	@GetMapping("select")
+	@GetMapping("ad/select")
 	public ModelAndView getOne(ModelAndView mv, AdVO adVO) throws Exception {
 		adVO = adService.getOne(adVO);
 		mv.addObject("adVO", adVO);
@@ -37,12 +37,12 @@ public class AdController {
 		return mv;
 	}
 	
-	@GetMapping("create")
+	@GetMapping("ad/create")
 	public String setInsert(@ModelAttribute AdVO adVO) throws Exception {
 		return "ad/insert";
 	}
 	
-	@PostMapping("create")
+	@PostMapping("ad/create")
 	public String setInsert(@Valid AdVO adVO, BindingResult bindingResult, MultipartFile file) throws Exception {
 		
 		if(bindingResult.hasErrors()) {
@@ -50,12 +50,13 @@ public class AdController {
 		}
 		
 		int result = adService.setInsert(adVO, file);
-		return "redirect:./list";
+		return "redirect:../";
 	}
 	
-	@GetMapping("delete")
+	@GetMapping("ad/delete")
 	public String setDelete(AdVO adVO) throws Exception {
+		adVO = adService.getOne(adVO);
 		int result = adService.setDelete(adVO);
-		return "redirect:./list";
+		return "redirect:../";
 	}
 }

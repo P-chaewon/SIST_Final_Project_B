@@ -9,22 +9,22 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="../static/css/ad/select.css">
+<link rel="stylesheet" type="text/css" href="../../static/css/ad/select.css">
 </head>
 <body>
 	<main class="wrapper">
 		<table>
 			<tr>
 				<td height="60px" id="profile_td">
-					<img id="profile_img" alt="profile" src="../static/icons/user.jpg">
+					<img id="profile_img" alt="profile" src="../../static/icons/user.jpg">
 					<span id="profile_id">admin</span>
-					<img id="more" alt="more" src="../static/icons/more.png">
+					<img id="more" alt="more" src="../../static/icons/more.png">
 				</td>
 			</tr>
 			<tr>
 				<!-- 사진 -->
 				<td height="614px">
-					<img alt="${adVO.adFile.oriName}" src="/static/upload/ad/logo.png">
+					<img id="image" alt="${adVO.adFile.oriName}" src="../../static/upload/ad/${adVO.adFile.fileName}">
 				</td>
 			</tr>
 			<tr id="url_tr">
@@ -60,6 +60,6 @@
 		</div>
 
 	</main>
-	<script type="text/javascript" src="../static/js/ad/select.js"></script>
+	<script type="text/javascript" src="../../static/js/ad/select.js"></script>
 </body>
 </html>
