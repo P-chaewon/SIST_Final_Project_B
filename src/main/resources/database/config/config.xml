@@ -8,6 +8,10 @@
 
   	<typeAlias type="java.lang.Long" alias="Long"/>
   	<typeAlias type="java.util.List" alias="List"/>
+  	<typeAlias type="java.lang.String" alias="String"/>
+  	<typeAlias type="java.util.Map" alias="Map"/>
+  	<typeAlias type="com.sist.b.user.UserVO" alias="UserVO"/>
+  	<typeAlias type="com.sist.b.user.RoleVO" alias="RoleVO"/>
   
   	<typeAlias type="com.sist.b.ad.AdVO" alias="adVO"/>
   	<typeAlias type="com.sist.b.ad.AdFileVO" alias="adFileVO"/>
