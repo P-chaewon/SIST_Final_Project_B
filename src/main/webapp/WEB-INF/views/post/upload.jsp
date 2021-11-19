@@ -33,7 +33,14 @@
 								<div>사진을 선택하세요</div>
 							</div>
 							<img id="thumbnail">
+							
 						</div>
+							<!-- multi file -->
+							<div class="multi_files" style="display: none;">
+							<div style="position: absolute; right: 12px; bottom: 6px; background-color: black; opacity: 0.8; width: 32px; height: 32px; border-radius: 50%; text-align: center;">
+								<img id="multi_file" alt="multi_file" src="${pageContext.request.contextPath}/static/icons/gallery.png">
+							</div>
+							</div>
 						<input type="file" accept="image/*" name="file" class="img_file" onchange='openFile(event)' hidden="hidden">
 					</td>
 					<td class="tbl_td" style="height:300px;">
@@ -54,6 +61,8 @@
 		</form>
 	</main>
 
+
+<script type="text/javascript" src="../static/js/post/upload.js"></script>
 
 <script type="text/javascript">
 $(document).ready(function() {
