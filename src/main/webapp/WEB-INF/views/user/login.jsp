@@ -57,8 +57,8 @@
 									<div class="error-message">
 										<c:if test="${not empty param.error}">
 											<p aria-atomic="true" data-testid="login-error-message" id="errorAlert" role="alert">
-												아이디 또는 비밀번호가 잘못 입력 되었습니다.<br>
-												아이디와 비밀번호를 정확히 입력해 주세요.
+												사용자 이름 또는 비밀번호가 일치하지 않습니다.<br>
+												사용자 이름과 비밀번호를 정확히 입력해 주세요.
 											</p>
 										</c:if>
 									</div>
