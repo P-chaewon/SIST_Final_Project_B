@@ -83,7 +83,7 @@
 		</section>
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/user.js"></script>
-	 <script type="text/javascript">
+	<script type="text/javascript">
 		 window.history.forward();
 		 function noBack(){window.history.forward();}
 	</script>

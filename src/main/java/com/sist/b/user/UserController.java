@@ -1,12 +1,18 @@
 package com.sist.b.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -15,6 +21,8 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private AuthenticationManager authenticationManager;
 	
 	@GetMapping("signup")
 	public String setSignup() throws Exception {
@@ -48,12 +56,36 @@ public class UserController {
 	}
 	
 	@GetMapping("edit")
-	public ModelAndView setUpdate(Long userNum) throws Exception {
+	public String setUpdate() throws Exception {
+		return "user/edit";
+	}
+	
+	@PostMapping("edit")
+	public ModelAndView setUpdate(UserVO userVO, ModelAndView mv) throws Exception{
+		int result = userService.setUpdate(userVO);
+		String msg="";
+		if(result==1) {
+			msg="프로필이 저장되었습니다.";
+		}
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", msg);
+		
+		//세션 등록
+		Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userVO.getUsername(), userVO.getPassword()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		return mv;
+	}
+	
+	@PostMapping("edit/fileUpdate")
+	public ModelAndView setFileUpdate(UserVO userVO, MultipartFile file) throws Exception {
+		int result = userService.setFileUpdate(userVO, file);
 		ModelAndView mv = new ModelAndView();
-		UserVO userVO = new UserVO();
-		userVO = userService.getSelectOne(userNum);
-		mv.setViewName("user/edit");
-		mv.addObject("userVO", userVO);
+		String msg = "프로필 등록 실패";
+		if(result == 1) {
+			msg = "프로필 등록 성공";
+		}
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", msg);
 		return mv;
 	}
 }
