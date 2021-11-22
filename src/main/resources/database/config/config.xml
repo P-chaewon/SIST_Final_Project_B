@@ -13,8 +13,9 @@
   	<typeAlias type="com.sist.b.user.UserVO" alias="UserVO"/>
   	<typeAlias type="com.sist.b.user.RoleVO" alias="RoleVO"/>
   
-  	<typeAlias type="com.sist.b.ad.AdVO" alias="adVO"/>
-  	<typeAlias type="com.sist.b.ad.AdFileVO" alias="adFileVO"/>
+  	<typeAlias type="com.sist.b.ad.AdVO" alias="AdVO"/>
+  	<typeAlias type="com.sist.b.ad.AdFileVO" alias="AdFileVO"/>
+  	<typeAlias type="com.sist.b.membership.MembershipVO" alias="MembershipVO"/>
   </typeAliases>
   
   

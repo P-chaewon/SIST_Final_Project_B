@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+.wrapper {
+	position: absolute;
+	width: 50%;
+	height: auto;
+	top: 10px;
+	left: 50%;
+	transform:translate(-50%, 0%); 
+	padding: 100px;
+}
+
+hr {
+	border: solid 1px #E2E2E2;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#title {
+	font-size: 25px;
+	padding: 5px;
+}
+
+#membershipName {
+	font-size: 20px;
+	padding: 5px;
+}
+
+#membershipAmount {
+	padding: 5px;
+	margin-bottom: 10px;
+}
+
+.t {
+	padding: 5px;
+	padding-right: 15px;
+	font-family: 'Apple SD Bold'; 
+}
