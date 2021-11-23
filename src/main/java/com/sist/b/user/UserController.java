@@ -1,5 +1,7 @@
 package com.sist.b.user;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -76,16 +78,18 @@ public class UserController {
 		return mv;
 	}
 	
+		
 	@PostMapping("edit/fileUpdate")
-	public ModelAndView setFileUpdate(UserVO userVO, MultipartFile file) throws Exception {
-		int result = userService.setFileUpdate(userVO, file);
+	public ModelAndView setFileUpdate(UserVO userVO, MultipartFile file, HttpSession session) throws Exception {
+		int result = userService.setFileUpdate(userVO, file, session);
 		ModelAndView mv = new ModelAndView();
-		String msg = "프로필 등록 실패";
+		String msg = "profile fail";
 		if(result == 1) {
-			msg = "프로필 등록 성공";
+			msg = "profile pass";
 		}
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", msg);
+		
 		return mv;
 	}
 }

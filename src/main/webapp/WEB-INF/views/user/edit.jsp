@@ -62,24 +62,29 @@
 							<div class="photo-update-1">
 								<div class="icon-outline">
 									<button class="icon-btn" title="프로필 사진 추가">
-											<img alt="프로필 사진 추가" class="input-icon" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-										<c:if test="${not empty userVO.fileName}">
-											<img alt="프로필 사진 추가" class="input-icon" src="${pageContext.request.contextPath}/static/icons/user.jpg">									
-										</c:if>
+										<c:choose>
+											<c:when test="${not empty userVO.fileName }">
+												<img alt="프로필 사진 추가" class="input-icon" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">									
+											</c:when>
+											<c:otherwise>
+												<img alt="프로필 사진 추가" class="input-icon" src="${pageContext.request.contextPath}/static/icons/user.jpg">
+											</c:otherwise>
+										</c:choose>
 									</button>
 									<div>
-										<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation">
+										<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation" class="profile-form">
 											<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">
+											<input type="hidden" name="username" value="${userVO.username}">
 										</form>
 									</div>
 								</div>
 							</div>
 							<div class="photo-update-2">
-								<h1 class="my-username" title="user_424">${userVO.username}</h1>
+								<h1 class="my-username" title="${userVO.username}">${userVO.username}</h1>
 								<button class="profile-button" type="button">프로필 사진 바꾸기</button>
 								<div>
-									<form enctype="multipart/form-data" method="POST" action="./edit/fileUpdate" role="presentation">
-										<input accept="image/jpeg,image/png" class="profile-photo" type="file" id="file">
+									<form enctype="multipart/form-data" method="POST" action="./edit/fileUpdate" role="presentation" class="profile-form">
+										<input accept="image/jpeg,image/png" class="profile-photo" type="file" id="file" name="file">
 									</form>
 								</div>
 							</div>
@@ -94,7 +99,7 @@
 										<input aria-required="false" id="nickname" placeholder="닉네임" type="text" class="input-update" value="${userVO.nickname}">
 										<div class="pInfo" style="width: 100%; max-width: 355px;">
 											<div class="info-text">
-												사람들이 회원님의 닉네임을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.
+												사람들이 회원님의 닉네임을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요. fileName : ${userVO.fileName }
 											</div>
 										</div>
 									</div>
@@ -157,6 +162,15 @@
 			</main>
 		<c:import url="../temp/footer.jsp"></c:import>
 		</section>
+	</div>
+	<div class="_-rjm update-message-space">
+		<div class="tA2fc update-alert">
+			<div class="ToanC XjicZ update-message">
+				<div class="JBIyP update-text-space">
+					<p class="gxNyb update-text">프로필이 저장되었습니다.</p>
+				</div>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profileEdit.js"></script>
 </body>

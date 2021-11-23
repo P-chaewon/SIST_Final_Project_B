@@ -1,13 +1,18 @@
 package com.sist.b.user;
 
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -80,14 +85,26 @@ public class UserService implements UserDetailsService{
 		return userRepository.setUpdate(userVO);
 	}
 	
-	public int setFileUpdate(UserVO userVO, MultipartFile file) throws Exception {
+	public int setFileUpdate(UserVO userVO, MultipartFile file, HttpSession session) throws Exception {
 		int result = 0;
-		if(file != null && file.isEmpty()) {
-			String fileName = fileManager.getUseServletContext("upload/user", file);
+		//세션에서 userVO 가져오기
+		Enumeration<String> en = session.getAttributeNames();
+		while(en.hasMoreElements()) {
+			String string = (String)en.nextElement();
+		}
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl)object;
+		Authentication authentication = securityContextImpl.getAuthentication();
+		userVO = (UserVO)authentication.getPrincipal();
+		userVO.setUsername(userVO.getUsername());
+		
+		if(file != null && !file.isEmpty()) {
+			String fileName = fileManager.getUseResourceLoader("upload/user/", file);
 			userVO.setFileName(fileName);
 			
 			result = userRepository.setFileUpdate(userVO);
 		}
+		System.out.println(result);
 		
 		return result;
 	}

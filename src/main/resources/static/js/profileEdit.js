@@ -12,10 +12,36 @@ $(".input-update").on("input", function() {
 $(".icon-btn").click(function(){
 	$("#file").click();
 })
+
 $(".profile-button").click(function(){
 	$("#file").click();
 })
 
+$("#file").change(function(){
+	uploadFile();
+})
+
+function uploadFile(){
+	let form = $(".profile-form")[0];
+	let formData = new FormData(form);
+	let username = $(".my-username").html();
+	console.log(username);
+	
+	$.ajax({
+		type : "POST",
+		url : "./edit/fileUpdate",
+		data : formData,
+		contentType : false,
+		processData : false,
+		success : function(result) {
+			alert(result);
+		},
+		error : function(error, status, xhr) {
+			alert("error");
+		}
+		
+	})
+}
 
 
 /*ajax 회원정보수정*/
@@ -23,7 +49,7 @@ $(".update-btn").click(function(){
 	
 	$.ajax({
 		type:"POST",
-		url:"account/edit",
+		url:"./edit",
 		data: {
 			nickname:$("#nickname").val(),
 			username:$("#username").val(),

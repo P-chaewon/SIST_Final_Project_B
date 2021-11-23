@@ -49,4 +49,8 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .update-btn:disabled {box-sizing:border-box; cursor:pointer; display:block; font-weight:600px; padding: 5px 9px; text-align:center; text-transform:inherit; text-overflow:ellipsis; user-select:none; width:auto; 
 	background-color: rgba(0,149,246,.3); opacity: 1; border-radius: 4px; position: relative; color: #fff; }
 
-
+.update-message-space{bottom: 0; left: 0; overflow: hidden; position: fixed; right: 0; z-index: 500;}
+.update-alert{}
+.update-message{background-color: #262626; flex-direction: row; min-height: 44px; padding: 0 16px; width: 100%; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 2px; border-top-right-radius: 2px; min-width: 500px; width: auto;}
+.update-text-space{flex-grow: 1; flex-shrink: 1; justify-content: center; min-width: 200px;}
+.update-text{color: #fff; font-size: 14px; line-height: 18px; max-height: 72px; padding: 12px 0; overflow: hidden;}
