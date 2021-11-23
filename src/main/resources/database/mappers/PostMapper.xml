@@ -13,4 +13,9 @@
   	</insert>
   
   
+  <!-- file upload -->
+  	<insert id="setFilesInsert" parameterType="PostFilesVO">
+  		INSERT INTO postFiles
+  		VALUES (null, #{postNum}, #{fileName}, #{oriName})
+  	</insert>
   </mapper>

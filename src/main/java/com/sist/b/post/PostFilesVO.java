@@ -7,6 +7,6 @@ public class PostFilesVO {
 
 	private Long fileNum;
 	private Long postNum;
-	private Long userNum;
 	private String fileName;
+	private String oriName;
 }

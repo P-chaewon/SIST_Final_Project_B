@@ -10,6 +10,8 @@
   	<typeAlias type="java.util.List" alias="List"/>
   
   	<typeAlias type="com.sist.b.post.PostVO" alias="PostVO"/>
+  	<typeAlias type="com.sist.b.post.PostFilesVO" alias="PostFilesVO"/>
+  	
   </typeAliases>
   
   

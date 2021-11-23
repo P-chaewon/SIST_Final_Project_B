@@ -17,12 +17,12 @@
 	$("#upload").attr("src", "${pageContext.request.contextPath}/static/icons/add-click.png");
 </script>
 	<main class="wrapper">
-		<form class="frm" action="./upload" method="post" enctype="multipart/form-data" >
+		<form class="frm" action="./upload" method="POST" enctype="multipart/form-data" >
 			<table class="tbl">
 				<tr class="tbl_tr">
 					<td class="title" style="height:40px;" colspan="2">
 						<div class="add"><h1>새 게시물 만들기</h1></div>
-						<div class="write">공유하기</div>
+						<div class="write"><button type="submit">공유하기</button></div>
 					</td>
 				</tr>
 				<tr>
@@ -43,7 +43,7 @@
 							
 								<div class="add_file_wrap" style="display:none; margin-top: 10px; margin-left:65px; height: 80px; width:400px; margin-bottom:10px; background-color: black; opacity: 0.8; border-radius: 10px;">	
 							<div class="multipartFile_wrap" style="">
-									<input type="file" id="img_file1" onchange="openFile(event)" class="img_file" name="multipartFile" data-num="1">
+									<input type="file" id="img_file1" onchange="openFile(event)" class="img_file" name="files" data-num="1">
 								<label for="img_file1"></label>
 							</div>
 									
@@ -71,7 +71,7 @@
 					</td>
 				</tr>
 			</table>
-			
+		
 		
 		</form>
 		
@@ -93,9 +93,6 @@ $(document).ready(function() {
     });
 });
 
-$(".write").click(function(){
-	$(".frm").submit();
-});
 
 $("#default_img").click(function(){
 	// file 클릭 이벤트

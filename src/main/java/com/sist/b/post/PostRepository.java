@@ -9,5 +9,8 @@ public interface PostRepository {
 	
 	//post upload
 	public int setPostUpload(PostVO postVO)throws Exception;
+	
+	//file upload
+	public int setFilesInsert(PostFilesVO postFilesVO)throws Exception;
 
 }
