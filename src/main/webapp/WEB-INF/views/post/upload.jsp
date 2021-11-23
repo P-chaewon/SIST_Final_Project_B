@@ -213,12 +213,14 @@ $('.add_file_wrap').on('click', '.btn_delete', function(){
 	const li = $(this).parent('li');
 	const multipartFile_wrap = ul.siblings('.multipartFile_wrap');
 	
+	var prev = $(this).prev().attr("src");
+	$("#thumbnail").attr("src", prev);
 	let delNum = li.find('.num').html();
 	multipartFile_wrap.find('input').each(function(){
 		if($(this).data('num') == delNum){
 			$(this).next().remove();
 			$(this).remove();
-			return;
+			
 		}
 	})
 	li.remove();
