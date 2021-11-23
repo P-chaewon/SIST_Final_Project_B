@@ -39,46 +39,28 @@
 		</table>
 		<hr>
 		
-		<button onclick="requestPay()">결제하기</button>
+		<div>구매자 정보</div>
+		<div>
+			<div>구매자 이름</div>
+			<input type="text" class="inp" id="name">
+		</div>
+		<div>
+			<div>연락처</div>
+			<input type="text" class="inp" id="tel1"><span>-</span><input type="text" class="inp" id="tel2"><span>-</span><input type="text" class="inp" id="tel3">
+		</div>
+		<div>
+			<div>이메일</div>
+			<input type="email" class="inp" id="email">
+		</div>
+		
+		<input type="hidden" id="m1" value="${merchant_uid}">
+		<input type="hidden" id="m2" value="${membershipVO.membershipName}">
+		<input type="hidden" id="m3" value="${membershipVO.membershipAmount}">
+		<input type="hidden" id="m4" value="${membershipVO.membershipNum}">
+		<input type="hidden" id="m5" value="${userNum}">
+		<button id="btn">결제하기</button>
 	</main>
 	
-	<script type="text/javascript">
-		var IMP = window.IMP; // 생략 가능
-	    IMP.init("imp91079723"); // 예: imp00000000
-	    
-	    function requestPay() {
-	        // IMP.request_pay(param, callback) 결제창 호출
-	        IMP.request_pay({ // param
-	            pg: "html5_inicis",
-	            pay_method: "card",
-	            merchant_uid: "ORD20180131-0000011",
-	            name: "${membershipVO.membershipName}",
-	            amount: ${membershipVO.membershipAmount},
-	            buyer_email: "gildong@gmail.com",
-	            buyer_name: "홍길동",
-	            buyer_tel: "010-4242-4242",
-	            buyer_addr: "서울특별시 강남구 신사동",
-	            buyer_postcode: "01181"
-	        }, function (rsp) { // callback
-	            if (rsp.success) {
-	            	jQuery.ajax({
-	                    url: "{서버의 결제 정보를 받는 endpoint}", // 예: https://www.myservice.com/payments/complete
-	                    method: "POST",
-	                    headers: { "Content-Type": "application/json" },
-	                    data: {
-	                        imp_uid: rsp.imp_uid,
-	                        merchant_uid: rsp.merchant_uid
-	                    }
-	                }).done(function (data) {
-	                  // 가맹점 서버 결제 API 성공시 로직
-	                  alert("결제에 성공하였습니다.");
-	                  location.href="./list";
-	                })
-	            } else {
-	            	alert("결제에 실패하였습니다. 에러 내용: " +  rsp.error_msg);
-	            }
-	        });
-	      }
-	</script>
+	<script type="text/javascript" src="../static/js/membership/payment.js"></script>
 </body>
 </html>

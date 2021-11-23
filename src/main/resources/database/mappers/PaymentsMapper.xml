@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.b.payments.PaymentsRepository">
+  	<insert id="setInsert" parameterType="PaymentsVO" useGeneratedKeys="true" keyProperty="merchant_uid">
+  		insert into payments (merchant_uid, membershipNum, userNum, paymentsDate, paymentsTime, applyNum, amount, method, paymentsCk)
+  		values (#{merchant_uid}, null, null, now(), null, null, null, null, 'n')
+  	</insert>
+  	<update id="setUpdate" parameterType="PaymentsVO">
+  		update payments set membershipNum = #{membershipNum}, userNum = #{userNum}, paymentsTime = #{paymentsTime}, applyNum = #{applyNum}, amount = #{amount}, method = #{method}, paymentsCk = #{paymentsCk}
+  		where merchant_uid = #{merchant_uid}
+  	</update>
+</mapper>
+  
+ 
