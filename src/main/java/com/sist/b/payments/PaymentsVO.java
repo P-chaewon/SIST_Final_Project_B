@@ -1,7 +1,6 @@
 package com.sist.b.payments;
 
 import java.sql.Date;
-
 import lombok.Data;
 
 @Data

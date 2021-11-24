@@ -8,10 +8,25 @@
   		insert into payments (merchant_uid, membershipNum, userNum, paymentsDate, paymentsTime, applyNum, amount, method, paymentsCk)
   		values (#{merchant_uid}, null, null, now(), null, null, null, null, 'n')
   	</insert>
+  	
   	<update id="setUpdate" parameterType="PaymentsVO">
   		update payments set membershipNum = #{membershipNum}, userNum = #{userNum}, paymentsTime = #{paymentsTime}, applyNum = #{applyNum}, amount = #{amount}, method = #{method}, paymentsCk = #{paymentsCk}
   		where merchant_uid = #{merchant_uid}
   	</update>
+  	
+  	<select id="getList" resultType="PaymentsVO">
+  		select * from payments
+  	</select>
+  	
+  	<select id="getListByUser" parameterType="PaymentsVO" resultType="PaymentsVO">
+  		select * from payments where userNum = #{userNum}
+  	</select>
+  	
+  	<select id="getRefund" parameterType="PaymentsVO" resultType="PaymentsVO">
+  		select * from payments 
+		where (userNum = #{userNum} and paymentsDate = #{paymentsDate})
+		or (userNum = #{userNum} and paymentsDate = #{paymentsDate} and paymentsTime > #{paymentsTime})
+  	</select>
 </mapper>
   
  

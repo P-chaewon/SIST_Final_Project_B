@@ -21,9 +21,6 @@ hr {
 }
 
 table {
-	position: relative;
-	left: 50%;
-	transform:translate(-50%, 0%); 
 	width: 100%;
 	border-collapse: collapse;
 	text-align: center;
@@ -37,22 +34,7 @@ td {
 	padding: 10px;
 }
 
-.b {
-	margin-top: 30px;
-	text-align: center;
-}
-
-#cancel {
-	background: white;
-	border: solid 1px #3f3f3f;
-	color: #3f3f3f;
-	width: 120px;
-	height: 50px;
-	font-size: 15px;
-	font-family: 'Apple SD Bold'; 
-}
-
-.next {
+#refund {
 	background: #3f3f3f;
 	border: solid 1px #3f3f3f;
 	color: white;
@@ -60,4 +42,16 @@ td {
 	height: 50px;
 	font-size: 15px;
 	font-family: 'Apple SD Bold'; 
+}
+
+.b {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.t1 {
+	font-family: 'Apple SD Bold'; 
+	margin-top: 10px;
+	margin-left: 5px;
+	color: #8e8e8e;
 }

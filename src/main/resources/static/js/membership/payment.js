@@ -78,6 +78,8 @@ function requestPay() {
 				data : paymentsVo,
 				dataType : "text",
 				success : function(result) {
+					result = result.trim();
+					
 					if (result == "y") {
 						alert(msg);
 						location.href = "../"; 

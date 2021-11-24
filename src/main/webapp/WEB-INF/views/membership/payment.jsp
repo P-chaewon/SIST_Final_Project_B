@@ -39,16 +39,16 @@
 		</table>
 		<hr>
 		
-		<div>구매자 정보</div>
-		<div>
+		<h1 id="buyerInfo">구매자 정보</h1>
+		<div class="info">
 			<div>구매자 이름</div>
 			<input type="text" class="inp" id="name">
 		</div>
-		<div>
+		<div class="info">
 			<div>연락처</div>
-			<input type="text" class="inp" id="tel1"><span>-</span><input type="text" class="inp" id="tel2"><span>-</span><input type="text" class="inp" id="tel3">
+			<input type="text" class="inp" id="tel1"><span class="bar">-</span><input type="text" class="inp" id="tel2"><span class="bar">-</span><input type="text" class="inp" id="tel3">
 		</div>
-		<div>
+		<div class="info">
 			<div>이메일</div>
 			<input type="email" class="inp" id="email">
 		</div>
@@ -58,7 +58,11 @@
 		<input type="hidden" id="m3" value="${membershipVO.membershipAmount}">
 		<input type="hidden" id="m4" value="${membershipVO.membershipNum}">
 		<input type="hidden" id="m5" value="${userNum}">
-		<button id="btn">결제하기</button>
+		
+		<div class="b">
+			<a href="./list"><button id="cancel">취소하기</button></a>
+			<button id="btn" class="payment">결제하기</button>
+		</div>
 	</main>
 	
 	<script type="text/javascript" src="../static/js/membership/payment.js"></script>

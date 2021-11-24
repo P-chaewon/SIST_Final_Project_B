@@ -13,22 +13,27 @@
 </head>
 <body>
 	<main class="wrapper">
+	<h1 class="title">멤버십 가입</h1>
+	<hr>
 		<table>
 			<tr>
-				<td>membershipNum</td>
-				<td>membershipName</td>
-				<td>membershipAmount</td>
+				<td>종류</td>
+				<td>금액</td>
+				<td>선택</td>
 			</tr>
 			<c:forEach items="${membershipVOs}" var="membershipVO">
 				<tr>
-					<td>${membershipVO.membershipNum}</td>
 					<td>${membershipVO.membershipName}</td>
-					<td>${membershipVO.membershipAmount}</td>
+					<td>${membershipVO.membershipAmount}원</td>
 					<td><input type="radio" name="ck" class="ck" data-membership-num="${membershipVO.membershipNum}"></td>
 				</tr>
 			</c:forEach>
 		</table>
-		<button type="button" id="next_btn">다음</button>
+		
+		<div class="b">
+			<a href="../"><button id="cancel">취소하기</button></a>
+			<button id="next_btn" class="next">선택완료</button></a>
+		</div>
 	</main>
 	
 	<script type="text/javascript">
