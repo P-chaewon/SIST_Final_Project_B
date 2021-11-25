@@ -30,4 +30,8 @@ public class PaymentsService {
 	public List<PaymentsVO> getRefund(PaymentsVO paymentsVO) throws Exception {
 		return paymentsRepository.getRefund(paymentsVO);
 	}
+	
+	public int setUpdateCk(Long merchant_uid) throws Exception {
+		return paymentsRepository.setUpdateCk(merchant_uid);
+	}
 }

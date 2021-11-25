@@ -21,4 +21,7 @@ public interface PaymentsRepository {
 	
 	// 환불 가능한 payments 내역
 	public List<PaymentsVO> getRefund(PaymentsVO paymentsVO) throws Exception;
+	
+	// 환불 대기 중으로 update
+	public int setUpdateCk(Long merchant_uid) throws Exception;
 }

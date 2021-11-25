@@ -91,10 +91,39 @@ function requestPay() {
 				error : function(a,b,c){}
 			});
 		} else {
-			// 결제 실패 시 로직
-			var msg = '결제에 실패하였습니다.';
-			msg += '에러내용 : ' + rsp.error_msg;
-			alert(msg);
+			// 현재 시간 계산
+			var today = new Date();
+			var hours = ('0' + today.getHours()).slice(-2); 
+			var minutes = ('0' + today.getMinutes()).slice(-2);
+			var seconds = ('0' + today.getSeconds()).slice(-2);
+			var paymentsTime = hours + ':' + minutes  + ':' + seconds;
+
+			let paymentsVo = {
+				merchant_uid: rsp.merchant_uid,
+				membershipNum: membershipNum,
+				userNum: userNum,
+				paymentsTime: paymentsTime,
+				applyNum: rsp.error_msg,
+				amount: amount,
+				method: rsp.pay_method,
+				paymentsCk: 'n',
+			}
+			
+			$.ajax({
+				url : "./placeorder.do",
+				type : "get",
+				data : paymentsVo,
+				dataType : "text",
+				success : function(result) {
+					result = result.trim();
+					// 결제 실패 시 로직
+					var msg = '결제에 실패하였습니다.';
+					msg += '에러내용 : ' + rsp.error_msg;
+					alert(msg);
+					location.href = "../";
+				},
+				error : function(a,b,c){}
+			});
 		}
 	});
 }

@@ -14,7 +14,7 @@
 <body>
 	<main class="wrapper">
 	<h1 class="title">결제 내역</h1>
-	<div class="t1">* 환불은 결제 후 24시간 이내에만 가능합니다.</div>
+	<div class="t1">* 환불 요청은 결제 후 24시간 이내에만 가능합니다.</div>
 	<hr>
 	<table>
 		<tr>
@@ -38,6 +38,12 @@
 				</c:if>
 				<c:if test="${paymentsVO.paymentsCk eq 'n'}">
 					결제실패
+				</c:if>
+				<c:if test="${paymentsVO.paymentsCk eq 'w'}">
+					환불대기
+				</c:if>
+				<c:if test="${paymentsVO.paymentsCk eq 'r'}">
+					환불완료
 				</c:if>
 			</td>
 		</tr>

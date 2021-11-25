@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.wrapper {
+	position: absolute;
+	width: 50%;
+	height: auto;
+	top: 10px;
+	left: 50%;
+	transform:translate(-50%, 0%); 
+	padding: 100px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table, tr {
+	border: 1px solid #E2E2E2;
+}
+
+td {
+	padding: 10px;
+}

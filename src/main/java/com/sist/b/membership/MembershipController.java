@@ -11,11 +11,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.b.payments.PaymentsService;
 import com.sist.b.payments.PaymentsVO;
+import com.sist.b.refunds.RefundsService;
+import com.sist.b.refunds.RefundsVO;
 import com.sist.b.user.UserVO;
 
 @Controller
@@ -26,6 +29,8 @@ public class MembershipController {
 	private MembershipService membershipService;
 	@Autowired
 	private PaymentsService paymentsService;
+	@Autowired
+	private RefundsService refundsService;
 	
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv) throws Exception {
@@ -41,10 +46,7 @@ public class MembershipController {
 		// paymentsVO 생성
 		PaymentsVO paymentsVO = new PaymentsVO();
 		// insert : merchant_uid 생성
-		
-		// ----------------- insert 주석 처리 -----------------------
 		int result = paymentsService.setInsert(paymentsVO);
-		// -------------------------------------------------------
 		
 		// merchant_uid 가져오기
 		Long merchant_uid = paymentsVO.getMerchant_uid();
@@ -54,7 +56,7 @@ public class MembershipController {
 		SecurityContextImpl sc =(SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
 		UserVO userVO = (UserVO)authentication.getPrincipal();
-
+		
 		mv.addObject("userNum", userVO.getUserNum());
 		mv.addObject("merchant_uid", merchant_uid);
 		mv.addObject("membershipVO", membershipVO);
@@ -141,4 +143,34 @@ public class MembershipController {
 		return mv;
 	}
 	
+	@GetMapping("request")
+	public String refundRequest() throws Exception {
+		return "membership/request";
+	}
+	
+	@PostMapping("request")
+	public ModelAndView refundRequest(RefundsVO refundsVO, ModelAndView mv) throws Exception {
+		// refunds 환불 사유 DB 저장
+		int result = refundsService.setInsert(refundsVO);
+		String msg = null;
+		
+		if (result > 0) {
+			msg = "등록 성공. 관리자 확인 후 처리됩니다.";
+		} else {
+			msg = "등록 실패. 다시 시도해주세요.";
+		}
+		
+		// paymentsCk 업데이트 (y -> w)
+		result = paymentsService.setUpdateCk(refundsVO.getMerchant_uid());
+		
+		if (result > 0) {
+			msg = "등록 성공. 관리자 확인 후 처리됩니다.";
+		} else {
+			msg = "등록 실패. 다시 시도해주세요.";
+		}
+		
+		mv.addObject("msg", msg);
+		mv.setViewName("membership/message");
+		return mv;
+	}
 }

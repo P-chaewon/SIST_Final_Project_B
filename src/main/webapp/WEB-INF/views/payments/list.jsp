@@ -8,25 +8,44 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
+<link rel="stylesheet" href="../static/css/admin/list.css">
 </head>
 <body>
 	<main class="wrapper">
 		<table>
 			<tr>
-				<td>userNum</td>
-				<td>membershipNum</td>
-				<td>paymentsDate</td>
-				<td>method</td>
+				<td>사용자</td>
+				<td>멤버십</td>
+				<td>결제시각</td>
+				<td>승인번호</td>
+				<td>결제수단</td>
+				<td>상태</td>
 			</tr>
-			<%-- <c:forEach items="${adVOs}" var="adVO">
+			<c:forEach items="${paymentsVOs}" var="paymentsVO">
 				<tr>
-					<td><a href="./ad/select?adNum=${adVO.adNum}">${adVO.adNum}</a></td>
-					<td>${adVO.adContents}</td>
-					<td>${adVO.adFile.oriName}</td>
-					<td>${adVO.adDate}</td>
-					<td>${adVO.adURL}</td>
+					<td>${paymentsVO.userNum}</td>
+					<td>${paymentsVO.membershipNum}</td>
+					<td>${paymentsVO.paymentsDate} ${paymentsVO.paymentsTime}</td>
+					<td>
+						<c:if test="${paymentsVO.paymentsCk eq 'n'}">
+							-
+						</c:if>
+						<c:if test="${paymentsVO.paymentsCk ne 'n'}">
+							${paymentsVO.applyNum}
+						</c:if>
+					</td>
+					<td>${paymentsVO.method}</td>
+					<c:if test="${paymentsVO.paymentsCk eq 'y'}">
+						<td>결제완료</td>
+					</c:if>
+					<c:if test="${paymentsVO.paymentsCk eq 'w'}">
+						<td>환불대기</td>
+					</c:if>
+					<c:if test="${paymentsVO.paymentsCk eq 'n'}">
+						<td>결제실패</td>
+					</c:if>
 				</tr>
-			</c:forEach> --%>
+			</c:forEach>
 		</table>
 	</main>
 </body>

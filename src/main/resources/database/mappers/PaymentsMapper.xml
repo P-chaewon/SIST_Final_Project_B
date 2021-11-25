@@ -6,7 +6,7 @@
 <mapper namespace="com.sist.b.payments.PaymentsRepository">
   	<insert id="setInsert" parameterType="PaymentsVO" useGeneratedKeys="true" keyProperty="merchant_uid">
   		insert into payments (merchant_uid, membershipNum, userNum, paymentsDate, paymentsTime, applyNum, amount, method, paymentsCk)
-  		values (#{merchant_uid}, null, null, now(), null, null, null, null, 'n')
+  		values (#{merchant_uid}, null, null, now(), null, null, null, null, 'q')
   	</insert>
   	
   	<update id="setUpdate" parameterType="PaymentsVO">
@@ -15,7 +15,7 @@
   	</update>
   	
   	<select id="getList" resultType="PaymentsVO">
-  		select * from payments
+  		select * from payments where paymentsCk != 'q'
   	</select>
   	
   	<select id="getListByUser" parameterType="PaymentsVO" resultType="PaymentsVO">
@@ -24,9 +24,14 @@
   	
   	<select id="getRefund" parameterType="PaymentsVO" resultType="PaymentsVO">
   		select * from payments 
-		where (userNum = #{userNum} and paymentsDate = #{paymentsDate})
-		or (userNum = #{userNum} and paymentsDate = #{paymentsDate} and paymentsTime > #{paymentsTime})
+		where (userNum = #{userNum} and paymentsDate = #{paymentsDate} and paymentsCk = 'y')
+		or (userNum = #{userNum} and paymentsDate = date_add(#{paymentsDate}, interval -1 day) and paymentsTime > #{paymentsTime} and paymentsCk = 'y')
   	</select>
+  	
+  	<update id="setUpdateCk" parameterType="Long">
+  		update payments set paymentsCk = 'w'
+  		where merchant_uid = #{merchant_uid}
+  	</update>
 </mapper>
   
  
