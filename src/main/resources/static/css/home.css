@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 ul,li {
     margin: 0;
     padding: 0;
@@ -38,32 +36,15 @@ main {
     display: inline-block;
 }
 
-article, .section-story, .section_recommend {
+/* article */
+
+article {
     background-color: #fff;
     border-radius: 3px;
     border: 1px solid #DBDBDB;
-}
-
-article {
     margin-bottom: 60px;
 }
 
-.section-story, .section_recommend {
-    width: 310px;
-    padding: 14px 16px;
-    overflow-y: hidden;
-}
-.section_story {
-    height: 212px;
-    margin-bottom: 20px;
-}
-.section_recommend {
-    height: 180px;
-}
-
-
-
-/* article */
 header {
     height: 60px;
     padding: 0 16px;
@@ -192,10 +173,95 @@ button.submit_comment {
     font-weight: 600;
 }
 
-/* .submit_comment:disabled {
+.submit_comment:disabled {
     color: #B9DFFC;
 }
 button.submit_comment:focus {
     outline: none;
 }
- */
+
+/* right area */
+
+.right_contents{
+	width: 310px;
+	display: inline-block;
+	position: fixed;
+	top: 94px;
+}
+
+.section_recommend{
+	width: 310px;
+	height: 180px;
+	padding: 14px 16px;
+	overflow: hidden; 
+}
+
+
+.myProfile {
+    height: 56px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    padding-left: 12px;
+    display: flex;
+    align-items: center;
+}
+.myProfile img {
+    width: 56px;
+    height: 56px;
+}
+.myProfile div {
+    display: inline-block;
+    margin-left: 14px;
+}
+.myProfile div span {
+    display: block;
+}
+.myProfile div span.nickname {
+    margin-bottom: 4px;
+}
+/* story & recommendation */
+.recommend_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+}
+.sub_title {
+    font-size: 14px;
+    color: #8e8e8e;
+    font-weight: 600;
+}
+.recommend-list li {
+    display: flex;
+    align-items: flex-start;
+}
+
+.profile_text {
+    margin-top: 3px;
+}
+.profile_text {
+    display: inline-block;
+    margin-left: 10px;
+}
+.profile_text span {
+    display: block;
+}
+.profile_text span.nickname {
+    margin-bottom: 5px;
+}
+.recommend_list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.btn_follow {
+	float:right;
+	margin-top: 17px;
+    color: #0095f6;
+    font-weight: 600;
+    font-size: 12px;
+}
+.recommend_profile {
+    display: inline-block;
+    
+}

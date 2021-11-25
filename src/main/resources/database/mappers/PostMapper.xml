@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sist.b.post.PostRepository">
+  
+  	<insert id="setPostUpload" parameterType="PostVO" useGeneratedKeys="true" keyProperty="postNum">
+  		INSERT INTO 
+  				post
+  		VALUES
+  				(#{postNum}, #{userNum}, #{contents}, #{tag, jdbcType=VARCHAR}, now())
+  	</insert>
+  
+  
+  <!-- file upload -->
+  	<insert id="setFilesInsert" parameterType="PostFilesVO">
+  		INSERT INTO postFiles
+  		VALUES (null, #{postNum}, #{fileName}, #{oriName})
+  	</insert>
+  </mapper>

@@ -13,7 +13,9 @@
   	<typeAlias type="com.sist.b.user.UserVO" alias="UserVO"/>
   	<typeAlias type="com.sist.b.user.RoleVO" alias="RoleVO"/>
   
-  
+  	<typeAlias type="com.sist.b.post.PostVO" alias="PostVO"/>
+  	<typeAlias type="com.sist.b.post.PostFilesVO" alias="PostFilesVO"/>
+  	
   </typeAliases>
   
   

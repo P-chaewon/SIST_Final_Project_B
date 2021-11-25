@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<c:import url="temp/head.jsp"></c:import>
+<c:import url="./temp/head.jsp"></c:import>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 <title>HOME</title>
 
@@ -14,7 +15,10 @@
 </head>
 <body>
 	<c:import url="./temp/nav.jsp"></c:import>
-
+		<script type="text/javascript">
+			$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
+		</script>
+	
 	<!-- main page -->
 		<main>
 			
@@ -44,7 +48,6 @@
 						<div class="icons_left">
 							<img class="icon_react" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
-							<img class="icon_react" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 						</div>
 						<img class="icon_react" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
 					</div>
@@ -79,21 +82,54 @@
 			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기..." >
 			            <button type="submit" class="submit_comment" disabled>게시</button>
 			          </div>
-					
 				</article>
 			
 				<!--//post  -->
-			
 			</div>
 			
-		
+			<!--//left area -->
 			
+			<!-- right area -->
 			
+			<div class="right_contents">
+				
+				<div class="myProfile">
+					<img class="pic" alt="myprofile" src="${pageContext.request.contextPath}/static/images/post/sample_profile.jpg">
+					<div>
+						<span class="nickname point_span">cogus196</span>
+						<!-- span username 추가 -->
+						<span class="sub_span">김채현</span>
+					</div>
+				</div>
 			
-		
+				<!-- recommendation section -->
+				<!-- 신규순 추천 -->
+				<div class="section_recommend">
+					<div class="recommend_title">
+						<span class="sub-title">회원님을 위한 추천</span>
+					</div>		
+					
+					<!-- recommend list -->
+					<ul class="recoomend_list">
+						<li><!-- foreach -->
+							<div class="recommend_profile">
+								<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/images/kittens 2.jpg">
+								<div class="profile_text">
+									<span class="nickname point_span">rlacogus</span>
+									<span class="sub_span">채현</span>
+								</div>
+							</div>
+						<span class="btn_follow">팔로우</span>
+						</li>
+					</ul>
+				</div>
+				
+				<!-- footer 추가 -->
+				
+			</div>
 			
 		</main>
 	
-
+	
 </body>
 </html>
