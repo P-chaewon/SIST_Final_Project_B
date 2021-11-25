@@ -15,7 +15,7 @@ class PostMapperTest {
 	//@Test
 	void test()throws Exception {
 		PostVO postVO = new PostVO();
-		postVO.setUserNum(1L);
+		postVO.setUserNum(2L);
 		postVO.setContents("test");
 		
 		int result = postRepository.setPostUpload(postVO);
