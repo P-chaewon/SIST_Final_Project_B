@@ -22,7 +22,7 @@
 				<tr class="tbl_tr">
 					<td class="title" style="height:40px;" colspan="2">
 						<div class="add"><h1>새 게시물 만들기</h1></div>
-						<div class="write"><button type="submit">공유하기</button></div>
+						<div class="write">공유하기</div>
 					</td>
 				</tr>
 				<tr>
@@ -208,13 +208,17 @@ $('.add_file_wrap').on('click', 'li', function(){
 });
 
 
-$('.add_file_wrap').on('click', '.btn_delete', function(){
+$('.add_file_wrap').on('click', '.btn_delete', function(e){
+	  e.stopPropagation(); /* 부모 li 이벤트 방지 */
+	  
 	const ul = $(this).parents('ul');
 	const li = $(this).parent('li');
 	const multipartFile_wrap = ul.siblings('.multipartFile_wrap');
 	
-	var prev = $(this).prev().attr("src");
-	$("#thumbnail").attr("src", prev);
+	var prev = $(this).parent().prev().children('img').attr("src");/* 삭제시 img 앞에 있는걸로 */
+		
+		$("#thumbnail").attr("src", prev);
+
 	let delNum = li.find('.num').html();
 	multipartFile_wrap.find('input').each(function(){
 		if($(this).data('num') == delNum){
@@ -223,6 +227,7 @@ $('.add_file_wrap').on('click', '.btn_delete', function(){
 			
 		}
 	})
+	
 	li.remove();
 	setNum(multipartFile_wrap, ul);
 	
@@ -230,8 +235,12 @@ $('.add_file_wrap').on('click', '.btn_delete', function(){
 	if(ul.find('li').length == 4){
 		addInput(multipartFile_wrap, lastNum);			
 	}
+	
 });
 
+$(".write").click(function(){
+	$(".frm").submit();
+});
 
 
 </script>

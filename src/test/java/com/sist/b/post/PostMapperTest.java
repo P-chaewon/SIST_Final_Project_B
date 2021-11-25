@@ -12,7 +12,7 @@ class PostMapperTest {
 	@Autowired
 	private PostRepository postRepository;
 	
-	@Test
+	//@Test
 	void test()throws Exception {
 		PostVO postVO = new PostVO();
 		postVO.setUserNum(1L);
@@ -23,4 +23,17 @@ class PostMapperTest {
 		assertNotEquals(0, result);
 	}
 
+	
+	@Test
+		void filetest()throws Exception {
+			PostFilesVO postFilesVO = new PostFilesVO();
+			postFilesVO.setPostNum(1L);
+			postFilesVO.setFileName("test");
+			postFilesVO.setOriName("test");
+			
+			int result = postRepository.setFilesInsert(postFilesVO);
+			
+			assertNotEquals(0, result);
+		}
+	
 }
