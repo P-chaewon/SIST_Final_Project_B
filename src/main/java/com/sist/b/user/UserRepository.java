@@ -20,4 +20,10 @@ public interface UserRepository {
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
 	//프로필 사진 등록
 	public int setFileUpdate(UserVO userVO) throws Exception;
+	//프로필 사진 삭제
+	public int setFileDelte(UserVO userVO) throws Exception;
+	//비밀번호 변경
+	public int setPasswordUpdate(UserVO userVO) throws Exception;
+	//화원 탈퇴
+	public int setDelete(UserVO userVO) throws Exception;
 }

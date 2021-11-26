@@ -1,5 +1,6 @@
 package com.sist.b.user;
 
+import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,6 +8,8 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,6 +34,8 @@ public class UserService implements UserDetailsService{
 	private PasswordEncoder passwordEncoder;
 	@Autowired
 	private FileManager fileManager;
+	@Autowired
+	private ResourceLoader resourceLoader;
 		
 	public int setSignup(UserVO userVO) throws Exception {
 		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
@@ -51,6 +56,7 @@ public class UserService implements UserDetailsService{
 		UserVO userVO = null;
 		try {
 			userVO = userRepository.getLogin(username);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,30 +91,67 @@ public class UserService implements UserDetailsService{
 		return userRepository.setUpdate(userVO);
 	}
 	
-	public int setFileUpdate(UserVO userVO, MultipartFile file, HttpSession session) throws Exception {
+	public String setFileUpdate(UserVO userVO, MultipartFile file, HttpSession session) throws Exception {
 		int result = 0;
 		//세션에서 userVO 가져오기
-		Enumeration<String> en = session.getAttributeNames();
-		while(en.hasMoreElements()) {
-			String string = (String)en.nextElement();
-		}
+		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl securityContextImpl = (SecurityContextImpl)object;
 		Authentication authentication = securityContextImpl.getAuthentication();
 		userVO = (UserVO)authentication.getPrincipal();
-		userVO.setUsername(userVO.getUsername());
-		
+		String fileName="";
 		if(file != null && !file.isEmpty()) {
-			String fileName = fileManager.getUseResourceLoader("upload/user/", file);
+			fileName = fileManager.getUseResourceLoader("upload/user/", file);
 			userVO.setFileName(fileName);
 			
 			result = userRepository.setFileUpdate(userVO);
-		}
-		System.out.println(result);
+		}		
+		return fileName;
+	}
+	
+	public int setFileDelte(UserVO userVO, HttpSession session) throws Exception {
+		//삭제할 파일 경로
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		userVO = (UserVO)authentication.getPrincipal();
+		String path = "classpath:/static/";
+		File file = new File(resourceLoader.getResource(path).getFile(), "upload/user/");
+		file = new File(file, userVO.getFileName());
+		file.delete();
 		
+		return userRepository.setFileDelte(userVO);
+	}
+	
+	public int setDelete(UserVO userVO) throws Exception {
+		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
+		int result = userRepository.setDelete(userVO);
+		System.out.println("Serivce");
+		System.out.println(result);
 		return result;
+	}
+
+	public int setPasswordUpdate(UserVO userVO) throws Exception {
+		UserVO persistance = userRepository.getSelectOne(userVO.getUsername());
+		if(persistance==null) {
+			throw new IllegalArgumentException("회원찾기 실패");
+		}
+		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
+		persistance.setPassword(userVO.getPassword());
+				
+		return userRepository.setPasswordUpdate(userVO);
+	}
+	
+	public boolean getPwCheck(HttpSession session, String pw) throws Exception {
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+		boolean check = passwordEncoder.matches(pw, userVO.getPassword());
+		System.out.println(check);
+		
+		return check;
 	}
 	
 	
-
 }

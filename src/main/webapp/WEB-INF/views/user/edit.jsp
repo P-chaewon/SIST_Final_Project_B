@@ -11,9 +11,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profileEdit.css" type="text/css">
 </head>
 <body>
-<sec:authorize access="isAuthenticated()">
-	<sec:authentication property="principal" var="userVO"/>
-</sec:authorize>
 	<c:import url="../temp/nav.jsp"></c:import>
 	<div id="react-root">
 		<section class="edit-section">
@@ -21,33 +18,27 @@
 			</div>
 			<main class="edit-main" role="main">
 				<div class="profile-edit">
-					<ul class="edit-ul">
+										<ul class="edit-ul">
 						<li>
-							<a class="edit-list selected" href="/gram/account/edit" tabindex="0">프로필 편집</a>
+							<a class="edit-list selected" href="/gram/account/edit/" tabindex="0">프로필 편집</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/account/password/change/" tabindex="0">비밀번호 변경</a>
+							<a class="edit-list not-selected" href="/gram/account/password/change/" tabindex="0">비밀번호 변경</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/account/manage_access/" tabindex="0">앱 및 웹사이트</a>
+							<a class="edit-list not-selected" href="/gram/account/manage_access/" tabindex="0">앱 및 웹사이트</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/emails/settings/" tabindex="0">이메일 및 SMS</a>
+							<a class="edit-list not-selected" href="/gram/account/push/setting/" tabindex="0">푸시 알림</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/push/web/settings/" tabindex="0">푸시 알림</a>
+							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/accounts/contact_history/" tabindex="0">연락처 관리</a>
+							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
-						</li>
-						<li>
-							<a class="edit-list not-selected" href="/session/login_activity/" tabindex="0">로그인 활동</a>
-						</li>
-						<li>
-							<a class="edit-list not-selected" href="/emails/emails_sent/" tabindex="0">Instagram에서 보낸 이메일</a>
+							<a class="edit-list not-selected" href="/gram/account/remove/permanent/" tabindex="0">회원 탈퇴</a>
 						</li>
 						<div class="switch-space">
 							<div class="pro-account">
@@ -59,7 +50,7 @@
 					</ul>
 					<article class="edit-object">
 						<div class="basics">
-							<div class="photo-update-1">
+							<div class="photo-profile-1">
 								<div class="icon-outline">
 									<button class="icon-btn" title="프로필 사진 추가">
 										<c:choose>
@@ -72,25 +63,24 @@
 										</c:choose>
 									</button>
 									<div>
-										<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation" class="profile-form">
+										<form enctype="multipart/form-data" method="POST" role="presentation" class="profile-form">
 											<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">
-											<input type="hidden" name="username" value="${userVO.username}">
 										</form>
 									</div>
 								</div>
 							</div>
-							<div class="photo-update-2">
-								<h1 class="my-username" title="${userVO.username}">${userVO.username}</h1>
-								<button class="profile-button" type="button">프로필 사진 바꾸기</button>
+							<div class="photo-profile-2">
+								<h1 class="my-username" title="${userVO.username }">${userVO.username}</h1>
+								<button class="txt-btn profile-update" type="button">프로필 사진 바꾸기</button>
 								<div>
-									<form enctype="multipart/form-data" method="POST" action="./edit/fileUpdate" role="presentation" class="profile-form">
-										<input accept="image/jpeg,image/png" class="profile-photo" type="file" id="file" name="file">
+									<form enctype="multipart/form-data" method="POST" role="presentation" class="profile-form">
+										<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">
 									</form>
 								</div>
 							</div>
 						</div>
-						<form class="update-form" action="./edit" method="POST">
-							<div class="update-data">
+						<form class="update-form" method="POST">
+							<div class="edit-data">
 								<aside class="data-name">
 									<label for="nickname">닉네임</label>
 								</aside>
@@ -99,23 +89,23 @@
 										<input aria-required="false" id="nickname" placeholder="닉네임" type="text" class="input-update" value="${userVO.nickname}">
 										<div class="pInfo" style="width: 100%; max-width: 355px;">
 											<div class="info-text">
-												사람들이 회원님의 닉네임을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요. fileName : ${userVO.fileName }
+												사람들이 회원님의 닉네임을 사용하여 회원님의 계정을 찾을 수 있도록 도와주세요.
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="update-data">
+							<div class="edit-data">
 								<aside class="data-name">
 									<label for="username">사용자 이름</label>
 								</aside>
 								<div class="input-change">
 									<div class="pChange" style="width: 100%; max-width: 355px;">
-										<input aria-required="true" id="username" placeholder="사용자 이름" type="text" class="readonly-data" readonly="readonly"  value="${userVO.username }">
+										<input aria-required="false" id="username" placeholder="사용자 이름" type="text" class="readonly-data" readonly="readonly" value="${userVO.username}">
 									</div>
 								</div>
 							</div>
-							<div class="update-data">
+							<div class="edit-data">
 								<aside class="data-name">
 									<label for="website">웹사이트</label>
 								</aside>
@@ -125,15 +115,15 @@
 									</div>
 								</div>
 							</div>
-							<div class="update-data">
+							<div class="edit-data">
 								<aside class="data-name">
 									<label for="introduction">소개</label>
 								</aside>
 								<div class="input-change">
-									<textarea class="input-introduction input-update" id="introduction">${userVO.introduction }</textarea>
+									<textarea class="input-introduction input-update" id="introduction">${userVO.introduction}</textarea>
 								</div>
 							</div>
-							<div class="update-data">
+							<div class="edit-data">
 								<aside class="data-name">
 									<label for="email">이메일</label>
 								</aside>
@@ -143,31 +133,57 @@
 									</div>
 								</div>
 							</div>
-							<div class="update-data">
+							<div class="edit-data">
 								<aside class="data-name">
 									<label for="phone">전화번호</label>
 								</aside>
 								<div class="input-change">
 									<div class="pChange" style="width: 100%; max-width: 355px;">
-										<input aria-required="false" id="phone" placeholder="전화번호" type="text" class="input-update" value="${userVO.phone }">
+										<input aria-required="false" id="phone" placeholder="전화번호" type="text" class="input-update" value="${userVO.phone}">
 									</div>
 								</div>
 							</div>
-							<div class="btn-space">
-								<button class="update-btn" type="button" disabled="disabled">제출</button>
+							<div class="edit-data">
+								<aside class="data-name tvweK">
+									<label></label>
+								</aside>
+								<div class="input-change">
+									<div class="btn-space">
+										<button class="blue-btn-small update-btn" disabled="disabled" type="button">제출</button>
+									</div>
+								</div>
 							</div>
 						</form>
-					</article>
+					</article>				
 				</div>
 			</main>
 		<c:import url="../temp/footer.jsp"></c:import>
 		</section>
 	</div>
-	<div class="_-rjm update-message-space">
-		<div class="tA2fc update-alert">
-			<div class="ToanC XjicZ update-message">
-				<div class="JBIyP update-text-space">
-					<p class="gxNyb update-text">프로필이 저장되었습니다.</p>
+	<div class="update-message-space">
+		<div class="update-ease-out">
+			<div class="update-message">
+				<div class="update-text-space">
+					<p class="update-text"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="modal-container" role="presentation" style="display: none;">
+		<div class="modal" role="dialog">
+			<div class="modal-content">
+				<div class="madal-space">
+					<div class="modal-header">
+						<h3 class="modal-header-text">프로필 사진 바꾸기</h3>
+					</div>
+					<div class="modal-body">
+						<button class="modal-btn photo-upload " tabindex="0">사진 업로드</button>
+						<button class="modal-btn photo-delete " tabindex="0">현재 사진 삭제</button>
+						<button class="modal-btn cancel" tabindex="0">취소</button>
+						<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation" class="profile-form">
+							<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

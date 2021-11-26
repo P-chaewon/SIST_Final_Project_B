@@ -70,7 +70,7 @@
 							<div class="link-space">
 								<p class="link-account">
 									계정이 없으신가요? 
-									<a href="/gram/account/signup/" tabindex="0" style="text-decoration: none;">
+									<a href="/gram/account/signup" tabindex="0" style="text-decoration: none;">
 										<span class="link-name">가입하기</span>
 									</a>
 								</p>

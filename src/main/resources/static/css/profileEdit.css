@@ -2,7 +2,7 @@
 body {display: block; background: #fff; overflow-y: scroll; line-height: 1; }
 html, body, #react-root{height: 100%;}
 div {display: block;}
-a {text-decoration: none;}
+a {text-decoration: none; color: #00376b;}
 body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px;}
 #react-root, article, div, footer, header, main, nav, section {
 	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
@@ -24,17 +24,17 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 
 .edit-object{flex: 1 1 400px; min-width: 50px;}
 .basics{flex-direction: row; margin: 32px 0 0; justify-content: flex-start;}
-.photo-update-1{height: 38px; width: 38px; margin: 2px 32px 0 124px;}
+.photo-profile-1{height: 38px; width: 38px; margin: 2px 32px 0 124px;}
 .icon-outline{background-color: #fafafa; border-radius: 50%; box-sizing: border-box; height: 100%; margin: 0 auto; overflow: hidden; position: relative; width: 100%;}
 .icon-btn{border: 0; cursor: pointer; height: 100%; padding: 0; width: 100%;}
 .input-icon{height: 100%; left: 0; position: absolute; top: 0; width: 100%;}
 .profile-photo{display: none;}
-.photo-update-2{flex: 0 1 auto; margin-right: 20px; overflow-x:hidden; }
+.photo-profile-2{flex: 0 1 auto; margin-right: 20px; overflow-x:hidden; }
 .my-username{font-weight: 400; font-size: 20px; line-height: 22px; margin-bottom: 2px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-.profile-button{appearance:none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative; text-align: left;}
+.txt-btn{appearance:none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative; text-align: left;}
 
 .update-form{align-items: stretch; display: flex; flex-direction: column; margin-bottom: 16px; margin-top: 16px;}
-.update-data{margin-bottom: 23px; justify-content: flex-start; flex-direction: row;}
+.edit-data{margin-bottom: 23px; justify-content: flex-start; flex-direction: row;}
 .data-name{box-sizing: border-box; color: #262626; flex: 0 0 194px; font-size: 16px; font-weight: 600; line-height: 18px; margin-top: 6px; padding-left: 32px; padding-right: 32px; text-align: right;}
 .input-change{color: #262626; flex-grow: 1; font-size: 16px; justify-content: flex-start; flex-basis: 355px; flex-direction: row; padding-right: 60px;}
 .pChange{display: inline-block; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; width: 100%; max-width: 355px;}
@@ -44,13 +44,118 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .info-text{font-size: 13px; line-height: 16px; margin: -2px 0 -3px; font-weight: 400; color: #8e8e8e; display: block;}
 .input-introduction{background: 0 0; border: 1px solid #dbdbdb; border-radius: 3px; box-sizing: border-box; color: #262626; flex: 0 1 355px; font-size: 16px; height: 60px; padding: 6px 10px; resize: vertical;}
 .btn-space{align-items: center; flex-direction: row; margin-top: 16px;}
-.update-btn{border: 1px solid transparent; background-color: #0095f6; margin: 0 auto; display: inline-block; cursor:pointer; display:block; font-weight:600px; padding: 5px 9px; text-align:center; text-transform:inherit; text-overflow:ellipsis; user-select:none; width:auto; 
+.blue-btn-small{border: 1px solid transparent; background-color: #0095f6; display: block; cursor:pointer; display:block; font-weight:600px; padding: 5px 9px; text-align:center; text-transform:inherit; text-overflow:ellipsis; user-select:none; width:auto; 
 	opacity: 1; border-radius: 4px; position: relative; color: #fff; }
-.update-btn:disabled {box-sizing:border-box; cursor:pointer; display:block; font-weight:600px; padding: 5px 9px; text-align:center; text-transform:inherit; text-overflow:ellipsis; user-select:none; width:auto; 
+.blue-btn-small:disabled {box-sizing:border-box; cursor:pointer; display:block; font-weight:600px; padding: 5px 9px; text-align:center; text-transform:inherit; text-overflow:ellipsis; user-select:none; width:auto; 
 	background-color: rgba(0,149,246,.3); opacity: 1; border-radius: 4px; position: relative; color: #fff; }
+.text-btn-space{margin-right: 4px; margin-left: 105px;}
+.quit-btn{color: #dbdbdb;}
 
 .update-message-space{bottom: 0; left: 0; overflow: hidden; position: fixed; right: 0; z-index: 500;}
-.update-alert{}
+.update-ease-in{transition:translateY(0) 2s ease-in-out}
+.update-ease-out{transform:translateY(100%)}
 .update-message{background-color: #262626; flex-direction: row; min-height: 44px; padding: 0 16px; width: 100%; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 2px; border-top-right-radius: 2px; min-width: 500px; width: auto;}
 .update-text-space{flex-grow: 1; flex-shrink: 1; justify-content: center; min-width: 200px;}
 .update-text{color: #fff; font-size: 14px; line-height: 18px; max-height: 72px; padding: 12px 0; overflow: hidden;}
+
+.modal-container{align-items: center; background-color: rgba(0,0,0,.5); flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around; width: 100%; height: 100%;}
+.modal{flex-shrink: 1; justify-content: center; margin: 20px; max-height: calc(100%-40px); width: 400px;}
+.modal-content{background-color: #fff; border-radius: 12px; max-height: 100%; overflow: hidden;}
+.madal-space{justify-content: center;}
+.modal-header{margin: 16px 32px; text-align: center;}
+.modal-header:first-child {margin-top: 32px;}
+.modal-header-text{font-size: 18px; line-height: 24px; margin: -4px 0 -6px; font-weight: 600; color: #262626; display: block;}
+.modal-body{margin-top: 16px;}
+.modal-btn{background-color: transparent; border-bottom: 0; border-left: 0; border-right: 0; border-top: 1px solid #dbdbdb; cursor: pointer; line-height: 1.5; margin: 0; min-height: 48px; padding: 4px 8px; text-align: center; user-select:none; vertical-align: middle;}
+.photo-upload{color: #0095f6; font-weight: 700;}
+.photo-delete{color: #ed4956; font-weight: 700;}
+.modal-btn:last-of-type {border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;}
+
+.username-txt{font-size: 24px; font-weight: 400; line-height: 38px;}
+.pw-form{align-items: stretch; display: flex; flex-direction: column; margin-bottom: 16px; margin-top: 32px;}
+.pw-input{border-radius: 6px; border: 1px solid #dbdbdb; color: #262626; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; overflow: visible; padding: 4px 12px;}
+.pw-btn-space{margin-top: 16px;}
+.pw-btn{border: 1px solid transparent; border-radius: 4px; color: #fff; position: relative; box-sizing: border-box; cursor: pointer;display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto; background-color: #0095f6; }
+.pw-btn:disabled {background-color: rgba(0,149,246,.3); opacity: 1; pointer-events:none;}
+.pw-change-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px;}
+.pw-change{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #262626; display: block;}
+.pw-txt-btn{background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; width: auto; user-select:auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative;}
+
+.app-name-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-left: 68px; margin-top: 68px;}
+.app-name{font-size: 28px; line-height: 32px; margin: -5px 0 -6px; font-weight: 300; color: #262626; display: block;}
+.app-content{padding: 32px 44px 35px 65px;}
+.tab-list{display: flex; flex-direction: row; width: 100%;}
+.tab-entity{color: #262626; font-weight: 600; border-bottom: solid 1px #262626; display: flex; flex: 1; justify-content: center; opacity: .3; font-size: 16px; line-height: 24px; padding: 14px 0; text-transform: capitalize; }
+.tab-select{opacity: 1;}
+.tab-contents-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 24px; margin-top: 32px;}
+.tab-contents{font-size: 16px; line-height: 24px; margin: -6px 0 -6px; font-weight: 400; color: #262626; display: block;}
+.active-subtxt, .expire-subtxt, .delete-subtxt{color: #8e8e8e; font-size: 16px;}
+
+.mail-sms-set{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 24px 32px 32px 64px;}
+.mail-set-txt{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 16px;}
+.setting-name{font-size: 22px; line-height: 26px; margin: -4px 0 -5px; font-weight: 400; color: #262626; display: block;}
+.set-check-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px; margin-bottom: 16px;}
+.check-label{align-items: center; display: flex;font-size: 14px; line-height: 14px; color: #262626; font-weight: 600;}
+.check-input{left: -9999px; position: absolute;}
+.check-input:checked~.check-box::before{border-bottom: 2px solid #262626; border-left: 2px solid #262626; content: ' '; height: 3px; left: 2px; position: absolute; top: 3px; transform:rotateZ(-45deg); width: 8px;}
+.check-input:focus~.check-box{border-color: #0095f6;}
+.check-box{border: 1px solid #dbdbdb; border-radius: 3px; display: inline-block; height: 16px; margin: 0 8px 0 3px; position: relative; width: 16px;}
+.mail-explain{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 8px;}
+.explain-text{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #8e8e8e; display: block;}
+
+.push-setting-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; padding-left: 24px; padding-right: 24px;}
+.setting-object{display: inline; padding-top: 30px; border-bottom: 1px solid #dbdbdb;}
+.setting-object:last-child {border: none;}
+.setting-name-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 24px;}
+.setting-label{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 600; color: #262626; display: block; align-items: center; box-sizing: border-box; cursor: pointer; display: flex; margin-top: 4px; position: relative;}
+.setting-div{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: flex-start; flex: 1 1 auto; min-height: 0; min-width: 0;}
+.setting-input{appearance:none; background-color: #fff; border: 2px solid #dbdbdb; border-radius: 50%; height: 18px; margin-right: 8px; min-width: 18px; width: 18px;}
+.setting-input:checked {border: 5px solid #0095f6;}
+.setting-explain{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 24px; margin-top: 16px;}
+
+
+.privacy-space{padding: 32px 48px; }
+.privacy-section{display: inline; border-bottom: 1px solid #dbdbdb; margin-bottom: 22px; padding-bottom: 22px;}
+.privacy-section:last-child {border-bottom: none; margin-bottom: 0px; padding-bottom: 0px; display: inline;}
+.privacy-div{display: flex; align-content: stretch; align-items: flex-end; flex-direction: row; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 24px;}
+.privacy-name-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 1 1 auto; min-height: 0; min-width: 0;}
+.privacy-name{color: #262626; font-size: 24px; font-weight: 400; line-height: 27px;}
+.privacy-check{align-items: center; color: #262626; display: flex; flex-direction: row; font-size: 14px; font-weight: 600; line-height: 14px; margin-bottom: 4px;}
+.account-privacy{margin-right: 10px; width: 100%;}
+.privacy-explain{color: #8e8e8e; font-size: 14px; font-weight: 400; line-height: 20px; margin-top: 8px;}
+.privacy-link{color: #0095f6; font-size: 14px; font-weight: 500; line-height: 18px;}
+
+.sent-mail-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-left: 64px; margin-right: 64px;}
+.sent-name-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 32px; margin-top: 32px;}
+.sent-name{font-size: 22px; line-height: 26px; margin: -4px 0 -5px; font-weight: 300; color: #262626; display: block;}
+.sent-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.sent-content-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.sent-content{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; padding-bottom: 32px; padding-top: 32px;}
+.security-txt, .etc-txt{font-size: 18px; line-height: 24px; margin: -4px 0 -6px; font-weight: 400; color: #8e8e8e; display: block;}
+
+.delete-space{padding-left: 65px; padding-right: 32px; padding-bottom: 32px;}
+.delete-name{font-size: 24px; font-weight: 400; line-height: 38px; margin: 32px 0;}
+.delete-username{font-weight: 600;}
+.delete-txt-header {font-size: 16px; font-weight: 400;}
+.delete-txt{font-size: 15px; font-weight: 400; margin-bottom: 15px; line-height: 20px;}
+.delete-txt-footer{font-size: 15px; font-weight: 400; margin-bottom: 15px; line-height: 20px; padding-bottom: 32px; border-bottom: 1px solid #dbdbdb;}
+.delete-form{align-items: stretch; display: flex; flex-direction: column; margin-top: 20px;}
+.delete-aside{box-sizing: border-box; color: #262626; flex: 0 0 226px; font-size: 17px; font-weight: 600; line-height: 18px; padding-right: 32px; text-align: right;}
+.delete-select-div{flex: 0 1 150px; height: 32px;}
+.reason-down-arrow{height: 12px; width: 12px; background-image: url("/gram/static/icons/arrow-down-8e8e8e.png") ; display: block; overflow: hidden; text-indent: 110%; white-space: nowrap; position: absolute; right: 12px; top: 12px; pointer-events:none; background-repeat: no-repeat;}
+.deletion-reason-select{background: 0 0; border: 1px solid #dbdbdb; border-radius: 3px; color: #262626; font-size: 16px; height: 32px; padding: 0 30px 0 10px; appearance:none;}
+.deletion-reason-select:focus{outline: none;}
+.reason{margin: 15px 23px;}
+.reason p {margin-bottom: 15px; line-height: 20px; }
+.reason ul {list-style-type: square; padding-left: 20px; margin: 0 0 20px;}
+.reason li {margin: 0 0 5px;}
+.reason ol {list-style-type: decimal; padding-left: 20px; margin: 0 0 20px;}
+.help-link{color: #0095f6; text-decoration: none;}
+.reason-username{font-weight: 700;}
+.logout-url{color: #0095f6; }
+.delete-pw{box-sizing: border-box; color: #262626; flex: 0 0 226px; font-size: 17px; font-weight: 600; line-height: 18px; padding-right: 32px; text-align: right;}
+.delete-pw-input{border-radius: 6px; border: 1px solid #dbdbdb; color: #262626; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; overflow: visible; padding: 4px 12px;}
+.pw-forget-txt{color: #0095f6; font-size: 12px; font-weight: 500; margin-top: 12px;}
+.delete-line{border-bottom: 1px solid #dbdbdb; margin-bottom: 32px; padding-top: 16px;}
+.delete-btn-txt{font-size: 15px; font-weight: 400; margin-bottom: 15px; line-height: 20px;}
+.delete-btn-space{flex-direction: row; padding: 18px 0;}
