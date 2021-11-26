@@ -8,4 +8,12 @@
 		insert into refunds (merchant_uid, reason)
 		values (#{merchant_uid}, #{reason})
 	</insert>
+	
+	<select id="getList" resultType="RefundsVO">
+		select * from refunds
+	</select>
+	
+	<delete id="setDelete" parameterType="Long">
+		delete from refunds where merchant_uid = #{merchant_uid}
+	</delete>
 </mapper>

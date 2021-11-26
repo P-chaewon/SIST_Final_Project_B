@@ -42,7 +42,7 @@
 				<c:if test="${paymentsVO.paymentsCk eq 'w'}">
 					환불대기
 				</c:if>
-				<c:if test="${paymentsVO.paymentsCk eq 'r'}">
+				<c:if test="${paymentsVO.paymentsCk eq 'd'}">
 					환불완료
 				</c:if>
 			</td>

@@ -14,12 +14,30 @@
   		where merchant_uid = #{merchant_uid}
   	</update>
   	
-  	<select id="getList" resultType="PaymentsVO">
+  	<select id="getList" parameterType="Pager" resultType="PaymentsVO">
   		select * from payments where paymentsCk != 'q'
+  		<choose>
+  			<when test="status == 'yes'">
+  				and paymentsCk = 'y'
+  			</when>
+  			<when test="status == 'no'">
+  				and paymentsCk = 'n'
+  			</when>
+  			<when test="status == 'wait'">
+  				and paymentsCk = 'w'
+  			</when>
+  			<when test="status == 'done'">
+  				and paymentsCk = 'd'
+  			</when>
+  		</choose>
   	</select>
   	
   	<select id="getListByUser" parameterType="PaymentsVO" resultType="PaymentsVO">
   		select * from payments where userNum = #{userNum}
+  	</select>
+  	
+  	<select id="getOne" parameterType="Long" resultType="PaymentsVO">
+  		select * from payments where merchant_uid = #{merchant_uid}
   	</select>
   	
   	<select id="getRefund" parameterType="PaymentsVO" resultType="PaymentsVO">
@@ -30,6 +48,11 @@
   	
   	<update id="setUpdateCk" parameterType="Long">
   		update payments set paymentsCk = 'w'
+  		where merchant_uid = #{merchant_uid}
+  	</update>
+  	
+  	<update id="setUpdateCkDone" parameterType="Long">
+  		update payments set paymentsCk = 'd'
   		where merchant_uid = #{merchant_uid}
   	</update>
 </mapper>
