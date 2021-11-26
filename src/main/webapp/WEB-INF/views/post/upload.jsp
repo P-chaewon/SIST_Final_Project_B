@@ -17,7 +17,7 @@
 	$("#upload").attr("src", "${pageContext.request.contextPath}/static/icons/add-click.png");
 </script>
 	<main class="wrapper">
-		<form class="frm" action="./upload" method="POST" enctype="multipart/form-data" >
+		<form class="frm" action="./upload" method="post" enctype="multipart/form-data" >
 			<table class="tbl">
 				<tr class="tbl_tr">
 					<td class="title" style="height:40px;" colspan="2">
@@ -41,9 +41,9 @@
 								<img id="multi_file" alt="multi_file" src="${pageContext.request.contextPath}/static/icons/gallery.png">
 							</div>
 							
-								<div class="add_file_wrap" style="display:none; margin-top: 10px; margin-left:65px; height: 80px; width:400px; margin-bottom:10px; background-color: black; opacity: 0.8; border-radius: 10px;">	
+							<div class="add_file_wrap" style="display:none; margin-top: 10px; margin-left:65px; height: 80px; width:400px; margin-bottom:10px; background-color: black; opacity: 0.8; border-radius: 10px;">	
 							<div class="multipartFile_wrap" style="">
-									<input type="file" id="img_file1" onchange="openFile(event)" class="img_file" name="files" data-num="1">
+									<input type="file" id="img_file1" onchange="openFile(event)" class="img_file" name="files" data-num="1" multiple="multiple">
 								<label for="img_file1"></label>
 							</div>
 									
@@ -125,6 +125,23 @@ $(".img_file").change(function(){
 	}
 });
 
+$("#multi_files").click(function() {
+	if($(".add_file_wrap").css('display') == 'none'){
+		$('.add_file_wrap').show();
+		$(this).css({"filter": "invert(100%)"});
+	}else{
+		$('.add_file_wrap').hide();
+		$(this).css({"filter": "invert(0%)"});
+	}
+});
+
+$('.add_file_wrap').on('click', 'li', function(){
+	var src = $(this).children('img').attr("src");
+	$("#thumbnail").attr("src", src);
+
+});
+
+
 
 $('.multipartFile_wrap').on('change', '.img_file', function(){
 	const multipartFile_wrap = $(this).parent();
@@ -191,23 +208,6 @@ function readURL(input, img_tag) {
 	}		
 }		
 
-$("#multi_files").click(function() {
-	if($(".add_file_wrap").css('display') == 'none'){
-		$('.add_file_wrap').show();
-		$(this).css({"filter": "invert(100%)"});
-	}else{
-		$('.add_file_wrap').hide();
-		$(this).css({"filter": "invert(0%)"});
-	}
-});
-
-$('.add_file_wrap').on('click', 'li', function(){
-	var src = $(this).children('img').attr("src");
-	$("#thumbnail").attr("src", src);
-
-});
-
-
 $('.add_file_wrap').on('click', '.btn_delete', function(e){
 	  e.stopPropagation(); /* 부모 li 이벤트 방지 */
 	  
@@ -224,7 +224,7 @@ $('.add_file_wrap').on('click', '.btn_delete', function(e){
 		if($(this).data('num') == delNum){
 			$(this).next().remove();
 			$(this).remove();
-			
+			return;
 		}
 	})
 	
@@ -234,8 +234,7 @@ $('.add_file_wrap').on('click', '.btn_delete', function(e){
 	let lastNum = Number(multipartFile_wrap.children('input').last().data('num'));
 	if(ul.find('li').length == 4){
 		addInput(multipartFile_wrap, lastNum);			
-	}
-	
+	}	
 });
 
 $(".write").click(function(){

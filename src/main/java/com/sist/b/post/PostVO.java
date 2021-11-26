@@ -1,6 +1,7 @@
 package com.sist.b.post;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -12,5 +13,7 @@ public class PostVO {
 	private String contents;
 	private String tag;
 	private Date regDate;
+	
+	private List<PostFilesVO> fileList;
 
 }

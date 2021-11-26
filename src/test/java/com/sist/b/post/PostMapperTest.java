@@ -24,10 +24,10 @@ class PostMapperTest {
 	}
 
 	
-	@Test
+	//@Test
 		void filetest()throws Exception {
 			PostFilesVO postFilesVO = new PostFilesVO();
-			postFilesVO.setPostNum(1L);
+			postFilesVO.setPostNum(9L);
 			postFilesVO.setFileName("test");
 			postFilesVO.setOriName("test");
 			

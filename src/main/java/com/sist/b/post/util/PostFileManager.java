@@ -19,7 +19,7 @@ public class PostFileManager {
 	private ServletContext servletContext;
 
 	
-	//3. ServletContext 사용
+	//ServletContext 사용
 	
 	public String getUseServletContext(String filePath, MultipartFile multipartFile)throws Exception{
 		
@@ -30,8 +30,6 @@ public class PostFileManager {
 			file.mkdirs();
 		}
 		
-		//파일을 저장
-		//1. 유니크한 이름을 만들기
 		String fileName = "";
 		fileName = UUID.randomUUID().toString()+"_"+multipartFile.getOriginalFilename();
 		

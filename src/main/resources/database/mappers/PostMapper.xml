@@ -5,13 +5,39 @@
   
   <mapper namespace="com.sist.b.post.PostRepository">
   
+  <!-- post upload -->
   	<insert id="setPostUpload" parameterType="PostVO" useGeneratedKeys="true" keyProperty="postNum">
   		INSERT INTO 
   				post
   		VALUES
   				(#{postNum}, #{userNum}, #{contents}, #{tag, jdbcType=VARCHAR}, now())
   	</insert>
-  
+  	
+  <!-- post List -->	
+	
+	<resultMap type="PostVO" id="selectResult">
+		<id column="postNum" property="postNum"/>
+		<result column="userNum" property="userNum"/>
+		<result column="contents" property="contents"/>
+		<result column="tag" property="tag"/>
+		<result column="regDate" property="regDate"/>
+	
+		<collection property="fileList" javaType="List" ofType="PostFilesVO">
+			<id column="fileNum" property="fileNum"/>
+			<result column="postNum" property="postNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</collection>
+	
+	</resultMap>
+	
+		<select id="getPostList" resultMap="selectResult">
+  		SELECT * 
+  		FROM post
+  		LEFT JOIN postFiles 
+  		USING(postNum)
+  		ORDER BY postNum DESC
+  	</select>
   
   <!-- file upload -->
   	<insert id="setFilesInsert" parameterType="PostFilesVO">

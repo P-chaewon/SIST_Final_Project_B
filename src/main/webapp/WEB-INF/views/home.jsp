@@ -28,12 +28,13 @@
 				
 				<!-- post foreach, db 추가 -->
 				
+				<c:forEach items="${postList}" var="list">
 				<article>
 					<!-- post header -img, nickname, more -->
 					<header>
 						<div class="post_profile">
 							<img class="post_profile_img pic" alt="profile" src="${pageContext.request.contextPath}/static/images/post/sample_profile.jpg">
-							<span class="nickname main_nickname point_span">cogus196</span>
+							<span class="nickname main_nickname point_span">${user.nickname}</span>
 						</div>
 						<img class="icon_react icont_more" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 					</header>
@@ -55,11 +56,17 @@
 					<!-- text  -->
 					<div class="reaction">
 			            <div class="liked_people">
-			              <img class="pic" src="${pageContext.request.contextPath}/static/images/kittens 2.jpg" alt="profile">
+			            	<c:forEach items="${postList.fileList}" varStatus="fileVO">
+				              <img class="pic" src="../upload/post/${fileVO.fileName}" alt="profile">
+				              <a href=""></a>
+			            	</c:forEach>
+			            
 			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
 			            </div>
 			            <div class="description">
-			              <p><span class="point_span nickname">cogus196</span><span class="at_tag"> @danchu_e_o</span> 하단추</p>
+			              <p><span class="point_span nickname">cogus196</span>
+			              
+			               ${list.contents }</p>
 			            </div>
 			            
 			            <!-- comments -->
@@ -83,6 +90,8 @@
 			            <button type="submit" class="submit_comment" disabled>게시</button>
 			          </div>
 				</article>
+			
+				</c:forEach>
 			
 				<!--//post  -->
 			</div>
