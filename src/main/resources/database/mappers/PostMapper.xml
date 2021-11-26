@@ -34,7 +34,7 @@
 		<select id="getPostList" resultMap="selectResult">
   		SELECT * 
   		FROM post
-  		LEFT JOIN postFiles 
+  		LEFT JOIN postfiles 
   		USING(postNum)
   		ORDER BY postNum DESC
   	</select>

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +36,10 @@
 					<header>
 						<div class="post_profile">
 							<img class="post_profile_img pic" alt="profile" src="${pageContext.request.contextPath}/static/images/post/sample_profile.jpg">
-							<span class="nickname main_nickname point_span">${user.nickname}</span>
+							<span class="nickname main_nickname point_span">
+							
+							 <sec:authentication property="principal.nickname" var="nickname"/>
+							${nickname}</span>
 						</div>
 						<img class="icon_react icont_more" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 					</header>
@@ -42,7 +47,12 @@
 					
 					<!-- post image -->
 					<div class="post_image">
-						<img alt="post" src="${pageContext.request.contextPath}/static/images/post/sample2.jpg">
+						<c:forEach items="${list.fileList}" var="fileVO">
+							<img alt="post" src="../upload/post/${fileVO.fileName}">
+							<a href="../upload/post/${fileVO.fileName}.jpg"></a>
+						
+						</c:forEach>
+					
 					</div>
 					<!-- post icon -->
 					<div class="icons_react">
@@ -56,15 +66,15 @@
 					<!-- text  -->
 					<div class="reaction">
 			            <div class="liked_people">
-			            	<c:forEach items="${postList.fileList}" varStatus="fileVO">
-				              <img class="pic" src="../upload/post/${fileVO.fileName}" alt="profile">
-				              <a href=""></a>
-			            	</c:forEach>
-			            
+				              <img class="pic" src="${pageContext.request.contextPath}/static/images/kittens 2.jpg" alt="profile">
+			          
 			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
 			            </div>
 			            <div class="description">
 			              <p><span class="point_span nickname">cogus196</span>
+			              
+			              <!-- 사람 태그 추가 -->
+			              <!-- <span class="at_tag"> @danchu_e_o</span> -->
 			              
 			               ${list.contents }</p>
 			            </div>

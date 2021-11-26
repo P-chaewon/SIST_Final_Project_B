@@ -37,7 +37,6 @@ public class PostService {
 			
 			result = postRepository.setFilesInsert(postFilesVO);
 			
-			System.out.println(postFilesVO.getFileName());
 
 		}
 		

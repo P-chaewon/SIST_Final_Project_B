@@ -28,16 +28,23 @@ public class PostController {
 	@PostMapping("upload")
 	public String setPostUpload(PostVO postVO, MultipartFile [] files, HttpSession session)throws Exception{
 		
-		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
-		SecurityContextImpl sc = (SecurityContextImpl)object;
-		org.springframework.security.core.Authentication authentication = sc.getAuthentication();
-		UserVO userVO = (UserVO)authentication.getPrincipal();
 		
-		postVO.setUserNum(userVO.getUserNum());
+		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		  SecurityContextImpl sc = (SecurityContextImpl)object;
+		 org.springframework.security.core.Authentication authentication =
+		 sc.getAuthentication(); UserVO userVO = (UserVO)authentication.getPrincipal();
+		 
+		  postVO.setUserNum(userVO.getUserNum());
+		  
+		  int result = postService.setPostUpload(postVO, files);
+		  
+		  System.out.println(result);
+		 
+		System.out.println(files.length);
 		
-		int result = postService.setPostUpload(postVO, files);
-		
-		System.out.println(result);
+		for(MultipartFile multipartFile:files) {
+			System.out.println(multipartFile.getOriginalFilename());
+		}
 		return "redirect:../";
 	}
 

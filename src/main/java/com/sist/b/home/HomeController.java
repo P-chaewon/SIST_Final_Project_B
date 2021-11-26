@@ -23,18 +23,16 @@ public class HomeController {
 	@Autowired
 	private PostService postService;
 	
-	@RequestMapping("/")
-	public String getIndex()throws Exception{
-		return "home";
-	}
 	
 	@GetMapping("/")
 	public ModelAndView getPostList(HttpSession session)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
-		UserVO userVO = (UserVO)session.getAttribute("user");
-		mv.addObject("user", userVO);
+		/*
+		 * UserVO userVO = (UserVO)session.getAttribute("user"); 
+		 * mv.addObject("user",userVO);
+		 */
 		List<PostVO> ar = postService.getPostList();
 		mv.addObject("postList", ar);
 		mv.setViewName("home");

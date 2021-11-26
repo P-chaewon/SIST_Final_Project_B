@@ -165,7 +165,7 @@ $('.multipartFile_wrap').on('change', '.img_file', function(){
 function addInput(multipartFile_wrap, finalNum){
 	finalNum++
 	let Html
-		="<input type='file' id='img_file"+finalNum+"' class='img_file' name='multipartFile' data-num='"+finalNum+"'>"
+		="<input type='file' id='img_file"+finalNum+"' class='img_file' name='files' data-num='"+finalNum+"'>"
 		+"<label for='img_file"+finalNum+"'></label>"
 	multipartFile_wrap.append(Html);
 }
