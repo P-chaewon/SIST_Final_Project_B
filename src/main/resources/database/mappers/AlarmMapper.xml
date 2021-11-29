@@ -9,9 +9,26 @@
 		values (#{alarmNum}, #{alarmType}, #{toUserNum}, #{fromUserNum}, #{targetPostNum}, 0, now())
 	</insert>
 	
-	<select id="getList" parameterType="AlarmVO" resultType="AlarmVO">
-		select * from alarm where toUserNum = #{toUserNum}
+	<select id="getList" parameterType="AlarmVO" resultMap="getListResult">
+		select A.*, U.nickname
+		from alarm A inner join user U
+		on (A.fromUserNum = U.UserNum)
+		where toUserNum = #{toUserNum}
+		order by alarmDate desc limit 5
 	</select>
+	
+	<resultMap type="AlarmVO" id="getListResult">
+		<id column="alarmNum" property="alarmNum"/>
+		<result column="alarmType" property="alarmType"/>
+		<result column="toUserNum" property="toUserNum"/>
+		<result column="fromUserNum" property="fromUserNum"/>
+		<result column="targetPostNum" property="targetPostNum"/>
+		<result column="readCheck" property="readCheck"/>
+		<result column="alarmDate" property="alarmDate"/>
+		<association property="userVO" javaType="UserVO">
+			<result column="nickname" property="nickname"/>
+		</association>
+	</resultMap>
 	
 	<update id="setUpdate" parameterType="AlarmVO">
 		update alarm set readCk = 1 where alarmNum = #{alarmNum}

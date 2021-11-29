@@ -1,6 +1,8 @@
 package com.sist.b.alarm;
 
-import java.sql.Date;
+import java.util.Date;
+
+import com.sist.b.user.UserVO;
 
 import lombok.Data;
 
@@ -13,4 +15,6 @@ public class AlarmVO {
 	private Long targetPostNum;
 	private boolean readCheck;
 	private Date alarmDate;
+	
+	private UserVO userVO;
 }
