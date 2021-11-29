@@ -9,9 +9,9 @@
 			<span class="text">${alarmVO.userVO.nickname}님이 회원님의 게시물을 좋아합니다.</span>
 			<c:choose>
 				<c:when test="${alarmVO.diff eq 0}">
-					<span class="text">오늘</span>
+					<span class="text day">오늘</span>
 				</c:when>
-				<c:otherwise><span class="text">${alarmVO.diff}일</span></c:otherwise>
+				<c:otherwise><span class="text day">${alarmVO.diff}일</span></c:otherwise>
 			</c:choose>
 		</c:if>
 		
@@ -21,9 +21,9 @@
 			<span class="text">${alarmVO.userVO.nickname}님이 댓글을 남겼습니다.</span>
 			<c:choose>
 				<c:when test="${alarmVO.diff eq 0}">
-					<span class="text">오늘</span>
+					<span class="text day">오늘</span>
 				</c:when>
-				<c:otherwise><span class="text">${alarmVO.diff}일</span></c:otherwise>
+				<c:otherwise><span class="text day">${alarmVO.diff}일</span></c:otherwise>
 			</c:choose>
 		</c:if>
 		
@@ -33,9 +33,9 @@
 			<span class="text">${alarmVO.userVO.nickname}님이 회원님을 팔로우하기 시작했습니다.</span>
 			<c:choose>
 				<c:when test="${alarmVO.diff eq 0}">
-					<span class="text">오늘</span>
+					<span class="text day">오늘</span>
 				</c:when>
-				<c:otherwise><span class="text">${alarmVO.diff}일</span></c:otherwise>
+				<c:otherwise><span class="text day">${alarmVO.diff}일</span></c:otherwise>
 			</c:choose>
 		</c:if>
 	</div>

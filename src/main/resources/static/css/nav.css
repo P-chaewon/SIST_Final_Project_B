@@ -123,3 +123,7 @@ input:-webkit-autofill {
 	position: relative;
 	top: 30%;
 }
+
+.day {
+	color: #8e8e8e;
+}
