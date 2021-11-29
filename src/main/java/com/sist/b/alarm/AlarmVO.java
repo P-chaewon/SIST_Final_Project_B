@@ -1,6 +1,6 @@
 package com.sist.b.alarm;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.sist.b.user.UserVO;
 
@@ -17,4 +17,5 @@ public class AlarmVO {
 	private Date alarmDate;
 	
 	private UserVO userVO;
+	private Long diff;
 }
