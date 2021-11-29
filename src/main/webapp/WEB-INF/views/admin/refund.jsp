@@ -44,7 +44,7 @@
 								${refundsVO.merchant_uid}
 						</td>
 						<td>${refundsVO.reason}</td>
-						<td><input type="checkbox" name="merchant_uid" value="${refundsVO.merchant_uid}"></td>
+						<td><input type="checkbox" name="merchant_uid" class="ck_box" value="${refundsVO.merchant_uid}"></td>
 					</tr>
 					<tr>
 						<td colspan="3" class="contents" id="c_${refundsVO.merchant_uid}"></td>
@@ -54,7 +54,7 @@
 			</table>
 		</form>
 			<div class="b">
-				<button id="done">환불완료</button>
+				<button type="button" id="done">환불완료</button>
 			</div>
 	</main>
 	<script type="text/javascript" src="../../static/js/admin/refund.js"></script>

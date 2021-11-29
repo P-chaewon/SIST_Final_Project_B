@@ -1,10 +1,6 @@
 /**
  * refund.js
  */
- 
-$("#done").click(function(){
-	$("#frm").submit();
-});
 
 var uids = $(".uid");
 
@@ -30,5 +26,28 @@ $(".t").click(function(){
 		$("#c_"+merchant_uid).show();
 	} else {
 		$("#c_"+merchant_uid).hide();
+	}
+});
+
+var flag = false;
+
+$("#done").click(function(){
+	// 체크 값 확인
+	var ck_boxes = $(".ck_box");
+	
+	for (var ck_box of ck_boxes) {
+		if (ck_box.checked) {
+			flag = true;
+			break;
+		}
+	}
+	
+	if (flag) {
+		var result = confirm("환불 완료 처리하시겠습니까?");
+		if (result) {
+			$("#frm").submit();
+		}
+	} else {
+		alert("환불 완료 처리할 건을 선택해주세요.");
 	}
 });
