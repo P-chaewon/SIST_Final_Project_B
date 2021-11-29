@@ -1,5 +1,5 @@
 @charset "UTF-8";
-body {display: block; background: #fff; overflow-y: scroll; line-height: 1; margin: 0;}
+body {display: block; background: #fff; overflow-y: scroll; line-height: 1;}
 html, body, #react-root{height: 100%;}
 div {display: block;}
 a {text-decoration: none;}

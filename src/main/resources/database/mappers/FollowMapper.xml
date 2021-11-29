@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sist.b.follow.FollowRepository">
+  	<insert id="follow" parameterType="FollowVO">
+  		insert into follow (followNum, userNum, followDate) 
+  		values (#{followNum}, #{userNum}, now())
+  	</insert>
+  	
+  	<delete id="unFollow" parameterType="FollowVO">
+  		delete from follow where followNum=#{followNum} and userNum=#{userNum}
+  	</delete>
+  	
+  	<select id="myFollowList" parameterType="FollowVO" resultType="List">
+  		
+  	</select>
+  	
+  	<select id="userList" resultMap="userListResult">
+  		select * from user_role UR inner join user U 
+		on UR.userNum=U.userNum 
+		left join follow F 
+		on U.userNum=F.userNum 
+		where UR.rolenum=2
+  	</select>
+  	
+  	<resultMap type="UserVO" id="userListResult">
+  		<id/>
+  	</resultMap>
+  
+  </mapper>

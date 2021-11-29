@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user.css">
 </head>
 <body class="" style="">      

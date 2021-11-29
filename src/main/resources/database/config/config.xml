@@ -13,7 +13,7 @@
   	<typeAlias type="com.sist.b.user.UserVO" alias="UserVO"/>
   	<typeAlias type="com.sist.b.user.RoleVO" alias="RoleVO"/>
   	<typeAlias type="com.sist.b.user.UserlogVO" alias="UserlogVO"/>
-  
+  	<typeAlias type="com.sist.b.follow.FollowVO" alias="FollowVO"/>
   </typeAliases>
   
   
