@@ -49,10 +49,11 @@
 						</div>
 					</ul>
 					<article class="edit-object">
+						<sec:authentication property="principal.username" var="username"/>
 						<div class="delete-space">
 							<h1 class="delete-name">잠시 계정 비활성화</h1>
 							<p class="delete-txt-header">
-								<span class="delete-username">${userVO.username}</span>
+								<span class="delete-username">${username}</span>
 								님, 안녕하세요.
 							</p>
 							<br>
@@ -186,7 +187,7 @@
 										</aside>
 										<div class="input-change">
 											<div>
-												<input type="hidden" name="delUsername" id="delUsername" value="${userVO.username }">
+												<input type="hidden" name="username" id="delUsername" value="${username }">
 												<input class="delete-pw-input" id="password" name="password" required="" spellcheck="true" type="password">
 												<a class="pw-forget-txt" href="/accounts/password/reset/" tabindex="0">비밀번호를 잊으셨나요?</a>
 											</div>
@@ -228,9 +229,9 @@
 				
 				console.log($(".deletion-reason-select").val()!="---");
 				if($(".deletion-reason-select").val()!="---"){
-					$(".delete-btn").removeAttr("disabled");
+					$(".temporary-btn").removeAttr("disabled");
 				} else {
-					$(".delete-btn").attr("disabled", "disabled");
+					$(".temporary-btn").attr("disabled", "disabled");
 				}
 			})
 		})

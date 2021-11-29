@@ -62,9 +62,12 @@
  	</update>
  	
  	<delete id="setDelete" parameterType="UserVO">
- 		delete from user where username=#{username}
+ 		delete from user where username=#{username} and password=#{password}
  	</delete>
- 
+ 	
+ 	<update id="setDeleteTemporary" parameterType="UserVO">
+ 		update user set enabled=#{enabled} where username=#{username} and password=#{password}
+ 	</update>
   </mapper>
   
  

@@ -142,15 +142,9 @@ public class UserController {
 	
 	@GetMapping("password/change")
 	public ModelAndView setPasswordUpdate(HttpSession session) throws Exception {
-		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
-		SecurityContextImpl sc = (SecurityContextImpl)object;
-		Authentication authentication = sc.getAuthentication();
-		UserVO userVO = (UserVO)authentication.getPrincipal();
-		userVO = userService.getSelectOne(userVO.getUsername());
 		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("user/pwChange");
-		mv.addObject("userVO", userVO);
 		return mv;
 	}
 	

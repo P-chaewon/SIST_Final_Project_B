@@ -153,5 +153,9 @@ public class UserService implements UserDetailsService{
 		return check;
 	}
 	
+	public int setDeleteTemporary(UserVO userVO) throws Exception {
+		return userRepository.setDeleteTemporary(userVO);
+	}
+	
 	
 }

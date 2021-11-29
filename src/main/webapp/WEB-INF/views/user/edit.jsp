@@ -52,7 +52,7 @@
 						<div class="basics">
 							<div class="photo-profile-1">
 								<div class="icon-outline">
-									<button class="icon-btn" title="프로필 사진 추가">
+									<button class="icon-btn" title="프로필 사진 추가" data-user-fileName="${userVO.fileName }">
 										<c:choose>
 											<c:when test="${not empty userVO.fileName }">
 												<img alt="프로필 사진 추가" class="input-icon" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">									
@@ -71,7 +71,7 @@
 							</div>
 							<div class="photo-profile-2">
 								<h1 class="my-username" title="${userVO.username }">${userVO.username}</h1>
-								<button class="txt-btn profile-update" type="button">프로필 사진 바꾸기</button>
+								<button class="txt-btn profile-update" type="button" data-user-fileName="${userVO.fileName }">프로필 사진 바꾸기</button>
 								<div>
 									<form enctype="multipart/form-data" method="POST" role="presentation" class="profile-form">
 										<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">

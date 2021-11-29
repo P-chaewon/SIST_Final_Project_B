@@ -14,6 +14,7 @@
 	<c:import url="../temp/nav.jsp"></c:import>
 	<div id="react-root">
 		<section class="edit-section">
+			<sec:authentication property="principal" var="userVO"/>
 			<div>
 			</div>
 			<main class="edit-main" role="main">

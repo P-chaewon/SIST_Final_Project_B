@@ -107,10 +107,13 @@ $(".pw-btn").click(function(){
 
 /*계정 삭제 버튼 클릭*/
 $(".delete-btn").click(function () {
-	permanentPwCheck();
+	removePwCheck();
 })
 
-
+/*계정 비활성화 버튼 클릭*/
+$(".temporary-btn").click(function(){
+	removePwCheck();
+})
 
 
 
@@ -243,7 +246,7 @@ function passwordCheck(password) {
 }
 
 /*탈퇴 비밀번호 확인*/
-function permanentPwCheck() {
+function removePwCheck() {
 	$.ajax({
 		type : "POST",
 		url : "/gram/account/password/check",

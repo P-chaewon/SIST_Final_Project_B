@@ -26,4 +26,6 @@ public interface UserRepository {
 	public int setPasswordUpdate(UserVO userVO) throws Exception;
 	//화원 탈퇴
 	public int setDelete(UserVO userVO) throws Exception;
+	//비활성 계정으로 전환
+	public int setDeleteTemporary(UserVO userVO) throws Exception;
 }
