@@ -19,7 +19,7 @@
   	<typeAlias type="com.sist.b.membership.MembershipVO" alias="MembershipVO"/>
   	<typeAlias type="com.sist.b.payments.PaymentsVO" alias="PaymentsVO"/>
   	<typeAlias type="com.sist.b.refunds.RefundsVO" alias="RefundsVO"/>
+  	<typeAlias type="com.sist.b.alarm.AlarmVO" alias="AlarmVO"/>
   </typeAliases>
-  
   
   </configuration>

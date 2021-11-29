@@ -19,8 +19,6 @@ public class PaymentsController {
 	
 	@Autowired
 	private PaymentsService paymentsService;
-	@Autowired
-	private RefundsService refundsService;
 	
 	@GetMapping("/")
 	public ModelAndView getList(Pager pager) throws Exception {
@@ -31,30 +29,7 @@ public class PaymentsController {
 		mv.setViewName("admin/list");
 		return mv;
 	}
-	
-	@GetMapping("refunds")
-	public ModelAndView getRefund(ModelAndView mv) throws Exception {
-		List<RefundsVO> ar = refundsService.getList();
-		mv.addObject("refundsVOs", ar);
-		mv.setViewName("admin/refund");
-		return mv;
-	}
-	
-	@PostMapping("refunds")
-	public ModelAndView getRefund(Long [] merchant_uid) throws Exception {
-		ModelAndView mv = new ModelAndView();
 		
-		for (Long uid:merchant_uid) {
-			// refunds 테이블에서 삭제
-			int result = refundsService.setDelete(uid);
-			// payments 테이블 업데이트 (w -> d)
-			result = paymentsService.setUpdateCkDone(uid);
-		}
-		
-		mv.setViewName("redirect:./refunds");
-		return mv;
-	}
-	
 	// ajax merchant_uid로 결제 정보 조회
 	@GetMapping("selectInfo")
 	public ModelAndView selectInfo(Long merchant_uid) throws Exception {
