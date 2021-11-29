@@ -68,6 +68,11 @@
  	<update id="setDeleteTemporary" parameterType="UserVO">
  		update user set enabled=#{enabled} where username=#{username} and password=#{password}
  	</update>
+ 	
+ 	<insert id="setLoginLog" parameterType="UserVO">
+ 		insert into userlog (userlogNum, userNum, loginDate) 
+ 		values (null, #{userNum}, now());
+ 	</insert>
   </mapper>
   
  

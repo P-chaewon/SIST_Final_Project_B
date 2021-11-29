@@ -118,9 +118,6 @@ public class UserController {
 	
 	@PostMapping("remove/permanent")
 	public ModelAndView setDelete(UserVO userVO, HttpSession session) throws Exception {
-		System.out.println(userVO.getPassword());
-		System.out.println(userVO.getUsername());
-		System.out.println("---------------------------");
 		int result = userService.setDelete(userVO);
 		System.out.println("Controller : "+result);
 		ModelAndView mv = new ModelAndView();
@@ -187,6 +184,11 @@ public class UserController {
 	@GetMapping("privacy_and_security")
 	public String privacy() throws Exception {
 		return "user/privacy";
+	}
+	
+	@GetMapping("mail")
+	public String mail() throws Exception {
+		return "user/clause";
 	}
 	
 }

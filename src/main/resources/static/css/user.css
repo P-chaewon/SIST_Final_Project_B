@@ -1,7 +1,8 @@
 @charset "UTF-8";
-body {display: block; background: #fff; overflow-y: scroll; line-height: 1; }
+body {display: block; background: #fff; overflow-y: scroll; line-height: 1; margin: 0;}
 html, body, #react-root{height: 100%;}
 div {display: block;}
+a {text-decoration: none;}
 body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px;}
 #react-root, article, div, footer, header, main, nav, section {
 	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
@@ -57,3 +58,60 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .link-space{display: block; color: #8e8e8e; font-weight: 400; font-size: 14px; line-height: 18px; margin: -3px 0 -4px; }
 .link-account{color: #262626; font-size: 14px; margin: 15px; text-align: center;}
 .link-name{display: inline; margin-top: 0; margin-left:10px; color: #0095f6; font-weight: bold; font-size: 14px; line-height: 18px; text-decoration: none;}
+
+.mail-section {display: flex; flex-direction: column; flex-grow: 1; min-height: 100vh; overflow: hidden;}
+.mail-main{flex-grow: 1; order: 4; background-color: #fafafa;}
+.mail-confirmation{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: center; flex: 1 1 auto; margin-bottom: 44px; overflow: hidden; min-height: 100%;}
+.confirmation-space{color: #262626; flex-grow: 1; justify-content: center; margin-top: 12px; max-width: 350px;}
+.confirmation{align-items: center; background-color: #fff; border: 1px solid #dbdbdb; border-radius: 1px; margin: 0 0 10px; padding: 10px 0;}
+.sns-txt {display: block; overflow: hidden; text-indent: 110%; white-space: nowrap; font-size: 1.5em;}
+.confirmation-txt{display: flex; align-content: stretch; align-items: center; justify-content: flex-start; flex: 0 0 auto; padding: 8px 28px; max-width: 350px;}
+.mail-txt-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 8px; margin-top: 16px;}
+.code-input-txt{font-size: 16px; line-height: 24px; margin: -6px 0 -6px; font-weight: 600; color: #262626; display: block; text-align: center;}
+.rt-space{display: inline-block; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 16px; margin-top: 16px;}
+.send-mail{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #262626; display: block; text-align: center;}
+.rt-btn{background: 0 0; appearance:none; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto; border: 0; color: #0095f6; padding: 0; display: inline; position: relative;}
+.mail-form-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.confirmation-form{display: flex; align-content: stretch; align-items: center; justify-content: flex-start; flex: 0 0 auto; margin: 8px auto; padding-left: 40px; padding-right: 40px; max-width: 350px;}
+.confirmation-code{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start;flex: 0 0 auto;}
+.mail-code{border-radius: 6px; border: 1px solid #dbdbdb; color: #262626; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; overflow: visible; padding: 4px 12px; background: #fafafa;}
+.next-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px;}
+.next-btn{appearance:none; background-color: #0095f6; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; border-radius: 4px; color: #fff; position: relative; width: 100%; border: 1px solid transparent;}
+.next-btn:disabled {opacity: .3;}
+.back-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px;}
+.back-btn{appearance:none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative;}
+.code-error{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px;}
+.code-error-txt{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #ed4956; display: block; text-align: center;}
+
+.clause-section{display: flex; flex-direction: column; flex-grow: 1; min-height: 100vh; overflow: hidden;}
+.clause-main{flex-grow: 1; order: 4; background-color: #fafafa;}
+.clause-agree-space{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: center; flex: 1 1 auto; min-width: 0; margin-bottom: 44px; overflow: hidden; min-height: 100%;}
+.clause{color: #262626; flex-grow: 1; justify-content: center; margin-top: 12px; max-width: 350px;}
+.agreement{align-items: center; background-color: #fff; border: 1px solid #dbdbdb; border-radius: 1px; margin: 0 0 10px; padding: 10px 0;}
+.clause-space{display: flex; align-content: stretch; align-items: center; justify-content: flex-start; flex: 0 0 auto; padding: 8px 28px; margin-top:15px; }
+.clause-name{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 8px; margin-top: 16px;}
+.clause-txt{font-size: 16px; line-height: 24px; margin: -6px 0 -6px; font-weight: 600; color: #262626; display: block;text-align: center;}
+.agreement-txt-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 8px; margin-top: 16px;}
+.agreement-txt{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #262626; display: block; text-align: center;}
+.agreement-box{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.agreement-object{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: flex-start; flex: 0 0 auto;}
+.agree-space{display: flex; align-content: stretch; align-items: stretch; justify-content: center; flex: 1 1 auto; min-height: 0; min-width: 0;}
+.agreement-div{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.agree-txt-space{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #262626; display: block; overflow: hidden; text-overflow: ellipsis;white-space: nowrap;}
+.all-agree-txt{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; padding-bottom: 16px; padding-top: 16px;}
+.checkbox-space{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: center; flex: 0 0 auto; margin-left: 8px;}
+.agree-checkbox{appearance:none; background-color: #fff; border: 2px solid #dbdbdb; border-radius: 50%; box-sizing: border-box;height: 24px; margin: 8px; width: 24px;}
+.agree-checkbox:checked{background-color: #0095f6; border-color:#0095f6; }
+.clause-hr{background-color: #dbdbdb; border: 0; height: 1px; margin: 0; width: 100%;}
+.agree-txt{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 12px;}
+.agreement-more-div{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 8px;}
+.agreement-entity{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #8e8e8e; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.agreement-more{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-bottom: 4px;}
+.more-txt{font-size: 14px; line-height: 18px; color: #0095f6; display: inline; margin: 0;}
+
+.update-message-space{bottom: 0; left: 0; overflow: hidden; position: fixed; right: 0; z-index: 500;}
+.update-ease-in{transition:translateY(0) 2s ease-in-out}
+.update-ease-out{transform:translateY(100%)}
+.update-message{background-color: #262626; flex-direction: row; min-height: 44px; padding: 0 16px; width: 100%; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 2px; border-top-right-radius: 2px; min-width: 500px; width: auto;}
+.update-text-space{flex-grow: 1; flex-shrink: 1; justify-content: center; min-width: 200px;}
+.update-text{color: #fff; font-size: 14px; line-height: 18px; max-height: 72px; padding: 12px 0; overflow: hidden;}
