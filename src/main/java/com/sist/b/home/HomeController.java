@@ -28,11 +28,7 @@ public class HomeController {
 	public ModelAndView getPostList(HttpSession session)throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		
-		/*
-		 * UserVO userVO = (UserVO)session.getAttribute("user"); 
-		 * mv.addObject("user",userVO);
-		 */
+	
 		List<PostVO> ar = postService.getPostList();
 		mv.addObject("postList", ar);
 		mv.setViewName("home");

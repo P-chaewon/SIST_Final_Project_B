@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
-html,body{
-		height:100%;
-		margin:0;
-		overflow-y: scroll;
+html{
+	height:100%;
+	margin:0;
+	overflow-y: scroll;
 }
 
 .wrapper{
@@ -23,10 +23,25 @@ html,body{
 .tbl_tr, .tbl_td {
 	border: 1px solid #E2E2E2;
 }
+.post_profile{
+	height: 50px;
+}
+
+.post_profile_img pic{
+	margin-left: 10px;
+}
+
+.nickname{
+	position:absolute;
+	padding-left: 10px;
+	padding-top: 18px;
+	
+}
+
 
 .contents {
 	width: 300px;
-	height: 300px;
+	height: 250px;
 	resize: none;
 	border: none;
 	margin: 10px;

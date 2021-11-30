@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>   
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/upload.css">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -11,6 +11,7 @@
 <c:import url="../temp/nav.jsp"></c:import>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/upload.css">
 </head>
 <body>
 <script type="text/javascript">
@@ -56,6 +57,15 @@
 							</div>
 					</td>
 					<td class="tbl_td" style="height:300px;">
+					
+					<div class="post_profile">
+					
+							<img class="post_profile_img pic" style="height: 26px; width: 26px; margin-top: 12px; margin-left: 10px;" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+						
+							
+						<span class="nickname main_nickname point_span"><sec:authentication property="principal.nickname" var="nickname"/>	${nickname}</span>
+						
+						</div>
 						<textarea name="contents" class="contents" rows="" cols="" placeholder="문구입력..."></textarea>
 						
 						<div>						

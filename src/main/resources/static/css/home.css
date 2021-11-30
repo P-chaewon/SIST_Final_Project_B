@@ -6,10 +6,10 @@ ul,li {
     list-style-type: none;
     list-style-position: inside;
 }
-
 .pic {
     border-radius: 100%;
 }
+
 span.nickname {
     margin-right: 5px;
 }
@@ -26,7 +26,7 @@ span.point_span {
 main {
     width: 960px;
     margin: 0 auto;
-    padding-top: 94px;
+    padding-top: 50px;
     padding-bottom: 40px;
 }
 
@@ -36,13 +36,13 @@ main {
     display: inline-block;
 }
 
+
+
 /* article */
 
 article {
     background-color: #fff;
     border-radius: 3px;
-    border: 1px solid #DBDBDB;
-    margin-bottom: 60px;
 }
 
 header {
@@ -56,6 +56,9 @@ header {
 .post_profile {
     display: flex;
     align-items: center;
+    padding-top: 13px;
+    padding-left: 7px;
+ 	
 }
 .post_profile_img {
     width: 32px;
@@ -69,9 +72,8 @@ header {
 .main_nickname {
     margin-left: 14px;
 }
-.icon_more {
-    justify-self: end;
-}
+
+
 .icons_react {
     height: 40px;
     padding: 0 16px;
@@ -146,6 +148,11 @@ div.time_log span {
     border-top: 1px solid #DBDBDB;
     width: 612px;
 }
+
+.post{
+	width: 613px;
+	height: 612px;
+}
 /* comment input */
 .input_comment {
     font-size: 14px;
@@ -183,14 +190,13 @@ button.submit_comment:focus {
 /* right area */
 
 .right_contents{
-	width: 310px;
 	display: inline-block;
 	position: fixed;
 	top: 94px;
+	width: 300px;
 }
 
 .section_recommend{
-	width: 310px;
 	height: 180px;
 	padding: 14px 16px;
 	overflow: hidden; 
@@ -264,4 +270,64 @@ button.submit_comment:focus {
 .recommend_profile {
     display: inline-block;
     
+}
+
+footer p {
+    margin-top: 18px;
+    font-size: 11px;
+    line-height: 18px;
+    color: #c7c7c7;
+}
+
+.link{
+	text-decoration: none; 
+	color: #c7c7c7;
+}
+
+/* slider */
+
+         
+ .swiper-button-next {
+  background: url(/gram/static/icons/next2.png) no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  background: url(/gram/static/icons/previous.png) no-repeat;
+    background-size: 100% auto;
+  background-position: center;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+/* top scroll */
+
+.top{
+  	width: 45px;
+  	height: 45px;
+  	position: fixed;
+  	z-index: 999;
+  	top: 92%;
+  	cursor: pointer;
+  	display: none;
+}
+ 
+ /* img 더블클릭시 파란박스 해제 */
+ 
+ .post{
+	-webkit-touch-callout: none;
+
+	-webkit-user-select: none;
+
+	-khtml-user-select: none;
+
+	-moz-user-select: none;
+
+	-ms-user-select: none;
+	
+	user-select: none;
 }

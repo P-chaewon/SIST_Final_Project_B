@@ -27,17 +27,17 @@ public class PostService {
 				continue;
 			}
 			
+			String fileName = fileManager.getUseServletContext("upload/post", multipartFile);
+			
 			PostFilesVO postFilesVO = new PostFilesVO();
 			postFilesVO.setPostNum(postVO.getPostNum());			
 
-			String fileName = fileManager.getUseServletContext("/upload/post/", multipartFile);
 			
 			postFilesVO.setFileName(fileName);
 			postFilesVO.setOriName(multipartFile.getOriginalFilename());
 			
 			result = postRepository.setFilesInsert(postFilesVO);
-			
-
+		
 		}
 		
 		return result;
