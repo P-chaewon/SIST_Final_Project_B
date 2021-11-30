@@ -15,6 +15,9 @@ public interface PostRepository {
 	//post list
 	public List<PostVO> getPostList()throws Exception;
 	
+	//user post
+	public PostVO getUserPost(PostVO postVO)throws Exception;
+	
 	//file upload
 	public int setFilesInsert(PostFilesVO postFilesVO)throws Exception;
 

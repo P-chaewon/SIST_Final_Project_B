@@ -31,8 +31,8 @@ public class PostController {
 		
 		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		  SecurityContextImpl sc = (SecurityContextImpl)object;
-		 org.springframework.security.core.Authentication authentication =
-		 sc.getAuthentication(); UserVO userVO = (UserVO)authentication.getPrincipal();
+		 org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		 UserVO userVO = (UserVO)authentication.getPrincipal();
 		 
 		  postVO.setUserNum(userVO.getUserNum());
 		  
@@ -46,6 +46,19 @@ public class PostController {
 			System.out.println(multipartFile.getOriginalFilename());
 		}
 		return "redirect:../";
+	}
+	
+	@GetMapping("selectOne")
+	public ModelAndView getUserPost(PostVO postVO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		postVO = postService.getUserPost(postVO);
+		
+		mv.addObject("postVO", postVO);
+		mv.setViewName("post/select");
+		
+		return mv;
+		
 	}
 
 }

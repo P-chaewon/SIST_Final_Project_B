@@ -48,4 +48,8 @@ public class PostService {
 		return postRepository.getPostList();
 	}
 	
+	public PostVO getUserPost(PostVO postVO)throws Exception{
+		return postRepository.getUserPost(postVO);
+	}
+	
 }

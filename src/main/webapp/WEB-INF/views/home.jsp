@@ -10,7 +10,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
   
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/post/upload.js"></script>
@@ -47,7 +47,7 @@
 							 <sec:authentication property="principal.nickname" var="nickname"/>
 							${nickname}</span>
 						
-						<img class="icon_react icont_more" style="margin-left: 460px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						<img class="icon_react icon_more" id="more" style="margin-left: 460px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						</div>
 					</header>
 					<!--//header  -->
@@ -69,7 +69,7 @@
 						<div class="swiper-button-next"></div>
       					<div class="swiper-button-prev"></div>
       					<div class="swiper-pagination"></div>		
-				</div>
+					</div>
 
 					
 					<!-- post icon -->
@@ -187,6 +187,20 @@
 		        <img class="top" alt="top" onclick="clickme()" src="${pageContext.request.contextPath}/static/icons/top.png">
 			</div>
 			
+			
+			<!-- modal -->
+			
+			
+		<div class="modal">
+			<div class="modal_content">
+				<button type="button" id="declaration" ><h1>신고</h1></button>
+				<a href="./post/selectOne?postNum=${postVO.postNum}"><button type="button" id="move">게시물로 이동</button></a>
+				<button type="button" id="cancel">취소</button>
+			</div>
+		</div>
+		
+			
+			
 		</main>
 
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -203,6 +217,7 @@
           el: ".swiper-pagination",
           clickable: true,
         },
+ 
       });
    	 
    	 
@@ -217,6 +232,32 @@
    			$( '.top' ).fadeOut("fast");
    		}
    	} );
+   	
+   	
+   	$("#more").click(function(){
+   		$(".modal").fadeIn("fast");
+   		// 스크롤 제한 on
+   		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+   	});
+
+   	$("#cancel").click(function(){
+   		$(".modal").fadeOut("fast");
+   		// 스크롤 제한 off
+   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+   	});
+
+   	$("#delete").click(function(){
+   		$(".modal2").fadeIn("fast");
+   	});
+
+
+   	$("#d3").click(function(){
+   		$(".modal").fadeOut();
+   		$(".modal2").fadeOut();
+   		// 스크롤 제한 off
+   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+   	});
+
    	
 
     </script>

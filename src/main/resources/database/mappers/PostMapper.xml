@@ -38,6 +38,17 @@
   		USING(postNum)
   		ORDER BY postNum DESC
   	</select>
+  	
+  <!-- select post -->
+  	<select id="getUserPost" parameterType="PostVO" resultMap="selectResult">
+  		SELECT * 
+  		FROM post
+  		LEFT JOIN postfiles
+  		USING(postNum)
+  		WHERE postNum = #{postNum}
+  	
+  	</select>
+  	
   
   <!-- file upload -->
   	<insert id="setFilesInsert" parameterType="PostFilesVO">

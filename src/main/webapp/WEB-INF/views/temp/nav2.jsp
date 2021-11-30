@@ -18,7 +18,7 @@
 				</div>
 				
 				<!-- 검색창 -->
-				<input id="search" type="search" name="search" placeholder="검색" >
+				<input id="search" type="search" autocomplete="off" name="search" placeholder="검색" >
 				
 				<!-- icon -->
 				<div class="nav_icon">
