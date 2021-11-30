@@ -17,16 +17,25 @@
   		
   	</select>
   	
-  	<select id="userList" resultMap="userListResult">
+  	<select id="userList" parameterType="UserVO" resultMap="userListResult">
   		select * from user_role UR inner join user U 
 		on UR.userNum=U.userNum 
 		left join follow F 
 		on U.userNum=F.userNum 
-		where UR.rolenum=2
+		where UR.rolenum=2 and U.username not in (#{username})
   	</select>
   	
   	<resultMap type="UserVO" id="userListResult">
-  		<id/>
+  		<id column="userNum" property="userNum"/>
+  		<result column="nickname" property="nickname"/>
+  		<result column="username" property="username"/>
+  		<result column="fileName" property="fileName"/>
+  		<result column="enabled" property="enabled"/>
+  		<collection property="follows" javaType="List" ofType="FollowVO">
+  			<result column="followNum" property="followNum"/>
+  			<result column="userNum" property="userNum"/>
+  			<result column="followDate" property="followDate"/>
+  		</collection>
   	</resultMap>
   
   </mapper>

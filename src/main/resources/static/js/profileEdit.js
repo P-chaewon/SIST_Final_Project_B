@@ -149,7 +149,9 @@ function fileDelete(){
 		url : "./edit/fileDelete",
 		success : function(result){	
 			if(result.trim()==1){
-				alertMsg("프로필 사진이 삭제되었습니다.");				
+				alertMsg("프로필 사진이 삭제되었습니다.");	
+				$(".profile-button").attr("data-user-fileName", "");
+				$(".icon-btn").attr("data-user-fileName", "");			
 			} else {
 				alertMsg("프로필 사진이 삭제되지 못했습니다.");
 			}

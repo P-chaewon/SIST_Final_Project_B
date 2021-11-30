@@ -15,8 +15,12 @@ public class FollowService {
 	@Autowired
 	private FollowRepository followRepository;
 	
-	public List<UserVO> userList() throws Exception {
-		return followRepository.userList();
+	public List<UserVO> userList(UserVO userVO) throws Exception {
+		return followRepository.userList(userVO);
+	}
+	
+	public int follow(FollowVO followVO) throws Exception {
+		return followRepository.follow(followVO);
 	}
 
 }

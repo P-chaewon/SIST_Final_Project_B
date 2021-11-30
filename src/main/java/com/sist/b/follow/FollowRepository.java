@@ -9,8 +9,8 @@ import com.sist.b.user.UserVO;
 @Mapper
 public interface FollowRepository {
 	
-	public Long followCount(FollowVO followVO) throws Exception;
-	
-	public List<UserVO> userList() throws Exception;
+	public List<UserVO> userList(UserVO userVO) throws Exception;
+	//팔로우 추가
+	public int follow(FollowVO followVO) throws Exception;
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,7 @@
 					<div class="recommend-follow">
 						<div style="height: auto; overflow: hidden auto;">
 							<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+								<sec:authentication property="principal.userNum" var="userNum"/>
 								<c:forEach items="${users}" var="userVO">
 									<div aria-labelledby="f1434f5afa35c5c f2a78f1ec3fe4d f23da1b2925d2c8 f203f41533b5e9c" class="popular-follow">
 										<div class="user-img-space">
@@ -56,8 +58,8 @@
 											</div>
 										</div>
 										<div class="follow-btn-space" id="f1434f5afa35c5c">
-											<button class="follow-btn" type="button">팔로우</button>
-											<button class="following-btn" type="button" style="display: none;">팔로잉</button>
+											<button class="follow-btn" type="button" data-user-num="${userNum}" data-follow-num="${userVO.userNum}">팔로우</button>
+											<button class="unfollow-btn" type="button" style="display: none;">팔로잉</button>
 										</div>
 									</div>
 								</c:forEach>
@@ -82,5 +84,6 @@
 	<div class="_5qKD1">
 		<div class="q5edG"></div>
 	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 </body>
 </html>

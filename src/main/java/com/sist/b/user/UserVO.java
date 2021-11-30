@@ -8,6 +8,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.sist.b.follow.FollowVO;
+
 import lombok.Data;
 
 @Data
@@ -26,6 +28,7 @@ public class UserVO implements UserDetails{
 	
 	private List<RoleVO> roles;
 
+	private List<FollowVO> follows;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
