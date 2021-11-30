@@ -28,7 +28,7 @@
 					<img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
 					<span class="alarm_img">
 						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
-						<img id ="alarm_click" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell-click.png" hidden="hidden">
+						<%-- <img id ="alarm_click" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell-click.png" hidden="hidden"> --%>
 					</span>
 					<div id="alarm_contents" hidden="hidden">
 					</div>

@@ -10,9 +10,9 @@
 	</insert>
 	
 	<select id="getList" parameterType="AlarmVO" resultMap="getListResult">
-		select A.*, U.nickname
+		select A.*, U.username
 		from alarm A inner join user U
-		on (A.fromUserNum = U.UserNum)
+		on (A.fromUserNum = U.userNum)
 		where toUserNum = #{toUserNum}
 		order by alarmDate desc limit 5
 	</select>
@@ -26,7 +26,7 @@
 		<result column="readCheck" property="readCheck"/>
 		<result column="alarmDate" property="alarmDate"/>
 		<association property="userVO" javaType="UserVO">
-			<result column="nickname" property="nickname"/>
+			<result column="username" property="username"/>
 		</association>
 	</resultMap>
 	

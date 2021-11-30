@@ -22,13 +22,22 @@
 				
 				<!-- icon -->
 				<div class="nav_icon">
-					<a href="${pageContext.request.contextPath}/admin/"><img alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png"></a>
-					<a href="${pageContext.request.contextPath}/admin/ad/create"><img alt="post" src="${pageContext.request.contextPath}/static/icons/add.png"></a>
-					<a href="${pageContext.request.contextPath}/admin/payments"><img alt="payment" src="${pageContext.request.contextPath}/static/icons/payment.png"></a>
-					<%-- <img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
-					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
-					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic"> --%>
-				
+					<!-- 광고 -->
+					<a href="${pageContext.request.contextPath}/admin/">
+						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/ad.png">
+					</a>
+					<!-- 멤버십 -->
+					<a href="${pageContext.request.contextPath}/admin/">
+						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/membership.png">
+					</a>
+					<!-- 결제 -->
+					<a href="${pageContext.request.contextPath}/admin/">
+						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/payment.png">
+					</a>
+					<!-- 신고 -->
+					<a href="${pageContext.request.contextPath}/admin/">
+						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/block.png">
+					</a>
 				</div>
 			</div>
 		</nav>

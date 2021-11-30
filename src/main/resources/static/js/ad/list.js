@@ -2,10 +2,13 @@
  * select.js
  */
  
-$("#more").click(function(){
+var adNum = 0;
+ 
+$(".more").click(function(){
 	$(".modal").fadeIn();
 	// 스크롤 제한 on
 	$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+	adNum = (this).getAttribute('data-adNum');
 });
 
 $("#cancel").click(function(){
@@ -19,8 +22,7 @@ $("#delete").click(function(){
 });
 
 $("#d2").click(function(){
-	adNum = (this).getAttribute("data-adNum");
-	location.href = "./delete?adNum="+adNum;
+	location.href = "./ad/delete?adNum="+adNum;
 });
 
 $("#d3").click(function(){

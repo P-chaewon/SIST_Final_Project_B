@@ -21,7 +21,7 @@
 	<select id="getList" resultMap="getListResult">
 		select * 
 		from ad A
-			inner join
+			left join
 			adFile AF
 		using (adNum)
 	</select>

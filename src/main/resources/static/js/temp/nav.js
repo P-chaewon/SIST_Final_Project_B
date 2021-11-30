@@ -21,7 +21,7 @@ $(".alarm_img").click(function(){
 });
 
 /* 알림창 아이콘 토글 */
-$(".alarm_img").click(function(){
+/*$(".alarm_img").click(function(){
 	if ($("#alarm_click").css("display") == "none") {
 		$("#alarm_click").show();
 		$("#alarm").hide();
@@ -29,4 +29,4 @@ $(".alarm_img").click(function(){
 		$("#alarm_click").hide();
 		$("#alarm").show();
 	}
-})
+})*/

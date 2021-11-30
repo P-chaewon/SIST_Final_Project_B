@@ -37,8 +37,8 @@
 			</tr>
 			<c:forEach items="${paymentsVOs}" var="paymentsVO">
 				<tr>
-					<td>${paymentsVO.userNum}</td>
-					<td>${paymentsVO.membershipNum}</td>
+					<td>${paymentsVO.userVO.username}</td>
+					<td>${paymentsVO.membershipVO.membershipName}</td>
 					<td>${paymentsVO.paymentsDate} ${paymentsVO.paymentsTime}</td>
 					<td>
 						<c:if test="${paymentsVO.paymentsCk eq 'n'}">
