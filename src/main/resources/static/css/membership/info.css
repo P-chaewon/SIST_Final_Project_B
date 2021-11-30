@@ -55,3 +55,13 @@ td {
 	margin-left: 5px;
 	color: #8e8e8e;
 }
+
+.fail {
+	color: #8e8e8e;
+	font-family: 'Apple SD Bold'; 
+}
+
+.fail:hover {
+	color: #8e8e8e;
+	text-decoration: underline;
+}

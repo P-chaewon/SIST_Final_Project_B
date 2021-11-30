@@ -68,3 +68,7 @@ td {
   display: none;
   position: absolute;
 }
+
+.no_refund {
+	margin-left: 10px;
+}

@@ -15,7 +15,7 @@
 		<h1 class="title">환불 요청</h1>
 		<hr>
 		<c:if test="${empty refundVOs}">
-			<div>환불 가능한 내역이 없습니다.</div>
+			<div class="no_refund">환불 가능한 내역이 없습니다.</div>
 		</c:if>
 		
 		<c:if test="${not empty refundVOs}">

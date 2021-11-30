@@ -10,7 +10,8 @@
   	</insert>
   	
   	<update id="setUpdate" parameterType="PaymentsVO">
-  		update payments set membershipNum = #{membershipNum}, userNum = #{userNum}, paymentsTime = #{paymentsTime}, applyNum = #{applyNum}, amount = #{amount}, method = #{method}, paymentsCk = #{paymentsCk}
+  		update payments 
+  		set membershipNum = #{membershipNum}, userNum = #{userNum}, paymentsTime = #{paymentsTime}, applyNum = #{applyNum}, amount = #{amount}, method = #{method}, paymentsCk = #{paymentsCk}
   		where merchant_uid = #{merchant_uid}
   	</update>
   	
@@ -32,9 +33,28 @@
   		</choose>
   	</select>
   	
-  	<select id="getListByUser" parameterType="PaymentsVO" resultType="PaymentsVO">
-  		select * from payments where userNum = #{userNum}
+  	<select id="getListByUser" parameterType="PaymentsVO" resultMap="getListResult">
+  		select P.*, M.membershipName
+		from payments P 
+		inner join membership M
+		on (P.membershipNum = M.membershipNum)
+		where P.userNum = #{userNum}
   	</select>
+  	
+  	<resultMap type="PaymentsVO" id="getListResult">
+  		<id column="merchant_uid" property="merchant_uid"/>
+		<result column="membershipNum" property="membershipNum"/>
+		<result column="userNum" property="userNum"/>
+		<result column="paymentsDate" property="paymentsDate"/>
+		<result column="paymentsTime" property="paymentsTime"/>
+		<result column="applyNum" property="applyNum"/>
+		<result column="amount" property="amount"/>
+		<result column="method" property="method"/>
+		<result column="paymentsCk" property="paymentsCk"/>
+		<association property="membershipVO" javaType="MembershipVO">
+			<result column="membershipName" property="membershipName"/>
+		</association>
+  	</resultMap>
   	
   	<select id="getOne" parameterType="Long" resultType="PaymentsVO">
   		select * from payments where merchant_uid = #{merchant_uid}

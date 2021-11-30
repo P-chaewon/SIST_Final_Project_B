@@ -1,6 +1,9 @@
 package com.sist.b.payments;
 
 import java.sql.Date;
+
+import com.sist.b.membership.MembershipVO;
+
 import lombok.Data;
 
 @Data
@@ -14,4 +17,6 @@ public class PaymentsVO {
 	private Integer amount;
 	private String method;
 	private String paymentsCk;
+	
+	private MembershipVO membershipVO;
 }

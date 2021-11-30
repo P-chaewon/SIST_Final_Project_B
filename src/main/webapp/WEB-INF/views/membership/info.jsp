@@ -18,7 +18,7 @@
 	<hr>
 	<table>
 		<tr>
-			<td>멤버십</td>
+			<td>종류</td>
 			<td>결제일</td>
 			<td>승인번호</td>
 			<td>결제금액</td>
@@ -27,9 +27,20 @@
 		</tr>
 		<c:forEach items="${paymentsVOs}" var="paymentsVO" varStatus="i">
 		<tr>
-			<td id="td${i.index}" class="td">${paymentsVO.membershipNum}</td>
+			<td id="td${i.index}" class="td">${paymentsVO.membershipVO.membershipName}</td>
 			<td>${paymentsVO.paymentsDate} ${paymentsVO.paymentsTime}</td>
-			<td>${paymentsVO.applyNum}</td>
+			
+			<td>
+				<c:choose>
+					<c:when test="${paymentsVO.paymentsCk eq 'n'}">
+						-
+					</c:when>
+					<c:otherwise>
+						${paymentsVO.applyNum}
+					</c:otherwise>
+				</c:choose>
+			</td>
+			
 			<td>${paymentsVO.amount}</td>
 			<td>${paymentsVO.method}</td>
 			<td>
@@ -37,7 +48,7 @@
 					결제완료
 				</c:if>
 				<c:if test="${paymentsVO.paymentsCk eq 'n'}">
-					결제실패
+					<span class="fail" data-apply-num="${paymentsVO.applyNum}">결제실패</span>
 				</c:if>
 				<c:if test="${paymentsVO.paymentsCk eq 'w'}">
 					환불대기

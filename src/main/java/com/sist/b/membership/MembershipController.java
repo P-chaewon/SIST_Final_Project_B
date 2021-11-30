@@ -92,17 +92,9 @@ public class MembershipController {
 		PaymentsVO paymentsVO = new PaymentsVO();
 		paymentsVO.setUserNum(userVO.getUserNum());
 		List<PaymentsVO> ar = paymentsService.getListByUser(paymentsVO);
+		
 		mv.addObject("paymentsVOs", ar);
 		mv.setViewName("membership/info");
-		return mv;
-	}
-	
-	// ajax 멤버십 번호로 멤버십 이름 조회
-	@GetMapping("selectName")
-	public ModelAndView getOneName(ModelAndView mv, MembershipVO membershipVO) throws Exception {
-		membershipVO = membershipService.getOne(membershipVO);
-		mv.addObject("result", membershipVO.getMembershipName());
-		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 	
