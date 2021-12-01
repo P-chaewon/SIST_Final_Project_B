@@ -35,5 +35,18 @@ public class HomeController {
 		
 		return mv;
 	}
+	
+	@GetMapping("/explore")
+	public ModelAndView getExploreList()throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		List<PostVO> ar = postService.getPostList();
+		
+		mv.addObject("postList", ar);
+		mv.setViewName("post/explore");
+		
+		return mv;
+	
+	}
 
 }

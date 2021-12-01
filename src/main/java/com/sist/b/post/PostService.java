@@ -48,6 +48,10 @@ public class PostService {
 		return postRepository.getPostList();
 	}
 	
+	public int setPostDelete(PostVO postVO)throws Exception{
+		return postRepository.setDeletePost(postVO);
+	}
+	
 	public PostVO getUserPost(PostVO postVO)throws Exception{
 		return postRepository.getUserPost(postVO);
 	}

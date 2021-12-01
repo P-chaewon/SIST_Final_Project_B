@@ -25,7 +25,7 @@
 					<img id="home" onclick="javascript:location.href='${pageContext.request.contextPath}'" alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
 					<img alt="DM" src="${pageContext.request.contextPath}/static/icons/dm.png">
 					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
-					<img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
+					<img alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'" src="${pageContext.request.contextPath}/static/icons/global.png">
 					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
 					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
 				

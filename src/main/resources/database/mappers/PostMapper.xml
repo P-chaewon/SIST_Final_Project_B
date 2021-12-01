@@ -24,6 +24,7 @@
 		
 		<association property="userVO" javaType="UserVO">
 			<result column="nickname" property="nickname"/>
+			<result column="fileName" property="fileName"/>
 		</association>
 		
 		<collection property="fileList" javaType="List" ofType="PostFilesVO">
@@ -58,6 +59,13 @@
   		WHERE postNum = #{postNum}
   	
   	</select>
+  	
+  	<!-- delete post -->
+  	<delete id="setDeletePost" parameterType="PostVO">
+  		DELETE
+  		FROM post
+  		WHERE postNum = #{postNum}
+  	</delete>
   	
   
   <!-- file upload -->

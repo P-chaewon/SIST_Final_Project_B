@@ -60,7 +60,8 @@ public class PostController {
 		mv.setViewName("post/select");
 		System.out.println(postVO.getPostNum());
 		return mv;
-		
 	}
+	
+	
 
 }
