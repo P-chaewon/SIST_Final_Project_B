@@ -16,4 +16,13 @@
 		insert into membership (membershipNum, membershipName, membershipAmount)
 		values (null, #{membershipName}, #{membershipAmount})
 	</insert>
+	<update id="setUpdate" parameterType="MembershipVO">
+		update membership 
+		set membershipName = #{membershipName}, membershipAmount = #{membershipAmount}
+		where membershipNum = #{membershipNum}
+	</update>
+	<delete id="setDelete" parameterType="MembershipVO">
+		delete from membership
+		where membershipNum = #{membershipNum}
+	</delete>
 </mapper>

@@ -98,10 +98,30 @@ public class AdminController {
 	}
 
 	// update : get
-//	@GetMapping("membership/update")
-//	public ModelAndView setUpdate() throws Exception {
-//		
-//	}
+	@GetMapping("membership/update")
+	public ModelAndView setUpdate(ModelAndView mv, MembershipVO membershipVO) throws Exception {
+		membershipVO = membershipService.getOne(membershipVO);
+		mv.addObject("membershipVO", membershipVO);
+		mv.setViewName("admin/membership_update");
+		return mv;
+	}
+	
+	// update : post
+	@PostMapping("membership/update")
+	public ModelAndView setUpdate(MembershipVO membershipVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = membershipService.setUpdate(membershipVO);		
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
 	
 	// delete
+	@GetMapping("membership/delete")
+	public ModelAndView setDelete(MembershipVO membershipVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = membershipService.setDelete(membershipVO);		
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
 }

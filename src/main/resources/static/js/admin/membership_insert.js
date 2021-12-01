@@ -22,7 +22,6 @@ $("#next").click(function(){
 			membershipName:membershipName,
 			membershipAmount:membershipAmount
 		},
-		async: false,
 		success: function(data){
 			data = data.trim();
 			opener.document.location.href="./list";

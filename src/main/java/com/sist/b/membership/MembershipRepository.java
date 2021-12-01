@@ -12,4 +12,8 @@ public interface MembershipRepository {
 	public MembershipVO getOne(MembershipVO membershipVO) throws Exception;
 	// setInsert
 	public int setInsert(MembershipVO membershipVO) throws Exception;
+	// setUpdate
+	public int setUpdate(MembershipVO membershipVO) throws Exception;
+	// setDelete
+	public int setDelete(MembershipVO membershipVO) throws Exception;
 }

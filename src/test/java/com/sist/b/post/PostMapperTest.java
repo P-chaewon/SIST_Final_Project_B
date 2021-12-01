@@ -28,7 +28,7 @@ class PostMapperTest {
 		void filetest()throws Exception {
 			PostFilesVO postFilesVO = new PostFilesVO();
 			postFilesVO.setPostNum(9L);
-			postFilesVO.setFileName("test");
+			//postFilesVO.setFileName("test");
 			postFilesVO.setOriName("test");
 			
 			int result = postRepository.setFilesInsert(postFilesVO);

@@ -17,11 +17,11 @@ public class ChatRoomJoinRepositoryTest {
 	public void getChatRoomTest() throws Exception {
 		UserVO userVO = new UserVO();
 		userVO.setUserNum(1L);
-		Long[] roomNumList = chatRoomJoinRepository.getChatRoom(userVO);
-		
-		for (Long roomNum : roomNumList) {
-			System.out.println(roomNum);
-		}
+//		Long[] roomNumList = chatRoomJoinRepository.getChatRoom(userVO);
+//		
+//		for (Long roomNum : roomNumList) {
+//			System.out.println(roomNum);
+//		}
 	}
 	
 }
