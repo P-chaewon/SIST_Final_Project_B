@@ -44,7 +44,7 @@
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							<span class="nickname main_nickname point_span" style="margin-left: 5px;">
 						
-							${postVO.userVO.nickname}</span>
+							${postVO.userVO.username}</span>
 						
 						<span class="bullet">•</span>
 						<button class="following" type="button">팔로잉</button>
@@ -57,7 +57,7 @@
 						<div class="contents">
 							<div class="box">
 			            	<div class="description">
-				              <span class="point_span nickname" style="font-weight: 600;">cogus196</span> ${postVO.contents }
+				              <span class="point_span nickname" style="font-weight: 600;">${postVO.userVO.username }</span> ${postVO.contents}
 			            	
 			            	</div>
 			            </div>

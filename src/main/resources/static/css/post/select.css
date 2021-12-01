@@ -169,7 +169,16 @@ div.time_log span {
 }
 .description {
 	word-break:break-all;
- 	
+ 	overflow-y:scroll;
+ 	height: 300px; 
+}
+
+.description {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.description::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
 }
 
 .input_comment {

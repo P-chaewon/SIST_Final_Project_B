@@ -41,7 +41,7 @@
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							<span class="nickname main_nickname point_span">
 								
-							${list.userVO.nickname}</span>
+							${list.userVO.username}</span>
 						
 						<a href="./post/selectOne?postNum=${list.postNum}">
 						<img class="icon_react icon_more" id="more" style="margin-left: 450px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
