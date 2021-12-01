@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
 <c:import url="./temp/head.jsp"></c:import>
 
+
+
 </head>
 <body>
 
@@ -38,10 +40,9 @@
 						<div class="post_profile">
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							<span class="nickname main_nickname point_span">
-								 <sec:authentication property="principal.nickname" var="nickname"/>
-							${nickname}</span>
-							
-							</span>
+								
+							${list.nickname}</span>
+						
 						<a href="./post/selectOne?postNum=${list.postNum }">
 						<img class="icon_react icon_more" id="more" style="margin-left: 450px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						</a>
@@ -189,7 +190,42 @@
 		</main>
 
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-    <script>
+    <script type="text/javascript">
+    
+    $('.box').each(function(){
+        var content = $(this).children('.description');
+        var content_txt = content.text();
+        var content_txt_short = content_txt.substring(0,100)+"...";
+        var btn_more = $('<a href="javascript:void(0)" class="more">더보기</a>');
+
+        
+        $(this).append(btn_more);
+        
+        if(content_txt.length >= 100){
+            content.html(content_txt_short)
+            
+        }else{
+            btn_more.hide()
+        }
+        
+        btn_more.click(toggle_content);
+      
+
+        function toggle_content(){
+            if($(this).hasClass('short')){
+                // 접기 상태
+                $(this).html('더보기');
+                content.html(content_txt_short)
+                $(this).removeClass('short');
+            }else{
+                // 더보기 상태
+                $(this).html('접기');
+                content.html(content_txt);
+                $(this).addClass('short');
+
+            }
+        }
+    });
     
    	function clickme() {
    	  window.scrollTo({top:0, left:0, behavior:'smooth'});

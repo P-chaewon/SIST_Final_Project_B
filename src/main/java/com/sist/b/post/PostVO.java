@@ -16,6 +16,8 @@ public class PostVO {
 	private String tag;
 	private Date regDate;
 	
+	private UserVO userVO;
+	
 	private List<PostFilesVO> fileList;
 
 }

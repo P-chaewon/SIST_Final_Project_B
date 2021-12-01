@@ -417,6 +417,11 @@ footer p {
 	font-size: 16px;
 }
 
+.more{
+	text-decoration: none;
+	color: #8e8e8e;
+}
+
 
 /* slider */
 

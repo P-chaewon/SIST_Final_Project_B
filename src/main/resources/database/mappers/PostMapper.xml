@@ -22,6 +22,10 @@
 		<result column="tag" property="tag"/>
 		<result column="regDate" property="regDate"/>
 		
+		<association property="userVO" javaType="UserVO">
+			<result column="nickname" property="nickname"/>
+		 </association>
+		
 		<collection property="fileList" javaType="List" ofType="PostFilesVO">
 			<id column="fileNum" property="fileNum"/>
 			<result column="postNum" property="postNum"/>
@@ -36,6 +40,8 @@
 		<select id="getPostList" resultMap="selectResult">
   		SELECT * 
   		FROM post
+  		LEFT JOIN user
+  		USING(userNum)
   		LEFT JOIN postfiles 
   		USING(postNum)
   		ORDER BY postNum DESC
@@ -45,7 +51,8 @@
   	<select id="getUserPost" parameterType="PostVO" resultMap="selectResult">
   		SELECT * 
   		FROM post
-  	
+  		LEFT JOIN user
+  		USING(userNum)
   		LEFT JOIN postfiles
   		USING(postNum)
   		WHERE postNum = #{postNum}
