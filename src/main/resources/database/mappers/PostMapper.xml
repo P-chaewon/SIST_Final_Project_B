@@ -24,7 +24,7 @@
 		
 		<association property="userVO" javaType="UserVO">
 			<result column="nickname" property="nickname"/>
-		 </association>
+		</association>
 		
 		<collection property="fileList" javaType="List" ofType="PostFilesVO">
 			<id column="fileNum" property="fileNum"/>
