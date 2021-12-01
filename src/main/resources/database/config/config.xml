@@ -27,6 +27,9 @@
   	<typeAlias type="com.sist.b.post.PostFilesVO" alias="PostFilesVO"/>
   	
 
+  	<typeAlias type="com.sist.b.user.UserlogVO" alias="UserlogVO"/>
+  	<typeAlias type="com.sist.b.follow.FollowVO" alias="FollowVO"/>
+
   </typeAliases>
   
   </configuration>

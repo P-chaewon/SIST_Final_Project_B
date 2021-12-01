@@ -9,7 +9,7 @@
 <c:import url="../temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user.css">
 </head>
-<body  onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+<body>
 	<div id="react-root">
 		<section class="account-section">
 			<div></div>
@@ -70,7 +70,7 @@
 							<div class="link-space">
 								<p class="link-account">
 									계정이 없으신가요? 
-									<a href="/gram/account/signup/" tabindex="0" style="text-decoration: none;">
+									<a href="/gram/account/signup" tabindex="0" style="text-decoration: none;">
 										<span class="link-name">가입하기</span>
 									</a>
 								</p>
@@ -82,11 +82,6 @@
 			<c:import url="../temp/footer.jsp"></c:import>
 		</section>
 	</div>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/user.js"></script>
-	 <script type="text/javascript">
-		 window.history.forward();
-		 function noBack(){window.history.forward();}
-	</script>
-	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/user.js"></script>	
 </body>
 </html>

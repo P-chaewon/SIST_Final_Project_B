@@ -13,10 +13,19 @@ public interface UserRepository {
 	//로그인
 	public UserVO getLogin(String username) throws Exception;
 	//회원 정보 가져오기
-	public UserVO getSelectOne(Long userNum) throws Exception;
+	public UserVO getSelectOne(String username) throws Exception;
 	//회원 정보 수정하기
 	public int setUpdate(UserVO userVO) throws Exception;
 	//아이디 중복 검사
 	public UserVO getIdCheck(UserVO userVO) throws Exception;
-
+	//프로필 사진 등록
+	public int setFileUpdate(UserVO userVO) throws Exception;
+	//프로필 사진 삭제
+	public int setFileDelte(UserVO userVO) throws Exception;
+	//비밀번호 변경
+	public int setPasswordUpdate(UserVO userVO) throws Exception;
+	//화원 탈퇴
+	public int setDelete(UserVO userVO) throws Exception;
+	//비활성 계정으로 전환
+	public int setDeleteTemporary(UserVO userVO) throws Exception;
 }

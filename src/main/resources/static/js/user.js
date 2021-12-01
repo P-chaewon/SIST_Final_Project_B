@@ -77,14 +77,10 @@ $("#nickname").on("change", function(){
 	if(nickname.length==0){
 		$(this).parent().next().children("span").removeAttr("class");
 		$(this).parents(".entry-text").next().hide();
-	}else if(nicknameCheck(nickname)){
+	}else {
 		$(this).parent().next().children("span").addClass("pass-icon");
 		$(this).parents(".entry-text").next().hide();
 		nickPass = 1;
-	} else {
-		$(this).parent().next().children("span").addClass("fail-icon");
-		$(this).parents(".entry-text").next().show();
-		$(this).parents(".entry-text").next().text("2글자 입력해주세요.");
 	}
 })
 /*사용자 이름 중복확인*/
@@ -171,9 +167,9 @@ function emailCheck(email){
 	}
 }
 
-/*nickname은 2글자 이상이어야 true*/
+/*nickname은 1글자 이상이어야 true*/
 function nicknameCheck(nickname){
-	var nicknameReg = /^[a-zA-Z0-9가-힣!@#$%^~*+=_-]{2,}$/i;
+	var nicknameReg = /^[a-zA-Z0-9가-힣!@#$%^~*+=_-]{1,}$/i;
 	if(nicknameReg.test(nickname)) {
 		return true;
 	}

@@ -25,13 +25,10 @@
   	
   	<resultMap type="UserVO" id="getLoginResult">
   		<id column="userNum" property="userNum"/>
-  		<result column="phone" property="phone"/>
-  		<result column="email" property="email"/>
   		<result column="nickname" property="nickname"/>
   		<result column="username" property="username"/>
   		<result column="password" property="password"/>
-  		<result column="website" property="website"/>
-  		<result column="introduction" property="introduction"/>
+  		<result column="fileName" property="fileName"/>
   		<result column="enabled" property="enabled"/>
   		<collection property="roles" javaType="List" ofType="RoleVO">
   			<result column="roleNum" property="roleNum"/>
@@ -39,19 +36,43 @@
   		</collection>
   	</resultMap>
   	
- 	<select id="getSelectOne" parameterType="Long" resultType="UserVO">
- 		select * from user where userNum=#{userNum}
+ 	<select id="getSelectOne" parameterType="String" resultType="UserVO">
+ 		select * from user where username=#{username}
  	</select>
  	
  	<update id="setUpdate" parameterType="UserVO">
  		update user set phone=#{phone}, email=#{email}, nickname=#{nickname}, website=#{website}, introduction=#{introduction} 
- 		where userNum=#{userNum} 
+ 		where username=#{username}
  	</update>
  	
  	<select id="getIdCheck" parameterType="UserVO" resultType="UserVO">
  		select * from user where username=#{username}
  	</select>
- 
+ 	
+ 	<update id="setFileUpdate" parameterType="UserVO">
+ 		update user set fileName=#{fileName} where username=#{username}
+ 	</update>
+ 	
+ 	<update id="setFileDelte" parameterType="UserVO">
+ 		update user set fileName=null where username=#{username}
+ 	</update>
+ 	
+ 	<update id="setPasswordUpdate" parameterType="UserVO">
+ 		update user set password=#{password} where username=#{username}
+ 	</update>
+ 	
+ 	<delete id="setDelete" parameterType="UserVO">
+ 		delete from user where username=#{username} and password=#{password}
+ 	</delete>
+ 	
+ 	<update id="setDeleteTemporary" parameterType="UserVO">
+ 		update user set enabled=#{enabled} where username=#{username} and password=#{password}
+ 	</update>
+ 	
+ 	<insert id="setLoginLog" parameterType="UserVO">
+ 		insert into userlog (userlogNum, userNum, loginDate) 
+ 		values (null, #{userNum}, now());
+ 	</insert>
   </mapper>
   
  

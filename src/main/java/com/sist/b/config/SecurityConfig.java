@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -50,8 +51,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.authorizeRequests()
 								//.anyRequest().permitAll()
 								.antMatchers("/account/signup").permitAll()
-								.antMatchers("/account/edit/*").hasRole("USER")
-								
+								.antMatchers("/account/login/**").permitAll()
+								.antMatchers("/account/**").hasRole("USER")
+								.antMatchers("/friendships/**").hasRole("USER")
 								.antMatchers("/").authenticated()
 								//.antMatchers("/account/signup").permitAll()
 								//.antMatchers("/account/signup").not().hasRole("USER")
@@ -88,4 +90,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		// TODO Auto-generated method stub
+		return super.authenticationManagerBean();
+	}
+	
+
 }
