@@ -63,6 +63,6 @@
   <!-- file upload -->
   	<insert id="setFilesInsert" parameterType="PostFilesVO">
   		INSERT INTO postFiles
-  		VALUES (null, #{postNum}, #{fileName}, #{oriName})
+  		VALUES (null, #{postNum}, #{postfileName}, #{oriName})
   	</insert>
   </mapper>

@@ -33,7 +33,7 @@ public class PostService {
 			postFilesVO.setPostNum(postVO.getPostNum());			
 
 			
-			postFilesVO.setFileName(fileName);
+			postFilesVO.setPostfileName(fileName);
 			postFilesVO.setOriName(multipartFile.getOriginalFilename());
 			
 			result = postRepository.setFilesInsert(postFilesVO);

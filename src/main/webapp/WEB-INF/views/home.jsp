@@ -73,7 +73,7 @@
 					<!-- post icon -->
 					<div class="icons_react">
 						<div class="icons_left">
-							<img class="icon_react" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+							<img class="icon_react like touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
 						</div>
 						<img class="icon_react" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
@@ -98,7 +98,6 @@
 			              <ul class="comments">
 			                <li>
 			                  <span><span class="point_span nickname">ch196</span>단추ㅠ</span>
-			                  <img class="comment_heart" src="${pageContext.request.contextPath}/static/icons/heart.png" alt="하트">
 			                </li>
 			                <!-- input 값 여기에 추가 -->
 			              </ul>
@@ -253,6 +252,14 @@
         },
  
       });
+   	 
+   	 
+   	 $(document).on("click", "#like", function(){
+   		 
+   		 
+   		$(this).attr("src", "${pageContext.request.contextPath}/static/icons/heart-click.png");
+   	 });
+   	 
    	 
  </script>
 
