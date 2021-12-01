@@ -65,7 +65,7 @@ $("#file").change(function(){
 	let fileName = $(this).val();
 	console.log(fileName == "");
 	if(fileName != ""){	
-		fileDelete();
+//		fileDelete();
 		uploadFile();
 		$(".modal-container").hide();
 	}	
@@ -124,7 +124,7 @@ function uploadFile(){
 	
 	$.ajax({
 		type : "POST",
-		url : "./edit/fileUpdate",
+		url : "/gram/account/edit/fileUpdate",
 		data : formData,
 		contentType : false,
 		processData : false,
@@ -146,8 +146,9 @@ function uploadFile(){
 function fileDelete(){
 	$.ajax({
 		type : "POST",
-		url : "./edit/fileDelete",
+		url : "/gram/account/edit/fileDelete",
 		success : function(result){	
+			console.log(result)
 			if(result.trim()==1){
 				alertMsg("프로필 사진이 삭제되었습니다.");	
 				$(".profile-button").attr("data-user-fileName", "");

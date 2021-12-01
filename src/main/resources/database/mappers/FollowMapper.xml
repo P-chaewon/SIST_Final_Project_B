@@ -13,9 +13,22 @@
   		delete from follow where followNum=#{followNum} and userNum=#{userNum}
   	</delete>
   	
-  	<select id="myFollowList" parameterType="FollowVO" resultType="List">
-  		
+  	<select id="myFollowList" parameterType="UserVO" resultMap="FollowListResult">
+  		select * from user U inner join follow F on U.userNum=F.followNum where F.userNum=#{userNum}
   	</select>
+  	
+  	<resultMap type="UserVO" id="FollowListResult">
+	  	<id column="userNum" property="userNum"/>
+	  	<result column="nickname" property="nickname"/>
+	  	<result column="username" property="username"/>
+	  	<result column="fileName" property="fileName"/>
+	  	<result column="enabled" property="enabled"/>
+	  	<collection property="follows" javaType="List" ofType="FollowVO">
+	  		<result column="followNum" property="followNum"/>
+	  		<result column="userNum" property="userNum"/>
+	  		<result column="followDate" property="followDate"/>
+	  	</collection>
+  	</resultMap>
   	
   	<select id="userList" parameterType="UserVO" resultMap="userListResult">
   		select * from user_role UR inner join user U 

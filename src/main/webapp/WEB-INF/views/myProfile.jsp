@@ -19,18 +19,24 @@
 				<div class="profile-homepage">
 					<header class="profile-info-header">
 						<div class="profile-img-space">
-							<div class="profile-img-div" aria-disabled="true" role="button" tabindex="-1">
-								<canvas class="profile-img-canvas" height="168" width="168" style="position: absolute; top: -9px; left: -9px; width: 168px; height: 168px;"></canvas>
-								<span class="profile-img-span" role="link" tabindex="-1" style="width: 150px; height: 150px;">
-									<c:choose>
-										<c:when test="${not empty userVO.fileName }">
-											<img alt="${userVO.username}님의 프로필 사진" class="profile-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
-										</c:when>
-										<c:otherwise>
-											<img alt="${userVO.username}님의 프로필 사진" class="profile-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-										</c:otherwise>
-									</c:choose>
-								</span>
+							<div class="profile-edit-space">
+								<div class="profile-edit">
+									<button class="icon-btn" title="프로필 사진 추가" data-user-fileName="${userVO.fileName }">
+										<c:choose>
+											<c:when test="${not empty userVO.fileName }">
+												<img alt="${userVO.username}님의 프로필 사진" class="input-icon" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
+											</c:when>
+											<c:otherwise>
+												<img alt="${userVO.username}님의 프로필 사진" class="input-icon" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg">
+											</c:otherwise>
+										</c:choose>
+									</button>
+									<div>
+										<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation" class="profile-form">
+											<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">
+										</form>
+									</div>
+								</div>
 							</div>
 						</div>
 						<section class="profile-info-space">
@@ -38,48 +44,12 @@
 								<h2 class="profile-username">${userVO.username }</h2>
 								<div class="profile-btn-space">
 									<div class="profile-btns">
-										<div class="dm-btn-space">
-											<button class="dm-btn" type="button">
-												<div class="dm-btn-txt">메시지 보내기</div>
+										<div class="edit-btn-space">
+											<button class="edit-btn" type="button">
+												<div class="edit-btn-txt">프로필 편집</div>
 											</button>
 										</div>
-										<div class="follow-btn-space">
-											<div class="follow-btns">
-												<span class="follow-btns-span">
-													<span class="unfollow-btn">
-														<button class="unfollow-modal-btn">
-															<div class="follow-icon-space" style="height: 28px;">
-																<div class="follow-icon-background">
-																	<img alt="" class="follow-icon"  src="${pageContext.request.contextPath}/static/icons/follow-check.png">
-																</div>
-															</div>
-														</button>
-													</span>
-													<span class="arrow-btn-space">
-														<button class="recommend-btn">
-															<div class="recommend-icon-space">
-																<div class="arrow-icon-background">
-																	<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down.png">
-																	<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up.png" style="display: none;">
-																</div>
-															</div>
-														</button>
-													</span>
-												</span>
-											</div>
-										</div>
 									</div>
-								</div>
-								<div class="more-info-space">
-									<button class="more-info-btn" type="button">
-										<div class="three-circle">
-											<svg aria-label="옵션" class="circle-svg" color="#262626" fill="#262626" height="32" role="img" viewBox="0 0 24 24" width="32">
-												<circle cx="12" cy="12" r="1.5"></circle>
-												<circle cx="6.5" cy="12" r="1.5"></circle>
-												<circle cx="17.5" cy="12" r="1.5"></circle>
-											</svg>
-										</div>
-									</button>
 								</div>
 							</div>
 							<ul class="info-ul">
@@ -90,7 +60,7 @@
 									</span>
 								</li>
 								<li class="info-li">
-									<a class="info-name" href="/kopc_adopt/followers/" tabindex="0">
+									<a class="info-name followers" href="/gram/${userVO.username}/followers/" tabindex="0" data-user-name="${userVO.username }">
 										팔로워 
 										<span class="info-total" title="33,304">
 											33.3천
@@ -98,12 +68,12 @@
 									</a>
 								</li>
 								<li class="info-li">
-									<a class="info-name" href="/gram/${userVO.username}/following" tabindex="0">
+									<span class="info-name following" tabindex="0" data-user-name="${userVO.username }" style="cursor: pointer;">
 										팔로우 
 										<span class="info-total">
 											301
 										</span>
-									</a>
+									</span>
 								</li>
 							</ul>
 							<div class="profile-etc-info">
@@ -125,16 +95,8 @@
 						</a>
 						<a aria-selected="false" class="tab-entity" role="tab" href="/kopc_adopt/channel/" tabindex="0">
 							<span class="tab-info">
-								<c:choose>
-									<c:when test="${username eq userVO.username}">
-										<img alt="" src="${pageContext.request.contextPath}/static/icons/bookmark.png" class="bookmark-icon">
-										<span class="tab-name">북마크</span>
-									</c:when>
-									<c:otherwise>
-										<img alt="" src="">
-										<span class="tab-name">동영상</span>									
-									</c:otherwise>
-								</c:choose>
+								<img alt="" src="${pageContext.request.contextPath}/static/icons/bookmark.png" class="bookmark-icon">
+								<span class="tab-name">북마크</span>
 							</span>
 						</a>
 						<a aria-selected="false" class="tab-entity" role="tab" href="/kopc_adopt/tagged/" tabindex="0">
@@ -146,6 +108,7 @@
 							</span>
 						</a>
 					</div>
+					<!-- 게시글 보여주는 곳 -->
 					<div class="post-space">
 						<article class="post-article">
 							<div>
@@ -209,16 +172,14 @@
 			<c:import url="./temp/footer.jsp"></c:import>
 		</section>
 	</div>
-	<div id="fb-root" class="fb_reset">
-		<div style="position: absolute; top: -10000px; width: 0px; height: 0px;">
-			<div></div>
+	<div class="update-message-space">
+		<div class="update-ease-out">
+			<div class="update-message">
+				<div class="update-text-space">
+					<p class="update-text"></p>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="_-rjm">
-		<div class="tA2fc"></div>
-	</div>
-	<div class="_5qKD1">
-		<div class="q5edG"></div>
 	</div>
 	<div class="modal-container" role="presentation" style="display: none;">
 		<div class="modal" role="dialog">
@@ -239,6 +200,64 @@
 			</div>
 		</div>
 	</div>
+	<div class="following-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="팔로잉" class="follow-modal" role="dialog">
+			<div class="follow-modal-contents">
+				<div>
+					<div class="follow-modal-header">
+						<div class="follow-modal-blank"></div>
+						<h1 class="follow-modal-name">팔로잉</h1>
+						<div class="follow-modal-close-space">
+							<button class="follow-modal-close-btn" type="button">
+								<div class="follow-modal-close">
+									<span class="follow-modal-close-txt">&times;</span>
+								</div>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="follow-modal-list">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="unfollow-modal-container" role="presentation" style="display: none;">
+		<div class="unfollow-modal" role="dialog">
+			<div class="unfollow-modal-contents">
+				<div class="unfollow-modal-header">
+					<div class="unfollow-modal-img-space">
+						<div class="unfollow-modal-img-div">
+							<div class="unfollow-modal-img">
+								<c:choose>
+									<c:when test="${not empty userVO.fileName}">
+										<img alt="User avatar" height="90" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" width="90">
+									</c:when>
+									<c:otherwise>
+										<img alt="User avatar" height="90" src="${pageContext.request.contextPath}/static/icons/user.jpg" width="90">
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</div>
+					<div class="unfollow-modal-txt-space">
+						<div class="unfollow-modal-txt-div">
+							<div class="unfollow-modal-confirm-txt">
+								<div class="unfollow-modal-txt">
+									@${userVO.username}님의 팔로우를 취소하시겠어요?
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="unfollow-modal-button-space">
+						<button class="unfollow-modal-unfollow-btn" tabindex="0">팔로우 취소</button>
+						<button class="unfollow-modal-cancel-btn" tabindex="0">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profileEdit.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
 </body>
 </html>

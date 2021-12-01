@@ -90,7 +90,7 @@ public class UserController {
 	public ModelAndView setFileUpdate(UserVO userVO, MultipartFile file, HttpSession session) throws Exception {
 		String fileName = userService.setFileUpdate(userVO, file, session);
 		ModelAndView mv = new ModelAndView();
-		
+		System.out.println("fileName : "+fileName);
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", fileName);
 		
