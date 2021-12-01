@@ -68,29 +68,35 @@
 			</div>
 		</div>
 	</div>
-
-	<script type="text/javascript" src="../static/js/ad/list.js"></script>
-
-<%-- 	<main class="wrapper">
-		<table>
-			<tr>
-				<td>Num</td>
-				<td>Contents</td>
-				<td>FileName</td>
-				<td>Date</td>
-				<td>URL</td>
-			</tr>
-			<c:forEach items="${adVOs}" var="adVO">
-				<tr>
-					<td><a href="./ad/select?adNum=${adVO.adNum}">${adVO.adNum}</a></td>
-					<td>${adVO.adContents}</td>
-					<td>${adVO.adFile.oriName}</td>
-					<td>${adVO.adDate}</td>
-					<td>${adVO.adURL}</td>
-				</tr>
-			</c:forEach>
-		</table>
-	</main> --%>
 	
+	
+	<!-- 우측 고정바 -->
+	<div id="profile_box">
+		<img id="admin_img" alt="profile" src="/gram/static/icons/user.jpg">
+		<div id="user">
+			<h1 id="admin_username">admin</h1>
+			<div id="nickname">관리자</div>
+		</div>
+		<div id="chg">전환</div>
+		
+		<h1 id="admin_menu">관리자 메뉴 바로가기</h1>
+		<div id="menu_contents">
+			<!-- 광고 -->
+			<div class="menu_title">
+				<img class="s32" id="ad" alt="ad" src="/gram/static/icons/ad.png">
+				<span class="fw menu_title_title">광고</span>
+			</div>
+			<div class="detail"><a href="/gram/admin/ad/create">· 광고 등록하기</a></div>
+			
+			<!-- 멤버십 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="membership" src="/gram/static/icons/membership.png">
+				<span class="fw menu_title_title"><a href="/gram/admin/membership/list">멤버십</a></span>
+			</div>
+			<div class="detail">· 멤버십 등록하기</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="../static/js/ad/list.js"></script>	
 </body>
 </html>

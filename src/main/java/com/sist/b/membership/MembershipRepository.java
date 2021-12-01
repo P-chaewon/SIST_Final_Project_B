@@ -10,4 +10,6 @@ public interface MembershipRepository {
 	public List<MembershipVO> getList() throws Exception;
 	// getOne
 	public MembershipVO getOne(MembershipVO membershipVO) throws Exception;
+	// setInsert
+	public int setInsert(MembershipVO membershipVO) throws Exception;
 }

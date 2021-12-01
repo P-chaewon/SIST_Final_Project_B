@@ -18,4 +18,8 @@ public class MembershipService {
 	public MembershipVO getOne(MembershipVO membershipVO) throws Exception {
 		return membershipRepository.getOne(membershipVO);
 	}
+	
+	public int setInsert(MembershipVO membershipVO) throws Exception {
+		return membershipRepository.setInsert(membershipVO);
+	}
 }

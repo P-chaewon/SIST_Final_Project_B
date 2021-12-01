@@ -11,4 +11,9 @@
 		select * from membership
 		where membershipNum = #{membershipNum}
 	</select>
+	
+	<insert id="setInsert" parameterType="MembershipVO">
+		insert into membership (membershipNum, membershipName, membershipAmount)
+		values (null, #{membershipName}, #{membershipAmount})
+	</insert>
 </mapper>

@@ -16,12 +16,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.b.ad.AdService;
 import com.sist.b.ad.AdVO;
+import com.sist.b.membership.MembershipService;
+import com.sist.b.membership.MembershipVO;
 
 @Controller
 @RequestMapping("/admin/**")
 public class AdminController {
 	
 	@Autowired AdService adService;
+	@Autowired MembershipService membershipService;
 	
 	// ------------------ 광고 ------------------
 	// selectList
@@ -67,4 +70,38 @@ public class AdminController {
 		int result = adService.setDelete(adVO);
 		return "redirect:../";
 	}
+	
+	// ------------------ 멤버십 ------------------
+	// select
+	@GetMapping("membership/list")
+	public ModelAndView getList(ModelAndView mv) throws Exception {
+		List<MembershipVO> ar = membershipService.getList();
+		mv.addObject("membershipVOs", ar);
+		mv.setViewName("admin/membership_list");
+		return mv;
+	}
+	
+	// insert : get
+	@GetMapping("membership/create")
+	public String setInsert() throws Exception {
+		return "admin/membership_insert";
+	}
+	
+	// insert : post
+	@PostMapping("membership/create")
+	public ModelAndView setInsert(MembershipVO membershipVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = membershipService.setInsert(membershipVO);
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+
+	// update : get
+//	@GetMapping("membership/update")
+//	public ModelAndView setUpdate() throws Exception {
+//		
+//	}
+	
+	// delete
 }
