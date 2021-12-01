@@ -27,3 +27,15 @@ html,body{
     display: inline-block;
     margin: 52px 0 0 16px;
 }
+
+.top{
+  	width: 45px;
+  	height: 45px;
+  	position: fixed;
+  	z-index: 999;
+  	top: 92%;
+  	right: 280px;
+  	cursor: pointer;
+  	display: none;
+}
+ 

@@ -40,11 +40,13 @@
 		</li>		
 	
 		</c:forEach>
-		</ul>
 
+	 <img class="top" alt="top" onclick="clickme()" src="${pageContext.request.contextPath}/static/icons/top.png">
+		</ul>
 	</div>
 	</div>
 	</section>
+	
 	</div>
 	
 	
@@ -54,6 +56,18 @@
 		
 	};
 
+ 	function clickme() {
+ 	   	  window.scrollTo({top:0, left:0, behavior:'smooth'});
+ 	   	}
+ 	   	
+ 	   	$( window ).scroll( function() {
+ 	   		if ( $( this ).scrollTop() > 200 ) {
+ 	   			$( '.top' ).fadeIn("fast");
+ 	   		} else {
+ 	   			$( '.top' ).fadeOut("fast");
+ 	   		}
+ 	   	} );
+ 	   	
 	
 	</script>
 </body>
