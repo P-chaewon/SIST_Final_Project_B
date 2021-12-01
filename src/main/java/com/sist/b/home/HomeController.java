@@ -25,7 +25,7 @@ public class HomeController {
 	
 	
 	@GetMapping("/")
-	public ModelAndView getPostList(HttpSession session)throws Exception{
+	public ModelAndView getPostList()throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 	

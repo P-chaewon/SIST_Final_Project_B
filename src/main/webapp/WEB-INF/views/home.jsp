@@ -8,12 +8,7 @@
 <head>
 <title>HOME</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-  
-
-<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/post/upload.js"></script>
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
 <c:import url="./temp/head.jsp"></c:import>
@@ -43,11 +38,13 @@
 						<div class="post_profile">
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							<span class="nickname main_nickname point_span">
-							
-							 <sec:authentication property="principal.nickname" var="nickname"/>
+								 <sec:authentication property="principal.nickname" var="nickname"/>
 							${nickname}</span>
-						
-						<img class="icon_react icon_more" id="more" style="margin-left: 460px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+							
+							</span>
+						<a href="./post/selectOne?postNum=${list.postNum }">
+						<img class="icon_react icon_more" id="more" style="margin-left: 450px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						</a>
 						</div>
 					</header>
 					<!--//header  -->
@@ -88,13 +85,11 @@
 			          
 			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
 			            </div>
-			            <div class="description">
-			              <p><span class="point_span nickname">cogus196</span>
-			              
-			              <!-- 사람 태그 추가 -->
-			              <!-- <span class="at_tag"> @danchu_e_o</span> -->
-			              
-			               ${list.contents }</p>
+			            <div class="box">
+			            	<div class="description">
+				              <span class="point_span nickname" style="font-weight: 600;">cogus196</span> ${list.contents }
+			            		<span class="tag">${list.tag }</span>
+			            	</div>
 			            </div>
 			            
 			            <!-- comments -->
@@ -107,7 +102,7 @@
 			                <!-- input 값 여기에 추가 -->
 			              </ul>
 			              <div class="time_log">
-			                <span>1일전</span>
+			                <span>${list.regDate}</span>
 			              </div>
 			            </div>
 			          </div>
@@ -117,6 +112,8 @@
 			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기..." >
 			            <button type="submit" class="submit_comment" disabled>게시</button>
 			          </div>
+			          
+			
 				</article>
 			
 				</c:forEach>
@@ -188,24 +185,25 @@
 			</div>
 			
 			
-			<!-- modal -->
-			
-			
-		<div class="modal">
-			<div class="modal_content">
-				<button type="button" id="declaration" ><h1>신고</h1></button>
-				<a href="./post/selectOne?postNum=${postVO.postNum}"><button type="button" id="move">게시물로 이동</button></a>
-				<button type="button" id="cancel">취소</button>
-			</div>
-		</div>
-		
-			
 			
 		</main>
 
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
     
+   	function clickme() {
+   	  window.scrollTo({top:0, left:0, behavior:'smooth'});
+   	}
+   	
+   	$( window ).scroll( function() {
+   		if ( $( this ).scrollTop() > 200 ) {
+   			$( '.top' ).fadeIn("fast");
+   		} else {
+   			$( '.top' ).fadeOut("fast");
+   		}
+   	} );
+   	
+   	
    	 var swiper = new Swiper(".mySwiper", {
         spaceBetween: 30,
         effect: "fade",
@@ -220,47 +218,7 @@
  
       });
    	 
-   	 
-   	function clickme() {
-   	  window.scrollTo({top:0, left:0, behavior:'smooth'});
-   	}
-   	
-   	$( window ).scroll( function() {
-   		if ( $( this ).scrollTop() > 200 ) {
-   			$( '.top' ).fadeIn("fast");
-   		} else {
-   			$( '.top' ).fadeOut("fast");
-   		}
-   	} );
-   	
-   	
-   	$("#more").click(function(){
-   		$(".modal").fadeIn("fast");
-   		// 스크롤 제한 on
-   		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
-   	});
-
-   	$("#cancel").click(function(){
-   		$(".modal").fadeOut("fast");
-   		// 스크롤 제한 off
-   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
-   	});
-
-   	$("#delete").click(function(){
-   		$(".modal2").fadeIn("fast");
-   	});
-
-
-   	$("#d3").click(function(){
-   		$(".modal").fadeOut();
-   		$(".modal2").fadeOut();
-   		// 스크롤 제한 off
-   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
-   	});
-
-   	
-
-    </script>
+ </script>
 
 
 

@@ -3,6 +3,8 @@ package com.sist.b.post;
 import java.sql.Date;
 import java.util.List;
 
+import com.sist.b.user.UserVO;
+
 import lombok.Data;
 
 @Data

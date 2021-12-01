@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+
+#text{
+	width: 50px;
+}
 ul,li {
     margin: 0;
     padding: 0;
@@ -16,11 +20,6 @@ span.nickname {
 span.sub_span {
     font-size: 12px;
     color: #8e8e8e;
-}
-span.point_span {
-    font-weight: 500;
-    font-size: 14px;
-    color: #262626;
 }
 
 main {
@@ -114,10 +113,14 @@ header {
     color: #262626;
     font-size: 14px;
 }
+
+.box{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 .description {
-    display: flex;
-    align-items: center;
-    height: 18px;
+	word-break:break-all;
+ 	
 }
 span.at_tag {
     color: #00376B;
@@ -284,7 +287,10 @@ footer p {
 	color: #c7c7c7;
 }
 
-
+.tag{
+	color: #00376b;
+	cursor: pointer;
+}
 
 /* modal */
 

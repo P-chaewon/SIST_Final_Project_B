@@ -14,55 +14,90 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/select.css">
 </head>
 <body>
-		<main class="wrapper">
+	
+	<main>
 		
-			<table class="tbl">
-				
-				<tr>
-					<td class="img_td" >
-					
-						<div class="post_image swiper mySwiper">
+		<div class="user_post">
+			<div class="post_img">
+				<div class="post_image swiper mySwiper" style="height: 600px; ">
 			
 							
-							<div class="swiper-wrapper">
-						
+						<div class="swiper-wrapper">
+						<c:forEach items="${postVO.fileList}" var="fileVO">
 							
-						<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							<%-- <img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${boardVO.fileList.fileName}"> --%>
-						
+							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.fileName}">
+							
+						</c:forEach>
 							</div>
 				
-							<div class="swiper-button-next"></div>
-      						<div class="swiper-button-prev"></div>
-      						<div class="swiper-pagination"></div>		
-						</div>
-							
-					</td>
-					<td class="tbl_td" style="height:300px;">
-					
+						<div class="swiper-button-next"></div>
+      					<div class="swiper-button-prev"></div>
+      					<div class="swiper-pagination"></div>		
+					</div>
+			
+			
+			</div>
+			
+			<div class="post_contents">
+				<header class="head">
 					<div class="post_profile">
-					
-							<img class="post_profile_img pic" style="height: 26px; width: 26px; margin-top: 12px; margin-left: 10px;" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+							<span class="nickname main_nickname point_span">
+							<%-- ${list.userVO.nickname} --%>
+								 <sec:authentication property="principal.nickname" var="nickname"/>
+							${nickname}</span>
 						
-							
-						<span class="nickname main_nickname point_span"><sec:authentication property="principal.nickname" var="nickname"/>	${nickname}</span>
-						
-						</div>
-						<textarea name="contents" class="contents" rows="" cols="" placeholder="문구입력..."></textarea>
-						
-						<div>						
-							<div id="result" class="result_txt"><span class="ui_inputLimitCount">0</span>/2,200</div>
-							<img class="icon_react" alt="emoticon" src="${pageContext.request.contextPath}/static/icons/emoticon.png">
-						</div>
-					</td>
+						<span class="bullet">•</span>
+						<button class="following" type="button">팔로잉</button>
 				
-				<tr>
-					<td class="tbl_td">
-						<textarea class="tag" name="tag" rows="" cols="" placeholder="태그 추가" style="resize: none;"></textarea>
+						<img class="icon_react icon_more" id="more" style="cursor: pointer; margin-left: 140px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						
-					</td>
-				</tr>
-			</table>
+					</div>
+					
+					<div class="contents_area">
+						<div class="contents">
+							<div class="box">
+			            	<div class="description">
+				              <span class="point_span nickname" style="font-weight: 600;">cogus196</span> ${postVO.contents }
+			            	
+			            	</div>
+			            </div>
+						</div>
+						<div class="contents_comment">
+						
+						</div>
+					
+					</div>
+					
+					<div class="icons_react">
+						<div class="icons_left">
+							<img class="icon_react" alt="heart" src="/gram/static/icons/heart.png">
+							<img class="icon_react" style="margin-left: 5px;" alt="speech" src="/gram/static/icons/bubble-chat.png">
+						</div>
+						<img class="icon_react" alt="bookmark" src="/gram/static/icons/bookmark.png">
+					</div>
+					
+					<div class="liked_people">
+				              <img class="pic" src="/gram/static/images/kittens 2.jpg" alt="profile">
+			          
+			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
+			            </div>
+			            
+			          <div class="time_log">
+			                <span>1일전</span>
+			           </div>
+			           
+			           <div class="comment">
+			          <!-- 이모지 추가 -->
+			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기...">
+			            <button type="submit" class="submit_comment" style="margin-top: 20px;" disabled="">게시</button>
+			          </div>  
+					
+				</header>
+			
+			</div>
+		
+		</div>
 		
 		
 

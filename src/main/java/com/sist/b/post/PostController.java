@@ -21,8 +21,8 @@ public class PostController {
 	private PostService postService;
 	
 	@GetMapping("upload")
-	public void setPostUpload()throws Exception{
-		
+	public String setPostUpload()throws Exception{
+		return "post/upload";
 	}
 	
 	@PostMapping("upload")
@@ -50,13 +50,15 @@ public class PostController {
 	
 	@GetMapping("selectOne")
 	public ModelAndView getUserPost(PostVO postVO)throws Exception{
+		
+		
 		ModelAndView mv = new ModelAndView();
 		
 		postVO = postService.getUserPost(postVO);
 		
 		mv.addObject("postVO", postVO);
 		mv.setViewName("post/select");
-		
+		System.out.println(postVO.getPostNum());
 		return mv;
 		
 	}

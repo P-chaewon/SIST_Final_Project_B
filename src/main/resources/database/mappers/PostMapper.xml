@@ -21,13 +21,15 @@
 		<result column="contents" property="contents"/>
 		<result column="tag" property="tag"/>
 		<result column="regDate" property="regDate"/>
-	
+		
 		<collection property="fileList" javaType="List" ofType="PostFilesVO">
 			<id column="fileNum" property="fileNum"/>
 			<result column="postNum" property="postNum"/>
 			<result column="fileName" property="fileName"/>
 			<result column="oriName" property="oriName"/>
 		</collection>
+		
+		
 	
 	</resultMap>
 	
@@ -43,6 +45,7 @@
   	<select id="getUserPost" parameterType="PostVO" resultMap="selectResult">
   		SELECT * 
   		FROM post
+  	
   		LEFT JOIN postfiles
   		USING(postNum)
   		WHERE postNum = #{postNum}
