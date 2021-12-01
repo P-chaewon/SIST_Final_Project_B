@@ -29,7 +29,7 @@
 		<collection property="fileList" javaType="List" ofType="PostFilesVO">
 			<id column="fileNum" property="fileNum"/>
 			<result column="postNum" property="postNum"/>
-			<result column="fileName" property="fileName"/>
+			<result column="postfileName" property="postfileName"/>
 			<result column="oriName" property="oriName"/>
 		</collection>
 		

@@ -25,7 +25,7 @@
 						<div class="swiper-wrapper">
 						<c:forEach items="${postVO.fileList}" var="fileVO">
 							
-							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.fileName}">
+							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
 							
 						</c:forEach>
 							</div>
@@ -42,10 +42,9 @@
 				<header class="head">
 					<div class="post_profile">
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							<span class="nickname main_nickname point_span">
-							<%-- ${list.userVO.nickname} --%>
-								 <sec:authentication property="principal.nickname" var="nickname"/>
-							${nickname}</span>
+							<span class="nickname main_nickname point_span" style="margin-left: 5px;">
+						
+							${postVO.userVO.nickname}</span>
 						
 						<span class="bullet">•</span>
 						<button class="following" type="button">팔로잉</button>

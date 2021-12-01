@@ -41,9 +41,9 @@
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							<span class="nickname main_nickname point_span">
 								
-							${list.nickname}</span>
+							${list.userVO.nickname}</span>
 						
-						<a href="./post/selectOne?postNum=${list.postNum }">
+						<a href="./post/selectOne?postNum=${list.postNum}">
 						<img class="icon_react icon_more" id="more" style="margin-left: 450px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						</a>
 						</div>
@@ -59,7 +59,7 @@
 						<div class="swiper-wrapper">
 						<c:forEach items="${list.fileList}" var="fileVO">
 							
-							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.fileName}">
+							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
 							
 						</c:forEach>
 							</div>
