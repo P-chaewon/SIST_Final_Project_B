@@ -1,0 +1,152 @@
+@charset "UTF-8";
+
+.wrapper {
+	position: absolute;
+	width: 613px;
+	top: 10px;
+	left: 30%;
+	transform:translate(-30%, 0%); 
+	padding: 100px;
+}
+
+.title {
+	font-family: 'Apple SD Bold'; 
+	font-size: 25px;
+	padding: 5px;
+}
+
+table {
+	width: 95%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table, tr {
+	border: 1px solid #E2E2E2;
+}
+
+td {
+	padding: 10px;
+}
+
+.b {
+	margin-top: 30px;
+	text-align: center;
+}
+
+#update {
+	background: white;
+	border: solid 1px #3f3f3f;
+	color: #3f3f3f;
+	width: 120px;
+	height: 50px;
+	font-size: 15px;
+	font-family: 'Apple SD Bold'; 
+}
+
+#delete {
+	background: #3f3f3f;
+	border: solid 1px #3f3f3f;
+	color: white;
+	width: 120px;
+	height: 50px;
+	font-size: 15px;
+	font-family: 'Apple SD Bold'; 
+}
+
+/* 우측 고정바 */
+#profile_box {
+	position: fixed;
+	right: 20%;
+	top: 130px;
+	width: 293px;
+	height: 56px;
+}
+
+#admin_img {
+	position: absolute;
+	width: 56px;
+	height: 56px;
+}
+
+#user {
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	left: 25%;
+	transform:translate(0%, -50%);
+}
+
+#nickname {
+	color: #8e8e8e;
+}
+
+#chg {
+	font-size: 12px;
+	color: #0095F6;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform:translate(0%, -50%);
+	font-family: 'Apple SD Bold';
+}
+
+#admin_menu {
+	position: absolute;
+	color: #8E8E8E;
+	top: 80px;
+}
+
+#menu_contents {
+	position: absolute;
+	top: 110px;
+	width: 320px; 
+	height: 200px;
+}
+
+#plus, #minus {
+	width: 32px;
+	height: 32px;
+}
+
+.fw {
+	font-weight: 600;	
+}
+
+.s32 {
+	width: 32px;
+	height: 32px;
+}
+
+.menu_title {
+	position: relative;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.menu_title_title {
+	position: absolute;
+	top: 50%;
+	transform:translate(0%, -25%);
+	height: 100%;
+	margin-left: 10px;
+}
+
+.detail {
+	margin-left: 10px;
+	padding: 5px;
+	font-size: 14px;
+	font-weight: 400;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:visited {
+	color: black;
+}
+
+a:hover {
+	color: #8E8E8E;
+} 

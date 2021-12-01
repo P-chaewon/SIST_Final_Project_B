@@ -26,12 +26,17 @@
 					<img alt="DM" src="${pageContext.request.contextPath}/static/icons/dm.png">
 					<img alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
 					<img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
-					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
+					<span class="alarm_img">
+						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
+						<%-- <img id ="alarm_click" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell-click.png" hidden="hidden"> --%>
+					</span>
+					<div id="alarm_contents" hidden="hidden">
+					</div>
 					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
 				
 				</div>
 			</div>
 		</nav>
-
+<script type="text/javascript" src="./static/js/temp/nav.js"></script>
 </body>
 </html>

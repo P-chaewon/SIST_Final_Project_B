@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.b.payments.PaymentsRepository">
+  	<insert id="setInsert" parameterType="PaymentsVO" useGeneratedKeys="true" keyProperty="merchant_uid">
+  		insert into payments (merchant_uid, membershipNum, userNum, paymentsDate, paymentsTime, applyNum, amount, method, paymentsCk)
+  		values (#{merchant_uid}, null, null, now(), null, null, null, null, 'q')
+  	</insert>
+  	
+  	<update id="setUpdate" parameterType="PaymentsVO">
+  		update payments 
+  		set membershipNum = #{membershipNum}, userNum = #{userNum}, paymentsTime = #{paymentsTime}, applyNum = #{applyNum}, amount = #{amount}, method = #{method}, paymentsCk = #{paymentsCk}
+  		where merchant_uid = #{merchant_uid}
+  	</update>
+  	
+  	<select id="getList" parameterType="Pager" resultMap="getListResult">
+  		select P.* , U.username, M.membershipName
+		from payments P inner join user U
+		on (P.userNum = U.userNum) inner join membership M
+		on (P.membershipNum = M.membershipNum)
+  		where paymentsCk != 'q'
+  		<choose>
+  			<when test="status == 'yes'">
+  				and paymentsCk = 'y'
+  			</when>
+  			<when test="status == 'no'">
+  				and paymentsCk = 'n'
+  			</when>
+  			<when test="status == 'wait'">
+  				and paymentsCk = 'w'
+  			</when>
+  			<when test="status == 'done'">
+  				and paymentsCk = 'd'
+  			</when>
+  		</choose>
+  	</select>
+  	
+  	<resultMap type="PaymentsVO" id="getListResult">
+  		<id column="merchant_uid" property="merchant_uid"/>
+		<result column="membershipNum" property="membershipNum"/>
+		<result column="userNum" property="userNum"/>
+		<result column="paymentsDate" property="paymentsDate"/>
+		<result column="paymentsTime" property="paymentsTime"/>
+		<result column="applyNum" property="applyNum"/>
+		<result column="amount" property="amount"/>
+		<result column="method" property="method"/>
+		<result column="paymentsCk" property="paymentsCk"/>
+		<association property="membershipVO" javaType="MembershipVO">
+			<result column="membershipName" property="membershipName"/>
+		</association>
+		<association property="userVO" javaType="UserVO">
+			<result column="username" property="username"/>
+		</association>
+  	</resultMap>
+  	
+  	<select id="getListByUser" parameterType="PaymentsVO" resultMap="getListByUserResult">
+  		select P.*, M.membershipName
+		from payments P 
+		inner join membership M
+		on (P.membershipNum = M.membershipNum)
+		where P.userNum = #{userNum}
+  	</select>
+  	
+  	<resultMap type="PaymentsVO" id="getListByUserResult">
+  		<id column="merchant_uid" property="merchant_uid"/>
+		<result column="membershipNum" property="membershipNum"/>
+		<result column="userNum" property="userNum"/>
+		<result column="paymentsDate" property="paymentsDate"/>
+		<result column="paymentsTime" property="paymentsTime"/>
+		<result column="applyNum" property="applyNum"/>
+		<result column="amount" property="amount"/>
+		<result column="method" property="method"/>
+		<result column="paymentsCk" property="paymentsCk"/>
+		<association property="membershipVO" javaType="MembershipVO">
+			<result column="membershipName" property="membershipName"/>
+		</association>
+  	</resultMap>
+  	
+  	<select id="getOne" parameterType="Long" resultType="PaymentsVO">
+  		select * from payments where merchant_uid = #{merchant_uid}
+  	</select>
+  	
+  	<select id="getRefund" parameterType="PaymentsVO" resultType="PaymentsVO">
+  		select * from payments 
+		where (userNum = #{userNum} and paymentsDate = #{paymentsDate} and paymentsCk = 'y')
+		or (userNum = #{userNum} and paymentsDate = date_add(#{paymentsDate}, interval -1 day) and paymentsTime > #{paymentsTime} and paymentsCk = 'y')
+  	</select>
+  	
+  	<update id="setUpdateCk" parameterType="Long">
+  		update payments set paymentsCk = 'w'
+  		where merchant_uid = #{merchant_uid}
+  	</update>
+  	
+  	<update id="setUpdateCkDone" parameterType="Long">
+  		update payments set paymentsCk = 'd'
+  		where merchant_uid = #{merchant_uid}
+  	</update>
+</mapper>
+  
+ 

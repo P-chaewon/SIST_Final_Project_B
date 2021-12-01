@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+.wrapper {
+	position: absolute;
+	width: 50%;
+	height: auto;
+	left: 50%;
+	transform:translate(-50%, 0%); 
+	padding: 100px;
+}
+
+.title {
+	font-size: 25px;
+	padding: 5px;
+}
+
+hr {
+	border: solid 1px #E2E2E2;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	text-align: center;
+}
+
+table, tr {
+	border: 1px solid #E2E2E2;
+}
+
+td {
+	padding: 10px;
+}
+
+.b {
+	margin-top: 30px;
+	text-align: center;
+}
+
+#done {
+	background: #3f3f3f;
+	border: solid 1px #3f3f3f;
+	color: white;
+	width: 120px;
+	height: 50px;
+	font-size: 15px;
+	font-family: 'Apple SD Bold';
+}
+
+.selectResult {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}

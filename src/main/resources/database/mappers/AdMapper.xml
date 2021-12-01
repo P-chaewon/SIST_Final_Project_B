@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.b.ad.AdRepository">
+	<resultMap type="AdVO" id="getListResult">
+		<id column="adNum" property="adNum"/>
+		<result column="adContents" property="adContents"/>
+		<result column="adDate" property="adDate"/>
+		<result column="adURL" property="adURL"/>
+		
+		<!-- 1:1 관계 -->
+		<association property="adFile" javaType="AdFileVO">
+			<id column="adFileNum" property="adFileNum"/>
+			<result column="fileName" property="fileName"/>
+			<result column="oriName" property="oriName"/>
+		</association>
+	</resultMap>
+
+	<select id="getList" resultMap="getListResult">
+		select * 
+		from ad A
+			left join
+			adFile AF
+		using (adNum)
+	</select>
+	
+	<select id="getOne" parameterType="AdVO" resultMap="getListResult">
+		select * 
+		from ad A
+			inner join
+			adFile AF
+		using (adNum)
+		where adNum = #{adNum}
+	</select>
+	
+	<insert id="setInsert" parameterType="AdVO" useGeneratedKeys="true" keyProperty="adNum">
+		insert into ad (adNum, adContents, adDate, adURL)
+		values (#{adNum}, #{adContents}, now(), #{adURL})
+	</insert>
+	
+	<insert id="setFileInsert" parameterType="AdFileVO" useGeneratedKeys="true" keyProperty="adFileNum">
+		insert into adFile (adFileNum, adNum, fileName, oriName)
+		values (#{adFileNum}, #{adNum}, #{fileName}, #{oriName})
+	</insert>
+	
+	<delete id="setDelete" parameterType="AdVO">
+		delete from ad where adNum = #{adNum}
+	</delete>
+</mapper>

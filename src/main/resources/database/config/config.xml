@@ -12,9 +12,14 @@
   	<typeAlias type="java.util.Map" alias="Map"/>
   	<typeAlias type="com.sist.b.user.UserVO" alias="UserVO"/>
   	<typeAlias type="com.sist.b.user.RoleVO" alias="RoleVO"/>
-  
-  
+  	
+  	<typeAlias type="com.sist.b.util.Pager" alias="Pager"/>
+  	<typeAlias type="com.sist.b.ad.AdVO" alias="AdVO"/>
+  	<typeAlias type="com.sist.b.ad.AdFileVO" alias="AdFileVO"/>
+  	<typeAlias type="com.sist.b.membership.MembershipVO" alias="MembershipVO"/>
+  	<typeAlias type="com.sist.b.payments.PaymentsVO" alias="PaymentsVO"/>
+  	<typeAlias type="com.sist.b.refunds.RefundsVO" alias="RefundsVO"/>
+  	<typeAlias type="com.sist.b.alarm.AlarmVO" alias="AlarmVO"/>
   </typeAliases>
-  
   
   </configuration>
