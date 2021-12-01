@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.sist.b.chat.chatroom.ChatRoomJoinRepository">
+  
+  	<insert id="setChatRoomJoin" parameterType="com.sist.b.chat.chatroom.ChatRoomJoinVO">
+  		INSERT INTO CHATROOMJOIN (JOINNUM, USERNUM, ROOMNUM, EXITDATE)
+  		VALUES (0, #{userNum}, #{roomNum}, now())
+  	</insert>
+  
+  	<insert id="setNewChatRoom" useGeneratedKeys="true" keyProperty="roomNum" parameterType="com.sist.b.chat.chatroom.ChatRoomVO">
+  		INSERT INTO CHATROOM (ROOMNUM)
+  		VALUES(#{roomNum})
+  	</insert>
+  
+  	<select id="getChatRoom" parameterType="com.sist.b.chat.chatroom.ChatRoomJoinVO" resultType="Integer">
+  		SELECT count(*) FROM CHATROOMJOIN WHERE userNum = #{userNum} AND roomNum = #{roomNum}
+  	</select> 
+  
+  	<select id="getChatRoomNum" parameterType="Long" resultType="Long">
+  		SELECT roomNum FROM CHATROOMJOIN WHERE userNum = #{userNum}
+  	</select>
+  	
+ 
+  </mapper>
+  
+ 
