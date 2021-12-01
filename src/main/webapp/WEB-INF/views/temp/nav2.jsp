@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav2.css">
 </head>
 <body>
 	<!-- nav -->
@@ -24,25 +24,14 @@
 				<div class="nav_icon">
 					<img id="home" onclick="javascript:location.href='${pageContext.request.contextPath}'" alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
 					<img alt="DM" src="${pageContext.request.contextPath}/static/icons/dm.png">
-
-					<img alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
-					<img alt="탐색" src="${pageContext.request.contextPath}/static/icons/global.png">
-					<span class="alarm_img">
-						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
-						<%-- <img id ="alarm_click" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell-click.png" hidden="hidden"> --%>
-					</span>
-					<div id="alarm_contents" hidden="hidden">
-					</div>
-
 					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
-					<img alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'" src="${pageContext.request.contextPath}/static/icons/global.png">
+					<img alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'"  src="${pageContext.request.contextPath}/static/icons/global.png">
 					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
-
 					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
 				
 				</div>
 			</div>
 		</nav>
-<script type="text/javascript" src="./static/js/temp/nav.js"></script>
+
 </body>
 </html>

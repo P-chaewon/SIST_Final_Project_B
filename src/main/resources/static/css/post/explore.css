@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+html,body{
+	height:100%;
+	margin:0; 
+}
+		
+.wrapper{
+	position:relative;
+	width: 100%;			
+}
+		
+#container{
+	width: 960px;
+	min-height:100%;
+	margin: 0 auto;
+}
+
+#content {
+	width:960px;
+	min-height: 900px;
+	padding: 30px 0 140px;
+	
+} 
+
+.explore_list li {
+    display: inline-block;
+    margin: 52px 0 0 16px;
+}
+
+.top{
+  	width: 45px;
+  	height: 45px;
+  	position: fixed;
+  	z-index: 999;
+  	top: 92%;
+  	right: 280px;
+  	cursor: pointer;
+  	display: none;
+}
+ 
