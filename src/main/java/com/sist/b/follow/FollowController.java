@@ -66,6 +66,21 @@ public class FollowController {
 		return mv;
 	}
 	
+	@GetMapping("/{username}/followers")
+	public ModelAndView myFollowingList(@PathVariable String username,UserVO userVO) throws Exception {
+		userVO = userService.getSelectOne(username);
+		System.out.println(userVO.getUserNum());
+		List<UserVO> follows = followService.myFollowerList(userVO);
+		List<Long> followNums = followService.followNum(userVO);
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/ajaxFollowList");
+		mv.addObject("follows", follows);
+		mv.addObject("followNums", followNums);
+		
+		return mv;
+	}
+	
 	
 	
 	

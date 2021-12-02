@@ -17,6 +17,10 @@
   		select * from user U inner join follow F on U.userNum=F.followNum where F.userNum=#{userNum}
   	</select>
   	
+  	<select id="myFollowerList" parameterType="UserVO" resultMap="FollowListResult">
+  		select * from user U inner join follow F on U.userNum=F.userNum where F.followNum=#{userNum}
+  	</select>
+  	
   	<resultMap type="UserVO" id="FollowListResult">
 	  	<id column="userNum" property="userNum"/>
 	  	<result column="nickname" property="nickname"/>
@@ -29,6 +33,14 @@
 	  		<result column="followDate" property="followDate"/>
 	  	</collection>
   	</resultMap>
+  	
+  	<!-- 나를 팔로우 하거나 내가 팔로우 한 사람들의 목록 -->
+  	<select id="followNum" parameterType="UserVO" resultType="Long">
+  	select FollowingList.uNum followNum from 
+		(select U.userNum uNum from follow F right join user U on F.followNum=U.userNum where F.userNum=#{userNum}) FollowingList inner join 
+		(select U.userNum uNum from user U inner join follow F on U.userNum=F.userNum where F.followNum=#{userNum}) FollowerList 
+	on FollowingList.uNum=FollowerList.uNum
+  	</select>
   	
   	<select id="userList" parameterType="UserVO" resultMap="userListResult">
   		select * from user_role UR inner join user U 

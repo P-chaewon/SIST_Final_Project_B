@@ -86,7 +86,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .modal-btn:last-of-type {border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;}
 
 /* 팔로우 모달 */
-.following-modal-container{align-items: center; background-color: rgba(0,0,0,.5); bottom: 0; flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around;}
+.following-modal-container, .follower-modal-container{align-items: center; background-color: rgba(0,0,0,.5); bottom: 0; flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around;}
 .follow-modal{width: 400px; flex: 1 1; margin: 20px; justify-content: center; max-height: 400px; min-height: 200px;}
 .follow-modal-contents{background-color: #fff; border-radius: 12px; max-height: 100%; overflow: hidden;}
 .follow-modal-header{border-bottom: 1px solid #dbdbdb; flex-direction: row; height: 43px;}

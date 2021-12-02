@@ -21,6 +21,7 @@ $(".following").click(function(){
 	})
 })
 
+
 $(".follow-modal-close-txt").click(function(){
 	$(".following-modal-container").hide();
 })
@@ -32,6 +33,18 @@ $(document).mouseup(function (e){
   }
 });
 
-$(".following-modal-btn").on("click", function(){
-	$(".unfollow-modal-container").show();
+
+$(".follower").click(function(){
+	let username=$(this).attr("data-user-name");
+	let url = "/gram/"+username+"/followers"
+	console.log(url);
+	$.ajax({
+		type : "GET",
+		url : "/gram/"+username+"/followers",
+		success : function(result){
+			result = result.trim();
+			$(".follow-modal-list").html(result);
+			$(".following-modal-container").show();
+		}
+	})
 })

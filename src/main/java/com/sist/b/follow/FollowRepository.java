@@ -14,4 +14,8 @@ public interface FollowRepository {
 	public int follow(FollowVO followVO) throws Exception;
 	//내가 팔로우 하고 있는 유저
 	public List<UserVO> myFollowList(UserVO userVO) throws Exception;
+	//나를 팔로우 하고 있는 유저
+	public List<UserVO> myFollowerList(UserVO userVO) throws Exception;
+	//내가 팔로우 하고 있고 나를 팔로우 하고 있는 사람들의 목록
+	public List<Long> followNum(UserVO userVO) throws Exception;
 }

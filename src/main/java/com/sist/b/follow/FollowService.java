@@ -26,5 +26,13 @@ public class FollowService {
 	public List<UserVO> myFollowList(UserVO userVO) throws Exception {
 		return followRepository.myFollowList(userVO);
 	}
+	
+	public List<UserVO> myFollowerList(UserVO userVO) throws Exception {
+		return followRepository.myFollowerList(userVO);
+	}
+	
+	public List<Long> followNum(UserVO userVO) throws Exception {
+		return followRepository.followNum(userVO);
+	}
 
 }

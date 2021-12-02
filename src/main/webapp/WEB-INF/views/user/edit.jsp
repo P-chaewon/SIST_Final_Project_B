@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profileEdit.css" type="text/css">
+<c:import url="../temp/nav.jsp"></c:import>
 </head>
 <body>
-	<c:import url="../temp/nav.jsp"></c:import>
 	<div id="react-root">
 		<section class="edit-section">
 			<div>
