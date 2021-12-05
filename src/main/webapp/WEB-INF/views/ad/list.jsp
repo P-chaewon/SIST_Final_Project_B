@@ -84,18 +84,45 @@
 			<!-- 광고 -->
 			<div class="menu_title">
 				<img class="s32" id="ad" alt="ad" src="/gram/static/icons/ad.png">
-				<span class="fw menu_title_title">광고</span>
+				<span class="fw menu_title_title"><a href="/gram/admin/home">광고</a></span>
 			</div>
 			<div class="detail"><a href="/gram/admin/ad/create">· 광고 등록하기</a></div>
 			
 			<!-- 멤버십 -->
 			<div class="menu_title">
 				<img class="s32" id="membership" alt="membership" src="/gram/static/icons/membership.png">
-				<span class="fw menu_title_title"><a href="/gram/admin/membership/list">멤버십</a></span>
+				<span class="fw menu_title_title"><a href="/gram/admin/membership">멤버십</a></span>
 			</div>
-			<div class="detail">· 멤버십 등록하기</div>
+			<div class="detail" id="membership_insert"><a>· 멤버십 등록하기</a></div>
+			
+			<!-- 결제 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="membership" src="/gram/static/icons/payment.png">
+				<span class="fw menu_title_title"><a href="/gram/admin/payments">결제</a></span>
+			</div>
+			<div class="detail"><a href="/gram/admin/payments/refunds">· 환불 처리하기</a></div>
+			
+			<!-- 계정 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="membership" src="/gram/static/icons/block.png">
+				<span class="fw menu_title_title">신고</span>
+			</div>
+			<div class="detail">· 계정 정지하기</div>
 		</div>
 	</div>
+	
+	<!-- 우측 고정바 js -->
+	<script type="text/javascript">
+		var popupWidth = 500;
+		var popupHeight = 350;
+		
+		var popupX = (window.screen.width / 2) - (popupWidth / 2);
+		var popupY= (window.screen.height / 2) - (popupHeight / 2);
+
+		$("#membership_insert").click(function(){
+			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+		});
+	</script>
 
 	<script type="text/javascript" src="../static/js/ad/list.js"></script>	
 </body>

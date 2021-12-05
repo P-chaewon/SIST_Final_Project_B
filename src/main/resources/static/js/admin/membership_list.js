@@ -18,7 +18,7 @@ $("#update").click(function() {
 	if (num < 0) {
 		alert("수정할 멤버십을 선택하세요.");
 	} else {
-		window.open('./update?membershipNum='+ num, '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
+		window.open('./membership/update?membershipNum='+ num, '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 	}
 });
 
@@ -28,7 +28,7 @@ $("#delete").click(function() {
 	} else {
 		var ck = confirm("정말 삭제하시겠습니까?");
 		if (ck) {
-			location.href = "./delete?membershipNum=" + num;	
+			location.href = "./membership/delete?membershipNum=" + num;	
 		}
 	}
 });

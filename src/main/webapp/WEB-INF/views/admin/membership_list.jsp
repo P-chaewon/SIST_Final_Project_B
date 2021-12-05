@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="../../static/css/admin/membership_list.css">
+<link rel="stylesheet" type="text/css" href="../static/css/admin/membership_list.css">
 </head>
 <body>
 	<main class="wrapper">
@@ -47,16 +47,23 @@
 			<!-- 광고 -->
 			<div class="menu_title">
 				<img class="s32" id="ad" alt="ad" src="/gram/static/icons/ad.png">
-				<span class="fw menu_title_title">광고</span>
+				<span class="fw menu_title_title"><a href="/gram/admin/home">광고</a></span>
 			</div>
 			<div class="detail"><a href="/gram/admin/ad/create">· 광고 등록하기</a></div>
 			
 			<!-- 멤버십 -->
 			<div class="menu_title">
 				<img class="s32" id="membership" alt="membership" src="/gram/static/icons/membership.png">
-				<span class="fw menu_title_title"><a href="/gram/admin/membership/list">멤버십</a></span>
+				<span class="fw menu_title_title"><a href="/gram/admin/membership">멤버십</a></span>
 			</div>
 			<div class="detail" id="membership_insert"><a>· 멤버십 등록하기</a></div>
+			
+			<!-- 결제 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="membership" src="/gram/static/icons/payment.png">
+				<span class="fw menu_title_title"><a href="/gram/admin/payments">결제</a></span>
+			</div>
+			<div class="detail"><a href="/gram/admin/payments/refunds">· 환불 처리하기</a></div>
 		</div>
 	</div>
 	
@@ -73,6 +80,6 @@
 		});
 	</script>
 	
-	<script type="text/javascript" src="../../static/js/admin/membership_list.js"></script>
+	<script type="text/javascript" src="../static/js/admin/membership_list.js"></script>
 </body>
 </html>

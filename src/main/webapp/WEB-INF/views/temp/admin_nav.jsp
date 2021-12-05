@@ -23,15 +23,15 @@
 				<!-- icon -->
 				<div class="nav_icon">
 					<!-- 광고 -->
-					<a href="${pageContext.request.contextPath}/admin/">
+					<a href="${pageContext.request.contextPath}/admin/home">
 						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/ad.png">
 					</a>
 					<!-- 멤버십 -->
-					<a href="${pageContext.request.contextPath}/admin/">
+					<a href="${pageContext.request.contextPath}/admin/membership">
 						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/membership.png">
 					</a>
 					<!-- 결제 -->
-					<a href="${pageContext.request.contextPath}/admin/">
+					<a href="${pageContext.request.contextPath}/admin/payments">
 						<img alt="홈" src="${pageContext.request.contextPath}/static/icons/payment.png">
 					</a>
 					<!-- 신고 -->

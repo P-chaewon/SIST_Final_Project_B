@@ -18,17 +18,24 @@ import com.sist.b.ad.AdService;
 import com.sist.b.ad.AdVO;
 import com.sist.b.membership.MembershipService;
 import com.sist.b.membership.MembershipVO;
+import com.sist.b.payments.PaymentsService;
+import com.sist.b.payments.PaymentsVO;
+import com.sist.b.util.Pager;
 
 @Controller
 @RequestMapping("/admin/**")
 public class AdminController {
 	
-	@Autowired AdService adService;
-	@Autowired MembershipService membershipService;
+	@Autowired 
+	private AdService adService;
+	@Autowired 
+	private MembershipService membershipService;
+	@Autowired
+	private PaymentsService paymentsService;
 	
-	// ------------------ 광고 ------------------
+	// ------------------ 광고 (ad) ------------------
 	// selectList
-	@GetMapping("/")
+	@GetMapping("home")
 	public ModelAndView getAdList(ModelAndView mv) throws Exception {
 		List<AdVO> ar = adService.getList();
 		mv.addObject("adVOs", ar);
@@ -71,9 +78,9 @@ public class AdminController {
 		return "redirect:../";
 	}
 	
-	// ------------------ 멤버십 ------------------
+	// ------------------ 멤버십 (membership) ------------------
 	// select
-	@GetMapping("membership/list")
+	@GetMapping("membership")
 	public ModelAndView getList(ModelAndView mv) throws Exception {
 		List<MembershipVO> ar = membershipService.getList();
 		mv.addObject("membershipVOs", ar);
@@ -121,7 +128,34 @@ public class AdminController {
 	public ModelAndView setDelete(MembershipVO membershipVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		int result = membershipService.setDelete(membershipVO);		
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:../membership");
 		return mv;
 	}
+	
+	// ------------------ 결제 (payments) ------------------
+	// getList
+	@GetMapping("payments")
+	public ModelAndView getList(Pager pager) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<PaymentsVO> ar = paymentsService.getList(pager);
+		mv.addObject("pager", pager);
+		mv.addObject("paymentsVOs", ar);
+		mv.setViewName("admin/payment_list");
+		return mv;
+	}
+	
+	// getOne
+	@GetMapping("payments/selectInfo")
+	public ModelAndView selectInfo(Long merchant_uid) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		PaymentsVO paymentsVO = paymentsService.getOne(merchant_uid);
+		mv.addObject("paymentsVO", paymentsVO);
+		mv.setViewName("admin/selectResult");
+		return mv;
+	}
+	
+	// ------------------ 신고 (report) ------------------
+	
+	
+	// ------------------ 정지 (suspend) ------------------
 }

@@ -10,14 +10,9 @@
 }
 
 .title {
+	font-family: 'Apple SD Bold'; 
 	font-size: 25px;
 	padding: 5px;
-}
-
-hr {
-	border: solid 1px #E2E2E2;
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
 table {
@@ -34,24 +29,48 @@ td {
 	padding: 10px;
 }
 
-.b {
-	margin-top: 30px;
-	text-align: center;
+hr {
+	border: solid 1px #E2E2E2;
+	margin-top: 5px;
+	margin-bottom: 20px;
 }
 
-#done {
-	background: #3f3f3f;
-	border: solid 1px #3f3f3f;
+.tooltip {
+	display: inline-block;
+}
+
+.tooltip-text {
+	display: none;
+	position: absolute;
+	max-width: 250px;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 8px;
+	font-size: 12px;
 	color: white;
-	width: 120px;
-	height: 50px;
-	font-size: 15px;
-	font-family: 'Apple SD Bold';
 }
 
-.selectResult {
-	padding-top: 10px;
-	padding-bottom: 10px;
+.tooltip:hover .tooltip-text {
+	display: block;
+}
+
+.b {
+	width: auto;
+	height: 50px;
+	position: relative;
+	padding: 5px;
+}
+
+select {
+	width: 150px;
+	padding: .8em .5em;
+	font-family: inherit;
+	border: 1px solid #E2E2E2;
+	border-radius: 0px;
+	margin-bottom: 20px;
+	position: absolute;
+	right: 0%;
+	top: 0%;
+	margin-right: 5px;
 }
 
 /* 우측 고정바 */
