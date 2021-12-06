@@ -16,6 +16,7 @@ public class PostVO {
 	private String contents;
 	private String tag;
 	private Date regDate;
+	private String likes;
 	
 	private UserVO userVO;
 	private LikesVO likesVO;

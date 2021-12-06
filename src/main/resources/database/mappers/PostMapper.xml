@@ -21,6 +21,7 @@
 		<result column="contents" property="contents"/>
 		<result column="tag" property="tag"/>
 		<result column="regDate" property="regDate"/>
+		<result column="likes" property="likes"/>
 		
 		<association property="userVO" javaType="UserVO">
 			<result column="nickname" property="nickname"/>
@@ -30,6 +31,7 @@
 		
 		<association property="likesVO" javaType="LikesVO">
 			<result column="likesNum" property="likesNum"/>
+			<result column="postNum" property="postNum"/>
 		
 		</association>
 		
@@ -49,6 +51,8 @@
   		FROM post
   		LEFT JOIN user
   		USING(userNum)
+  		LEFT JOIN likes
+  		USING(postNum)
   		LEFT JOIN postfiles 
   		USING(postNum)
   		ORDER BY postNum DESC

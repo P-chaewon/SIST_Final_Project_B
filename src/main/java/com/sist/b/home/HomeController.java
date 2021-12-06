@@ -53,6 +53,9 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView();
 	
 		List<PostVO> ar = postService.getPostList();
+		
+
+		
 		mv.addObject("postList", ar);
 		mv.setViewName("home");
 		
@@ -73,7 +76,7 @@ public class HomeController {
 	}
 	
 	
-	/*
+
 	@GetMapping("/{username}")
 	public ModelAndView getProfile(@PathVariable String username, HttpSession session) throws Exception {
 		//파라미터 username으로 가져온 userVO
@@ -93,50 +96,47 @@ public class HomeController {
 		mv.addObject("userVO", userVO);
 		return mv;
 	}
-	*/
+
 	
 
-	@RequestMapping(value = "/insertLikes.do")
 	@ResponseBody
-	public int setLikesInsert(LikesVO likesVO, HttpSession session)throws Exception {
+	@GetMapping("insertLikes.do")
+	public PostVO setLikesInsert(@RequestParam Long no, LikesVO likesVO, HttpSession session)throws Exception {
 		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
 		UserVO userVO = (UserVO)authentication.getPrincipal();
 
-		likesVO.setUserNum(userVO.getUserNum());
 	
-		int result = likesService.setLikesInsert(likesVO);
 		
-		return result;
+		likesVO.setUserNum(userVO.getUserNum());
+		likesVO.setPostNum(no);
+	
+		PostVO postVO = likesService.setLikesInsert(likesVO);
+		
+		return postVO;
 		
 	}
 	
-	/*
-	 * @RequestMapping(value = "/deleteLikes.do")
-	 * 
-	 * @ResponseBody public PostVO setLikesDelete(@RequestParam Long postNum,
-	 * HttpSession session)throws Exception{
-	 * 
-	 * Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
-	 * SecurityContextImpl sc = (SecurityContextImpl)object;
-	 * org.springframework.security.core.Authentication authentication
-	 * =sc.getAuthentication(); UserVO userVO =
-	 * (UserVO)authentication.getPrincipal();
-	 * 
-	 * LikesVO likesVO = new LikesVO();
-	 * 
-	 * likesVO.setPostNum(postNum);
-	 * 
-	 * likesVO.setUserNum(userVO.getUserNum());
-	 * 
-	 * PostVO postVO = likesService.setLikesDelete(likesVO);
-	 * 
-	 * return postVO;
-	 * 
-	 * }
-	 */
+	@ResponseBody
+	@GetMapping("deleteLikes.do")
+	public PostVO setLikesDelete(@RequestParam Long no, LikesVO likesVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+		
+		likesVO.setUserNum(userVO.getUserNum());
+		likesVO.setPostNum(no);
+	
+		PostVO postVO = likesService.setLikesDelete(likesVO);
+		
+		return postVO;
+		
+	}
+	
 	
 	
 }

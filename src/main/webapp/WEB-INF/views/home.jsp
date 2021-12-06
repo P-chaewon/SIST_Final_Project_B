@@ -72,21 +72,23 @@
 					
 					<!-- post icon -->
 					<div class="icons_react">
-					<span>
-						${list.postNum }
-					</span>
-						<div class="icons_left" data-postNum="${list.postNum}">
+						<div class="icons_left">
 
+							<sec:authentication property="principal.username" var="username"/>
 						<c:choose>
-							<c:when test="${empty list.likesVO.likesNum }">
-								<a class="heart-click heart_icon${list.postNum}"> 
+						
+							<c:when test="${empty list.likesVO.likesNum}">
+								
+								<a idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 								</a>
+								
 							
 							</c:when>
 							
 							<c:otherwise>
-								<a data-postNum="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+								
+								<a idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
 								</a>
 							</c:otherwise>
@@ -106,11 +108,11 @@
 			            <div class="liked_people">
 			          
 			          <c:choose>
-			          	<c:when test="${empty list.likesVO.likesNum}">
+			          	<c:when test="${list.likes < 1 or list.likes eq 0}">
 							<p><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
 			          	</c:when>
 			          	<c:otherwise>
-			              <p><span class="point-span" id="m_likes${list.postNum}">총 ${list.likes} 명</span>이 좋아합니다</p>
+			              <p id="count_text">총 <span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
 			          	
 			          	</c:otherwise>
 			          </c:choose>
@@ -161,7 +163,7 @@
 				<div class="myProfile">
 					<img class="pic" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
 					<div>
-						<sec:authentication property="principal.nickname" var="username"/>
+						<sec:authentication property="principal.username" var="username"/>
 						<span class="nickname point_span">${username }</span>
 						<!-- span username 추가 -->
 						<sec:authentication property="principal.nickname" var="nickname"/>
@@ -287,29 +289,66 @@
       });
    	 
    	 
-   	 $(".heart-click").click(function(){
-   		var postNum = $(this).parents(".icons_left").data('postNum');
-   		alert(postNum);
-   		
-   			$.ajax({
-   				url : 'insertLikes.do',
-   				type : 'post',
-   				data : {
-   					postNum : postNum,
-   				},
-   				success : function(data){
-   					alert('success');		
-   				},
-   				error : function(){
-   					alert('서버에러');
-   				}
-   				
-   			});	
-		   	
-   			$(this).children('img').attr("src",  "${pageContext.request.contextPath}/static/icons/heart-click.png");
-   	
-   		
-   	 });
+   	$(".heart-click").click(function() {
+
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).attr('idx');
+   	    console.log(no);
+
+   	    // 빈하트를 눌렀을때
+   	    if($(this).children('img').attr('class') == "icon_react like_untouched"){
+   	        console.log("빈하트 클릭" + no);
+
+   	        $.ajax({
+   	            url : './insertLikes.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(postVO) {
+   	               
+   	            	let likes =postVO.likes;
+   	            	
+   	            	$('#m_likes'+no).text(likes);
+   	            	
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	        
+   	        $(this).html("<img class='icon_react like_touched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart-click.png'>");
+
+   	    // 꽉찬 하트를 눌렀을 때
+   	    }else if($(this).children('img').attr('class') == "icon_react like_touched"){
+
+   	        $.ajax({
+   	            url : './deleteLikes.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(postVO) {
+					
+   	            	let likes =postVO.likes;
+   	            
+	   	            $('#m_likes'+no).text(likes);
+   	            	
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+
+   	        // 빈하트로 바꾸기
+   	      
+   	     $(this).html("<img class='icon_react like_untouched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart.png'>");
+   	    }
+
+
+
+   	});
    	 
    	 
  </script>

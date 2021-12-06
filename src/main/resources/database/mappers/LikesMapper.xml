@@ -14,18 +14,28 @@
  				(#{likesNum}, #{postNum}, #{userNum})
  	</insert>
  	
+ 	<update id="setLikesUpdate" parameterType="PostVO">
+    update post set likes=likes+1 
+    where postNum=#{postNum}
+	</update>
+ 	
  	<!-- 좋아요 삭제 -->
  	
  	<delete id="setLikesDelete" parameterType="LikesVO">
  		DELETE FROM likes
  		WHERE postNum=#{postNum} AND userNum = #{userNum}
  	</delete>
+ 	
+ 	<update id="setLikesDown" parameterType="PostVO">
+    update post set likes=likes-1 
+    where postNum=#{postNum}
+</update>
 
  	<!-- 좋아요 갯수 -->
  	
- 	<select id="getLikesCount" parameterType="LikesVO" resultType="Long" >
- 		SELECT count(*)
- 		FROM likes
+ 	<select id="getLikesCount" parameterType="PostVO" resultType="PostVO" >
+ 		SELECT likes
+ 		FROM post
  		WHERE postNum = #{postNum}
  	</select>
  	
