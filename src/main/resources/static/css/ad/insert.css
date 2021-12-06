@@ -75,6 +75,8 @@ textarea:focus, input:focus {
 	top: 50%;
 	left: 90%;
 	transform:translate(0%, -50%);
+	color: #0095F6;
+	font-weight: 600;
 }
 
 #thumbnail{

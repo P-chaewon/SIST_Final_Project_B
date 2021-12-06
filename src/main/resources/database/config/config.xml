@@ -21,6 +21,8 @@
   	<typeAlias type="com.sist.b.payments.PaymentsVO" alias="PaymentsVO"/>
   	<typeAlias type="com.sist.b.refunds.RefundsVO" alias="RefundsVO"/>
   	<typeAlias type="com.sist.b.alarm.AlarmVO" alias="AlarmVO"/>
+  	<typeAlias type="com.sist.b.report.ReportVO" alias="ReportVO"/>
+  	<typeAlias type="com.sist.b.suspend.SuspendVO" alias="SuspendVO"/>
 
   
   	<typeAlias type="com.sist.b.post.PostVO" alias="PostVO"/>

@@ -239,6 +239,67 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 사용자 신고 모달 -->
+	<div class="report_modal">
+		<div class="report_modal_content">
+			<button type="button" id="report">
+				<h1>사용자 신고</h1>
+			</button>
+			<button type="button" id="cancel">취소</button>
+		</div>
+	</div>
+	
+	<div class="modal2">
+		<div class="modal_content2">
+			<div id="d1">
+				<h1 class="d1_c">신고</h1>
+				<img class="modal_img" id="img_cancel" alt="cancel" src="${pageContext.request.contextPath}/static/icons/cancel.png">
+			</div>
+			<div id="d2">
+				<h1 id="d2_c">이 계정을 신고하는 이유는 무엇인가요?</h1>
+			</div>
+			<div id="d3">
+				<form id="report_frm" method="post">
+					<input hidden="hidden" name="reportType" value="user">
+					<input type="hidden" name="toUserNum" value="${userVO.userNum}">
+					<input type="hidden" name="fromUserNum" value="${fromUserNum}">
+					<textarea rows="" cols="" name="reason"></textarea>
+				</form>
+				<h1 id="submit_btn">제출</h1>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		$(".three-circle").click(function(){
+			$(".report_modal").fadeIn();
+			$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+		});
+		
+		$("#cancel").click(function(){
+			$(".report_modal").fadeOut();
+			$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+		})
+		
+		$("#report").click(function(){
+			$(".modal2").fadeIn();
+		});
+		
+		$("#img_cancel").click(function(){
+			$(".report_modal").fadeOut();
+			$(".modal2").fadeOut();
+			$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+		});
+		
+		$("#submit_btn").click(function(){
+			var result = confirm("신고 접수하시겠습니까?");
+			if (result) {
+				$("#report_frm").submit();	
+			}
+		});
+	</script>
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
 </body>
 </html>

@@ -23,6 +23,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.b.post.PostService;
 import com.sist.b.post.PostVO;
+import com.sist.b.report.ReportService;
+import com.sist.b.report.ReportVO;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,6 +41,9 @@ public class HomeController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private ReportService reportService;
 
 	
 	@GetMapping("/")
@@ -76,14 +81,32 @@ public class HomeController {
 		ModelAndView mv= new ModelAndView();
 		//로그인 되어 있는 유저의 정보를 가지고 있는 userVO
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
+		
 		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
 			mv.setViewName("myProfile");
 		} else {			
 			mv.setViewName("profile");
 		}
 		
+		mv.addObject("fromUserNum", loginUserVO.getUserNum());
 		mv.addObject("userVO", userVO);
 		return mv;
 	}
-
+	
+	@PostMapping("/{username}")
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		//파라미터 username으로 가져온 userVO
+		UserVO userVO = userService.getSelectOne(username);
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		
+		// 신고 정보 insert
+		int result = reportService.setInsert(reportVO);
+		
+		mv.addObject("userVO", userVO);
+		mv.setViewName("profile");
+		return mv;
+	}
 }

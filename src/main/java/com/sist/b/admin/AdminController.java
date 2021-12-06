@@ -20,6 +20,10 @@ import com.sist.b.membership.MembershipService;
 import com.sist.b.membership.MembershipVO;
 import com.sist.b.payments.PaymentsService;
 import com.sist.b.payments.PaymentsVO;
+import com.sist.b.report.ReportService;
+import com.sist.b.report.ReportVO;
+import com.sist.b.suspend.SuspendService;
+import com.sist.b.suspend.SuspendVO;
 import com.sist.b.util.Pager;
 
 @Controller
@@ -32,6 +36,10 @@ public class AdminController {
 	private MembershipService membershipService;
 	@Autowired
 	private PaymentsService paymentsService;
+	@Autowired
+	private ReportService reportService;
+	@Autowired
+	private SuspendService suspendService;
 	
 	// ------------------ 광고 (ad) ------------------
 	// selectList
@@ -155,7 +163,25 @@ public class AdminController {
 	}
 	
 	// ------------------ 신고 (report) ------------------
-	
+	// getList
+	@GetMapping("report")
+	public ModelAndView getReportList() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<ReportVO> ar = reportService.getList();
+		mv.addObject("reportVOs", ar);
+		mv.setViewName("admin/report_list");
+		return mv;
+	}
 	
 	// ------------------ 정지 (suspend) ------------------
+	// getList
+	@GetMapping("suspend")
+	public ModelAndView getSuspendList() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<SuspendVO> ar = suspendService.getList();
+		mv.addObject("suspendVOs", ar);
+		mv.setViewName("admin/suspend_list");
+		return mv;
+	}
+	
 }

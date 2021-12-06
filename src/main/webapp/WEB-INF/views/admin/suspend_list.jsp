@@ -8,67 +8,31 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="../static/css/ad/list.css">
+<link rel="stylesheet" type="text/css" href="../static/css/admin/suspend_list.css">
 </head>
 <body>
 	<main class="wrapper">
-		<c:forEach items="${adVOs}" var="adVO">
-		<div class="contents_block">
 		<table>
 			<tr>
-				<td height="60px" class="profile_td">
-					<img class="profile_img" alt="profile" src="../static/icons/user.jpg">
-					<span class="profile_id">admin</span>
-					<img class="more" alt="more" src="../static/icons/more.png" data-adNum="${adVO.adNum}">
-				</td>
+				<td>사용자</td>
+				<td>정지일</td>
+				<td>사유</td>
+				<td>선택</td>
 			</tr>
-			<tr>
-				<!-- 사진 -->
-				<td height="614px">
-					<img class="image" alt="${adVO.adFile.oriName}" src="../static/upload/ad/${adVO.adFile.fileName}">
-				</td>
-			</tr>
-			<tr class="url_tr">
-				<td height="45px" class="url_td">
-					<span class="url">URL: ${adVO.adURL}</span>
-				</td>
-			</tr>
-			<tr class="date_tr">
-				<td class="date_td" height="20px">
-					<span class="date">${adVO.adDate}</span>
-				</td>
-			</tr>
+			<c:forEach items="${suspendVOs}" var="suspendVO">
+				<tr>
+					<td>${suspendVO.username}</td>
+					<td>${suspendVO.suspendDate}</td>
+					<td>${suspendVO.suspendReason}</td>
+					<td><input type="radio" name="ck" class="ck" data-membership-num="${suspendVO.userNum}"></td>
+				</tr>
+			</c:forEach>
 		</table>
+		
+		<div class="b">
+			<button id="unblock">차단해제</button>
 		</div>
-	</c:forEach>
 	</main>
-
-	<div class="modal">
-		<div class="modal_content">
-			<button type="button" id="delete">
-				<h1>삭제</h1>
-			</button>
-			<button type="button" id="cancel">취소</button>
-		</div>
-	</div>
-
-	<div class="modal2">
-		<div class="modal_content2">
-			<div id="d1">
-				<span class="c">
-					<h1 id="d1_t1">게시물을 삭제할까요?</h1> 
-					<span id="d1_t2">이 게시물을 삭제하시겠어요?</span>
-				</span>
-			</div>
-			<div id="d2">
-				<h1 class="c" id="d2_del">삭제</h1>
-			</div>
-			<div id="d3">
-				<span class="c" id="d3_can">취소</span>
-			</div>
-		</div>
-	</div>
-	
 	
 	<!-- 우측 고정바 -->
 	<div id="profile_box">
@@ -101,13 +65,6 @@
 				<span class="fw menu_title_title"><a href="/gram/admin/payments">결제</a></span>
 			</div>
 			<div class="detail"><a href="/gram/admin/payments/refunds">· 환불 처리하기</a></div>
-			
-			<!-- 계정 -->
-			<div class="menu_title">
-				<img class="s32" id="membership" alt="report" src="/gram/static/icons/block.png">
-				<span class="fw menu_title_title"><a href="/gram/admin/report">신고</a></span>
-			</div>
-			<div class="detail"><a href="/gram/admin/suspend">· 계정 정지하기</a></div>
 		</div>
 	</div>
 	
@@ -123,7 +80,5 @@
 			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 		});
 	</script>
-
-	<script type="text/javascript" src="../static/js/ad/list.js"></script>	
 </body>
 </html>
