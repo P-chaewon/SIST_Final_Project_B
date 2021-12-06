@@ -19,8 +19,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.likes.LikesService;
+import com.sist.b.likes.LikesVO;
 import com.sist.b.post.PostService;
 import com.sist.b.post.PostVO;
 
@@ -40,6 +44,8 @@ public class HomeController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private LikesService likesService;
 	
 	@GetMapping("/")
 	public ModelAndView getPostList()throws Exception{
@@ -66,6 +72,8 @@ public class HomeController {
 	
 	}
 	
+	
+	/*
 	@GetMapping("/{username}")
 	public ModelAndView getProfile(@PathVariable String username, HttpSession session) throws Exception {
 		//파라미터 username으로 가져온 userVO
@@ -85,5 +93,50 @@ public class HomeController {
 		mv.addObject("userVO", userVO);
 		return mv;
 	}
+	*/
+	
 
+	@RequestMapping(value = "/insertLikes.do")
+	@ResponseBody
+	public int setLikesInsert(LikesVO likesVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+
+		likesVO.setUserNum(userVO.getUserNum());
+	
+		int result = likesService.setLikesInsert(likesVO);
+		
+		return result;
+		
+	}
+	
+	/*
+	 * @RequestMapping(value = "/deleteLikes.do")
+	 * 
+	 * @ResponseBody public PostVO setLikesDelete(@RequestParam Long postNum,
+	 * HttpSession session)throws Exception{
+	 * 
+	 * Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+	 * SecurityContextImpl sc = (SecurityContextImpl)object;
+	 * org.springframework.security.core.Authentication authentication
+	 * =sc.getAuthentication(); UserVO userVO =
+	 * (UserVO)authentication.getPrincipal();
+	 * 
+	 * LikesVO likesVO = new LikesVO();
+	 * 
+	 * likesVO.setPostNum(postNum);
+	 * 
+	 * likesVO.setUserNum(userVO.getUserNum());
+	 * 
+	 * PostVO postVO = likesService.setLikesDelete(likesVO);
+	 * 
+	 * return postVO;
+	 * 
+	 * }
+	 */
+	
+	
 }

@@ -41,11 +41,11 @@
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							<span class="nickname main_nickname point_span">
 								
-							${list.userVO.username}</span>
-						
-						<a href="./post/selectOne?postNum=${list.postNum}">
+							${list.userVO.username}
+							</span>
+					
 						<img class="icon_react icon_more" id="more" style="margin-left: 450px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
-						</a>
+			
 						</div>
 					</header>
 					<!--//header  -->
@@ -72,9 +72,31 @@
 					
 					<!-- post icon -->
 					<div class="icons_react">
-						<div class="icons_left">
-							<img class="icon_react like touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+					<span>
+						${list.postNum }
+					</span>
+						<div class="icons_left" data-postNum="${list.postNum}">
+
+						<c:choose>
+							<c:when test="${empty list.likesVO.likesNum }">
+								<a class="heart-click heart_icon${list.postNum}"> 
+									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+								</a>
+							
+							</c:when>
+							
+							<c:otherwise>
+								<a data-postNum="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+									<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
+								</a>
+							</c:otherwise>
+						
+						</c:choose>
+				
+							
+						<a href="./post/selectOne?postNum=${list.postNum}">
 							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
+						</a>
 						</div>
 						<img class="icon_react" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
 					</div>
@@ -82,9 +104,18 @@
 					<!-- text  -->
 					<div class="reaction">
 			            <div class="liked_people">
-				              <img class="pic" src="${pageContext.request.contextPath}/static/images/kittens 2.jpg" alt="profile">
 			          
-			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
+			          <c:choose>
+			          	<c:when test="${empty list.likesVO.likesNum}">
+							<p><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
+			          	</c:when>
+			          	<c:otherwise>
+			              <p><span class="point-span" id="m_likes${list.postNum}">총 ${list.likes} 명</span>이 좋아합니다</p>
+			          	
+			          	</c:otherwise>
+			          </c:choose>
+			          
+			          
 			            </div>
 			            <div class="box">
 			            	<div class="description">
@@ -130,9 +161,11 @@
 				<div class="myProfile">
 					<img class="pic" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
 					<div>
-						<span class="nickname point_span">cogus196</span>
+						<sec:authentication property="principal.nickname" var="username"/>
+						<span class="nickname point_span">${username }</span>
 						<!-- span username 추가 -->
-						<span class="sub_span">김채현</span>
+						<sec:authentication property="principal.nickname" var="nickname"/>
+						<span class="sub_span">${nickname }</span>
 					</div>
 				</div>
 			
@@ -254,10 +287,28 @@
       });
    	 
    	 
-   	 $(document).on("click", "#like", function(){
-   		 
-   		 
-   		$(this).attr("src", "${pageContext.request.contextPath}/static/icons/heart-click.png");
+   	 $(".heart-click").click(function(){
+   		var postNum = $(this).parents(".icons_left").data('postNum');
+   		alert(postNum);
+   		
+   			$.ajax({
+   				url : 'insertLikes.do',
+   				type : 'post',
+   				data : {
+   					postNum : postNum,
+   				},
+   				success : function(data){
+   					alert('success');		
+   				},
+   				error : function(){
+   					alert('서버에러');
+   				}
+   				
+   			});	
+		   	
+   			$(this).children('img').attr("src",  "${pageContext.request.contextPath}/static/icons/heart-click.png");
+   	
+   		
    	 });
    	 
    	 

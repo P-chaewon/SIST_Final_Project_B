@@ -8,9 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.likes.LikesService;
+import com.sist.b.likes.LikesVO;
 import com.sist.b.user.UserVO;
 
 @Controller
@@ -31,8 +35,8 @@ public class PostController {
 		
 		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		  SecurityContextImpl sc = (SecurityContextImpl)object;
-		 org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
-		 UserVO userVO = (UserVO)authentication.getPrincipal();
+		  org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		  UserVO userVO = (UserVO)authentication.getPrincipal();
 		 
 		  postVO.setUserNum(userVO.getUserNum());
 		  
@@ -61,7 +65,5 @@ public class PostController {
 		System.out.println(postVO.getPostNum());
 		return mv;
 	}
-	
-	
 
 }

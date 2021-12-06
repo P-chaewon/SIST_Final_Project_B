@@ -1,4 +1,4 @@
-package com.sist.b.post;
+package com.sist.b.likes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -6,19 +6,24 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.sist.b.post.PostVO;
+
 @SpringBootTest
-class PostMapperTest {
+class LikesMapperTest {
 
 	@Autowired
-	private PostRepository postRepository;
+	private LikesRepository likesRepository;
 	
-	//@Test
+	@Test
 	void test()throws Exception {
-		PostVO postVO = new PostVO();
-		postVO.setUserNum(2L);
-		postVO.setContents("test");
+		LikesVO likesVO = new LikesVO();
 		
-		int result = postRepository.setPostUpload(postVO);
+		
+		likesVO.setPostNum(23L);
+		likesVO.setUserNum(3L);
+		
+		int result = likesRepository.setLikesInsert(likesVO);
+		
 		
 		assertNotEquals(0, result);
 	}

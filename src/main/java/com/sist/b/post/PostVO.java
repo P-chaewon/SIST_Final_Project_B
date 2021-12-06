@@ -3,6 +3,7 @@ package com.sist.b.post;
 import java.sql.Date;
 import java.util.List;
 
+import com.sist.b.likes.LikesVO;
 import com.sist.b.user.UserVO;
 
 import lombok.Data;
@@ -17,6 +18,7 @@ public class PostVO {
 	private Date regDate;
 	
 	private UserVO userVO;
+	private LikesVO likesVO;
 	
 	private List<PostFilesVO> fileList;
 
