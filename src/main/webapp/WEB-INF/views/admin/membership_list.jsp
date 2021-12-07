@@ -64,6 +64,13 @@
 				<span class="fw menu_title_title"><a href="/gram/admin/payments">결제</a></span>
 			</div>
 			<div class="detail"><a href="/gram/admin/payments/refunds">· 환불 처리하기</a></div>
+			
+			<!-- 계정 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="report" src="/gram/static/icons/block.png">
+				<span class="fw menu_title_title"><a href="/gram/admin/report">신고</a></span>
+			</div>
+			<div class="detail"><a href="/gram/admin/suspend">· 정지 해제하기</a></div>
 		</div>
 	</div>
 	

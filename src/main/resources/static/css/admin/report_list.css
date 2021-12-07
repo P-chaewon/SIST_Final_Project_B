@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+	overflow-y: scroll;
+	background-color: #fafafa;
+}
+
 .wrapper {
 	position: absolute;
 	width: 613px;
@@ -32,8 +37,25 @@ table, tr {
 
 td {
 	padding: 10px;
+	background-color: #fff;
 }
 
+.b {
+	margin-top: 40px;
+	text-align: center;
+}
+
+#block {
+	background: #3f3f3f;
+	border: solid 1px #3f3f3f;
+	color: white;
+	width: 120px;
+	height: 50px;
+	font-size: 15px;
+	font-family: 'Apple SD Bold'; 
+}
+
+/* tool tip */
 .tooltip {
 	display: inline-block;
 }

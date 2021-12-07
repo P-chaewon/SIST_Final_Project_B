@@ -10,4 +10,14 @@
 		on (S.userNum = U.userNum)
 		order by suspendNum desc
 	</select>
+	
+	<insert id="setInsert" parameterType="SuspendVO">
+		insert into suspend (suspendNum, userNum, suspendDate, suspendReason)
+		values (null, #{userNum}, now(), #{suspendReason})
+	</insert>
+	
+	<delete id="setDelete" parameterType="SuspendVO">
+		delete from suspend 
+		where userNum = #{userNum}
+	</delete>
 </mapper>

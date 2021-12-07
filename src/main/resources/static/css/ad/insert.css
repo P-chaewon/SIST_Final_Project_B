@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+	overflow-y: scroll;
+	background-color: #fafafa;
+}
+
 .wrapper {
 	padding: 100px;
 	display: flex;
@@ -16,6 +21,10 @@
 
 .tbl, .tbl_tr, .tbl_td {
 	border: 1px solid #E2E2E2;
+}
+
+td {
+	background-color: #fff;
 }
 
 .contents {

@@ -9,25 +9,28 @@
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
 <link rel="stylesheet" type="text/css" href="../static/css/admin/suspend_list.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<main class="wrapper">
-		<table>
-			<tr>
-				<td>사용자</td>
-				<td>정지일</td>
-				<td>사유</td>
-				<td>선택</td>
-			</tr>
-			<c:forEach items="${suspendVOs}" var="suspendVO">
+		<form id="frm" action="./suspend" method="post">
+			<table>
 				<tr>
-					<td>${suspendVO.username}</td>
-					<td>${suspendVO.suspendDate}</td>
-					<td>${suspendVO.suspendReason}</td>
-					<td><input type="radio" name="ck" class="ck" data-membership-num="${suspendVO.userNum}"></td>
+					<td>사용자</td>
+					<td>정지일</td>
+					<td>사유</td>
+					<td>선택</td>
 				</tr>
-			</c:forEach>
-		</table>
+				<c:forEach items="${suspendVOs}" var="suspendVO">
+					<tr>
+						<td>${suspendVO.username}</td>
+						<td>${suspendVO.suspendDate}</td>
+						<td>${suspendVO.suspendReason}</td>
+						<td><input type="radio" name="userNum" class="ck" value="${suspendVO.userNum}" data-user-name="${suspendVO.username}"></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
 		
 		<div class="b">
 			<button id="unblock">차단해제</button>
@@ -65,6 +68,13 @@
 				<span class="fw menu_title_title"><a href="/gram/admin/payments">결제</a></span>
 			</div>
 			<div class="detail"><a href="/gram/admin/payments/refunds">· 환불 처리하기</a></div>
+			
+			<!-- 계정 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="report" src="/gram/static/icons/block.png">
+				<span class="fw menu_title_title"><a href="/gram/admin/report">신고</a></span>
+			</div>
+			<div class="detail"><a href="/gram/admin/suspend">· 정지 해제하기</a></div>
 		</div>
 	</div>
 	
@@ -80,5 +90,6 @@
 			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 		});
 	</script>
+	<script type="text/javascript" src="../static/js/admin/suspend_list.js"></script>
 </body>
 </html>

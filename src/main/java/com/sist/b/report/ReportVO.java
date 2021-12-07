@@ -13,4 +13,5 @@ public class ReportVO {
 	// getList Join
 	private String fromUserName;
 	private String toUserName;
+	private boolean enabled;
 }

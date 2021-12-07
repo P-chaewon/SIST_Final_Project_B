@@ -20,10 +20,14 @@ import com.sist.b.membership.MembershipService;
 import com.sist.b.membership.MembershipVO;
 import com.sist.b.payments.PaymentsService;
 import com.sist.b.payments.PaymentsVO;
+import com.sist.b.refunds.RefundsService;
+import com.sist.b.refunds.RefundsVO;
 import com.sist.b.report.ReportService;
 import com.sist.b.report.ReportVO;
 import com.sist.b.suspend.SuspendService;
 import com.sist.b.suspend.SuspendVO;
+import com.sist.b.user.UserService;
+import com.sist.b.user.UserVO;
 import com.sist.b.util.Pager;
 
 @Controller
@@ -37,6 +41,8 @@ public class AdminController {
 	@Autowired
 	private PaymentsService paymentsService;
 	@Autowired
+	private RefundsService refundsService;
+	@Autowired
 	private ReportService reportService;
 	@Autowired
 	private SuspendService suspendService;
@@ -47,6 +53,7 @@ public class AdminController {
 	public ModelAndView getAdList(ModelAndView mv) throws Exception {
 		List<AdVO> ar = adService.getList();
 		mv.addObject("adVOs", ar);
+		mv.addObject("board", "ad");
 		mv.setViewName("ad/list");
 		return mv;
 	}
@@ -56,14 +63,18 @@ public class AdminController {
 	public ModelAndView getAdOne(ModelAndView mv, AdVO adVO) throws Exception {
 		adVO = adService.getOne(adVO);
 		mv.addObject("adVO", adVO);
+		mv.addObject("board", "ad");
 		mv.setViewName("ad/select");
 		return mv;
 	}
 	
 	// insert : get
 	@GetMapping("ad/create")
-	public String setAdInsert(@ModelAttribute AdVO adVO) throws Exception {
-		return "ad/insert";
+	public ModelAndView setAdInsert(@ModelAttribute AdVO adVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("board", "ad");
+		mv.setViewName("ad/insert");
+		return mv;
 	}
 	
 	// insert : post
@@ -75,7 +86,7 @@ public class AdminController {
 		}
 		
 		int result = adService.setInsert(adVO, file);
-		return "redirect:../";
+		return "redirect:../home";
 	}
 	
 	// delete
@@ -83,7 +94,7 @@ public class AdminController {
 	public String setDelete(AdVO adVO) throws Exception {
 		adVO = adService.getOne(adVO);
 		int result = adService.setDelete(adVO);
-		return "redirect:../";
+		return "redirect:../home";
 	}
 	
 	// ------------------ 멤버십 (membership) ------------------
@@ -92,6 +103,7 @@ public class AdminController {
 	public ModelAndView getList(ModelAndView mv) throws Exception {
 		List<MembershipVO> ar = membershipService.getList();
 		mv.addObject("membershipVOs", ar);
+		mv.addObject("board", "membership");
 		mv.setViewName("admin/membership_list");
 		return mv;
 	}
@@ -140,7 +152,7 @@ public class AdminController {
 		return mv;
 	}
 	
-	// ------------------ 결제 (payments) ------------------
+	// ------------------ 결제 (payments), 환불 (refunds) ------------------
 	// getList
 	@GetMapping("payments")
 	public ModelAndView getList(Pager pager) throws Exception {
@@ -148,6 +160,7 @@ public class AdminController {
 		List<PaymentsVO> ar = paymentsService.getList(pager);
 		mv.addObject("pager", pager);
 		mv.addObject("paymentsVOs", ar);
+		mv.addObject("board", "payments");
 		mv.setViewName("admin/payment_list");
 		return mv;
 	}
@@ -162,26 +175,72 @@ public class AdminController {
 		return mv;
 	}
 	
-	// ------------------ 신고 (report) ------------------
-	// getList
+	// refunds : get
+	@GetMapping("payments/refunds")
+	public ModelAndView getRefund(ModelAndView mv) throws Exception {
+		List<RefundsVO> ar = refundsService.getList();
+		mv.addObject("refundsVOs", ar);
+		mv.addObject("board", "payments");
+		mv.setViewName("admin/refund");
+		return mv;
+	}
+	
+	// refunds : post
+	@PostMapping("payments/refunds")
+	public ModelAndView getRefund(Long [] merchant_uid) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		for (Long uid:merchant_uid) {
+			// refunds 테이블에서 삭제
+			int result = refundsService.setDelete(uid);
+			// payments 테이블 업데이트 (w -> d)
+			result = paymentsService.setUpdateCkDone(uid);
+		}
+		
+		mv.setViewName("redirect:./refunds");
+		return mv;
+	}
+	
+	// ------------------ 신고 (report), 정지 (suspend) ------------------
+	// report : getList
 	@GetMapping("report")
 	public ModelAndView getReportList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<ReportVO> ar = reportService.getList();
 		mv.addObject("reportVOs", ar);
+		mv.addObject("board", "report");
 		mv.setViewName("admin/report_list");
 		return mv;
 	}
 	
-	// ------------------ 정지 (suspend) ------------------
-	// getList
+	// block : 관리지 권한으로 차단
+	@PostMapping("report")
+	public ModelAndView setUnenabled(UserVO userVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		// 관리자 정지
+		int result = suspendService.setAdminInsert(userVO);
+		mv.setViewName("redirect:./report");
+		return mv;
+	}
+	
+	// suspend : getList
 	@GetMapping("suspend")
 	public ModelAndView getSuspendList() throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<SuspendVO> ar = suspendService.getList();
 		mv.addObject("suspendVOs", ar);
+		mv.addObject("board", "report");
 		mv.setViewName("admin/suspend_list");
 		return mv;
 	}
 	
+	// unblock
+	@PostMapping("suspend")
+	public ModelAndView setEnabled(UserVO userVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		// suspend delete
+		int result = suspendService.setAdminDelete(userVO);		
+		mv.setViewName("redirect:./suspend");
+		return mv;
+	}
 }

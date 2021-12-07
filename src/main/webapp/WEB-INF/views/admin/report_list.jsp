@@ -9,40 +9,60 @@
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
 <link rel="stylesheet" type="text/css" href="../static/css/admin/report_list.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<main class="wrapper">
 		<div class="t1">* 사유에 마우스를 올리면 신고 사유를 확인할 수 있습니다.</div>
-		<table>
-			<tr>
-				<td>유형</td>
-				<td>신고자</td>
-				<td>피신고자</td>
-				<td>사유</td>
-			</tr>
-			<c:forEach items="${reportVOs}" var="reportVO">
+		<form id="frm" action="./report" method="post">
+			<table>
 				<tr>
-					<td>
-						<c:if test="${reportVO.reportType eq 'comment'}">
-							댓글
-						</c:if>
-						<c:if test="${reportVO.reportType eq 'post'}">
-							게시물
-						</c:if>
-						<c:if test="${reportVO.reportType eq 'user'}">
-							사용자
-						</c:if>
-					</td>
-					<td>${reportVO.fromUserName}</td>
-					<td>${reportVO.toUserName}</td>
-					<td>
-						<span class="tooltip">
-							- <span class="tooltip-text">${reportVO.reason}</span>
-						</span>
-					</td>
+					<td>유형</td>
+					<td>신고자</td>
+					<td>피신고자</td>
+					<td>사유</td>
+					<td>정지</td>
+					<td>선택</td>
 				</tr>
-			</c:forEach>
-		</table>
+				<c:forEach items="${reportVOs}" var="reportVO">
+					<tr>
+						<td>
+							<c:if test="${reportVO.reportType eq 'comment'}">
+								댓글
+							</c:if>
+							<c:if test="${reportVO.reportType eq 'post'}">
+								게시물
+							</c:if>
+							<c:if test="${reportVO.reportType eq 'user'}">
+								사용자
+							</c:if>
+						</td>
+						<td>${reportVO.fromUserName}</td>
+						<td>${reportVO.toUserName}</td>
+						<td>
+							<span class="tooltip">
+								- <span class="tooltip-text">${reportVO.reason}</span>
+							</span>
+						</td>
+						<td>
+							<c:if test="${reportVO.enabled}">
+								N
+							</c:if>
+							<c:if test="${!reportVO.enabled}">
+								Y
+							</c:if>
+						</td>
+						<td>
+							<input type="radio" class="ck" name="userNum" value="${reportVO.toUserNum}" data-user-name="${reportVO.toUserName}" data-enabled="${reportVO.enabled}">
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
+		
+		<div class="b">
+			<button id="block">정지</button>
+		</div>
 	</main>
 	
 	<!-- 우측 고정바 -->
@@ -76,6 +96,13 @@
 				<span class="fw menu_title_title"><a href="/gram/admin/payments">결제</a></span>
 			</div>
 			<div class="detail"><a href="/gram/admin/payments/refunds">· 환불 처리하기</a></div>
+			
+			<!-- 계정 -->
+			<div class="menu_title">
+				<img class="s32" id="membership" alt="report" src="/gram/static/icons/block.png">
+				<span class="fw menu_title_title"><a href="/gram/admin/report">신고</a></span>
+			</div>
+			<div class="detail"><a href="/gram/admin/suspend">· 정지 해제하기</a></div>
 		</div>
 	</div>
 	
@@ -91,5 +118,6 @@
 			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 		});
 	</script>
+	<script type="text/javascript" src="../static/js/admin/report_list.js"></script>
 </body>
 </html>

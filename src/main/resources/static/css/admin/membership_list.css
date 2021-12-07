@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+	overflow-y: scroll;
+	background-color: #fafafa;
+}
+
 .wrapper {
 	position: absolute;
 	width: 613px;
@@ -27,6 +32,7 @@ table, tr {
 
 td {
 	padding: 10px;
+	background-color: #fff;
 }
 
 .b {

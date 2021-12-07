@@ -42,7 +42,6 @@
 		</div>
 	</c:forEach>
 	</main>
-
 	<div class="modal">
 		<div class="modal_content">
 			<button type="button" id="delete">
@@ -107,7 +106,7 @@
 				<img class="s32" id="membership" alt="report" src="/gram/static/icons/block.png">
 				<span class="fw menu_title_title"><a href="/gram/admin/report">신고</a></span>
 			</div>
-			<div class="detail"><a href="/gram/admin/suspend">· 계정 정지하기</a></div>
+			<div class="detail"><a href="/gram/admin/suspend">· 정지 해제하기</a></div>
 		</div>
 	</div>
 	
@@ -124,6 +123,11 @@
 		});
 	</script>
 
-	<script type="text/javascript" src="../static/js/ad/list.js"></script>	
+	<script type="text/javascript" src="../static/js/ad/list.js"></script>
 </body>
+
+<footer>
+	footer
+</footer>
+
 </html>
