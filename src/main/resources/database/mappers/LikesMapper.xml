@@ -39,4 +39,12 @@
  		WHERE postNum = #{postNum}
  	</select>
  	
+ 	<select id="getLikesRead" parameterType="LikesVO" resultType="Long">
+ 		select count(*)
+ 		from likes
+ 		where postNum = #{postNum} and userNum = #{userNum}
+ 	
+ 	</select>
+ 	
+ 	
   </mapper>

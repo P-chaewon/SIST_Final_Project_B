@@ -32,6 +32,7 @@
 		<association property="likesVO" javaType="LikesVO">
 			<result column="likesNum" property="likesNum"/>
 			<result column="postNum" property="postNum"/>
+			<result column="userNum" property="userNum"/>
 		
 		</association>
 		
@@ -64,6 +65,8 @@
   		FROM post
   		LEFT JOIN user
   		USING(userNum)
+  		LEFT JOIN likes
+  		USING(postNum)
   		LEFT JOIN postfiles
   		USING(postNum)
   		WHERE postNum = #{postNum}
@@ -83,4 +86,6 @@
   		INSERT INTO postFiles
   		VALUES (null, #{postNum}, #{postfileName}, #{oriName})
   	</insert>
+  	
+ 
   </mapper>

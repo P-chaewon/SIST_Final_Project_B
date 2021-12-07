@@ -24,6 +24,9 @@ public class PostController {
 	@Autowired
 	private PostService postService;
 	
+	@Autowired
+	private LikesService likesService;
+	
 	@GetMapping("upload")
 	public String setPostUpload()throws Exception{
 		return "post/upload";
@@ -65,5 +68,46 @@ public class PostController {
 		System.out.println(postVO.getPostNum());
 		return mv;
 	}
+	
+	
+	@ResponseBody
+	@GetMapping("insertLikes.do")
+	public PostVO setLikesInsert(@RequestParam Long no, LikesVO likesVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+
+	
+		
+		likesVO.setUserNum(userVO.getUserNum());
+		likesVO.setPostNum(no);
+	
+		PostVO postVO = likesService.setLikesInsert(likesVO);
+		
+		return postVO;
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("deleteLikes.do")
+	public PostVO setLikesDelete(@RequestParam Long no, LikesVO likesVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+		
+		likesVO.setUserNum(userVO.getUserNum());
+		likesVO.setPostNum(no);
+	
+		PostVO postVO = likesService.setLikesDelete(likesVO);
+		
+		return postVO;
+		
+	}
+	
+	
 
 }

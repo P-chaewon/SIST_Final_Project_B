@@ -18,5 +18,7 @@ public interface LikesRepository {
 	public int setLikesDown(PostVO postVO)throws Exception;
 	
 	public PostVO getLikesCount(PostVO postVO)throws Exception;
+	
+	public Long getLikesRead(LikesVO likesVO)throws Exception;
 
 }

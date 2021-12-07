@@ -49,7 +49,7 @@
 						<span class="bullet">•</span>
 						<button class="following" type="button">팔로잉</button>
 				
-						<img class="icon_react icon_more" id="more" style="cursor: pointer; margin-left: 140px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						<img class="icon_react icon_more" id="more" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						
 					</div>
 					
@@ -57,7 +57,7 @@
 						<div class="contents">
 							<div class="box">
 			            	<div class="description">
-				              <span class="point_span nickname" style="font-weight: 600;">${postVO.userVO.username }</span> ${postVO.contents}
+				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}</span> 
 			            	
 			            	</div>
 			            </div>
@@ -70,16 +70,42 @@
 					
 					<div class="icons_react">
 						<div class="icons_left">
-							<img class="icon_react" alt="heart" src="/gram/static/icons/heart.png">
+							
+							<c:choose>
+						
+							<c:when test="${count eq 0}">
+								<a idx ="${postVO.postNum}" class="heart-click heart_icon${postVO.postNum}"> 
+									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+								</a>
+								
+							</c:when>
+							
+							<c:otherwise>
+								
+								<a idx ="${postVO.postNum}" class="heart-click heart_icon${postVO.postNum}"> 
+									<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
+								</a>
+							</c:otherwise>
+						
+						</c:choose>
+						
 							<img class="icon_react" style="margin-left: 5px;" alt="speech" src="/gram/static/icons/bubble-chat.png">
 						</div>
 						<img class="icon_react" alt="bookmark" src="/gram/static/icons/bookmark.png">
 					</div>
 					
 					<div class="liked_people">
-				              <img class="pic" src="/gram/static/images/kittens 2.jpg" alt="profile">
+				     
+				      <c:choose>
+			          	<c:when test="${postVO.likes < 1 or postVO.likes eq 0}">
+							<p><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
+			          	</c:when>
+			          	<c:otherwise>
+			              <p id="count_text">총 <span class="point-span" id="m_likes${postVO.postNum }" style="font-weight: bold;">${postVO.likes}</span>명이 좋아합니다</p>
+			          	
+			          	</c:otherwise>
+			          </c:choose>
 			          
-			              <p><span class="point_span">ch196</span>님 <span class="point-span">외 12,751명</span>이 좋아합니다</p>
 			            </div>
 			            
 			          <div class="time_log">
@@ -121,6 +147,66 @@
         },
  
       });
+   	 
+ 	$(".heart-click").click(function() {
+
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).attr('idx');
+   	    console.log(no);
+
+   	    // 빈하트를 눌렀을때
+   	    if($(this).children('img').attr('class') == "icon_react like_untouched"){
+   	        console.log("빈하트 클릭" + no);
+
+   	        $.ajax({
+   	            url : './insertLikes.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(postVO) {
+   	               
+   	            	let likes =postVO.likes;
+   	            	
+   	            	$('#m_likes'+no).text(likes);
+   	            	
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	        
+   	        $(this).html("<img class='icon_react like_touched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart-click.png'>");
+
+   	    // 꽉찬 하트를 눌렀을 때
+   	    }else if($(this).children('img').attr('class') == "icon_react like_touched"){
+
+   	        $.ajax({
+   	            url : './deleteLikes.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(postVO) {
+					
+   	            	let likes =postVO.likes;
+   	            
+	   	            $('#m_likes'+no).text(likes);
+   	            	
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+
+   	        // 빈하트로 바꾸기
+   	      
+   	     $(this).html("<img class='icon_react like_untouched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart.png'>");
+   	    }
+
+   	});
+   	 
    	</script>  	 
 </body>
 </html>

@@ -54,7 +54,11 @@ public class HomeController {
 	
 		List<PostVO> ar = postService.getPostList();
 		
-
+		LikesVO likesVO = new LikesVO();
+		
+		//좋아요 체크 여부
+		Long count = likesService.getLikesRead(likesVO);
+		mv.addObject("count", count);
 		
 		mv.addObject("postList", ar);
 		mv.setViewName("home");
@@ -96,7 +100,6 @@ public class HomeController {
 		mv.addObject("userVO", userVO);
 		return mv;
 	}
-
 	
 
 	@ResponseBody

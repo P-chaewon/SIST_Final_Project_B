@@ -44,7 +44,7 @@
 							${list.userVO.username}
 							</span>
 					
-						<img class="icon_react icon_more" id="more" style="margin-left: 450px; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						<img class="icon_react icon_more" id="more" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 			
 						</div>
 					</header>
@@ -73,22 +73,18 @@
 					<!-- post icon -->
 					<div class="icons_react">
 						<div class="icons_left">
-
-							<sec:authentication property="principal.username" var="username"/>
 						<c:choose>
 						
-							<c:when test="${empty list.likesVO.likesNum}">
-								
-								<a idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+							<c:when test="${count eq 0}">
+								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 								</a>
 								
-							
 							</c:when>
 							
 							<c:otherwise>
 								
-								<a idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
 								</a>
 							</c:otherwise>
@@ -121,7 +117,7 @@
 			            </div>
 			            <div class="box">
 			            	<div class="description">
-				              <span class="point_span nickname" style="font-weight: 600;">cogus196</span> ${list.contents }
+				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
 			            		<span class="tag">${list.tag }</span>
 			            	</div>
 			            </div>
@@ -292,7 +288,7 @@
    	$(".heart-click").click(function() {
 
    	    // 게시물번호 idx로 전달받아 저장
-   	    var no = $(this).attr('idx');
+   	    var no = $(this).data('idx');
    	    console.log(no);
 
    	    // 빈하트를 눌렀을때

@@ -45,6 +45,9 @@ public class LikesService {
 		return postVO;
 	}
 	
+	public Long getLikesRead(LikesVO likesVO)throws Exception{
+		return likesRepository.getLikesRead(likesVO);
+	}
 	
 
 }
