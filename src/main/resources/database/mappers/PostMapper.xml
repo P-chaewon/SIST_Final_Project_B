@@ -94,5 +94,12 @@
   		VALUES (null, #{postNum}, #{postfileName}, #{oriName})
   	</insert>
   	
+  	
+  	<!-- tag list -->
+ 	<select id="getTagList" parameterType="PostVO" resultMap="selectResult">
+ 		SELECT * from post
+ 		where tag like concat('%', #{word},'%')
+ 	
+ 	</select>
  
   </mapper>
