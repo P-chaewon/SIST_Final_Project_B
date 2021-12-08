@@ -58,6 +58,7 @@
 		<select id="getPostList" parameterType="UserVO" resultMap="selectResult">
   		SELECT * 
   		FROM post
+  		
   		LEFT JOIN user
   		USING(userNum)
   		
@@ -91,12 +92,16 @@
   	<select id="getUserPost" parameterType="PostVO" resultMap="selectResult">
   		SELECT * 
   		FROM post
+  		
   		LEFT JOIN user
   		USING(userNum)
+  		
   		LEFT JOIN likes
   		USING(postNum)
+  		
   		LEFT JOIN postfiles
   		USING(postNum) 
+  		
   		WHERE postNum = #{postNum}
   	
   	</select>
