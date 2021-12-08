@@ -106,7 +106,7 @@ $(document).ready(function() { // 페이지가 준비되면
 						
 							<c:when test="${empty list.bookmarkVO.chk}">
 								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
-									<%-- <img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png"> --%>
+									
 									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
 								</a>
 								
@@ -115,7 +115,7 @@ $(document).ready(function() { // 페이지가 준비되면
 							<c:otherwise>
 								
 								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
-									<%-- <img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png"> --%>
+									
 									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
 								</a>
 							</c:otherwise>
@@ -131,18 +131,9 @@ $(document).ready(function() { // 페이지가 준비되면
 					<!-- text  -->
 					<div class="reaction">
 			            <div class="liked_people">
-			          
-			          <c:choose>
-			          	<c:when test="${list.likes eq 0 and list.likes < 1}">
-							<p id="count_likes"><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
-			          	</c:when>
-			          	<c:otherwise>
-			              <p id="count_text">총 <span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
-			          	
-			          	</c:otherwise>
-			          </c:choose>
-			          
-			          
+			       
+			              <p id="count_text"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
+			    
 			            </div>
 			            <div class="box">
 			            	<div class="description">
@@ -177,6 +168,8 @@ $(document).ready(function() { // 페이지가 준비되면
 				</c:forEach>
 			
 				<!--//post  -->
+				
+						
 			</div>
 			
 			<!--//left area -->
@@ -243,7 +236,6 @@ $(document).ready(function() { // 페이지가 준비되면
 		        
 		        <img class="top" alt="top" onclick="clickme()" src="${pageContext.request.contextPath}/static/icons/top.png">
 			</div>
-			
 			
 			
 		</main>
@@ -342,7 +334,7 @@ $(document).ready(function() { // 페이지가 준비되면
    	                alert('서버 에러');
    	            }
    	        });
-   	        
+
    	        $(this).html("<img class='icon_react like_touched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart-click.png'>");
 
    	    // 꽉찬 하트를 눌렀을 때
@@ -382,9 +374,8 @@ $(document).ready(function() { // 페이지가 준비되면
    	    var no = $(this).data('idx');
    	    console.log(no);
 
-   	    // 빈하트를 눌렀을때
    	    if($(this).children('img').attr('class') == "icon_react bookmark_untouched"){
-   	        console.log("빈하트 클릭" + no);
+   	  
 
    	        $.ajax({
    	            url : './insertBookmark.do',
@@ -404,7 +395,6 @@ $(document).ready(function() { // 페이지가 준비되면
    	        
    	        $(this).html("<img class='icon_react bookmark_touched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark-click.png'>");
 
-   	    // 꽉찬 하트를 눌렀을 때
    	    }else if($(this).children('img').attr('class') == "icon_react bookmark_touched"){
 
    	        $.ajax({
@@ -423,7 +413,7 @@ $(document).ready(function() { // 페이지가 준비되면
    	            }
    	        });
 
-   	        // 빈하트로 바꾸기
+   	      
    	      
    	     $(this).html("<img class='icon_react bookmark_untouched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark.png'>");
    	    }
@@ -432,7 +422,6 @@ $(document).ready(function() { // 페이지가 준비되면
 
    	});
    	 
-   
 
  </script>
 

@@ -91,21 +91,34 @@
 						
 							<img class="icon_react" style="margin-left: 5px;" alt="speech" src="/gram/static/icons/bubble-chat.png">
 						</div>
-						<img class="icon_react" alt="bookmark" src="/gram/static/icons/bookmark.png">
+					
+						<c:choose>
+						
+							<c:when test="${empty list.bookmarkVO.chk}">
+								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+									
+									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
+								</a>
+								
+							</c:when>
+							
+							<c:otherwise>
+								
+								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+									
+									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
+								</a>
+							</c:otherwise>
+						
+						</c:choose>
+					
+					
 					</div>
 					
 					<div class="liked_people">
-				     
-				      <c:choose>
-			          	<c:when test="${postVO.likes < 1 or postVO.likes eq 0}">
-							<p><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
-			          	</c:when>
-			          	<c:otherwise>
+				     				  
 			              <p id="count_text">총 <span class="point-span" id="m_likes${postVO.postNum }" style="font-weight: bold;">${postVO.likes}</span>명이 좋아합니다</p>
-			          	
-			          	</c:otherwise>
-			          </c:choose>
-			          
+
 			            </div>
 			            
 			          <div class="time_log">
@@ -206,7 +219,63 @@
    	    }
 
    	});
-   	 
+   	
+  	$(".bookmark-click").click(function() {
+
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).data('idx');
+   	    console.log(no);
+
+   	    if($(this).children('img').attr('class') == "icon_react bookmark_untouched"){
+   	        console.log("빈하트 클릭" + no);
+
+   	        $.ajax({
+   	            url : './insertBookmark.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(data) {
+   	               
+   	            	console.log("북마크 추가");
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	        
+   	        $(this).html("<img class='icon_react bookmark_touched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark-click.png'>");
+
+   	    // 꽉찬 하트를 눌렀을 때
+   	    }else if($(this).children('img').attr('class') == "icon_react bookmark_touched"){
+
+   	        $.ajax({
+   	            url : './deleteBookmark.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(data) {
+
+   	            	console.log("북마크 삭제");
+   	            	
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+
+   	      
+   	      
+   	     $(this).html("<img class='icon_react bookmark_untouched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark.png'>");
+   	    }
+
+
+
+   	});
+ 	
+ 	
    	</script>  	 
 </body>
 </html>

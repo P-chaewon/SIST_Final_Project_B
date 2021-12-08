@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.bookmark.BookmarkService;
+import com.sist.b.bookmark.BookmarkVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
 import com.sist.b.user.UserVO;
@@ -29,6 +31,9 @@ public class PostController {
 	
 	@Autowired
 	private LikesService likesService;
+	
+	@Autowired
+	private BookmarkService bookmarkService;
 	
 	@GetMapping("upload")
 	public String setPostUpload()throws Exception{
@@ -110,6 +115,47 @@ public class PostController {
 		return postVO;
 		
 	}
+	
+	
+	
+	@ResponseBody
+	@GetMapping("insertBookmark.do")
+	public int setBookmarkInsert(@RequestParam Long no, BookmarkVO bookmarkVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+
+	
+		
+		bookmarkVO.setUserNum(userVO.getUserNum());
+		bookmarkVO.setPostNum(no);
+	
+		int result = bookmarkService.setBookmarkInsert(bookmarkVO);
+		
+		return result;
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("deleteBookmark.do")
+	public int setBookmarkDelete(@RequestParam Long no, BookmarkVO bookmarkVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+		
+		bookmarkVO.setUserNum(userVO.getUserNum());
+		bookmarkVO.setPostNum(no);
+	
+		int result = bookmarkService.setBookmarkDelete(bookmarkVO);
+		
+		return result;
+		
+	}
+	
 	
 	
 
