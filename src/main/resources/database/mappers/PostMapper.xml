@@ -33,6 +33,7 @@
 			<result column="likesNum" property="likesNum"/>
 			<result column="postNum" property="postNum"/>
 			<result column="userNum" property="userNum"/>
+			<result column="count" property="count"/>
 		
 		</association>
 		
@@ -47,7 +48,7 @@
 	
 	</resultMap>
 	
-		<select id="getPostList" resultMap="selectResult">
+		<select id="getPostList" parameterType="UserVO" resultMap="selectResult">
   		SELECT * 
   		FROM post
   		LEFT JOIN user
@@ -56,6 +57,12 @@
   		USING(postNum)
   		LEFT JOIN postfiles 
   		USING(postNum)
+  		 LEFT JOIN
+  		(select postNum, count(*) count
+ 		from likes
+ 		where userNum = #{userNum}
+        group by postNum)cnt
+        USING(postNum) 
   		ORDER BY postNum DESC
   	</select>
   	
@@ -68,7 +75,7 @@
   		LEFT JOIN likes
   		USING(postNum)
   		LEFT JOIN postfiles
-  		USING(postNum)
+  		USING(postNum) 
   		WHERE postNum = #{postNum}
   	
   	</select>

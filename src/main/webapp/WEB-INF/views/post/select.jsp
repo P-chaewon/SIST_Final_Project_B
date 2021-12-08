@@ -57,8 +57,8 @@
 						<div class="contents">
 							<div class="box">
 			            	<div class="description">
-				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}</span> 
-			            	
+				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}
+			            		<span class="tag" style="color: #00376b; cursor: pointer;"> ${postVO.tag }</span></span> 
 			            	</div>
 			            </div>
 						</div>

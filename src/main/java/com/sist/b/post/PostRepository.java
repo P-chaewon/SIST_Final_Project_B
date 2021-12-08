@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import com.sist.b.user.UserVO;
+
 @Repository
 @Mapper
 public interface PostRepository {
@@ -13,7 +15,7 @@ public interface PostRepository {
 	public int setPostUpload(PostVO postVO)throws Exception;
 	
 	//post list
-	public List<PostVO> getPostList()throws Exception;
+	public List<PostVO> getPostList(UserVO userVO)throws Exception;
 	
 	//user post
 	public PostVO getUserPost(PostVO postVO)throws Exception;

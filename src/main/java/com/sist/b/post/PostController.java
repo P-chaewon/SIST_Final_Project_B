@@ -1,8 +1,11 @@
 package com.sist.b.post;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,7 +61,7 @@ public class PostController {
 	@GetMapping("selectOne")
 	public ModelAndView getUserPost(PostVO postVO)throws Exception{
 		
-		
+	
 		ModelAndView mv = new ModelAndView();
 		
 		postVO = postService.getUserPost(postVO);

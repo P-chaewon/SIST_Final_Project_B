@@ -9,4 +9,6 @@ public class LikesVO {
 	private Long postNum;
 	private Long userNum;
 	
+	private Long count;
+	
 }

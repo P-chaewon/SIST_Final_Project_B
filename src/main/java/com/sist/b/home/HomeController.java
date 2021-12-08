@@ -2,6 +2,7 @@ package com.sist.b.home;
 
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -48,18 +49,23 @@ public class HomeController {
 	private LikesService likesService;
 	
 	@GetMapping("/")
-	public ModelAndView getPostList()throws Exception{
+	public ModelAndView getPostList(HttpSession session)throws Exception{
+		
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
 		ModelAndView mv = new ModelAndView();
 	
-		List<PostVO> ar = postService.getPostList();
+		List<PostVO> ar = postService.getPostList(loginUserVO);
+		
+	
 		
 		LikesVO likesVO = new LikesVO();
 		
-		//좋아요 체크 여부
-		Long count = likesService.getLikesRead(likesVO);
-		mv.addObject("count", count);
-		
+	
 		mv.addObject("postList", ar);
 		mv.setViewName("home");
 		
@@ -67,10 +73,14 @@ public class HomeController {
 	}
 	
 	@GetMapping("/explore")
-	public ModelAndView getExploreList()throws Exception{
+	public ModelAndView getExploreList(HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
-		List<PostVO> ar = postService.getPostList();
+		List<PostVO> ar = postService.getPostList(loginUserVO);
 		
 		mv.addObject("postList", ar);
 		mv.setViewName("post/explore");

@@ -13,7 +13,11 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
 <c:import url="./temp/head.jsp"></c:import>
 
-
+<script type="text/javascript">
+$(document).ready(function() { // 페이지가 준비되면
+	likeview(); // 함수 likeview ㄱ
+});
+</script>
 
 </head>
 <body>
@@ -73,9 +77,10 @@
 					<!-- post icon -->
 					<div class="icons_react">
 						<div class="icons_left">
+					
 						<c:choose>
 						
-							<c:when test="${count eq 0}">
+							<c:when test="${empty list.likesVO.count}">
 								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 								</a>
@@ -104,8 +109,8 @@
 			            <div class="liked_people">
 			          
 			          <c:choose>
-			          	<c:when test="${list.likes < 1 or list.likes eq 0}">
-							<p><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
+			          	<c:when test="${list.likes eq 0 and list.likes < 1}">
+							<p id="count_likes"><span class="point_span">가장 먼저 </span> <span class="point-span" style="font-weight: bold;">좋아요</span>를 눌러보세요</p>			          	
 			          	</c:when>
 			          	<c:otherwise>
 			              <p id="count_text">총 <span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
@@ -304,7 +309,7 @@
    	            success : function(postVO) {
    	               
    	            	let likes =postVO.likes;
-   	            	
+   	    
    	            	$('#m_likes'+no).text(likes);
    	            	
    	            
@@ -346,7 +351,8 @@
 
    	});
    	 
-   	 
+   
+
  </script>
 
 

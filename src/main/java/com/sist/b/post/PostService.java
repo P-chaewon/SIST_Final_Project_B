@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.sist.b.post.util.PostFileManager;
+import com.sist.b.user.UserVO;
 
 @Service
 public class PostService {
@@ -44,8 +45,8 @@ public class PostService {
 	}
 	
 	
-	public List<PostVO> getPostList()throws Exception{
-		return postRepository.getPostList();
+	public List<PostVO> getPostList(UserVO userVO)throws Exception{
+		return postRepository.getPostList(userVO);
 	}
 	
 	public int setPostDelete(PostVO postVO)throws Exception{
