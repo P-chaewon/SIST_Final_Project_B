@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.bookmark.BookmarkService;
+import com.sist.b.bookmark.BookmarkVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
 import com.sist.b.post.PostService;
@@ -48,6 +50,9 @@ public class HomeController {
 	@Autowired
 	private LikesService likesService;
 	
+	@Autowired
+	private BookmarkService bookmarkService;
+	
 	@GetMapping("/")
 	public ModelAndView getPostList(HttpSession session)throws Exception{
 		
@@ -60,9 +65,7 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView();
 	
 		List<PostVO> ar = postService.getPostList(loginUserVO);
-		
-	
-		
+			
 		LikesVO likesVO = new LikesVO();
 		
 	
@@ -150,6 +153,45 @@ public class HomeController {
 		
 	}
 	
+	
+	
+	@ResponseBody
+	@GetMapping("insertBookmark.do")
+	public int setBookmarkInsert(@RequestParam Long no, BookmarkVO bookmarkVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+
+	
+		
+		bookmarkVO.setUserNum(userVO.getUserNum());
+		bookmarkVO.setPostNum(no);
+	
+		int result = bookmarkService.setBookmarkInsert(bookmarkVO);
+		
+		return result;
+		
+	}
+	
+	@ResponseBody
+	@GetMapping("deleteBookmark.do")
+	public int setBookmarkDelete(@RequestParam Long no, BookmarkVO bookmarkVO, HttpSession session)throws Exception {
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+		
+		bookmarkVO.setUserNum(userVO.getUserNum());
+		bookmarkVO.setPostNum(no);
+	
+		int result = bookmarkService.setBookmarkDelete(bookmarkVO);
+		
+		return result;
+		
+	}
 	
 	
 }

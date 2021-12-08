@@ -101,7 +101,31 @@ $(document).ready(function() { // 페이지가 준비되면
 							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
 						</a>
 						</div>
-						<img class="icon_react" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
+						
+							<c:choose>
+						
+							<c:when test="${empty list.bookmarkVO.chk}">
+								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+									<%-- <img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png"> --%>
+									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
+								</a>
+								
+							</c:when>
+							
+							<c:otherwise>
+								
+								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+									<%-- <img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png"> --%>
+									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
+								</a>
+							</c:otherwise>
+						
+						</c:choose>
+				
+						
+				
+					
+					
 					</div>
 					
 					<!-- text  -->
@@ -345,6 +369,63 @@ $(document).ready(function() { // 페이지가 준비되면
    	        // 빈하트로 바꾸기
    	      
    	     $(this).html("<img class='icon_react like_untouched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart.png'>");
+   	    }
+
+
+
+   	});
+   	
+   	
+  	$(".bookmark-click").click(function() {
+
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).data('idx');
+   	    console.log(no);
+
+   	    // 빈하트를 눌렀을때
+   	    if($(this).children('img').attr('class') == "icon_react bookmark_untouched"){
+   	        console.log("빈하트 클릭" + no);
+
+   	        $.ajax({
+   	            url : './insertBookmark.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(data) {
+   	               
+   	            	console.log("북마크 추가");
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	        
+   	        $(this).html("<img class='icon_react bookmark_touched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark-click.png'>");
+
+   	    // 꽉찬 하트를 눌렀을 때
+   	    }else if($(this).children('img').attr('class') == "icon_react bookmark_touched"){
+
+   	        $.ajax({
+   	            url : './deleteBookmark.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(data) {
+
+   	            	console.log("북마크 삭제");
+   	            	
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+
+   	        // 빈하트로 바꾸기
+   	      
+   	     $(this).html("<img class='icon_react bookmark_untouched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark.png'>");
    	    }
 
 

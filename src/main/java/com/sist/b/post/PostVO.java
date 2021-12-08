@@ -3,6 +3,7 @@ package com.sist.b.post;
 import java.sql.Date;
 import java.util.List;
 
+import com.sist.b.bookmark.BookmarkVO;
 import com.sist.b.likes.LikesVO;
 import com.sist.b.user.UserVO;
 
@@ -20,6 +21,7 @@ public class PostVO {
 	
 	private UserVO userVO;
 	private LikesVO likesVO;
+	private BookmarkVO bookmarkVO;
 	
 	private List<PostFilesVO> fileList;
 

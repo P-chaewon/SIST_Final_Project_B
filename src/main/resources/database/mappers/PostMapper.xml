@@ -37,6 +37,13 @@
 		
 		</association>
 		
+		<association property="bookmarkVO" javaType="BookmarkVO">
+			<result column="bookmarkNum" property="bookmarkNum"/>
+			<result column="postNum" property="postNum"/>
+			<result column="userNum" property="userNum"/>
+			<result column="chk" property="chk"/>		
+		 </association>
+		
 		<collection property="fileList" javaType="List" ofType="PostFilesVO">
 			<id column="fileNum" property="fileNum"/>
 			<result column="postNum" property="postNum"/>
@@ -53,17 +60,31 @@
   		FROM post
   		LEFT JOIN user
   		USING(userNum)
+  		
   		LEFT JOIN likes
   		USING(postNum)
+        
+        LEFT JOIN bookmark
+        USING(postNum)
+  		
   		LEFT JOIN postfiles 
   		USING(postNum)
-  		 LEFT JOIN
+  		
+  		LEFT JOIN
   		(select postNum, count(*) count
  		from likes
  		where userNum = #{userNum}
         group by postNum)cnt
+        USING(postNum)
+        
+        LEFT JOIN
+  		(select postNum, count(*) chk
+ 		from bookmark
+ 		where userNum = #{userNum}
+        group by postNum)chk
         USING(postNum) 
-  		ORDER BY postNum DESC
+  		
+  		ORDER BY postNum DESC;
   	</select>
   	
   <!-- select post -->
@@ -98,7 +119,7 @@
   	<!-- tag list -->
  	<select id="getTagList" parameterType="PostVO" resultMap="selectResult">
  		SELECT * from post
- 		where tag like concat('%', #{word},'%')
+ 		where tag like concat('%', #{tag},'%')
  	
  	</select>
  
