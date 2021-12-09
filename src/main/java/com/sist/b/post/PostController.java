@@ -1,5 +1,6 @@
 package com.sist.b.post;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -64,16 +65,29 @@ public class PostController {
 	}
 	
 	@GetMapping("selectOne")
-	public ModelAndView getUserPost(PostVO postVO)throws Exception{
-		
-	
+	public ModelAndView getUserPost(PostVO postVO, HttpSession session)throws Exception{
+
 		ModelAndView mv = new ModelAndView();
 		
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		UserVO userVO = (UserVO)authentication.getPrincipal();
+		
+		/* postVO.setUserVO(userVO); */
+		postVO.setUserNum(userVO.getUserNum());
+	
+		/*
+		 * map.put("userVO", userVO); map.put("postVO", postVO);
+		 */
 		postVO = postService.getUserPost(postVO);
+		
 		
 		mv.addObject("postVO", postVO);
 		mv.setViewName("post/select");
-		System.out.println(postVO.getPostNum());
+	
 		return mv;
 	}
 	

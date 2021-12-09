@@ -73,7 +73,7 @@
 							
 							<c:choose>
 						
-							<c:when test="${count eq 0}">
+							<c:when test="${empty postVO.likesVO.count}">
 								<a idx ="${postVO.postNum}" class="heart-click heart_icon${postVO.postNum}"> 
 									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 								</a>
@@ -94,8 +94,8 @@
 					
 						<c:choose>
 						
-							<c:when test="${empty list.bookmarkVO.chk}">
-								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+							<c:when test="${empty postVO.bookmarkVO.chk}">
+								<a data-idx ="${postVO.postNum}" class="bookmark-click bookmark_icon${postVO.postNum}"> 
 									
 									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
 								</a>
@@ -104,7 +104,7 @@
 							
 							<c:otherwise>
 								
-								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+								<a data-idx ="${postVO.postNum}" class="bookmark-click bookmark_icon${postVO.postNum}"> 
 									
 									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
 								</a>

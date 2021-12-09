@@ -99,8 +99,25 @@
   		LEFT JOIN likes
   		USING(postNum)
   		
+  		LEFT JOIN bookmark
+        USING(postNum)
+  		
   		LEFT JOIN postfiles
   		USING(postNum) 
+  		
+  		LEFT JOIN
+  		(select postNum, count(*) count
+ 		from likes
+ 		where userNum = #{userNum}
+        group by postNum)cnt
+        USING(postNum)
+  		
+  		LEFT JOIN
+  		(select postNum, count(*) chk
+ 		from bookmark
+ 		where userNum = #{userNum}
+        group by postNum)chk
+        USING(postNum) 
   		
   		WHERE postNum = #{postNum}
   	
