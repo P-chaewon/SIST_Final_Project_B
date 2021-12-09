@@ -13,7 +13,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .profile-home-section{display: flex; flex-direction: column; flex-grow: 1; min-height: 100vh; overflow: hidden;}
 .profile-home-main{background-color: #fafafa; flex-grow: 1; order: 4;}
 .profile-homepage{flex-grow: 1; margin: 0 auto 30px; max-width: 935px; margin-bottom: 0; width: (100%-40px); box-sizing: content-box; padding: 30px 20px 0;}
-.profile-info-header{flex-direction: row; margin-bottom: 44px;}
+.profile-info-header{flex-direction: row; margin-bottom: 22px;}
 .profile-img-space{flex-shrink: 0; flex-basis: 0; flex-grow: 1; margin-right: 30px;}
 .profile-edit-space{display: block; margin-left: auto; margin-right: auto; height: 150px; width: 150px;}
 .profile-edit{background-color: #fafafa; border-radius: 50%; box-sizing: border-box; height: 100%; margin: 0 auto; overflow: hidden; position: relative; width: 100%;}
@@ -29,18 +29,20 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .profile-username{font-size: 28px; line-height: 32px; margin: -5px 0 -6px; font-weight: 300; color: #262626; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .profile-btn-space{display: flex; align-content: stretch; align-items: stretch; flex-direction: row; justify-content: flex-start; flex: 0 0 auto; margin-left: 20px;}
 .profile-btns{display: flex; align-content: stretch; align-items: stretch; flex-direction: row; justify-content: flex-start; flex: 0 0 auto;}
-.dm-btn-space, .edit-btn-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 1 1 auto; min-height: 0; min-width: 0; overflow: hidden;}
+.dm-fol-btn-space, .edit-btn-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 1 1 auto; min-height: 0; min-width: 0; overflow: hidden;}
 .dm-btn, .edit-btn{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; display: block;font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; position: relative; background-color: transparent; border: 1px solid #dbdbdb; color: #262626;}
+.fol-btn{appearance:none; border-radius: 3px; border: solid 1px #0095f6; background: #0095f6; font-size: 14px; font-weight: 600; line-height: 26px; outline: 0; overflow: hidden; text-overflow: ellipsis; user-select: none; white-space: nowrap; width: 100%; color: #fff; cursor: pointer; padding: 0 24px; height: 100%;}
 .dm-btn-txt, .edit-btn-txt{font-size: 14px; line-height: 18px; margin: 0; font-weight: 600; color: #262626; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .follow-btn-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-left: 8px;}
 .follow-btns{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; height: 30px;}
 .follow-btns-span{display: flex; height: 100%;}
-.unfollow-btn{display: block; position: relative; flex: 1 0 auto; margin-right: 8px;}
+.unfollow-btn-space{display: block; position: relative; flex: 1 0 auto; margin-right: 8px;}
 .unfollow-modal-btn{border: 1px solid #dbdbdb; border-radius: 3px; font-size: 14px; font-weight: 600; line-height: 26px; outline: 0; overflow: hidden; text-overflow: ellipsis; user-select:none; white-space: nowrap; width: 100%; background: 0 0; color: #262626; cursor: pointer; padding: 0 24px; height: 100%; width: 74px;}
 .follow-icon-space{display: flex; align-content: stretch; align-items: center; justify-content: center; flex: 0 0 auto; }
 .follow-icon-background {width: 14px; height: 14px;}
 .arrow-btn-space{display: block; flex: 0 0 auto; position: relative; width: 34px;}
 .recommend-btn{appearance: none; background:0 0; border-radius: 3px; border: 1px solid #dbdbdb; font-size: 14px; font-weight: 600; line-height: 26px; outline: 0; overflow: hidden; text-overflow: ellipsis; user-select: none; white-space: nowrap; width: 100%; color: #262626; cursor: pointer; padding: 0 12px; height: 100%;}
+.fol-recommend-btn{appearance: none; border-radius: 3px; border: 1px solid #0095f6; font-size: 14px; font-weight: 600; line-height: 26px; overflow: hidden; outline: 0; text-overflow: ellipsis; user-select: none; white-space: nowrap; width: 100%; background: #0095f6; cursor: pointer; padding: 0 12px; height: 100%;}
 .recommend-icon-space{display: flex; align-content: stretch; align-items: center; justify-content: center; flex: 0 0 auto; padding: 4px;}
 .arrow-icon-background{width: 11px; height: 11px; }
 .more-info-space{flex-direction: row; flex-shrink: 0; margin-left: 5px;}
@@ -52,7 +54,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .info-li:first-child {margin-left: 0;}
 .info-name{color: #262626;}
 .info-total{color: #262626; font-weight: 600;}
-.profile-etc-info{display: block; font-size: 17px; line-height: 24px; word-wrap: break-word;}
+.profile-etc-info{display: block; font-size: 15px; line-height: 24px; word-wrap: break-word;}
 .profile-nickname{display: inline; font-weight: 600;}
 .profile-website{display: block; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .profile-tablist{align-items: center; border-top: 1px solid #dbdbdb; color: #8e8e8e; display: flex; flex-direction: row; font-size: 14px; font-weight: 600; justify-content: center; letter-spacing: 1px; text-align: center;}
@@ -86,7 +88,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .modal-btn:last-of-type {border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;}
 
 /* 팔로우 모달 */
-.following-modal-container, .follower-modal-container{align-items: center; background-color: rgba(0,0,0,.5); bottom: 0; flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around;}
+.following-modal-container, .follower-modal-container {align-items: center; background-color: rgba(0,0,0,.5); bottom: 0; flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around;}
 .follow-modal{width: 400px; flex: 1 1; margin: 20px; justify-content: center; max-height: 400px; min-height: 200px;}
 .follow-modal-contents{background-color: #fff; border-radius: 12px; max-height: 100%; overflow: hidden;}
 .follow-modal-header{border-bottom: 1px solid #dbdbdb; flex-direction: row; height: 43px;}
@@ -96,7 +98,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .follow-modal-close-btn{align-items: center; background: 0 0; border: 0; cursor: pointer; display: flex; justify-content: center; padding: 8px;}
 .follow-modal-close{align-items: center; justify-content: center;}
 .follow-modal-close-txt{font-size: 35px; color: rgb(38,38,38); text-align: center; line-height: 34px;}
-.follow-modal-list{border-radius: 12px; display: block;flex: 1 1; min-height: 200px; overflow-y: scroll;}
+.follow-modal-list, .follower-modal-list{border-radius: 12px; display: block;flex: 1 1; min-height: 200px; overflow-y: scroll;}
 .follow-list-ul{background-color: #fff; display: flex; flex-direction: column; flex-grow: 1; }
 .follow-list-li{display: flex; flex-direction: column; padding: 8px 16px;}
 .follow-one-user{flex-direction: row; justify-content: space-between;}
@@ -112,23 +114,25 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .follow-username-link{color: #262626; font-size: 14px; line-height: 18px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-left: 5px; margin-left: -5px}
 .follow-nickname{color: #8e8e8e; display: block; font-size: 14px; font-weight: 400; line-height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
 .follow-btn-space{flex: 0 0 auto; justify-content: center; margin-left: 15px;}
-.following-modal-btn{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; display: block; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; color: #262626; position: relative; background-color: transparent; border: 1px solid #dbdbdb;}
-.follow-modal-btn{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; color: #fff; position: relative; border: 1px solid transparent; background-color: #0095f6;} 
+.following-modal-btn-css{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; display: block; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; color: #262626; position: relative; background-color: transparent; border: 1px solid #dbdbdb;}
+.follow-modal-btn-css{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; color: #fff; position: relative; border: 1px solid transparent; background-color: #0095f6;} 
 
 .unfollow-modal-container{align-items: center; background-color: rgba(0,0,0,.5); bottom: 0; flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around;}
 .unfollow-modal{flex-shrink: 1; justify-content: center; margin: 20px; max-height: calc(100%-40px); width: 400px;}
 .unfollow-modal-contents{background-color: #fff; border-radius: 12px; max-height: 100%; overflow: hidden;}
-.unfollow-modal-header{justify-content: center;}
+.unfollow-modal-space{justify-content: center;}
 .unfollow-modal-img-space{margin: 16px; align-items:stretch; justify-content:center; margin-top: 32px; }
 .unfollow-modal-img-div{align-items: center; justify-content: center; margin: 0 auto;}
 .unfollow-modal-img{border-radius: 50%; overflow: hidden;}
 .unfollow-modal-txt-space{margin: 16px 32px; text-align: center;}
 .unfollow-modal-txt-div{display: block; color: #8e8e8e; font-weight: 400; font-size: 14px; line-height: 18px; margin: -3px 0 -4px;}
-.unfollow-modal-confirm-txt{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
-.unfollow-modal-txt{font-size: 14px; line-height: 18px; font-weight: 400; color: #262626; display: inline; margin: 0;}
+.unfollow-modal-check{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto;}
+.unfollow-modal-check-txt{font-size: 14px; line-height: 18px; font-weight: 400; color: #262626; display: inline; margin: 0;}
 .unfollow-modal-button-space{margin-top: 16px;}
 .unfollow-modal-unfollow-btn{color: #ed4956; font-weight: 700; background-color: transparent; border: 0; border-top: 1px solid #dbdbdb; cursor: pointer; line-height: 1.5; margin: 0; min-height: 48px; padding: 4px 8px; text-align: center; user-select: none; vertical-align: middle;}
 .unfollow-modal-cancel-btn{color: #262626; background-color: transparent; border: 0; border-top: 1px solid #dbdbdb; cursor: pointer; line-height: 1.5; margin: 0; min-height: 48px; padding: 4px 8px; text-align: center; user-select: none; vertical-align: middle; border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;}
+
+
 
 
 .update-message-space{bottom: 0; left: 0; overflow: hidden; position: fixed; right: 0; z-index: 500;}

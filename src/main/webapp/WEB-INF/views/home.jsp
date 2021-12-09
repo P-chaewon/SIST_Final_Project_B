@@ -28,7 +28,7 @@
 		<main>
 			
 			<!-- left feed area -->
-			
+			<sec:authentication property="principal" var="userVO"/>
 			<div class="main_feed">
 				
 				<!-- post foreach, db 추가 -->
@@ -128,11 +128,22 @@
 			<div class="right_contents">
 				
 				<div class="myProfile">
-					<img class="pic" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
+					<c:choose>
+						<c:when test="${not empty userVO.fileName }">
+							<a href="/gram/${userVO.username}">
+								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="/gram/${userVO.username }">
+								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
+							</a>
+						</c:otherwise>
+					</c:choose>
 					<div>
-						<span class="nickname point_span">cogus196</span>
+						<a class="nickname point_span" href="/gram/${userVO.username}">${userVO.username }</a>
 						<!-- span username 추가 -->
-						<span class="sub_span">김채현</span>
+						<span class="sub_span">${userVO.nickname }</span>
 					</div>
 				</div>
 			
@@ -141,20 +152,37 @@
 				<div class="section_recommend">
 					<div class="recommend_title">
 						<span class="sub-title">회원님을 위한 추천</span>
+						<a class="all_recommend_list" href="/gram/friendships/people" tabindex="0">
+							<div class="all-recommend-title">모두 보기</div>
+						</a>
 					</div>		
 					
 					<!-- recommend list -->
-					<ul class="recoomend_list">
-						<li><!-- foreach -->
-							<div class="recommend_profile">
-								<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/images/kittens 2.jpg">
-								<div class="profile_text">
-									<span class="nickname point_span">rlacogus</span>
-									<span class="sub_span">채현</span>
+					<ul class="recommend_list">
+						<c:forEach items="${users}" var="user">
+							<li><!-- foreach -->
+								<div class="recommend_profile">
+									<c:choose>
+										<c:when test="${not empty user.fileName }">
+											<a href="/gram/${user.username }">
+												<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/upload/user/${user.fileName}">
+											</a>
+										</c:when>
+										<c:otherwise>
+											<a href="/gram/${user.username }">
+												<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/icons/user.jpg">
+											</a>
+										</c:otherwise>
+									</c:choose>
+									<div class="profile_text">
+										<a class="nickname point_span username_link" href="/gram/${user.username}">${user.username }</a>
+										<span class="sub_span">${user.nickname}</span>
+									</div>
 								</div>
-							</div>
-						<span class="btn_follow">팔로우</span>
-						</li>
+								<button class="btn_follow" id="btn_follow" type="button" data-user-num="${userVO.userNum}" data-follow-num="${user.userNum}">팔로우</button>
+								<button class="btn_following" id="btn_following" type="button" data-user-num="${userVO.userNum}" data-follow-num="${user.userNum}" style="display: none;">팔로잉</button>
+							</li>
+						</c:forEach>
 					</ul>
 
 				</div>
@@ -187,8 +215,8 @@
 			
 			
 		</main>
-
- <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
+	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript">
     
     $('.box').each(function(){
@@ -259,6 +287,7 @@
    		 
    		$(this).attr("src", "${pageContext.request.contextPath}/static/icons/heart-click.png");
    	 });
+   	 
    	 
    	 
  </script>

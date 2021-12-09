@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profileEdit.css" type="text/css">
 </head>
 <body>
-	<c:import url="../temp/nav.jsp"></c:import>
+	<c:import url="../temp/nav2.jsp"></c:import>
+	<sec:authentication property="principal.username" var="username"/>
 	<div id="react-root">
 		<section class="edit-section">
 			<div>
@@ -32,10 +33,10 @@
 							<a class="edit-list not-selected" href="/gram/account/push/setting/" tabindex="0">푸시 알림</a>
 						</li>
 						<li>
-							<a class="edit-list selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
+							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
+							<a class="edit-list selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>
 							<a class="edit-list not-selected" href="/gram/account/remove/permanent/" tabindex="0">회원 탈퇴</a>
@@ -61,9 +62,9 @@
 								계정을 삭제하지 않고 비활성화할 수 있습니다. 비활성화하면 다시 로그인하여 재활성화할 때까지 계정이 숨겨집니다.
 							</p>
 							<p class="delete-txt-footer">
-							계정은 일주일에 한 번만 비활성화할 수 있습니다.
+							
 							</p>
-							<form class="delete-form" method="post">
+							<form class="delete-form" id="temporary-form" action="./" method="post">
 								<div class="delete-reason-select">
 									<div class="edit-data">
 										<aside class="delete-aside">
@@ -151,8 +152,8 @@
 									</div>
 									<div class="reason second-account">
 										<p>
-											기본 계정이 삭제되는 것을 막기 위해 보조 계정으로 로그인했는지 확인해주세요. 현재 <span class="reason-username">${userVO.username}</span>(으)로 로그인한 상태입니다.
-											이 계정이 아닌 경우에는 <a class="logout-url" href="/gram/account/logout/">먼저 로그아웃</a>한 뒤 올바른 계정으로 로그인하세요.
+											기본 계정이 삭제되는 것을 막기 위해 보조 계정으로 로그인했는지 확인해주세요. 현재 <span class="reason-username">${username}</span>(으)로 로그인한 상태입니다.
+											이 계정이 아닌 경우에는 <a class="logout-url" href="/gram/account/logout">먼저 로그아웃</a>한 뒤 올바른 계정으로 로그인하세요.
 										</p>
 									<br>
 									</div>
@@ -187,9 +188,9 @@
 										</aside>
 										<div class="input-change">
 											<div>
-												<input type="hidden" name="username" id="delUsername" value="${username }">
+												<input type="hidden" name="username" id="username" value="${username }">
 												<input class="delete-pw-input" id="password" name="password" required="" spellcheck="true" type="password">
-												<a class="pw-forget-txt" href="/accounts/password/reset/" tabindex="0">비밀번호를 잊으셨나요?</a>
+												<a class="pw-forget-txt" href="/gram/account/password/reset" tabindex="0">비밀번호를 잊으셨나요?</a>
 											</div>
 										</div>
 									</div>
@@ -235,6 +236,20 @@
 				}
 			})
 		})
+		
+		$(".temporary-btn").click(function () {
+			let result = confirm("계정을 일시적으로 비활성화하려고 합니다. 계속하시겠어요?");
+			if(result){
+				removePwCheck("계정이 비활성화 되었습니다.");
+			} else {
+				console.log(result);
+			}
+		})
+		
+		let msg = "${result}";
+		if(msg!=""){
+			alertMsg(msg);
+		} 
 	</script>
 </body>
 </html>

@@ -137,6 +137,24 @@ public class UserController {
 		return "user/accountTemporary";
 	}
 	
+	@PostMapping("remove/temporary")
+	public ModelAndView setDeleteTemporary(UserVO userVO) throws Exception {
+		System.out.println("비활성화 : "+userVO.getUsername());
+		int result = userService.setDeleteTemporary(userVO);
+		System.out.println("비활성화 : "+result);
+		ModelAndView mv = new ModelAndView();
+		if(result>0) {
+			mv.setViewName("redirect:/account/logout");
+			System.out.println("비활성화 성공");
+		} else {
+			mv.setViewName("user/accountTemporary");
+			mv.addObject("result", "계정 비활성화에 실패하였습니다");
+			System.out.println("비활성화 실패");
+		}
+		
+		return mv;
+	}
+	
 	@GetMapping("password/change")
 	public ModelAndView setPasswordUpdate(HttpSession session) throws Exception {
 		
@@ -169,6 +187,11 @@ public class UserController {
 		return mv;
 	}
 	
+	@GetMapping("password/reset")
+	public String pwReset() throws Exception {
+		return "user/pwReset";
+	}
+	
 	@GetMapping("manage_access")
 	public String access() throws Exception {
 		return "user/access";
@@ -189,6 +212,16 @@ public class UserController {
 	@GetMapping("mail")
 	public String mail() throws Exception {
 		return "user/clause";
+	}
+	
+	@GetMapping("challenge")
+	public String pwResetMail() throws Exception {
+		return "user/pwResetMail";
+	}
+	
+	@GetMapping("recovery")
+	public String pwRecovery() throws Exception {
+		return "user/pwRecovery";
 	}
 	
 }

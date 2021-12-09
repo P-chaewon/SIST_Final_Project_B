@@ -159,3 +159,5 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .delete-line{border-bottom: 1px solid #dbdbdb; margin-bottom: 32px; padding-top: 16px;}
 .delete-btn-txt{font-size: 15px; font-weight: 400; margin-bottom: 15px; line-height: 20px;}
 .delete-btn-space{flex-direction: row; padding: 18px 0;}
+
+.temporary-check-space{position: relative;}

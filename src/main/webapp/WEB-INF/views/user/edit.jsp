@@ -9,9 +9,9 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profileEdit.css" type="text/css">
-<c:import url="../temp/nav.jsp"></c:import>
 </head>
 <body>
+	<c:import url="../temp/nav2.jsp"></c:import>
 	<div id="react-root">
 		<section class="edit-section">
 			<div>
@@ -32,10 +32,10 @@
 							<a class="edit-list not-selected" href="/gram/account/push/setting/" tabindex="0">푸시 알림</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
+							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
+							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>
 							<a class="edit-list not-selected" href="/gram/account/remove/permanent/" tabindex="0">회원 탈퇴</a>

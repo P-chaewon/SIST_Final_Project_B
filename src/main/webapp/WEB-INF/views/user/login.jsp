@@ -34,7 +34,7 @@
 											<div class="entry-text">
 												<label class="label">
 													<span class="label-name">사용자 이름</span>
-													<input aria-label="사용자 이름" aria-required="true" autocapitalize="off" autocorrect="off" maxlength="75" name="username" id="username" type="text" class="aInput">
+													<input aria-label="사용자 이름" aria-required="true" autocapitalize="off" autocorrect="off" maxlength="75" name="username" id="login-username" type="text" class="aInput user-input login-input">
 												</label>
 												<div class="failOrSuccess"></div>
 											</div>
@@ -43,7 +43,7 @@
 											<div class="entry-text">
 												<label class="label">
 													<span class="label-name">비밀번호</span>
-													<input aria-label="비밀번호" aria-required="true" autocapitalize="off" autocorrect="off" name="password" id="password" type="password" class="aInput">
+													<input aria-label="비밀번호" aria-required="true" autocapitalize="off" autocorrect="off" name="password" id="login-password" type="password" class="aInput user-input login-input">
 												</label>
 												<div class="failOrSuccess"></div>
 											</div>
@@ -62,7 +62,7 @@
 											</p>
 										</c:if>
 									</div>
-									<a class="password-reset" href="/accounts/password/reset/" tabindex="0">비밀번호를 잊으셨나요?</a>
+									<a class="password-reset" href="/gram/account/password/reset" tabindex="0">비밀번호를 잊으셨나요?</a>
 								</form>
 							</div>
 						</div>

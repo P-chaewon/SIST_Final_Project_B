@@ -60,7 +60,10 @@ public class UserService implements UserDetailsService{
 		UserVO userVO = null;
 		try {
 			userVO = userRepository.getLogin(username);
-			getUserIp();
+			if(!userVO.isEnabled()) {
+				int result = userRepository.setEnabledInsert(userVO);
+				userVO.setEnabled(true);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -68,6 +71,7 @@ public class UserService implements UserDetailsService{
 		if(userVO == null) {
 			throw new UsernameNotFoundException(username);
 		}
+		System.out.println("LOGIN SUCCESS");
 		
 		return userVO;
 	}
@@ -158,7 +162,8 @@ public class UserService implements UserDetailsService{
 	}
 	
 	public int setDeleteTemporary(UserVO userVO) throws Exception {
-		return userRepository.setDeleteTemporary(userVO);
+		int result = userRepository.setDeleteTemporary(userVO);
+		return result;
 	}
 	
 	public String getUserIp() throws Exception {

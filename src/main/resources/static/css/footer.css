@@ -1,13 +1,5 @@
 @charset "UTF-8";
-body {display: block; background: #fff; overflow-y: scroll; line-height: 1; }
-html, body, #react-root{height: 100%;}
-div {display: block;}
-body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px;}
-#react-root, article, div, footer, header, main, nav, section {
-	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
-	flex-shrink: 0; margin: 0; padding: 0; position: relative;
-}
-a {text-decoration: none;}
+
 .footer {background-color: #fafafa; padding-left: 16px; padding-right: 16px; order: 5; padding: 0 20px;}
 .footer-entire{margin-bottom: 52px; flex: 0 0 auto; justify-content: flex-start; align-items: stretch; align-content: stretch; display: flex;}
 .footer-set-1{margin-top: 24px; flex: 0 0 auto; justify-content: flex-start; align-items: stretch; align-content: stretch; display: flex;}

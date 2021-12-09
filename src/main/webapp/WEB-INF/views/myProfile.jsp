@@ -12,6 +12,7 @@
 </head>
 <body class="" style="">
 	<sec:authentication property="principal.username" var="username"/>
+	<c:import url="./temp/nav2.jsp"></c:import>
 	<div id="react-root">
 		<section class="profile-home-section">
 			<div></div>
@@ -62,8 +63,8 @@
 								<li class="info-li">
 									<span class="info-name follower" tabindex="0" data-user-name="${userVO.username }" style="cursor: pointer;">
 										팔로워 
-										<span class="info-total" title="33,304">
-											33.3천
+										<span class="info-total">
+											${count.followerCount }
 										</span>
 									</span>
 								</li>
@@ -71,7 +72,7 @@
 									<span class="info-name following" tabindex="0" data-user-name="${userVO.username }" style="cursor: pointer;">
 										팔로우 
 										<span class="info-total">
-											301
+											${count.followCount }
 										</span>
 									</span>
 								</li>
@@ -79,10 +80,10 @@
 							<div class="profile-etc-info">
 								<h1 class="profile-nickname">${userVO.nickname}</h1>
 								<br>
-								<span style="word-wrap: break-word;">
+								<span style="white-space: pre-line;">
 									${userVO.introduction}
 								</span> 
-							<a author_id="7964166036" class="profile-website" href="${userVO.website }" page_id="profilePage" rel="me nofollow noopener noreferrer" target="_blank">${userVO.website }</a>
+							<a author_id="7964166036" class="profile-website" href="https://${userVO.website }" page_id="profilePage" rel="me nofollow noopener noreferrer" target="_blank">${userVO.website }</a>
 							</div>
 						</section>
 					</header>
@@ -96,7 +97,7 @@
 						<a aria-selected="false" class="tab-entity" role="tab" href="/kopc_adopt/channel/" tabindex="0">
 							<span class="tab-info">
 								<img alt="" src="${pageContext.request.contextPath}/static/icons/bookmark.png" class="bookmark-icon">
-								<span class="tab-name">북마크</span>
+								<span class="tab-name">저장됨</span>
 							</span>
 						</a>
 					</div>
@@ -220,7 +221,7 @@
 				<div>
 					<div class="follow-modal-header">
 						<div class="follow-modal-blank"></div>
-						<h1 class="follow-modal-name">팔로잉</h1>
+						<h1 class="follow-modal-name">팔로워</h1>
 						<div class="follow-modal-close-space">
 							<button class="follow-modal-close-btn" type="button">
 								<div class="follow-modal-close">
@@ -230,7 +231,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="follow-modal-list">
+				<div class="follower-modal-list">
 					
 				</div>
 			</div>

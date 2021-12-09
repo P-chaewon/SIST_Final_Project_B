@@ -46,23 +46,25 @@
 											<div class="username-space" id="f2a78f1ec3fe4d">
 												<div class="follow-username">
 													<span class="username-txt">
-														<a class="username-link" title="${userVO.username }" href="/dlwlrma/" tabindex="0">${userVO.username }</a>
+														<a class="username-link" title="${userVO.username }" href="/gram/${userVO.username}" tabindex="0">${userVO.username }</a>
 													</span>
 												</div>
 											</div>
 											<div class="nickname-space" id="f23da1b2925d2c8">
 												<div class="nickname-txt" >${userVO.nickname}</div>
 											</div>
-											<div class="nickname-space" id="f203f41533b5e9c">
-												<div class="nickname-s-txt">${userVO.nickname }</div>
-											</div>
 										</div>
 										<div class="follow-btn-space" id="f1434f5afa35c5c">
 											<button class="follow-btn" type="button" data-user-num="${userNum}" data-follow-num="${userVO.userNum}">팔로우</button>
-											<button class="unfollow-btn" type="button" style="display: none;">팔로잉</button>
+											<button class="unfollow-btn" type="button" data-user-num="${userNum}" data-follow-num="${userVO.userNum}" style="display: none;">팔로잉</button>
 										</div>
 									</div>
 								</c:forEach>
+								<c:if test="${empty recommend}">
+									<div class="start-btn-space" style="display: none;">
+										<button class="start-btn" type="button">시작하기</button>
+									</div>								
+								</c:if>
 							</div>
 						</div>
 					</div>
@@ -85,5 +87,8 @@
 		<div class="q5edG"></div>
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
+	<script type="text/javascript">
+		
+	</script>
 </body>
 </html>

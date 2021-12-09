@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/nav.css">
 </head>
 <body>
+	<sec:authentication property="principal" var="userVO"/>
 	<!-- nav -->
 		<nav>
 			<div class="nav_container">
@@ -34,8 +37,15 @@
 					</span>
 					<div id="alarm_contents" hidden="hidden">
 					</div>
-					
-					<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
+					<c:choose>
+						<c:when test="${not empty userVO.fileName }">
+							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
+						</c:when>
+						<c:otherwise>
+							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
+						</c:otherwise>
+					</c:choose>
+
 				
 				</div>
 			</div>

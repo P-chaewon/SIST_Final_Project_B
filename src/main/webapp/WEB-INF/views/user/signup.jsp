@@ -29,7 +29,7 @@
 										<div class="entry-text">
 											<label class="label">
 												<span class="label-name">휴대폰 번호</span>
-												<input aria-label="휴대폰 번호" aria-required="true" autocapitalize="off" autocomplete="tel"  name="phone" id="phone" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="aInput">
+												<input aria-label="휴대폰 번호" aria-required="true" autocapitalize="off" autocomplete="tel"  name="phone" id="phone" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" class="aInput user-input signup-input">
 											</label>
 											<div class="failOrPass">
 												<span class=""></span>
@@ -41,7 +41,7 @@
 										<div class="entry-text">
 											<label class="label">
 												<span class="label-name">이메일 주소</span>
-												<input aria-label="이메일 주소" aria-required="false" autocapitalize="sentences" autocorrect="off" name="email" id="email" type="email" class="aInput">
+												<input aria-label="이메일 주소" aria-required="false" autocapitalize="sentences" autocorrect="off" name="email" id="email" type="email" class="aInput user-input signup-input">
 											</label>
 											<div class="failOrPass">
 												<span class=""></span>
@@ -53,7 +53,7 @@
 										<div class="entry-text">
 											<label class="label">
 												<span class="label-name">닉네임</span>
-												<input aria-label="닉네임" aria-required="false" autocapitalize="sentences" autocorrect="off" name="nickname" id="nickname" type="text" class="aInput">
+												<input aria-label="닉네임" aria-required="false" autocapitalize="sentences" autocorrect="off" name="nickname" id="nickname" type="text" class="aInput user-input signup-input">
 											</label>
 											<div class="failOrPass">
 												<span class=""></span>
@@ -65,7 +65,7 @@
 										<div class="entry-text">
 											<label class="label">
 												<span class="label-name">사용자 이름</span>
-												<input aria-label="사용자 이름" aria-required="true" autocapitalize="off" autocorrect="off" maxlength="30" name="username" id="username" type="text" class="aInput"  onkeyup="this.value=this.value.replace(/[^a-zA-Z-_0-9]/g,'');">
+												<input aria-label="사용자 이름" aria-required="true" autocapitalize="off" autocorrect="off" maxlength="30" name="username" id="username" type="text" class="aInput user-input signup-input"  onkeyup="this.value=this.value.replace(/[^a-zA-Z-_0-9]/g,'');">
 											</label>
 											<div class="failOrPass">
 												<span class=""></span>
@@ -77,7 +77,7 @@
 										<div class="entry-text">
 											<label class="label">
 												<span class="label-name">비밀번호</span>
-												<input aria-label="비밀번호" aria-required="true" autocapitalize="off" autocomplete="new-password" autocorrect="off" id="password" name="password" type="password" class="aInput">
+												<input aria-label="비밀번호" aria-required="true" autocapitalize="off" autocomplete="new-password" autocorrect="off" id="password" name="password" type="password" class="aInput user-input signup-input">
 											</label>
 											<div class="failOrPass">
 												<span class=""></span>
@@ -89,7 +89,7 @@
 										<div class="entry-text">
 											<label class="label">
 												<span class="label-name">비밀번호 재확인</span>
-												<input aria-label="비밀번호 재확인" aria-required="true" autocapitalize="off" autocomplete="new-password" autocorrect="off" id="pwCheck" name="passwordCheck" type="password" class="aInput">
+												<input aria-label="비밀번호 재확인" aria-required="true" autocapitalize="off" autocomplete="new-password" autocorrect="off" id="pwCheck" name="passwordCheck" type="password" class="aInput user-input signup-input">
 											</label>
 											<div class="failOrPass">
 												<span class=""></span>

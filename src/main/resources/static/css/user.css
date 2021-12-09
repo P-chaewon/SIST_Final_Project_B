@@ -115,3 +115,79 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .update-message{background-color: #262626; flex-direction: row; min-height: 44px; padding: 0 16px; width: 100%; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 2px; border-top-right-radius: 2px; min-width: 500px; width: auto;}
 .update-text-space{flex-grow: 1; flex-shrink: 1; justify-content: center; min-width: 200px;}
 .update-text{color: #fff; font-size: 14px; line-height: 18px; max-height: 72px; padding: 12px 0; overflow: hidden;}
+
+/* pw reset.jsp */
+.pw-reset-space{flex-grow: 1; justify-content: center; margin: 44px 0; overflow: hidden;}
+.pw-reset{background-color: #fff; border: 1px solid #dbdbdb; border-radius: 3px; margin: 60px auto 0; max-width: 935px; overflow: hidden; }
+.pw_reset_contents{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 5px;}
+.pw-reset-div{display: flex; align-content: stretch; align-items: stretch; justify-content: center; min-height: 0; min-width: 0; flex: 1 1 auto; margin-left: auto; margin-right: auto;}
+.reset-icon-space{display: flex; align-content: stretch; align-items: center; justify-content: flex-start; flex: 0 0 auto; margin-top: 24px; margin-bottom: 16px;}
+#reset-icon{height: 96px; width: 96px;}
+.reset_space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 0 44px 16px 44px;}
+.login_check_txt{font-size: 16px; line-height: 24px; margin: -6px 0 -6px; font-weight: 600; color: #262626; display: block; text-align: center;}
+.reset_space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 0 44px 16px 44px;}
+.email_input_txt{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #8e8e8e; display: block; text-align: center;}
+.reset_space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 0 44px 16px 44px;}
+.reset-label{background-color: #fafafa; border: 1px solid #dbdbdb; border-radius: 6px; display: flex; flex-grow: 1; justify-content: space-between; padding-right: 8px; position: relative; align-items: center;}
+.reset-focus-visible{border: 1px solid #a8a8a8;}
+.reset-input{border-radius: 6px; color: #262626; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; background: #fafafa; overflow: visible; border: 0; padding: 4px 9px; widows: 100%;}
+.reset-input:focus {outline: none;}
+.reset-label-name{align-items: center; color: #c7c7c7; font-size: 14px; left: 0; margin: 3px 9px; overflow: hidden; pointer-events: none; position: absolute; right: 0; text-overflow: ellipsis; transform-origin: left;}
+.reset-change-label{transform: scale(.714) translateY(-16px);}
+.reset-btn{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; color: #fff; position: relative; border: 1px solid transparent; background-color: #0095f6; }
+.reset-btn:disabled {opacity: .3;}
+.reset-input-change{padding: 8px; padding-bottom: 0;}
+.or-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 16px 44px; flex-direction: row;}
+.hr{flex-grow: 1; flex-shrink: 1; background-color: #dbdbdb; height: 1px; position: relative; top: .45em;}
+.or-txt{color: #8e8e8e; flex-grow: 0; flex-shrink: 0; font-size: 13px; font-weight: 600; line-height: 15px; margin: 0 18px; text-transform: uppercase;}
+.link-text{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; width: auto; user-select: auto; background-color: transparent; border: 0; display: inline; padding: 0; position: relative; color: #262626;} 
+.login-link-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 68px; right: 0; left: 0; bottom: 0;}
+.login-link-contents{border: 1px solid #dbdbdb; background-color: #fafafa; display: flex; align-content: stretch; align-items: stretch; justify-content: space-around; flex: 0 0 auto;}
+.login-reset-input{border-radius: 6px; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; overflow: visible; background-color: #fafafa; border: 0; width: 100%; padding: 8px; padding-bottom: 0; }
+.login-reset-input:disabled {background-color: #efefef; border-color: #8e8e8e; cursor: not-allowed;}
+.login-label{background-color: #efefef; border-color: #dbdbdb; color: #8e8e8e; cursor: not-allowed;}
+
+/* pw reset mail jsp */
+.pw-chal-section{display: flex; flex-direction: column; flex-grow: 1; min-height: 100%; overflow: hidden; bottom: env(safe-area-inset-bottom);}
+.pw-chal-main{background-color: #fafafa; flex-grow: 1;}
+.pw_recov{height: 60px; align-items: center; background-color: #fff; border-bottom: 1px solid #dbdbdb; position: fixed; top: 0; transition: height .2s ease-in-out; width: 100%; z-index: 3;}
+.pw_recov_nav{display: flex; align-items: center; flex-direction: row; justify-content: center; max-width: 975px; padding: 0 20px; transition: height .2s ease-in-out; width: 100%; z-index: 10; height: 60px;}
+.pw_nav_logo{flex: 1 0 127px;}
+.pw_reset_logo_area{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: flex-start; flex: 0 0 auto;}
+.reset_logo{margin-top: 7px; transition: opacity .1s ease-out;}
+.reset_logo img {max-height: 100%; max-width: 100%; object-fit: contain; vertical-align: baseline;}
+.pw_reset_btn_area{align-content: center; align-items: center; display: flex; flex-direction: row; flex-wrap: wrap; justify-content: flex-end; flex: 1 0 127px;}
+.other_account_login{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative;}
+.other_login_text{font-size: 16px; line-height: 24px; margin: -6px 0 -6px; font-weight: 400; color: #262626; display: block;}
+.challenge{display: flex; align-content: stretch; align-items: stretch; justify-content: center; flex: 1 1 auto; min-height: 0; min-width: 0; margin-top: 44px; overflow: hidden;}
+.pw_challenge{background-color: #fff; border: 1px solid #dbdbdb; border-radius: 3px; margin: 60px auto 0; max-width: 935px; overflow: hidden;}
+.chal_check{max-width: 360px; width: 360px;}
+.challenge_check_area{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 1 1 auto; min-height: 0; min-width: 0; margin-left: auto; margin-right: auto;}
+.challenge_check{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 40px 40px 24px;}
+.challenge_check h4{font-size: 16px; line-height: 24px; margin: -6px 0 -6px; display: block; text-align: center;}
+.challenge_text_area{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 0 40px 24px;}
+.challenge_text{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #8e8e8e; display: block; text-align: center;}
+.challenge_mail_address{font-weight: 600; display: inline; margin: 0; color: #262626;}
+.challenge_btn_area{display: flex; align-content:  stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 0 40px 32px;}
+.challenge_btn_area button {appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative;}
+
+/* pw recovery jsp */
+.pw-recovery-sercion{display: flex; flex-direction: column; flex-grow: 1; min-height: 100vh; overflow: hidden;}
+.pw-recovery-main{flex-grow: 1; order: 4; background-color: #fafafa;}
+.pw-recovery{flex-grow: 1; justify-content: center; margin: 44px 0; overflow: hidden;}
+.recovery{background-color: #fff; border: 1px solid #dbdbdb; border-radius: 3px; margin: 60px auto 0; max-width: 935px; overflow: hidden;}
+.recov-user-info{margin: auto; padding: 44px; width: 360px;}
+.recov_user_img{align-items: center; margin-bottom: 16px;}
+.recov_user_img span{background-color: #fafafa; border-radius: 50%; box-sizing: border-box; display: block; flex: 0 0 auto; overflow: hidden; position: relative;}
+.recov_user_img img{height: 100%; width: 100%;}
+.recov_username{align-items: center; margin-bottom: 20px;}
+.recov_username h4{display: block; color: #262626; font-weight: 600; font-size: 16px; line-height: 24px; margin: -6px 0 -6px;}
+.pw_change_form{display: block;}
+.new_pw{margin-bottom: 16px;}
+.new_pw_check{margin-bottom: 20px;}
+.new_pw_input{align-items: center; background: #fafafa; border: 1px solid #dbdbdb; border-radius: 3px; box-sizing: border-box; color: #262626; display: flex; flex-direction: row; font-size: 14px; position: relative; width: 100%;}
+.new_pw_focus_input {border-color: #a8a8a8;}
+.pw_recov_label{display: flex; height: 36px; flex: 1 0 0; padding: 0; position: relative; margin: 0; min-width: 0;}
+.recov_btn{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; border-radius: 4px; color: #fff; position: relative; width: 100%; padding: 12px 18px; border: 1px solid transparent; background-color: #0095f6;}
+.recov_btn:disabled {opacity: .3;}
+.recover-error-msg{color: #ed4956; margin-bottom: 20px; text-align: center;}

@@ -13,9 +13,11 @@
 </head>
 <body class="" style="">
 	<sec:authentication property="principal.username" var="username"/>
+	<sec:authentication property="principal.userNum" var="userNum"/>
 	<div id="react-root">
 		<section class="profile-home-section">
 			<div></div>
+			<c:import url="./temp/nav2.jsp"></c:import>
 			<main class="profile-home-main" role="main">
 				<div class="profile-homepage">
 					<header class="profile-info-header">
@@ -39,36 +41,63 @@
 								<h2 class="profile-username">${userVO.username }</h2>
 								<div class="profile-btn-space">
 									<div class="profile-btns">
-										<div class="dm-btn-space">
-											<button class="dm-btn" type="button">
-												<div class="dm-btn-txt">메시지 보내기</div>
-											</button>
-										</div>
-										<div class="follow-btn-space">
-											<div class="follow-btns">
-												<span class="follow-btns-span">
-													<span class="unfollow-btn">
-														<button class="unfollow-modal-btn">
-															<div class="follow-icon-space" style="height: 28px;">
-																<div class="follow-icon-background">
-																	<img alt="" class="follow-icon"  src="${pageContext.request.contextPath}/static/icons/follow-check.png">
-																</div>
-															</div>
-														</button>
-													</span>
-													<span class="arrow-btn-space">
-														<button class="recommend-btn">
-															<div class="recommend-icon-space">
-																<div class="arrow-icon-background">
-																	<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down.png">
-																	<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up.png" style="display: none;">
-																</div>
-															</div>
-														</button>
-													</span>
-												</span>
-											</div>
-										</div>
+										<c:choose>
+											<c:when test="${follow eq 1}">
+												<div class="dm-fol-btn-space">
+													<button class="dm-btn" type="button">
+														<div class="dm-btn-txt">메시지 보내기</div>
+													</button>
+												</div>
+												<div class="follow-btn-space">
+													<div class="follow-btns">
+														<span class="follow-btns-span">
+															<span class="unfollow-btn-space">
+																<button class="unfollow-modal-btn">
+																	<div class="follow-icon-space" style="height: 28px;">
+																		<div class="follow-icon-background">
+																			<img alt="" class="follow-icon"  src="${pageContext.request.contextPath}/static/icons/follow-check.png">
+																		</div>
+																	</div>
+																</button>
+															</span>
+															<span class="arrow-btn-space">
+																<button class="recommend-btn">
+																	<div class="recommend-icon-space">
+																		<div class="arrow-icon-background">
+																			<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down.png">
+																			<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up.png" style="display: none;">
+																		</div>
+																	</div>
+																</button>
+															</span>
+														</span>
+													</div>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="follow-btn-space">
+													<div class="follow-btns">
+														<span class="follow-btns-span">
+															<span class="unfollow-btn-space">
+																<button class="fol-btn" type="button"  data-user-num="${userNum}" data-follow-num="${userVO.userNum}">
+																	<div class="fol-btn-txt">팔로우</div>
+																</button>
+															</span>
+															<span class="arrow-btn-space">
+																<button class="fol-recommend-btn">
+																	<div class="recommend-icon-space">
+																		<div class="arrow-icon-background">
+																			<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down-white.png">
+																			<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up-white.png" style="display: none;">
+																		</div>
+																	</div>
+																</button>
+															</span>
+														</span>
+													</div>
+												</div>
+											</c:otherwise>
+										</c:choose>
 									</div>
 								</div>
 								<div class="more-info-space">
@@ -91,26 +120,26 @@
 									</span>
 								</li>
 								<li class="info-li">
-									<a class="info-name" href="/kopc_adopt/followers/" tabindex="0">
+									<span class="info-name follower" data-user-name="${userVO.username }" style="cursor: pointer;">
 										팔로워 
 										<span class="info-total" title="33,304">
-											33.3천
+											${count.followerCount}
 										</span>
-									</a>
+									</span>
 								</li>
 								<li class="info-li">
-									<a class="info-name" href="/gram/${userVO.username}/following" tabindex="0">
+									<span class="info-name following" data-user-name="${userVO.username }" style="cursor: pointer;">
 										팔로우 
 										<span class="info-total">
-											301
+											${count.followCount }
 										</span>
-									</a>
+									</span>
 								</li>
 							</ul>
 							<div class="profile-etc-info">
 								<h1 class="profile-nickname">${userVO.nickname}</h1>
 								<br>
-								<span style="white-space: pre-wrap;">
+								<span style="white-space: pre-line;">
 									${userVO.introduction}
 								</span> 
 							<a author_id="7964166036" class="profile-website" href="${userVO.website }" page_id="profilePage" rel="me nofollow noopener noreferrer" target="_blank">${userVO.website }</a>
@@ -218,6 +247,107 @@
 			</div>
 		</div>
 	</div>
+	<div class="following-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="팔로잉" class="follow-modal" role="dialog">
+			<div class="follow-modal-contents">
+				<div>
+					<div class="follow-modal-header">
+						<div class="follow-modal-blank"></div>
+						<h1 class="follow-modal-name">팔로잉</h1>
+						<div class="follow-modal-close-space">
+							<button class="follow-modal-close-btn" type="button">
+								<div class="follow-modal-close">
+									<span class="follow-modal-close-txt">&times;</span>
+								</div>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="follow-modal-list">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="follower-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="팔로잉" class="follow-modal" role="dialog">
+			<div class="follow-modal-contents">
+				<div>
+					<div class="follow-modal-header">
+						<div class="follow-modal-blank"></div>
+						<h1 class="follow-modal-name">팔로워</h1>
+						<div class="follow-modal-close-space">
+							<button class="follow-modal-close-btn" type="button">
+								<div class="follow-modal-close">
+									<span class="follow-modal-close-txt">&times;</span>
+								</div>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="follower-modal-list">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="unfollow-modal-container" role="presentation" style="display: none;">
+		<div class="unfollow-modal" role="dialog">
+			<div class="unfollow-modal-contents">
+				<div class="unfollow-modal-space">
+					<div class="unfollow-modal-img-space">
+						<div class="unfollow-modal-img-div">
+							<div class="unfollow-modal-img">
+								<c:choose>
+									<c:when test="${not empty userVO.fileName }">
+										<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" style="height: 90px; width: 90px;">
+									</c:when>
+									<c:otherwise>
+										<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg" style="height: 90px; width: 90px;">
+									</c:otherwise>
+								</c:choose>
+							</div>
+						</div>
+					</div>
+					<div class="unfollow-modal-txt-space">
+						<div class="unfollow-modal-txt-div">
+							<div class="unfollow-modal-check">
+								<div class="unfollow-modal-check-txt">
+									@${userVO.username}님의 팔로우를 취소하시겠어요?
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="unfollow-modal-button-space">
+						<button class="unfollow-modal-unfollow-btn" tabindex="0" data-user-num="${userNum}" data-follow-num="${userVO.userNum}">팔로우 취소</button>
+						<button class="unfollow-modal-cancel-btn modal-close" tabindex="0">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
+	<script type="text/javascript">
+		 $(".fol-btn").click(function () {
+			let followNum=${userVO.userNum};
+			let userNum=${userNum};
+			if(follow(true, followNum, userNum)==1){
+				location.reload(true);	
+			}
+		})
+
+	
+		$(".unfollow-modal-unfollow-btn").click(function(){	
+			let followNum=${userVO.userNum};
+			let userNum=${userNum};
+			if(follow(false, followNum, userNum)==0){
+				location.reload(true);	
+			}
+		})
+		
+
+	
+	</script>
 </body>
 </html>

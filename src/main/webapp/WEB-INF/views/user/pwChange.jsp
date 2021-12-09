@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profileEdit.css" type="text/css">
 </head>
 <body>
-	<c:import url="../temp/nav.jsp"></c:import>
+	<c:import url="../temp/nav2.jsp"></c:import>
 	<div id="react-root">
 		<section class="edit-section">
 			<sec:authentication property="principal" var="userVO"/>
@@ -33,10 +33,10 @@
 							<a class="edit-list not-selected" href="/gram/account/push/setting/" tabindex="0">푸시 알림</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
+							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
+							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>
 							<a class="edit-list not-selected" href="/gram/account/remove/permanent/" tabindex="0">회원 탈퇴</a>
@@ -101,7 +101,7 @@
 								</aside>
 								<div class="input-change">
 									<div class="pw-btn-space">
-										<button class="pw-btn"  type="button">비밀번호 변경</button>
+										<button class="pw-btn" disabled="disabled" type="button">비밀번호 변경</button>
 									</div>
 								</div>
 							</div>
@@ -112,7 +112,7 @@
 								<div class="input-change">
 									<div class="pw-change-space">
 										<div class="pw-change">
-											<a class="pw-txt-btn" href="/gram/account/password/reset/" tabindex="0">비밀번호를 잊으셨나요?</a>
+											<a class="pw-txt-btn" href="/gram/account/password/reset" tabindex="0">비밀번호를 잊으셨나요?</a>
 										</div>
 									</div>
 								</div>
