@@ -87,8 +87,5 @@
 		<div class="q5edG"></div>
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
-	<script type="text/javascript">
-		
-	</script>
 </body>
 </html>

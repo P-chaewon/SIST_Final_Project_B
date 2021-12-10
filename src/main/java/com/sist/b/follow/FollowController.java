@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.b.user.UserService;
@@ -43,6 +44,7 @@ public class FollowController {
 	}
 	
 	@PostMapping("/friendships/follow")
+	@ResponseBody
 	public ModelAndView follow(FollowVO followVO) throws Exception {
 		int result = followService.follow(followVO);
 		ModelAndView mv = new ModelAndView();
@@ -55,6 +57,7 @@ public class FollowController {
 	}
 	
 	@PostMapping("/friendships/unfollow")
+	@ResponseBody
 	public ModelAndView unFollow(FollowVO followVO) throws Exception {
 		int result  = followService.unFollow(followVO);
 		System.out.println("UNFOLLOW SUCCESS");

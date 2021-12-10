@@ -8,7 +8,6 @@ $(".follow-btn").on("click",function () {
 	if(followCount(true, followNum, userNum)>0){
 		$(this).hide();
 		$(this).siblings(".unfollow-btn").show();
-		$(".start-btn-space").show();
 	}
 })
 		
@@ -21,7 +20,6 @@ $(".unfollow-btn").on("click", function () {
 	} else {
 		$(this).hide();
 		$(this).siblings(".follow-btn").show();
-		$(".start-btn-space").hide();
 	}
 })
 
@@ -46,14 +44,7 @@ $(".recommend_following").click(function(){
 		$(this).siblings("#btn_follow").show();
 	}	
 })
-$(".fol-btn").click(function () {
-	let followNum=$(this).attr("data-follow-num");
-	let userNum=$(this).attr("data-user-num");
-	if(follow(true, followNum, userNum)==1){
-		console.log("follow");
-//		location.reload(true);		
-	}
-})
+
 
 function follow(check, followNum, userNum) {
 	let folCheck=0;

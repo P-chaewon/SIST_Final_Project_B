@@ -388,7 +388,13 @@
 			}
 		});
 		
-		
+		$(".fol-btn").click(function () {
+			let followNum=$(this).attr("data-follow-num");
+			let userNum=$(this).attr("data-user-num");
+			if(follow(true, followNum, userNum)==1){
+				location.reload(true);		
+			}
+		})
 		
 		$(".unfollow-modal-unfollow-btn").click(function(){	
 			let followNum=${userVO.userNum};
