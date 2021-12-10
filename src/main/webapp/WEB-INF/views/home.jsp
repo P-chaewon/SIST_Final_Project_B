@@ -179,14 +179,16 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="right_contents">
 				
 				<div class="myProfile">
+				
 					<c:choose>
 						<c:when test="${not empty userVO.fileName }">
 							<a href="/gram/${userVO.username}">
 								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
+							
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/gram/${userVO.username }">
+							<a href="/gram/${userVO.username}">
 								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							</a>
 						</c:otherwise>
