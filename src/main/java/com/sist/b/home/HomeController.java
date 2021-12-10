@@ -134,6 +134,13 @@ public class HomeController {
 		count.put("followCount", followCount);
 		count.put("followerCount", followerCount);
 		
+		//로그인 되어 있는 유저의 정보를 가지고 있는 userVO
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+	
+		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
+		
 		ModelAndView mv= new ModelAndView();
 
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
@@ -141,12 +148,7 @@ public class HomeController {
 		int follow = 0;
 		if(followService.userCheck(userVO, session)) {
 
-		//로그인 되어 있는 유저의 정보를 가지고 있는 userVO
-		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
-		SecurityContextImpl sc = (SecurityContextImpl)object;
-		Authentication authentication = sc.getAuthentication();
-	
-		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
+
 		
 		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
 
@@ -158,13 +160,14 @@ public class HomeController {
 			mv.addObject("follow", follow);
 			mv.setViewName("profile");
 		}
-		
+		}
 
 		mv.addObject("count", count);
 
 		mv.addObject("fromUserNum", loginUserVO.getUserNum());
 
 		mv.addObject("userVO", userVO);
+		
 		return mv;
 	}
 	
