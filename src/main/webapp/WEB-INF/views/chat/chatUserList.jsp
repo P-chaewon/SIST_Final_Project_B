@@ -10,7 +10,7 @@
 		
 		<div class="user-list-nick">
 			<p>${list.userVO.username}</p>
-			<p>접속중표시 뜨게?</p>
+			<p>***</p>
 		</div>
 	</div>
 	<!-- ${list.userNum}

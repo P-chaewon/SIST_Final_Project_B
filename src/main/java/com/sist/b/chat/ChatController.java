@@ -55,7 +55,17 @@ public class ChatController {
 		return "redirect:/chat/"+chatRoomNum;
 	}
 	
+	/* 채팅폼 */
+	@GetMapping("/getChatForm")
+	public ModelAndView getChatForm() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("chat/chatForm");
+		
+		return mv;
+	}
 	
+	/* 채팅하고있는 유저 리스트 가져옴 */
 	@GetMapping("/getChatUserList")
 	public ModelAndView getChatUserList(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();

@@ -6,6 +6,28 @@
 var stompClient = null;
 
 
+// 채팅 폼 출력 --필요
+function getChatForm() {
+	$.ajax({
+		type: "GET"
+		, url: "./getChatForm"
+		, data: {
+			
+		}
+		, success: function(result) {
+			result = result.trim();
+			$("#chat-right-area").html(result);
+		}
+		, error: function(error) {
+			console.log(error);
+		}
+	})
+}
+
+
+/*
+ 채팅중인 유저 리스트 출력
+*/
 function getChatUserList() {
 	$.ajax({
 		type: "GET"
