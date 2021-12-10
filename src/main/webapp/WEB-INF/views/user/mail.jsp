@@ -21,14 +21,14 @@
 								<div class="confirmation">
 									<h1 class="sns-txt">Instagram</h1>
 									<div class="confirmation-txt" style="max-width: 350px;">
-										<span aria-label="이메일 확인" class="glyphsSpriteEmail_confirm u-__7"></span>
+										<img alt="" src="${pageContext.request.contextPath}/static/icons/mail.png" >
 										<div class="mail-txt-space">
 											<div class="code-input-txt">인증 코드 입력</div>
 										</div>
 										<div class="rt-space">
 											<div class="send-mail">
-												chae1zd.b@gmail.com 주소로 전송된 인증 코드를 입력하세요. 
-												<button class="rt-btn" type="button">코드 재전송.</button>
+												abcd@gmail.com 주소로 전송된 인증 코드를 입력하세요. 
+												<button class="rt-btn" type="button">코드 재전송</button>
 											</div>
 										</div>
 									</div>
@@ -46,7 +46,6 @@
 												</div>
 												<div class="code-error">
 													<div class="code-error-txt">
-														코드가 유효하지 않습니다. 새 코드를 요청하세요.
 													</div>
 												</div>
 											</div>

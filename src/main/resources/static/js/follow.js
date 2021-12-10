@@ -29,7 +29,7 @@ $(".start-btn").click(function(){
 	location.reload(true);
 })
 
-$("#btn_follow").click(function(){
+$(".recommend_follow").click(function(){
 	let followNum=$(this).attr("data-follow-num");
 	let userNum=$(this).attr("data-user-num");
 	if(follow(true, followNum, userNum)==1){
@@ -38,7 +38,7 @@ $("#btn_follow").click(function(){
 	}	
 })
 
-$("#btn_following").click(function(){
+$(".recommend_following").click(function(){
 	let followNum=$(this).attr("data-follow-num");
 	let userNum=$(this).attr("data-user-num");
 	if(follow(false, followNum, userNum)==0){

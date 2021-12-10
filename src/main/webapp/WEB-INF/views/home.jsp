@@ -179,8 +179,8 @@
 										<span class="sub_span">${user.nickname}</span>
 									</div>
 								</div>
-								<button class="btn_follow" id="btn_follow" type="button" data-user-num="${userVO.userNum}" data-follow-num="${user.userNum}">팔로우</button>
-								<button class="btn_following" id="btn_following" type="button" data-user-num="${userVO.userNum}" data-follow-num="${user.userNum}" style="display: none;">팔로잉</button>
+								<button class="btn_follow recommend_follow" id="btn_follow" type="button" data-user-num="${userVO.userNum}" data-follow-num="${user.userNum}">팔로우</button>
+								<button class="btn_following recommend_following" id="btn_following" type="button" data-user-num="${userVO.userNum}" data-follow-num="${user.userNum}" style="display: none;">팔로잉</button>
 							</li>
 						</c:forEach>
 					</ul>

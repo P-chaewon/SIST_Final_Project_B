@@ -211,7 +211,7 @@ public class UserController {
 	
 	@GetMapping("mail")
 	public String mail() throws Exception {
-		return "user/clause";
+		return "user/mail";
 	}
 	
 	@GetMapping("challenge")

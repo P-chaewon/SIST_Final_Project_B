@@ -82,7 +82,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .back-btn{appearance:none; background: 0 0; box-sizing: border-box; cursor: pointer; font-weight: 600; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select:none; width: auto; border: 0; color: #0095f6; display: inline; padding: 0; position: relative;}
 .code-error{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px;}
 .code-error-txt{font-size: 14px; line-height: 18px; margin: -3px 0 -4px; font-weight: 400; color: #ed4956; display: block; text-align: center;}
-
+.confirmation-txt img{height: 72px;}
 .clause-section{display: flex; flex-direction: column; flex-grow: 1; min-height: 100vh; overflow: hidden;}
 .clause-main{flex-grow: 1; order: 4; background-color: #fafafa;}
 .clause-agree-space{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: center; flex: 1 1 auto; min-width: 0; margin-bottom: 44px; overflow: hidden; min-height: 100%;}

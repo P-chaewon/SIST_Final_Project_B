@@ -9,15 +9,14 @@
 <title>Insert title here</title>
 <c:import url="./temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profile.css">
-<c:import url="./temp/nav.jsp"></c:import>
 </head>
 <body class="" style="">
+	<c:import url="./temp/nav2.jsp"></c:import>
 	<sec:authentication property="principal.username" var="username"/>
 	<sec:authentication property="principal.userNum" var="userNum"/>
 	<div id="react-root">
 		<section class="profile-home-section">
 			<div></div>
-			<c:import url="./temp/nav2.jsp"></c:import>
 			<main class="profile-home-main" role="main">
 				<div class="profile-homepage">
 					<header class="profile-info-header">
