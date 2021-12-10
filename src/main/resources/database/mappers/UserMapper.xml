@@ -78,7 +78,17 @@
  		insert into userlog (userlogNum, userNum, loginDate) 
  		values (null, #{userNum}, now());
  	</insert>
+
+ 	<update id="setUnenabled" parameterType="UserVO">
+ 		update user set enabled = 0
+		where userNum = #{userNum}
+ 	</update>
  	
+ 	<update id="setEnabled" parameterType="UserVO">
+ 		update user set enabled = 1
+		where userNum = #{userNum}
+ 	</update>
+
   </mapper>
   
  

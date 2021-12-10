@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.sist.b.suspend.SuspendRepository">
+	<select id="getList" resultType="SuspendVO">
+		select S.*, U.username
+		from suspend S left join user U
+		on (S.userNum = U.userNum)
+		order by suspendNum desc
+	</select>
+	
+	<insert id="setInsert" parameterType="SuspendVO">
+		insert into suspend (suspendNum, userNum, suspendDate, suspendReason)
+		values (null, #{userNum}, now(), #{suspendReason})
+	</insert>
+	
+	<delete id="setDelete" parameterType="SuspendVO">
+		delete from suspend 
+		where userNum = #{userNum}
+	</delete>
+</mapper>

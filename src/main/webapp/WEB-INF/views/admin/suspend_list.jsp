@@ -8,29 +8,32 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="../static/css/admin/membership_list.css">
-<link rel="stylesheet" type="text/css" href="../static/css/nav_footer.css">
+<link rel="stylesheet" type="text/css" href="../static/css/admin/suspend_list.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<main class="wrapper">
-		<table>
-			<tr>
-				<td>종류</td>
-				<td>금액</td>
-				<td>선택</td>
-			</tr>
-			<c:forEach items="${membershipVOs}" var="membershipVO">
+		<form id="frm" action="./suspend" method="post">
+			<table>
 				<tr>
-					<td>${membershipVO.membershipName}</td>
-					<td>${membershipVO.membershipAmount}원</td>
-					<td><input type="radio" name="ck" class="ck" data-membership-num="${membershipVO.membershipNum}"></td>
+					<td>사용자</td>
+					<td>정지일</td>
+					<td>사유</td>
+					<td>선택</td>
 				</tr>
-			</c:forEach>
-		</table>
+				<c:forEach items="${suspendVOs}" var="suspendVO">
+					<tr>
+						<td>${suspendVO.username}</td>
+						<td>${suspendVO.suspendDate}</td>
+						<td>${suspendVO.suspendReason}</td>
+						<td><input type="radio" name="userNum" class="ck" value="${suspendVO.userNum}" data-user-name="${suspendVO.username}"></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
 		
 		<div class="b">
-			<button id="update">수정</button>
-			<button id="delete">삭제</button>
+			<button id="unblock">차단해제</button>
 		</div>
 	</main>
 	
@@ -87,9 +90,6 @@
 			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 		});
 	</script>
-	
-	<script type="text/javascript" src="../static/js/admin/membership_list.js"></script>
+	<script type="text/javascript" src="../static/js/admin/suspend_list.js"></script>
 </body>
-<!-- footer -->
-<c:import url="../temp/nav_footer.jsp"></c:import>
 </html>

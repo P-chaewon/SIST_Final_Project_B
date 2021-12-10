@@ -35,6 +35,8 @@ import com.sist.b.follow.FollowService;
 
 import com.sist.b.post.PostService;
 import com.sist.b.post.PostVO;
+import com.sist.b.report.ReportService;
+import com.sist.b.report.ReportVO;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
@@ -53,7 +55,11 @@ public class HomeController {
 	private UserService userService;
 	
 	@Autowired
+
 	private FollowService followService;
+
+	private ReportService reportService;
+
 
 	@Autowired
 	private LikesService likesService;
@@ -129,10 +135,17 @@ public class HomeController {
 		count.put("followerCount", followerCount);
 		
 		ModelAndView mv= new ModelAndView();
+
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
 		//팔로우가 1이면 내가 팔로우 하고있는 사람
 		int follow = 0;
 		if(followService.userCheck(userVO, session)) {
+
+		//로그인 되어 있는 유저의 정보를 가지고 있는 userVO
+		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
+		
+		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
+
 			mv.setViewName("myProfile");
 		} else {
 			if(followService.followCheck(userVO, session)) {
@@ -142,11 +155,16 @@ public class HomeController {
 			mv.setViewName("profile");
 		}
 		
+
 		mv.addObject("count", count);
+
+		mv.addObject("fromUserNum", loginUserVO.getUserNum());
+
 		mv.addObject("userVO", userVO);
 		return mv;
 	}
 	
+
 
 	@ResponseBody
 	@GetMapping("insertLikes.do")
@@ -226,5 +244,22 @@ public class HomeController {
 		
 	}
 	
-	
+
+	@PostMapping("/{username}")
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		//파라미터 username으로 가져온 userVO
+		UserVO userVO = userService.getSelectOne(username);
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		
+		// 신고 정보 insert
+		int result = reportService.setInsert(reportVO);
+		
+		mv.addObject("userVO", userVO);
+		mv.setViewName("profile");
+		return mv;
+	}
+
 }

@@ -8,29 +8,60 @@
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
-<link rel="stylesheet" type="text/css" href="../static/css/admin/membership_list.css">
-<link rel="stylesheet" type="text/css" href="../static/css/nav_footer.css">
+<link rel="stylesheet" type="text/css" href="../static/css/admin/report_list.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<main class="wrapper">
-		<table>
-			<tr>
-				<td>종류</td>
-				<td>금액</td>
-				<td>선택</td>
-			</tr>
-			<c:forEach items="${membershipVOs}" var="membershipVO">
+		<div class="t1">* 사유에 마우스를 올리면 신고 사유를 확인할 수 있습니다.</div>
+		<form id="frm" action="./report" method="post">
+			<table>
 				<tr>
-					<td>${membershipVO.membershipName}</td>
-					<td>${membershipVO.membershipAmount}원</td>
-					<td><input type="radio" name="ck" class="ck" data-membership-num="${membershipVO.membershipNum}"></td>
+					<td>유형</td>
+					<td>신고자</td>
+					<td>피신고자</td>
+					<td>사유</td>
+					<td>정지</td>
+					<td>선택</td>
 				</tr>
-			</c:forEach>
-		</table>
+				<c:forEach items="${reportVOs}" var="reportVO">
+					<tr>
+						<td>
+							<c:if test="${reportVO.reportType eq 'comment'}">
+								댓글
+							</c:if>
+							<c:if test="${reportVO.reportType eq 'post'}">
+								게시물
+							</c:if>
+							<c:if test="${reportVO.reportType eq 'user'}">
+								사용자
+							</c:if>
+						</td>
+						<td>${reportVO.fromUserName}</td>
+						<td>${reportVO.toUserName}</td>
+						<td>
+							<span class="tooltip">
+								- <span class="tooltip-text">${reportVO.reason}</span>
+							</span>
+						</td>
+						<td>
+							<c:if test="${reportVO.enabled}">
+								N
+							</c:if>
+							<c:if test="${!reportVO.enabled}">
+								Y
+							</c:if>
+						</td>
+						<td>
+							<input type="radio" class="ck" name="userNum" value="${reportVO.toUserNum}" data-user-name="${reportVO.toUserName}" data-enabled="${reportVO.enabled}">
+						</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</form>
 		
 		<div class="b">
-			<button id="update">수정</button>
-			<button id="delete">삭제</button>
+			<button id="block">정지</button>
 		</div>
 	</main>
 	
@@ -87,9 +118,6 @@
 			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 		});
 	</script>
-	
-	<script type="text/javascript" src="../static/js/admin/membership_list.js"></script>
+	<script type="text/javascript" src="../static/js/admin/report_list.js"></script>
 </body>
-<!-- footer -->
-<c:import url="../temp/nav_footer.jsp"></c:import>
 </html>

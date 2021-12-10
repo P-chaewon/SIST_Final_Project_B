@@ -202,4 +202,11 @@ public class UserService implements UserDetailsService{
 		return ip;
 	}
 	
+	public int setUnenabled(UserVO userVO) throws Exception {
+		return userRepository.setUnenabled(userVO);
+	}
+	
+	public int setEnabled(UserVO userVO) throws Exception {
+		return userRepository.setEnabled(userVO);
+	}
 }

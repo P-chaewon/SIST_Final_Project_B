@@ -24,6 +24,7 @@
 			left join
 			adFile AF
 		using (adNum)
+		order by A.adNum desc
 	</select>
 	
 	<select id="getOne" parameterType="AdVO" resultMap="getListResult">

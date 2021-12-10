@@ -22,4 +22,12 @@ public class MembershipService {
 	public int setInsert(MembershipVO membershipVO) throws Exception {
 		return membershipRepository.setInsert(membershipVO);
 	}
+	
+	public int setUpdate(MembershipVO membershipVO) throws Exception {
+		return membershipRepository.setUpdate(membershipVO);
+	}
+	
+	public int setDelete(MembershipVO membershipVO) throws Exception {
+		return membershipRepository.setDelete(membershipVO);
+	}
 }

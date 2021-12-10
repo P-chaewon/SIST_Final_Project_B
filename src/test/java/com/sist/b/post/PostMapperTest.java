@@ -23,6 +23,17 @@ class PostMapperTest {
 		assertNotEquals(0, result);
 	}
 
-	
+	//@Test
+		void filetest()throws Exception {
+			PostFilesVO postFilesVO = new PostFilesVO();
+			postFilesVO.setPostNum(9L);
+			//postFilesVO.setFileName("test");
+			postFilesVO.setOriName("test");
+			
+			int result = postRepository.setFilesInsert(postFilesVO);
+			
+			assertNotEquals(0, result);
+		}
+
 	
 }

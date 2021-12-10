@@ -30,5 +30,9 @@ public interface UserRepository {
 	public int setDeleteTemporary(UserVO userVO) throws Exception;
 	//활성 계정으로 전환
 	public int setEnabledInsert(UserVO userVO) throws Exception;
-	
+	//관리자 : 계정 차단
+	public int setUnenabled(UserVO userVO) throws Exception;
+	//관리자 : 계정 차단 해제
+	public int setEnabled(UserVO userVO) throws Exception;
+
 }
