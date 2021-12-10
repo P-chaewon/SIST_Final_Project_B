@@ -9,6 +9,7 @@
 <c:import url="../temp/head.jsp"></c:import>
 <c:import url="../temp/admin_nav.jsp"></c:import>
 <link rel="stylesheet" type="text/css" href="../static/css/admin/membership_list.css">
+<link rel="stylesheet" type="text/css" href="../static/css/nav_footer.css">
 </head>
 <body>
 	<main class="wrapper">
@@ -89,4 +90,6 @@
 	
 	<script type="text/javascript" src="../static/js/admin/membership_list.js"></script>
 </body>
+<!-- footer -->
+<c:import url="../temp/nav_footer.jsp"></c:import>
 </html>

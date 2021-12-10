@@ -156,3 +156,7 @@ a:visited {
 a:hover {
 	color: #8E8E8E;
 } 
+
+footer {
+	margin-top: 40%;
+}

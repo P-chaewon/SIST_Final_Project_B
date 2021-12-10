@@ -45,7 +45,6 @@
 			</table>
 		</form:form>
 	</main>
-
 <script type="text/javascript" src="../../static/js/ad/insert.js"></script>
 </body>
 </html>
