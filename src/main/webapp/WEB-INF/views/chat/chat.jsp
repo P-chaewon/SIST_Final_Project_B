@@ -48,17 +48,9 @@
 					</div>
 					<!-- 채팅 좌측 상단 부분 끝 -->
 					<!-- 채팅 좌측 하단(채팅유저리스트) -->
-					<div class="chat-user-list-area">
+					<div id="chatUserList" class="chat-user-list-area">
 						
-						<div class="chat-user-list-box">
-							<div class="user-list-img">
-								<div class="img-back"></div>
-							</div>
-							
-							<div class="user-list-nick">
-								test02
-							</div>
-						</div>
+						
 					</div>
 					<!-- 채팅 좌측 하단 끝 -->
 				</div>
