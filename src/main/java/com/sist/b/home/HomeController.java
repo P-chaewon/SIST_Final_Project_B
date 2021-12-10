@@ -142,6 +142,10 @@ public class HomeController {
 		if(followService.userCheck(userVO, session)) {
 
 		//로그인 되어 있는 유저의 정보를 가지고 있는 userVO
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+	
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
 		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
