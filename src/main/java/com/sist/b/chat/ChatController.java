@@ -1,5 +1,7 @@
 package com.sist.b.chat;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -34,9 +36,9 @@ public class ChatController {
 
 	
 	@RequestMapping("/chat/{chatRoomNum}")
-	public String goChat(@PathVariable("chatRoomNum") Long chatRoomNum, HttpServletRequest request) {
+	public String goChat(@PathVariable("chatRoomNum") Long chatRoomNum, HttpServletRequest request) throws Exception {
 		System.out.println("go Chat");
-		System.out.println(request.getHeader("REFERER"));
+		System.out.println("getHeader:"+ request.getHeader("REFERER"));
 		
 		return "chat/chat";
 	}
@@ -45,6 +47,7 @@ public class ChatController {
 	@GetMapping("/chat/newChat")
 	public String getChatRoom(ChatRoomJoinVO chatRoomJoinVO, Long chatUserNum) throws Exception {
 		
+		//채팅 상대 유저 번호
 		chatRoomJoinVO.setUserNum(1L);
 		
 		Long chatRoomNum = chatRoomJoinService.newChatRoom(chatRoomJoinVO, chatUserNum);
@@ -53,9 +56,29 @@ public class ChatController {
 	}
 	
 	
+	@GetMapping("/getChatUserList")
+	public ModelAndView getChatUserList(HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    SecurityContextImpl sc = (SecurityContextImpl)object;
+	    Authentication authentication = sc.getAuthentication();
+	    UserVO userVO = (UserVO)authentication.getPrincipal(); 
+		
+		List<ChatRoomJoinVO> ar = chatRoomJoinService.getChatUserList(userVO);
+		
+		
+		
+		mv.addObject("list", ar);
+		mv.setViewName("chat/chatUserList");
+		
+		return mv;
+	}
+	
+	
 	/* chat form */
 	@GetMapping("/chat")
-	public ModelAndView chat(HttpSession session) {
+	public ModelAndView chat(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");

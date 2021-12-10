@@ -4,6 +4,23 @@
  */
  
 var stompClient = null;
+
+
+function getChatUserList() {
+	$.ajax({
+		type: "GET"
+		, url: "./getChatUserList"
+		, success: function(result) {
+			result = result.trim();
+			$("#chatUserList").html(result);
+		}, error: function(error) {
+			console.log(error);
+		}
+	})
+}
+
+
+
 	
 function setConnected(connected) {
   $("#connect").prop("disabled", connected);
@@ -70,6 +87,8 @@ $(function () {
     e.preventDefault();
   });
   connect();
+  
+  getChatUserList();
   
   /* $( "#connect" ).click(function() { connect(); }); */
   $( "#disconnect" ).click(function() { disconnect(); });

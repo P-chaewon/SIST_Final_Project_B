@@ -5,17 +5,34 @@
   
   <mapper namespace="com.sist.b.chat.chatroom.ChatRoomJoinRepository">
   
-  	<insert id="setChatRoomJoin" parameterType="com.sist.b.chat.chatroom.ChatRoomJoinVO">
+  	<resultMap type="ChatRoomJoinVO" id="getChatUserListResult">
+  		<id column="userNum" property="userNum" />
+  		<result column="roomNum" property="roomNum" />
+  		<result column="exitDate" property="exitDate" />
+  		<association property="userVO" javaType="UserVO">
+  			<result column="username" property="username"/>
+  		</association>
+  	</resultMap>
+  
+  	<select id="getChatUserList" parameterType="UserVO" resultMap="getChatUserListResult">
+  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username
+		FROM CHATROOMJOIN CRJ
+		JOIN USER U
+		ON (U.userNum = CRJ.userNum)
+		WHERE CRJ.userNum NOT IN (#{userNum})
+  	</select>
+  
+  	<insert id="setChatRoomJoin" parameterType="ChatRoomJoinVO">
   		INSERT INTO CHATROOMJOIN (JOINNUM, USERNUM, ROOMNUM, EXITDATE)
   		VALUES (0, #{userNum}, #{roomNum}, now())
   	</insert>
   
-  	<insert id="setNewChatRoom" useGeneratedKeys="true" keyProperty="roomNum" parameterType="com.sist.b.chat.chatroom.ChatRoomVO">
+  	<insert id="setNewChatRoom" useGeneratedKeys="true" keyProperty="roomNum" parameterType="ChatRoomVO">
   		INSERT INTO CHATROOM (ROOMNUM)
   		VALUES(#{roomNum})
   	</insert>
   
-  	<select id="getChatRoom" parameterType="com.sist.b.chat.chatroom.ChatRoomJoinVO" resultType="Integer">
+  	<select id="getChatRoom" parameterType="ChatRoomJoinVO" resultType="Integer">
   		SELECT count(*) FROM CHATROOMJOIN WHERE userNum = #{userNum} AND roomNum = #{roomNum}
   	</select> 
   

@@ -29,6 +29,9 @@
 
   	<typeAlias type="com.sist.b.user.UserlogVO" alias="UserlogVO"/>
   	<typeAlias type="com.sist.b.follow.FollowVO" alias="FollowVO"/>
+  	
+  	<typeAlias type="com.sist.b.chat.chatroom.ChatRoomJoinVO" alias="ChatRoomJoinVO"/>
+  	<typeAlias type="com.sist.b.chat.chatroom.ChatRoomVO" alias="ChatRoomVO"/>
 
   </typeAliases>
   

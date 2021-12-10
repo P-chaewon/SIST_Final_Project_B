@@ -1,5 +1,7 @@
 package com.sist.b.chat.chatroom;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,17 @@ public class ChatRoomJoinService {
 
 	@Autowired
 	private ChatRoomJoinRepository chatRoomJoinRepository;
+	
+	
+	/*
+	 * getChatUserList
+	 * 나와 채팅에 참여하고 있는 유저를 구함
+	 * ******* sujin
+	 */
+	public List<ChatRoomJoinVO> getChatUserList(UserVO userVO) throws Exception {
+		return chatRoomJoinRepository.getChatUserList(userVO);
+	}
+	
 	
 	/*
 	 * newChatRoom
