@@ -7,9 +7,14 @@ nav{
 	height: 54px;
 	top: 0;
 	display: flex;
+	flex-direction: row;
     justify-content: center;
     background-color: white;
     border-bottom: 1px solid #DBDBDB;
+}
+
+nav div{
+	flex-direction: row;
 }
 
 .nav_container{
@@ -33,6 +38,7 @@ nav{
 	width: 24px;
 	height: 24px;
 	margin-right: 20px;
+	cursor: pointer;
 }
 
 .logo_img{

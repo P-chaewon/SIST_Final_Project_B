@@ -14,7 +14,13 @@
   	</delete>
   	
   	<select id="myFollowList" parameterType="UserVO" resultMap="FollowListResult">
-  		select * from user U inner join follow F on U.userNum=F.followNum where F.userNum=#{userNum}
+  		select * from user U inner join follow F 
+  		on U.userNum=F.followNum where F.userNum=#{userNum} order by F.followDate desc
+  	</select>
+  	
+  	<select id="myFollowerList" parameterType="UserVO" resultMap="FollowListResult">
+  		select * from user U inner join follow F 
+  		on U.userNum=F.userNum where F.followNum=#{userNum} order by F.followDate desc
   	</select>
   	
   	<resultMap type="UserVO" id="FollowListResult">
@@ -30,25 +36,20 @@
 	  	</collection>
   	</resultMap>
   	
-  	<select id="userList" parameterType="UserVO" resultMap="userListResult">
-  		select * from user_role UR inner join user U 
-		on UR.userNum=U.userNum 
-		left join follow F 
-		on U.userNum=F.userNum 
-		where UR.rolenum=2 and U.username not in (#{username})
+  	<select id="userList" parameterType="UserVO" resultType="UserVO">
+  		select * from user U left join 
+  			(select followNum, count(userNum) as count from follow group by followNum) F 
+			on (U.userNum=F.followNum) 
+		where U.enabled=1 and U.userNum!=#{userNum} and 
+  		U.userNum not in (select followNum from follow where userNum=#{userNum}) 
+  		order by count desc limit #{userCount};
   	</select>
   	
-  	<resultMap type="UserVO" id="userListResult">
-  		<id column="userNum" property="userNum"/>
-  		<result column="nickname" property="nickname"/>
-  		<result column="username" property="username"/>
-  		<result column="fileName" property="fileName"/>
-  		<result column="enabled" property="enabled"/>
-  		<collection property="follows" javaType="List" ofType="FollowVO">
-  			<result column="followNum" property="followNum"/>
-  			<result column="userNum" property="userNum"/>
-  			<result column="followDate" property="followDate"/>
-  		</collection>
-  	</resultMap>
-  
+  	<select id="followCount" parameterType="Long" resultType="Long">
+  		select count(followNum) from follow where userNum=#{userNum};
+  	</select>
+  	
+  	<select id="followerCount" parameterType="Long" resultType="Long">
+  		select count(userNum) from follow where followNum=#{followNum}
+  	</select>
   </mapper>

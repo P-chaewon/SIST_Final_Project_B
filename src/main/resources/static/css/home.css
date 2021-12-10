@@ -200,7 +200,7 @@ button.submit_comment:focus {
 }
 
 .section_recommend{
-	height: 180px;
+	height: 245px;
 	padding: 14px 16px;
 	overflow: hidden; 
 }
@@ -225,8 +225,12 @@ button.submit_comment:focus {
 .myProfile div span {
     display: block;
 }
-.myProfile div span.nickname {
-    margin-bottom: 4px;
+.myProfile div a.nickname {
+	display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #262626;
+    text-decoration: none;
 }
 /* story & recommendation */
 .recommend_title {
@@ -240,9 +244,39 @@ button.submit_comment:focus {
     color: #8e8e8e;
     font-weight: 600;
 }
+
+.all_recommend_list{
+	user-select: auto;
+	appearance: none;
+	background: 0 0;
+	box-sizing: border-box;
+	cursor: pointer;
+	font-weight: 600;
+	text-align: center;
+	text-transform: inherit;
+	text-overflow: ellipsis; 
+	width: auto;
+	user-select: auto;
+	background-color: transparent;
+	border: 0;
+	display: inline;
+	padding: 0;
+	position: relative;
+	color: #262626;
+	text-decoration: none;
+}
+
+.all-recommend-title{
+	font-size: 12px; 
+	line-height: 16px;
+	margin: -2px 0 -3px;
+	display: block;
+}
+
 .recommend-list li {
     display: flex;
     align-items: flex-start;
+    margin-bottom: 10px;
 }
 
 .profile_text {
@@ -251,28 +285,54 @@ button.submit_comment:focus {
 .profile_text {
     display: inline-block;
     margin-left: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
-.profile_text span {
+.profile_text a {
     display: block;
+    text-decoration: none;
+    color: #262626;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.profile_text span.nickname {
-    margin-bottom: 5px;
-}
+
 .recommend_list li {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    margin-bottom: 7px;
 }
 .btn_follow {
+	background: 0 0;
+	border: 0;
 	float:right;
-	margin-top: 17px;
+	margin-top: 13px;
     color: #0095f6;
     font-weight: 600;
     font-size: 12px;
+    cursor: pointer;
 }
+
+.btn_following{
+	background: 0 0;
+	border: 0;
+	float:right;
+	margin-top: 13px;
+    color: #262626;
+    font-weight: 600;
+    font-size: 12px;
+    cursor: pointer;
+}
+
 .recommend_profile {
     display: inline-block;
     
+}
+
+.recommend_profile a {
+	text-decoration: none;
 }
 
 footer p {

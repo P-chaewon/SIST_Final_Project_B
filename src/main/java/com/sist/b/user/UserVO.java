@@ -25,6 +25,8 @@ public class UserVO implements UserDetails{
 	private String website;
 	private String introduction;
 	private boolean enabled;
+	private boolean following;
+	private Integer userCount;
 	
 	private List<RoleVO> roles;
 
@@ -55,8 +57,6 @@ public class UserVO implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	
-	
 	
 
 }

@@ -28,4 +28,7 @@ public interface UserRepository {
 	public int setDelete(UserVO userVO) throws Exception;
 	//비활성 계정으로 전환
 	public int setDeleteTemporary(UserVO userVO) throws Exception;
+	//활성 계정으로 전환
+	public int setEnabledInsert(UserVO userVO) throws Exception;
+	
 }

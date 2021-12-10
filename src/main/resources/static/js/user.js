@@ -3,13 +3,13 @@
  */
 
 /*input 클릭 시 span 스타일 변경*/
-$(".aInput").on("focus",function(e){	
+$(".user-input").on("focus",function(e){	
 	$(this).parents(".entry-text").addClass("focus-visible");	
 	$(this).parent().next().children("span").removeAttr("class");
 })
 
 /*input value가 있을 때*/
-$(".aInput").on("input",function(){
+$(".user-input").on("input",function(){
 	if($(this).val()==''){
 		$(this).siblings(".change-label").addClass("label-name");
 		$(this).siblings(".label-name").removeClass("change-label");
@@ -22,18 +22,22 @@ $(".aInput").on("input",function(){
 })
 
 /*input 포커스 잃었을 때 스타일 변경*/
-$(".aInput").on("blur",function(){
+$(".user-input").on("blur",function(){
 	$(".entry-text").removeClass("focus-visible");
 })
 
 /*로그인 page에서의 button disabled 삭제*/
-$(".aInput").on("input",function(){
-	if($("#username").val().length>1&&$("#password").val().length>5){
+$(".login-input").on("input",function(){
+	let username = $("#login-username").val().length;
+	let password = $("#login-password").val().length;
+	if(username>0 && password>5){
 		$(".login-btn").removeAttr("disabled");
 	} else {
 		$(".login-btn").attr("disabled", "disabled");
 	}
 })
+
+
 
 /*회원가입 페이지 유효성 검사*/
 /*휴대폰 번호 검사*/
@@ -143,7 +147,7 @@ $("#pwCheck").on("change", function(){
 	console.log(pwCheckPass);
 })
 /*유효성검사 전부 통과하면 button disabled 삭제*/
-$(".aInput").on("change", function(){
+$(".signup-input").on("change", function(){
 	if(phonePass==1 && mailPass==1 && nickPass==1 && idPass==1 && pwPass==1 && pwCheckPass==1){
 		$(".signup-btn").removeAttr("disabled");
 	} else {
@@ -151,6 +155,20 @@ $(".aInput").on("change", function(){
 	}
 	
 })
+
+
+/* 비밀번호 찾기 후 새 비밀번호 설정 시 버튼 disabled */
+$(".recov-input").on("input", function(){	
+	let recovPw = $("#recover-pw").val().length; 
+	let recovPwCheck = $("#recover-pw-check").val().length;
+			
+	if(recovPw!=0 && recovPwCheck!=0){
+		$(".recov_btn").removeAttr("disabled");
+	} else {
+		$(".recov_btn").attr("disabled", "disabled");
+	}	
+})
+
 
 /*phone의 길이가 10 or 11이어야 true*/
 function phoneCheck(phone){

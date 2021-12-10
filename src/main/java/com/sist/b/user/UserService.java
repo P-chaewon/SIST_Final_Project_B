@@ -5,6 +5,7 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -38,7 +39,7 @@ public class UserService implements UserDetailsService{
 	@Autowired
 	private FileManager fileManager;
 	@Autowired
-	private ResourceLoader resourceLoader;
+	private ServletContext servletContext;                    
 		
 	public int setSignup(UserVO userVO) throws Exception {
 		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
@@ -59,7 +60,10 @@ public class UserService implements UserDetailsService{
 		UserVO userVO = null;
 		try {
 			userVO = userRepository.getLogin(username);
-			getUserIp();
+			if(!userVO.isEnabled()) {
+				int result = userRepository.setEnabledInsert(userVO);
+				userVO.setEnabled(true);
+			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -67,6 +71,7 @@ public class UserService implements UserDetailsService{
 		if(userVO == null) {
 			throw new UsernameNotFoundException(username);
 		}
+		System.out.println("LOGIN SUCCESS");
 		
 		return userVO;
 	}
@@ -104,7 +109,7 @@ public class UserService implements UserDetailsService{
 		userVO = (UserVO)authentication.getPrincipal();
 		String fileName="";
 		if(file != null && !file.isEmpty()) {
-			fileName = fileManager.getUseResourceLoader("upload/user/", file);
+			fileName = fileManager.getUseServletContext("upload/user/", file);
 			userVO.setFileName(fileName);
 			
 			result = userRepository.setFileUpdate(userVO);
@@ -118,9 +123,9 @@ public class UserService implements UserDetailsService{
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
 		userVO = (UserVO)authentication.getPrincipal();
-		String path = "classpath:/static/";
-		File file = new File(resourceLoader.getResource(path).getFile(), "upload/user/");
-		file = new File(file, userVO.getFileName());
+		
+		String realPath = servletContext.getRealPath("upload/user/");
+		File file = new File(realPath, userVO.getFileName());
 		file.delete();
 		
 		return userRepository.setFileDelte(userVO);
@@ -157,7 +162,8 @@ public class UserService implements UserDetailsService{
 	}
 	
 	public int setDeleteTemporary(UserVO userVO) throws Exception {
-		return userRepository.setDeleteTemporary(userVO);
+		int result = userRepository.setDeleteTemporary(userVO);
+		return result;
 	}
 	
 	public String getUserIp() throws Exception {

@@ -21,17 +21,38 @@ $(".following").click(function(){
 	})
 })
 
+$(".follower").click(function(){
+	let username=$(this).attr("data-user-name");
+	let url = "/gram/"+username+"/followers"
+	console.log(url);
+	$.ajax({
+		type : "GET",
+		url : "/gram/"+username+"/followers",
+		success : function(result){
+			result = result.trim();
+			$(".follower-modal-list").html(result);
+			$(".follower-modal-container").show();
+		}
+	})
+})
+
 $(".follow-modal-close-txt").click(function(){
 	$(".following-modal-container").hide();
+	$(".follower-modal-container").hide();
+	location.reload(true);
 })
 
-$(document).mouseup(function (e){
-  var modal = $(".following-modal-container");
-  if(modal.has(e.target).length === 0){
-    $(".following-modal-container").hide();
-  }
-});
-
-$(".following-modal-btn").on("click", function(){
+/*unfollow modal*/
+$(".unfollow-modal-btn").click(function(){
 	$(".unfollow-modal-container").show();
 })
+
+
+$(".modal-close").click(function(){
+	$(".unfollow-modal-container").hide();
+})
+/*unfollow modal*/
+
+
+
+
