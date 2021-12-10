@@ -192,12 +192,7 @@ $(document).ready(function() { // 페이지가 준비되면
 						</c:otherwise>
 					</c:choose>
 					<div>
-
-						<sec:authentication property="principal.username" var="username"/>
-						<span class="nickname point_span">${username }</span>
-						<!-- span username 추가 -->
-						<sec:authentication property="principal.nickname" var="nickname"/>
-						<span class="sub_span">${nickname }</span>
+					
 
 						<a class="nickname point_span" href="/gram/${userVO.username}">${userVO.username }</a>
 						<!-- span username 추가 -->
