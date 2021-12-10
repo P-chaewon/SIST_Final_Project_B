@@ -44,12 +44,13 @@ public class FollowController {
 	
 	@PostMapping("/friendships/follow")
 	public ModelAndView follow(FollowVO followVO) throws Exception {
-		System.out.println("FOLLOW SUCCESS");
 		int result = followService.follow(followVO);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", result);
-		
+		if(result==1) {
+			System.out.println("FOLLOW SUCCESS");			
+		}
 		return mv;
 	}
 	

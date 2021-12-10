@@ -65,21 +65,6 @@ public class FollowService {
 		return check;
 	}
 	
-	public boolean userCheck(UserVO userVO, HttpSession session) throws Exception {
-		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
-		SecurityContextImpl sc = (SecurityContextImpl)object;
-		Authentication authentication = sc.getAuthentication();
-		//로그인 되어 있는 유저의 정보를 가지고 있는 userVO
-		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
-		
-		boolean check = false;
-		if(userVO.getUserNum()==loginUserVO.getUserNum()) {
-			check=true;
-		}
-		
-		return check;
-	}
-	
 	public Long followCount(Long userNum) throws Exception {
 		return followRepository.followCount(userNum);
 	}

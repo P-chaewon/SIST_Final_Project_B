@@ -119,7 +119,7 @@
 									</span>
 								</li>
 								<li class="info-li">
-									<span class="info-name follower" data-user-name="${userVO.username }" style="cursor: pointer;">
+									<span class="info-name follower" data-user-name="${userVO.username}" style="cursor: pointer;">
 										팔로워 
 										<span class="info-total" title="33,304">
 											${count.followerCount}
@@ -127,7 +127,7 @@
 									</span>
 								</li>
 								<li class="info-li">
-									<span class="info-name following" data-user-name="${userVO.username }" style="cursor: pointer;">
+									<span class="info-name following" data-user-name="${userVO.username}" style="cursor: pointer;">
 										팔로우 
 										<span class="info-total">
 											${count.followCount }
@@ -358,6 +358,8 @@
 		</div>
 	</div>
 	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 	<script type="text/javascript">
 		$(".three-circle").click(function(){
 			$(".report_modal").fadeIn();
@@ -385,20 +387,9 @@
 				$("#report_frm").submit();	
 			}
 		});
-	</script>
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
-	<script type="text/javascript">
-		 $(".fol-btn").click(function () {
-			let followNum=${userVO.userNum};
-			let userNum=${userNum};
-			if(follow(true, followNum, userNum)==1){
-				location.reload(true);	
-			}
-		})
-
-	
+		
+		
+		
 		$(".unfollow-modal-unfollow-btn").click(function(){	
 			let followNum=${userVO.userNum};
 			let userNum=${userNum};
@@ -406,9 +397,6 @@
 				location.reload(true);	
 			}
 		})
-		
-
-	
 	</script>
 </body>
 </html>

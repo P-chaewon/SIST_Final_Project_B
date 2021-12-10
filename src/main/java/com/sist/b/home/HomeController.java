@@ -83,7 +83,6 @@ public class HomeController {
 			
 		LikesVO likesVO = new LikesVO();
 		
-	
 		mv.addObject("postList", ar);
 		
 		Long followCount = followService.followCount(userVO.getUserNum());
@@ -146,20 +145,14 @@ public class HomeController {
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
 		//팔로우가 1이면 내가 팔로우 하고있는 사람
 		int follow = 0;
-		if(followService.userCheck(userVO, session)) {
-
-
-		
 		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
-
-			mv.setViewName("myProfile");
+				mv.setViewName("myProfile");
 		} else {
 			if(followService.followCheck(userVO, session)) {
 				follow = 1;
 			}
 			mv.addObject("follow", follow);
 			mv.setViewName("profile");
-		}
 		}
 
 		mv.addObject("count", count);

@@ -46,7 +46,14 @@ $(".recommend_following").click(function(){
 		$(this).siblings("#btn_follow").show();
 	}	
 })
-
+$(".fol-btn").click(function () {
+	let followNum=$(this).attr("data-follow-num");
+	let userNum=$(this).attr("data-user-num");
+	if(follow(true, followNum, userNum)==1){
+		console.log("follow");
+//		location.reload(true);		
+	}
+})
 
 function follow(check, followNum, userNum) {
 	let folCheck=0;
@@ -59,7 +66,6 @@ function follow(check, followNum, userNum) {
 				userNum : userNum
 			},
 			async : false,
-			context : this,
 			success : function(result){
 				if(result.trim()==1){					
 					folCheck=1;
