@@ -211,8 +211,7 @@ $(document).ready(function() { // 페이지가 준비되면
 						<a class="all_recommend_list" href="/gram/friendships/people" tabindex="0">
 							<div class="all-recommend-title">모두 보기</div>
 						</a>
-					</div>		
-					
+					</div>							
 					<!-- recommend list -->
 					<ul class="recommend_list">
 						<c:forEach items="${users}" var="user">
@@ -452,7 +451,16 @@ $(document).ready(function() { // 페이지가 준비되면
 
 
    	});
+  	
    	 
+  	$(function() {
+  	    $("#input_comment").on("keyup", function() {
+  	        var flag = true;
+  	        flag = $(this).val().length > 0 ? false : true;
+  	        $(".submit_comment").attr("disabled", flag);
+  	    });
+  	});
+  	
 
  </script>
 
