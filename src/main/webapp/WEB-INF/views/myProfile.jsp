@@ -9,19 +9,20 @@
 <title>Insert title here</title>
 <c:import url="./temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profile.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/alarm_profile.css">
 </head>
 <body class="" style="">
 	<sec:authentication property="principal.username" var="username"/>
 	<c:import url="./temp/nav2.jsp"></c:import>
-	<div id="react-root">
+	<div class="d" id="react-root">
 		<section class="profile-home-section">
-			<div></div>
+			<div class="d"></div>
 			<main class="profile-home-main" role="main">
-				<div class="profile-homepage">
+				<div class="profile-homepage d">
 					<header class="profile-info-header">
-						<div class="profile-img-space">
-							<div class="profile-edit-space">
-								<div class="profile-edit">
+						<div class="profile-img-space d">
+							<div class="profile-edit-space d">
+								<div class="profile-edit d">
 									<button class="icon-btn" title="프로필 사진 추가" data-user-fileName="${userVO.fileName }">
 										<c:choose>
 											<c:when test="${not empty userVO.fileName }">
@@ -32,7 +33,7 @@
 											</c:otherwise>
 										</c:choose>
 									</button>
-									<div>
+									<div class="d">
 										<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation" class="profile-form">
 											<input accept="image/jpeg,image/png" class="profile-photo" type="file" name="file" id="file">
 										</form>
@@ -41,12 +42,12 @@
 							</div>
 						</div>
 						<section class="profile-info-space">
-							<div class="profile-name-btn">
+							<div class="profile-name-btn d">
 								<h2 class="profile-username">${userVO.username }</h2>
-								<div class="profile-btn-space">
-									<div class="profile-btns">
+								<div class="profile-btn-space d">
+									<div class="profile-btns d">
 										<div class="edit-btn-space">
-											<button class="edit-btn" type="button">
+											<button class="edit-btn d" type="button">
 												<div class="edit-btn-txt">프로필 편집</div>
 											</button>
 										</div>
@@ -77,7 +78,7 @@
 									</span>
 								</li>
 							</ul>
-							<div class="profile-etc-info">
+							<div class="profile-etc-info d">
 								<h1 class="profile-nickname">${userVO.nickname}</h1>
 								<br>
 								<span style="white-space: pre-line;">
@@ -87,7 +88,7 @@
 							</div>
 						</section>
 					</header>
-					<div class="profile-tablist" role="tablist">
+					<div class="profile-tablist d" role="tablist">
 						<a aria-selected="true" class="tab-entity tab-selected" role="tab" href="/kopc_adopt/" tabindex="0">
 							<span class="tab-info">
 								<img alt="" src="${pageContext.request.contextPath}/static/icons/grid.png" class="post-icon">
@@ -102,46 +103,46 @@
 						</a>
 					</div>
 					<!-- 게시글 보여주는 곳 -->
-					<div class="post-space">
+					<div class="post-space d">
 						<article class="post-article">
 							<div>
-								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-									<div class="post-one-row">
-										<div class="one-post">
+								<div class="d" style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+									<div class="post-one-row d">
+										<div class="one-post d">
 											<a href="/p/CW2nv6IJPFJ/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
+												<div class="post-img-space d">
+													<div class="post-image-div d">
 														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg1.jpg" style="object-fit: cover;">
 													</div>
-													<div class="img-background"></div>
+													<div class="img-background d"></div>
 												</div>
 											</a>
 										</div>
-										<div class="one-post">
+										<div class="one-post d">
 											<a href="/p/CW2RkSWJM9C/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
+												<div class="post-img-space d">
+													<div class="post-image-div d">
 														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg2.jpg" style="object-fit: cover;">
 													</div>
-													<div class="img-background"></div>
+													<div class="img-background d"></div>
 												</div>
 											</a>
 										</div>
-										<div class="one-post one-last">
+										<div class="one-post one-last d">
 											<a href="/p/CW1ylvzPrTH/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
+												<div class="post-img-space d">
+													<div class="post-image-div d">
 														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg3.jpg" style="object-fit: cover;">
 													</div>
-													<div class="img-background"></div>
+													<div class="img-background d"></div>
 												</div>
 											</a>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="_4emnV">
-								<div class="qF0y9 Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME" data-visualcompletion="loading-state" style="height: 32px; width: 32px;">
+							<div class="_4emnV d">
+								<div class="d qF0y9 Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME" data-visualcompletion="loading-state" style="height: 32px; width: 32px;">
 									<svg aria-label="읽어들이는 중..." class="By4nA" viewBox="0 0 100 100">
 									<rect fill="#555555" height="6" opacity="0" rx="3" ry="3" transform="rotate(-90 50 50)" width="25" x="72" y="47"></rect>
 									<rect fill="#555555" height="6" opacity="0.08333333333333333" rx="3" ry="3" transform="rotate(-60 50 50)" width="25" x="72" y="47"></rect>
@@ -165,23 +166,23 @@
 			<c:import url="./temp/footer.jsp"></c:import>
 		</section>
 	</div>
-	<div class="update-message-space">
-		<div class="update-ease-out">
-			<div class="update-message">
-				<div class="update-text-space">
+	<div class="update-message-space d">
+		<div class="update-ease-out d">
+			<div class="update-message d">
+				<div class="update-text-space d">
 					<p class="update-text"></p>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="modal-container" role="presentation" style="display: none;">
-		<div class="modal" role="dialog">
-			<div class="modal-content">
-				<div class="madal-space">
-					<div class="modal-header">
+	<div class="modal-container d" role="presentation" style="display: none;">
+		<div class="modal d" role="dialog">
+			<div class="modal-content d">
+				<div class="madal-space d">
+					<div class="modal-header d">
 						<h3 class="modal-header-text">프로필 사진 바꾸기</h3>
 					</div>
-					<div class="modal-body">
+					<div class="modal-body d">
 						<button class="modal-btn photo-upload " tabindex="0">사진 업로드</button>
 						<button class="modal-btn photo-delete " tabindex="0">현재 사진 삭제</button>
 						<button class="modal-btn cancel" tabindex="0">취소</button>
@@ -193,45 +194,45 @@
 			</div>
 		</div>
 	</div>
-	<div class="following-modal-container" role="presentation" style="display: none;" >
+	<div class="following-modal-container d" role="presentation" style="display: none;" >
 		<div aria-label="팔로잉" class="follow-modal" role="dialog">
-			<div class="follow-modal-contents">
+			<div class="follow-modal-contents d">
 				<div>
-					<div class="follow-modal-header">
-						<div class="follow-modal-blank"></div>
+					<div class="follow-modal-header d">
+						<div class="follow-modal-blank d"></div>
 						<h1 class="follow-modal-name">팔로잉</h1>
-						<div class="follow-modal-close-space">
+						<div class="follow-modal-close-space d">
 							<button class="follow-modal-close-btn" type="button">
-								<div class="follow-modal-close">
+								<div class="follow-modal-close d">
 									<span class="follow-modal-close-txt">&times;</span>
 								</div>
 							</button>
 						</div>
 					</div>
 				</div>
-				<div class="follow-modal-list">
+				<div class="follow-modal-list d">
 					
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="follower-modal-container" role="presentation" style="display: none;" >
-		<div aria-label="팔로잉" class="follow-modal" role="dialog">
-			<div class="follow-modal-contents">
+	<div class="follower-modal-container d" role="presentation" style="display: none;" >
+		<div aria-label="팔로잉" class="follow-modal d" role="dialog">
+			<div class="follow-modal-contents d">
 				<div>
-					<div class="follow-modal-header">
-						<div class="follow-modal-blank"></div>
+					<div class="follow-modal-header d">
+						<div class="follow-modal-blank d"></div>
 						<h1 class="follow-modal-name">팔로워</h1>
-						<div class="follow-modal-close-space">
+						<div class="follow-modal-close-space d">
 							<button class="follow-modal-close-btn" type="button">
-								<div class="follow-modal-close">
+								<div class="follow-modal-close d">
 									<span class="follow-modal-close-txt">&times;</span>
 								</div>
 							</button>
 						</div>
 					</div>
 				</div>
-				<div class="follower-modal-list">
+				<div class="follower-modal-list d">
 					
 				</div>
 			</div>

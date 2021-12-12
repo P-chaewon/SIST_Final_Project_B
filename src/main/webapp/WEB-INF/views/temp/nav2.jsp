@@ -29,7 +29,11 @@
 					<img alt="DM" onclick="javascript:location.href='${pageContext.request.contextPath}/chat'" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
 					<img alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'"  src="${pageContext.request.contextPath}/static/icons/global.png">
-					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
+					<span class="alarm_img">
+						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
+					</span>
+					<div id="alarm_contents" hidden="hidden">
+					</div>
 					<c:choose>
 						<c:when test="${not empty userVO.fileName }">
 							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
@@ -41,6 +45,6 @@
 				</div>
 			</div>
 		</nav>
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/temp/nav.js"></script>
 </body>
 </html>

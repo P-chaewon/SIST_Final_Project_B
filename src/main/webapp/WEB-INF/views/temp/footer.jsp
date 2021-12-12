@@ -10,32 +10,32 @@
 <body>
 <!-- footer -->
 	<footer class="footer" role="contentinfo">
-		<div class="footer-entire">
-			<div class="footer-set-1">
-				<div class="contents">
-					<div class="footer-object">
+		<div class="footer-entire d">
+			<div class="footer-set-1 d">
+				<div class="contents d">
+					<div class="footer-object d">
 						<a href="https://about.facebook.com/meta" rel="nofollow noopener noreferrer" target="_blank">
-							<div class="object-name">Meta</div>
+							<div class="object-name d">Meta</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="https://about.instagram.com/" rel="nofollow noopener noreferrer" target="_blank">
-							<div class="object-name">소개</div>
+							<div class="object-name d">소개</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="https://about.instagram.com/blog/" rel="nofollow noopener noreferrer" target="_blank">
-							<div class="object-name">블로그</div>
+							<div class="object-name d">블로그</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/about/jobs/">
-							<div class="object-name">채용 정보</div>
+							<div class="object-name d">채용 정보</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="https://help.instagram.com/" rel="nofollow noopener noreferrer" target="_blank">
-							<div class="object-name">도움말</div>
+							<div class="object-name d">도움말</div>
 						</a>
 					</div>
 					<div class="footer-object">
@@ -43,9 +43,9 @@
 							<div class="object-name">API</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/legal/privacy/">
-							<div class="object-name">개인정보처리방침</div>
+							<div class="object-name d">개인정보처리방침</div>
 						</a>
 					</div>
 					<div class="footer-object">
@@ -53,46 +53,46 @@
 							<div class="object-name">약관</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/directory/profiles/">
-							<div class="object-name">인기 계정</div>
+							<div class="object-name d">인기 계정</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/directory/hashtags/">
-							<div class="object-name">해시태그</div>
+							<div class="object-name d">해시태그</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/explore/locations/">
-							<div class="object-name">위치</div>
+							<div class="object-name d">위치</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/web/lite/">
-							<div class="object-name">Instagram Lite</div>
+							<div class="object-name d">Instagram Lite</div>
 						</a>
 					</div>
 				</div>
-				<div class="contents">
-					<div class="footer-object">
+				<div class="contents d">
+					<div class="footer-object d">
 						<a href="/topics/beauty/">
 							<div class="object-name">뷰티</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/topics/dance-and-performance/">
-							<div class="object-name">댄스</div>
+							<div class="object-name d">댄스</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/topics/fitness/">
-							<div class="object-name">피트니스</div>
+							<div class="object-name d">피트니스</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/topics/food-and-drink/">
-							<div class="object-name">식음료</div>
+							<div class="object-name d">식음료</div>
 						</a>
 					</div>
 					<div class="footer-object">
@@ -100,24 +100,24 @@
 							<div class="object-name">집 및 정원</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/topics/music/">
-							<div class="object-name">음악</div>
+							<div class="object-name d">음악</div>
 						</a>
 					</div>
-					<div class="footer-object">
+					<div class="footer-object d">
 						<a href="/topics/visual-arts/">
-							<div class="object-name">시각 예술</div>
+							<div class="object-name d">시각 예술</div>
 						</a>
 					</div>
 				</div>
 			</div>
-			<div class="footer-set-2">
-				<div class="footer-setting">
+			<div class="footer-set-2 d">
+				<div class="footer-setting d">
 					<span class="settings">
-						<div class="language">
+						<div class="language d">
 							<span>한국어</span>
-							<div class="select-language-area">
+							<div class="select-language-area d">
 								<span style="display: inline-block; transform: rotate(180deg);">
 									<svg aria-label="아래쪽 V자형 아이콘" class="downarrow-icon" color="#8e8e8e" fill="#8e8e8e" height="12" role="img" viewBox="0 0 48 48" width="12">
 										<path d="M40 33.5c-.4 0-.8-.1-1.1-.4L24 18.1l-14.9 15c-.6.6-1.5.6-2.1 0s-.6-1.5 0-2.1l16-16c.6-.6 1.5-.6 2.1 0l16 16c.6.6.6 1.5 0 2.1-.3.3-.7.4-1.1.4z"></path>
@@ -178,8 +178,8 @@
 						</select>
 					</span>
 				</div>
-				<div class="sns-company">
-					<div class="company-info">© 2021 Instagram from Meta</div>
+				<div class="sns-company d">
+					<div class="company-info d">© 2021 Instagram from Meta</div>
 				</div>
 			</div>
 		</div>
