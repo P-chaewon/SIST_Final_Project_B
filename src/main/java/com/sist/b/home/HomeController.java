@@ -90,16 +90,14 @@ public class HomeController {
 		List<UserVO> users = null;
 		//팔로우 한 사람이 있으면 home으로 없으면 userList로
 		if(followCount==0) {
-			userVO.setUserCount(20);
-			users = followService.userList(userVO);
-			mv.setViewName("follow/userList");
-		} else {
-			userVO.setUserCount(5);
-			users = followService.userList(userVO);
-			mv.addObject("postList", ar);
-			mv.setViewName("home");			
-		}
+			mv.addObject("followCount", followCount);
+		} 
+		userVO.setUserCount(5);
+		users = followService.userList(userVO);
+		mv.addObject("postList", ar);
+		
 		mv.addObject("users", users);
+		mv.setViewName("home");			
 
 		return mv;
 	}

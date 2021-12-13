@@ -24,6 +24,7 @@
 		<result column="likes" property="likes"/>
 		
 		<association property="userVO" javaType="UserVO">
+			<id column="userNum" property="userNum"/>
 			<result column="nickname" property="nickname"/>
 			<result column="fileName" property="fileName"/>
 			<result column="username" property="username"/>

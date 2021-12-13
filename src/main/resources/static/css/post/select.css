@@ -109,6 +109,18 @@ span.nickname {
 	letter-spacing: 1px;
 }
 
+.follow {
+	border-style: none;
+	background-color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	display: inline;
+	padding: 0;
+	letter-spacing: 1px;
+	color: #0095f6;
+}
+
 .contents_area{
 	width: 370px;
 	height: 350px;

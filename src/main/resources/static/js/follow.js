@@ -5,7 +5,7 @@
 $(".follow-btn").on("click",function () {
 	let followNum=$(this).attr("data-follow-num");
 	let userNum=$(this).attr("data-user-num");
-	if(followCount(true, followNum, userNum)>0){
+	if(follow(true, followNum, userNum)==1){
 		$(this).hide();
 		$(this).siblings(".unfollow-btn").show();
 	}
@@ -14,18 +14,12 @@ $(".follow-btn").on("click",function () {
 $(".unfollow-btn").on("click", function () {
 	let followNum=$(this).attr("data-follow-num");
 	let userNum=$(this).attr("data-user-num");
-	if(followCount(false, followNum, userNum)>0){
-		$(this).hide();
-		$(this).siblings(".follow-btn").show();
-	} else {
+	if(follow(false, followNum, userNum)==0){
 		$(this).hide();
 		$(this).siblings(".follow-btn").show();
 	}
 })
 
-$(".start-btn").click(function(){
-	location.reload(true);
-})
 
 $(".recommend_follow").click(function(){
 	let followNum=$(this).attr("data-follow-num");
@@ -91,48 +85,4 @@ function follow(check, followNum, userNum) {
 }
 
 
-let folCount = 0;
-function followCount(check, followNum, userNum) {
-	if(check){
-		$.ajax({
-			type : "POST",
-			url : "/gram/friendships/follow",
-			data : {
-				followNum : followNum,
-				userNum : userNum
-			},
-			async : false,
-			context : this,
-			success : function(result){
-				if(result.trim()==1){					
-					folCount++;
-					console.log(folCount);
-				}
-			}, 
-			error : function(error, xhr, status){
-				console.log(error);
-			}
-		})
-	} else{
-		$.ajax({
-			type : "POST",
-			url : "/gram/friendships/unfollow",
-			data : {
-				followNum : followNum,
-				userNum : userNum
-			},
-			async : false,
-			success : function(result){
-				if(result.trim()==1){
-					folCount--;			
-					console.log(folCount);
-				}
-			},
-			error : function(error, xhr, status){
-				console.log(error);
-			}
-		})
-	}
-	return folCount;
-}
 

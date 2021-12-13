@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.b.bookmark.BookmarkService;
 import com.sist.b.bookmark.BookmarkVO;
+import com.sist.b.follow.FollowService;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
 import com.sist.b.user.UserVO;
@@ -35,6 +36,9 @@ public class PostController {
 	
 	@Autowired
 	private BookmarkService bookmarkService;
+	
+	@Autowired
+	private FollowService followService;
 	
 	@GetMapping("upload")
 	public String setPostUpload()throws Exception{
@@ -75,16 +79,29 @@ public class PostController {
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
 		UserVO userVO = (UserVO)authentication.getPrincipal();
-		
 		/* postVO.setUserVO(userVO); */
 		postVO.setUserNum(userVO.getUserNum());
-	
+		
 		/*
 		 * map.put("userVO", userVO); map.put("postVO", postVO);
 		 */
 		postVO = postService.getUserPost(postVO);
+		//follow가 0이면 내 팔로우가 아닌 사람이 쓴 글
+		//follow가 1이면 내 팔로우가 쓴 글
+		//follow가 2이면 내가 쓴 글
+		int follow = 0;
+		if(userVO.getUserNum()==postVO.getUserNum()) {
+			System.out.println("내가 쓴 글");
+			follow = 2;
+		} else {
+			if(followService.followCheck(postVO.getUserVO(), session)) {
+				System.out.println("내 팔로우가 쓴 글");
+				follow = 1;
+			}
+		}
+		System.out.println(follow);
 		
-		
+		mv.addObject("follow", follow);
 		mv.addObject("postVO", postVO);
 		mv.setViewName("post/select");
 	

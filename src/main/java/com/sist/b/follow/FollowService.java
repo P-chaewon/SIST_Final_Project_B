@@ -45,7 +45,7 @@ public class FollowService {
 	}
 	
 	public boolean followCheck(UserVO userVO, HttpSession session) throws Exception {
-		System.out.println(userVO.getUserNum());
+		System.out.println("followCheck : "+userVO.getUserNum());
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/follow.css">
 </head>
 <body class="" style="">
+	<c:import url="../temp/nav2.jsp"></c:import>
 	<div id="react-root">
 		<section class="list-section">
 		<div></div>

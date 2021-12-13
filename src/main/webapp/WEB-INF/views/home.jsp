@@ -36,136 +36,152 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="main_feed">
 				
 				<!-- post foreach, db 추가 -->
-				
-				<c:forEach items="${postList}" var="list">
-				<article style="   border: 1px solid #DBDBDB; margin-bottom: 60px;">
-					<!-- post header -img, nickname, more -->
-					<header>
-						<div class="post_profile">
-							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							<span class="nickname main_nickname point_span">
-								
-							${list.userVO.username}
-							</span>
-					
-						<img class="icon_react icon_more" id="more" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
-			
+				<c:choose>
+					<c:when test="${followCount eq 0 }">
+						<div>
+							<img alt="" src="${pageContext.request.contextPath}/static/icons/follow_add.png" style="display:block; margin: 45px auto;">
+							<div style="margin: 10px auto; text-align: center;">친구를 팔로우하여 그 사람의 게시물을 확인하세요</div>
 						</div>
-					</header>
-					<!--//header  -->
-					
-					
-					
-					<!-- post image -->
-					<div class="post_image swiper mySwiper" style="margin-left: -1px; width: 613px;">
-			
+					</c:when>
+					<c:otherwise>
+						<c:forEach items="${postList}" var="list">
+						<article style="   border: 1px solid #DBDBDB; margin-bottom: 60px;">
+							<!-- post header -img, nickname, more -->
+							<header>
+								<div class="post_profile">
+									<c:choose>
+										<c:when test="${not empty list.userVO.fileName}">
+											<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${list.userVO.fileName}">
+										</c:when>
+										<c:otherwise>
+											<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+										</c:otherwise>
+									</c:choose>
+									<span class="nickname main_nickname point_span">
+										
+									${list.userVO.username}
+									</span>
 							
-						<div class="swiper-wrapper">
-						<c:forEach items="${list.fileList}" var="fileVO">
+								<img class="icon_react icon_more" id="more" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+					
+								</div>
+							</header>
+							<!--//header  -->
 							
-							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
 							
-						</c:forEach>
+							
+							<!-- post image -->
+							<div class="post_image swiper mySwiper" style="margin-left: -1px; width: 613px;">
+					
+									
+								<div class="swiper-wrapper">
+								<c:forEach items="${list.fileList}" var="fileVO">
+									
+									<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
+									
+								</c:forEach>
+									</div>
+						
+								<div class="swiper-button-next"></div>
+		      					<div class="swiper-button-prev"></div>
+		      					<div class="swiper-pagination"></div>		
 							</div>
-				
-						<div class="swiper-button-next"></div>
-      					<div class="swiper-button-prev"></div>
-      					<div class="swiper-pagination"></div>		
-					</div>
-
-					
-					<!-- post icon -->
-					<div class="icons_react">
-						<div class="icons_left">
-					
-						<c:choose>
-						
-							<c:when test="${empty list.likesVO.count}">
-								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
-									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
-								</a>
-								
-							</c:when>
+		
 							
-							<c:otherwise>
-								
-								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
-									<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
-								</a>
-							</c:otherwise>
-						
-						</c:choose>
-				
+							<!-- post icon -->
+							<div class="icons_react">
+								<div class="icons_left">
 							
-						<a href="./post/selectOne?postNum=${list.postNum}">
-							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
-						</a>
-						</div>
-						
-							<c:choose>
-						
-							<c:when test="${empty list.bookmarkVO.chk}">
-								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+								<c:choose>
+								
+									<c:when test="${empty list.likesVO.count}">
+										<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+											<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+										</a>
+										
+									</c:when>
 									
-									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
-								</a>
+									<c:otherwise>
+										
+										<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+											<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
+										</a>
+									</c:otherwise>
 								
-							</c:when>
-							
-							<c:otherwise>
-								
-								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+								</c:choose>
+						
 									
-									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
+								<a href="./post/selectOne?postNum=${list.postNum}">
+									<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
 								</a>
-							</c:otherwise>
+								</div>
+								
+									<c:choose>
+								
+									<c:when test="${empty list.bookmarkVO.chk}">
+										<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+											
+											<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
+										</a>
+										
+									</c:when>
+									
+									<c:otherwise>
+										
+										<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+											
+											<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
+										</a>
+									</c:otherwise>
+								
+								</c:choose>
 						
-						</c:choose>
-				
+								
 						
-				
+							
+							
+							</div>
+							
+							<!-- text  -->
+							<div class="reaction">
+					            <div class="liked_people">
+					       
+					              <p id="count_text"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
+					    
+					            </div>
+					            <div class="box">
+					            	<div class="description">
+						              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
+					            		<span class="tag">${list.tag }</span>
+					            	</div>
+					            </div>
+					            
+					            <!-- comments -->
+					            <div class="comment_section">
+					              <ul class="comments">
+					                <li>
+					                  <span><span class="point_span nickname">ch196</span>단추ㅠ</span>
+					                </li>
+					                <!-- input 값 여기에 추가 -->
+					              </ul>
+					              <div class="time_log">
+					                <span>${list.regDate}</span>
+					              </div>
+					            </div>
+					          </div>
+					          <div class="hl"></div>
+					          <div class="comment">
+					          <!-- 이모지 추가 -->
+					            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기..." >
+					            <button type="submit" class="submit_comment" disabled>게시</button>
+					          </div>
+					          
 					
+						</article>
 					
-					</div>
-					
-					<!-- text  -->
-					<div class="reaction">
-			            <div class="liked_people">
-			       
-			              <p id="count_text"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
-			    
-			            </div>
-			            <div class="box">
-			            	<div class="description">
-				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
-			            		<span class="tag">${list.tag }</span>
-			            	</div>
-			            </div>
-			            
-			            <!-- comments -->
-			            <div class="comment_section">
-			              <ul class="comments">
-			                <li>
-			                  <span><span class="point_span nickname">ch196</span>단추ㅠ</span>
-			                </li>
-			                <!-- input 값 여기에 추가 -->
-			              </ul>
-			              <div class="time_log">
-			                <span>${list.regDate}</span>
-			              </div>
-			            </div>
-			          </div>
-			          <div class="hl"></div>
-			          <div class="comment">
-			          <!-- 이모지 추가 -->
-			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기..." >
-			            <button type="submit" class="submit_comment" disabled>게시</button>
-			          </div>
-			          
-			
-				</article>
-			
-				</c:forEach>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
 			
 				<!--//post  -->
 				

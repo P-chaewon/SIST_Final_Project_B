@@ -44,7 +44,6 @@ public class FollowController {
 	}
 	
 	@PostMapping("/friendships/follow")
-	@ResponseBody
 	public ModelAndView follow(FollowVO followVO) throws Exception {
 		int result = followService.follow(followVO);
 		ModelAndView mv = new ModelAndView();
@@ -57,13 +56,14 @@ public class FollowController {
 	}
 	
 	@PostMapping("/friendships/unfollow")
-	@ResponseBody
 	public ModelAndView unFollow(FollowVO followVO) throws Exception {
 		int result  = followService.unFollow(followVO);
-		System.out.println("UNFOLLOW SUCCESS");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("common/ajaxResult");
 		mv.addObject("result", result);
+		if(result==1) {
+			System.out.println("UNFOLLOW SUCCESS");			
+		}
 		return mv;
 	}
 	

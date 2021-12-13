@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/select.css">
 </head>
 <body>
-	
+	<sec:authentication property="principal.userNum" var="userNum"/>
 	<main>
 		
 		<div class="user_post">
@@ -41,14 +41,30 @@
 			<div class="post_contents">
 				<header class="head">
 					<div class="post_profile">
-							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+						<c:choose>
+							<c:when test="${not empty postVO.userVO.fileName }">
+								<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
+							</c:when>
+							<c:otherwise>
+								<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+							</c:otherwise>
+						</c:choose>
 							<span class="nickname main_nickname point_span" style="margin-left: 5px;">
 						
 							${postVO.userVO.username}</span>
 						
-						<span class="bullet">•</span>
-						<button class="following" type="button">팔로잉</button>
-				
+						<c:choose>
+							<c:when test="${follow eq 0 }">
+								<span class="bullet">•</span>
+								<button class="following" type="button" style="display: none;">팔로잉</button>
+								<button class="follow" type="button">팔로우</button>
+							</c:when>
+							<c:when test="${follow eq 1 }">
+								<span class="bullet">•</span>
+								<button class="following" type="button">팔로잉</button>
+								<button class="follow" type="button" style="display: none;">팔로우</button>
+							</c:when>
+						</c:choose>
 						<img class="icon_react icon_more" id="more" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						
 					</div>
@@ -143,7 +159,7 @@
 		
 	</main>
 
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
     
@@ -275,6 +291,23 @@
 
    	});
  	
+  	$(".following").click(function () {
+  		let followNum=${postVO.userNum}
+  		let userNum=${userNum}
+  		if(follow(false, followNum, userNum)==0){
+  			$(this).hide();
+  			$(this).siblings(".follow").show();
+  		}
+	})
+	
+	$(".follow").click(function () {
+		let followNum=${postVO.userNum}
+  		let userNum=${userNum}
+		if(follow(true, followNum, userNum)==1){
+			$(this).hide();
+			$(this).siblings(".following").show();
+		}
+	})
  	
    	</script>  	 
 </body>
