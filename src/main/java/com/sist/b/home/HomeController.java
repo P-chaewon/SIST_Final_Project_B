@@ -28,6 +28,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.sist.b.bookmark.BookmarkService;
 import com.sist.b.bookmark.BookmarkVO;
+import com.sist.b.comment.CommentService;
+import com.sist.b.comment.CommentVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
 
@@ -55,11 +57,10 @@ public class HomeController {
 	private UserService userService;
 	
 	@Autowired
-
 	private FollowService followService;
 
+	@Autowired
 	private ReportService reportService;
-
 
 	@Autowired
 	private LikesService likesService;
@@ -268,5 +269,6 @@ public class HomeController {
 		mv.setViewName("profile");
 		return mv;
 	}
+
 
 }

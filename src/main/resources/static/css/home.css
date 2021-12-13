@@ -116,7 +116,7 @@ header {
 
 .box{
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .description {
 	word-break:break-all;
@@ -183,10 +183,26 @@ button.submit_comment {
     font-weight: 600;
 }
 
+
 .submit_comment:disabled {
     color: #B9DFFC;
 }
 button.submit_comment:focus {
+    outline: none;
+}
+
+button.submit_re {
+    color: #0095f6;
+    background-color: #fff;
+    border-style: none;
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+button.submit_re:focus {
     outline: none;
 }
 
@@ -534,3 +550,10 @@ footer p {
 	user-select: none;
 }
 
+.comment_section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.comment_section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}

@@ -143,24 +143,11 @@ $(document).ready(function() { // 페이지가 준비되면
 			            </div>
 			            
 			            <!-- comments -->
-			            <div class="comment_section">
-			              <ul class="comments">
-			                <li>
-			                  <span><span class="point_span nickname">ch196</span>단추ㅠ</span>
-			                </li>
-			                <!-- input 값 여기에 추가 -->
-			              </ul>
-			              <div class="time_log">
+			  
+			              <div class="time_log" style="margin-top: 10px; margin-bottom: 10px;">
 			                <span>${list.regDate}</span>
 			              </div>
-			            </div>
-			          </div>
-			          <div class="hl"></div>
-			          <div class="comment">
-			          <!-- 이모지 추가 -->
-			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기..." >
-			            <button type="submit" class="submit_comment" disabled>게시</button>
-			          </div>
+			          </div>   
 			          
 			
 				</article>
@@ -453,15 +440,10 @@ $(document).ready(function() { // 페이지가 준비되면
    	});
   	
    	 
-  	$(function() {
-  	    $("#input_comment").on("keyup", function() {
-  	        var flag = true;
-  	        flag = $(this).val().length > 0 ? false : true;
-  	        $(".submit_comment").attr("disabled", flag);
-  	    });
-  	});
   	
 
+
+	
  </script>
 
 

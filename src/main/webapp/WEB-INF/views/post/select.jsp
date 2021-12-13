@@ -23,6 +23,7 @@
 			
 							
 						<div class="swiper-wrapper">
+						<sec:authentication property="principal.username" var="username"/>
 						<c:forEach items="${postVO.fileList}" var="fileVO">
 							
 							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
@@ -57,20 +58,54 @@
 						<div class="contents">
 							<div class="box">
 			            	<div class="description">
+			            	<div style="height: 50px;">
 				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}
 			            		<span class="tag" style="color: #00376b; cursor: pointer;"> ${postVO.tag }</span></span> 
+			            	
+			            	</div>
+			        
+		
+					<div class="comment_section"  id="commentList" data-board-num="${postVO.postNum }" style="height: 260px; border-top:0.5px solid #E2E2E2; overflow-y:scroll; ">
+			         
+			             <c:forEach items="${postVO.commentList}" var="commentList">
+			             
+			          
+			      
+
+				  			<ul class="comments" style="margin-top: 15px;">
+							                <li style="height: 17px;">
+							                  <span class="point_span nickname" style="font-weight: bold;">${commentList.writer}</span><span style="margin-left: 5px;">${commentList.commentContents}</span>
+							<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:30px; font-size:12px; background-color:#fff; border-style: none;">삭제</button>
+							                </li>
+							                <!-- input 값 여기에 추가 -->
+							</ul>
+							
+							<div class="description" id="comment_re" style="margin-top: 7px;">
+								   <span class="sub" style="font-size: 12px; width: 60px; float: left;">${commentList.regDate}</span> 
+							       <span class="sub_span" id="re" style="cursor: pointer; float: left; margin-left: 5px;">답글달기</span>
+							 </div>
+							 
+							 
+							 <div class="comment_re" style="width: 330px; display:none; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
+							          <!-- 이모지 추가 -->
+					
+							            <input id="input_comment_re" name="commentContents" style="width: 270px; height:30px; margin-left: 5px;"  class="input_comment" type="text" placeholder="답글 달기..." >
+						
+							            <button type="button" class="submit_re" id="comment_re" disabled>게시</button>
+							          
+							          </div>
+				</c:forEach>
+
+			        </div>
 			            	</div>
 			            </div>
-						</div>
-						<div class="contents_comment">
-						
 						</div>
 					
 					</div>
 					
 					<div class="icons_react">
 						<div class="icons_left">
-							
+							<sec:authentication property="principal.username" var="username"/>
 							<c:choose>
 						
 							<c:when test="${empty postVO.likesVO.count}">
@@ -89,7 +124,7 @@
 						
 						</c:choose>
 						
-							<img class="icon_react" style="margin-left: 5px;" alt="speech" src="/gram/static/icons/bubble-chat.png">
+							<img class="icon_react" style="margin-left: 5px;" id="chat" alt="speech" src="/gram/static/icons/bubble-chat.png">
 						</div>
 					
 						<c:choose>
@@ -122,14 +157,19 @@
 			            </div>
 			            
 			          <div class="time_log">
-			                <span>1일전</span>
+			                <span>${postVO.regDate }</span>
 			           </div>
 			           
-			           <div class="comment">
+			             <div class="comment">
 			          <!-- 이모지 추가 -->
-			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기...">
-			            <button type="submit" class="submit_comment" style="margin-top: 20px;" disabled="">게시</button>
-			          </div>  
+			          
+			          <input type="hidden" class="form-control" name="writer" id="writer" value="${username}" placeholder="Enter Writer" readonly="readonly">
+			
+			            <input id="input_comment" name="commentContents" class="input_comment" type="text" placeholder="댓글 달기..." >
+		
+			            <button  type="button" class="submit_comment" id="comment" disabled>게시</button>
+			          
+			          </div>
 					
 				</header>
 			
@@ -275,6 +315,80 @@
 
    	});
  	
+  	 
+  	$(function() {
+  	    $("#input_comment").on("keyup", function() {
+  	        var flag = true;
+  	        flag = $(this).val().length > 0 ? false : true;
+  	        $(".submit_comment").attr("disabled", flag);
+  	    });
+  	});
+  	
+ 	$(function() {
+  	    $("#input_comment_re").on("keyup", function() {
+  	        var flag = true;
+  	        flag = $(this).val().length > 0 ? false : true;
+  	        $(".submit_re").attr("disabled", flag);
+  	    });
+  	});
+  
+	//Del click event
+	$("#commentList").on("click", ".commentDel", function() {
+		let commentNum = $(this).attr("data-comment-del");
+		console.log(commentNum);
+		$.ajax({
+			type: "POST",
+			url : "./commentDel",
+			data : {
+				commentNum:commentNum
+			},
+			success: function(result) {
+				result = result.trim();
+				
+				if(result>0){
+					location.href="./selectOne?postNum=${postVO.postNum}"
+					
+				}else{
+				
+				}
+				
+			},
+			error: function() {
+				alert('삭제 실패');
+			}
+			
+		});
+	});
+	
+	$('#comment').click(function () {
+		//작성자, 내용 콘솔 출력	
+
+		let commentContents = $("#input_comment").val();
+		let postNum = $("#commentList").attr("data-board-num");
+		let writer =$("#writer").val();
+		
+		$.post('./comment', {postNum: postNum, writer:writer, commentContents:commentContents}, function(result) {
+			console.log(result.trim());
+			
+			$("#input_comment").val('');
+			location.href="./selectOne?postNum=${postVO.postNum}"
+		} );
+	});
+	
+	$(document).on("click", "#re", function() {
+		if($(this).parent().next().css("display")=="none"){
+			$(this).parent().next().show();
+		}else{
+			$(this).parent().next().hide();	
+		}
+	
+	});
+	
+  $('#chat').click(function(){
+	  $("#input_comment").focus();
+  })
+
+  	
  	
    	</script>  	 
 </body>

@@ -51,6 +51,14 @@
 			<result column="oriName" property="oriName"/>
 		</collection>
 		
+		<collection property="commentList" javaType="List" ofType="CommentVO">
+			<id column="commentNum" property="commentNum"/>
+			<result column="writer" property="writer"/>
+			<result column="commentContents" property="commentContents"/>
+			<result column="postNum" property="postNum"/>
+			<result column="userNum" property="userNum"/>
+			<result column="regDate" property="regDate"/>
+		</collection>
 		
 	
 	</resultMap>
@@ -85,7 +93,7 @@
         group by postNum)chk
         USING(postNum) 
   		
-  		ORDER BY postNum DESC;
+  		ORDER BY postNum DESC
   	</select>
   	
   <!-- select post -->
@@ -118,8 +126,12 @@
  		where userNum = #{userNum}
         group by postNum)chk
         USING(postNum) 
-  		
+        
+        left join comment using(postNum)
+        
   		WHERE postNum = #{postNum}
+  		
+  		order by commentNum desc
   	
   	</select>
   	

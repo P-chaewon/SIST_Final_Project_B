@@ -5,15 +5,39 @@
   
   <mapper namespace="com.sist.b.comment.CommentRepository">
   	
-  	<!-- 좋아요 추가 -->
- 	
- 	<insert id="setLikesInsert" parameterType="LikesVO" useGeneratedKeys="true" keyProperty="likesNum">
- 		INSERT INTO 
- 				likes
- 		VALUES
- 				(#{likesNum}, #{postNum}, #{userNum})
- 	</insert>
+	<insert id="setComment" parameterType="CommentVO" useGeneratedKeys="true" keyProperty="commentNum">
+		INSERT INTO comment
+		VALUES( #{commentNum}, #{postNum}, #{userNum}, #{writer}, #{commentContents}, #{commentNum}, 0,0,now())
+	
+	</insert>
+	
+	<resultMap type="CommentVO" id="selectResult">
+		<id column="commentNum" property="commentNum"/>
+		<result column="postNum" property="postNum"/>
+		<result column="userNum" property="userNum"/>
+		<result column="writer" property="writer"/>
+		<result column="commentContents" property="commentContents"/>
+		<result column="ref" property="ref"/>
+		<result column="step" property="step"/>
+		<result column="depth" property="depth"/>
+		<result column="regDate" property="regDate"/>
+		
+		<association property="userVO" javaType="UserVO">
+			<result column="nickname" property="nickname"/>
+			<result column="fileName" property="fileName"/>
+			<result column="username" property="username"/>
+		</association>
 
+	</resultMap>
+	
+	<select id="getCommentCount" parameterType="CommentVO" resultType="Long">
+		SELECT COUNT(commentNum) FROM comment
+		where postNum = #{postNum}
+	</select>
+	
+	<delete id="setCommentDel" parameterType="CommentVO">
+		DELETE FROM comment WHERE commentNum = #{commentNum}
+	</delete>
  	
  	
   </mapper>

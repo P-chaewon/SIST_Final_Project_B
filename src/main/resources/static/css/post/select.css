@@ -162,6 +162,20 @@ div.time_log span {
 	
 }
 
+ul.comments {
+    margin-top: 5px;
+}
+ul.comments li {
+    height: 21px;
+    display: flex;
+    color: #262626;
+    font-size: 14px;
+}
+
+span.sub_span {
+    font-size: 12px;
+    color: #8e8e8e;
+}
 .box{
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -169,7 +183,6 @@ div.time_log span {
 .description {
 	word-break:break-all;
  	overflow-y:scroll;
- 	height: 300px; 
 }
 
 .description {
@@ -180,11 +193,21 @@ div.time_log span {
     display: none; /* Chrome, Safari, Opera*/
 }
 
+
+.comment_section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.comment_section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}
+
 .input_comment {
 
-	margin-left: -30px;
-	width:290px;
+	margin-left: -60px;
+	width:310px;
 	height:70px;
+	margin-top: 5px;
     font-size: 14px;
     border-style: none;
     box-sizing: border-box;
@@ -214,6 +237,24 @@ button.submit_comment {
     color: #B9DFFC;
 }
 button.submit_comment:focus {
+    outline: none;
+}
+
+button.submit_re {
+    color: #0095f6;
+    background-color: #fff;
+    border-style: none;
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.submit_re:disabled {
+    color: #B9DFFC;
+}
+button.submit_re:focus {
     outline: none;
 }
 
