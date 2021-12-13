@@ -8,12 +8,18 @@
 		insert into report (reportNum, reportType, fromUserNum, toUserNum, reason)
 		values (#{reportNum}, #{reportType}, #{fromUserNum}, #{toUserNum}, #{reason})
 	</insert>
-	<select id="getList" resultType="ReportVO">
+	
+	<select id="getList" resultType="ReportVO" parameterType="Pager">
 		select R.*, FU.username as fromUserName, TU.username as toUserName, TU.enabled
 		from report R left join user FU
 		on (R.fromUserNum = FU.userNum) 
 		left join user TU
 		on (R.toUserNum = TU.userNum)
 		order by reportNum desc
+		limit #{startRow}, #{perPage}
+	</select>
+	
+	<select id="getTotalCount" resultType="Long">
+		select count(reportNum) from report
 	</select>
 </mapper>

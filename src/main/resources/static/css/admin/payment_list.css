@@ -175,3 +175,63 @@ a:visited {
 a:hover {
 	color: #8E8E8E;
 } 
+
+/* footer */
+body {
+	position: relative;
+}
+
+footer {
+	position: absolute;
+	width: 100%;
+	height: 130px;
+	text-align: center;
+}
+
+.footer-entire {
+	margin-top: 80%;
+	padding-bottom: 50px;
+}
+
+.footer-set-1 {
+	margin-top: 30px;
+}
+
+.footer-object {
+	display: inline-block;
+	margin-left: 10px;
+}
+
+.object-name {
+	font-weight: 400; 
+	font-size: 13px;
+	color: #8e8e8e;
+}
+
+.footer-set-2 {
+	margin-top: 20px;
+}
+
+.footer-setting, .language, .select-language-area, .sns-company {
+	display: inline-block;
+	font-weight: 400; 
+	font-size: 13px;
+	color: #8e8e8e;
+}
+
+.settings {
+	position: relative;
+}
+
+.language-change{
+	cursor: pointer; 
+	left: 0; 
+	opacity: 0; 
+	position: absolute; 
+	top: 0; 
+	width: 50px;
+	height: 15px;
+	position: absolute;
+	left: 0;
+	top: 0;
+}

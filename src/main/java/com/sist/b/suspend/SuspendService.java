@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sist.b.user.UserRepository;
 import com.sist.b.user.UserVO;
+import com.sist.b.util.Pager;
 
 @Service
 public class SuspendService {
@@ -16,8 +17,14 @@ public class SuspendService {
 	@Autowired
 	private SuspendRepository suspendRepository;
 	
-	public List<SuspendVO> getList() throws Exception {
-		return suspendRepository.getList();
+	public List<SuspendVO> getList(Pager pager) throws Exception {
+		pager.makeRow();
+		
+		// 1. 총 글의 개수 DB에서 조회
+		Long totalCount = suspendRepository.getTotalCount();
+		pager.makeNum(totalCount);
+		
+		return suspendRepository.getList(pager);
 	}
 	
 	// block

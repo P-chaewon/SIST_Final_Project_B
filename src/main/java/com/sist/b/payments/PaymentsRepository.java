@@ -32,4 +32,7 @@ public interface PaymentsRepository {
 	
 	// 환불 완료로 update
 	public int setUpdateCkDone(Long merchant_uid) throws Exception;
+	
+	//totalCount
+	public Long getTotalCount(Pager pager)throws Exception;
 }

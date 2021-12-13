@@ -177,8 +177,9 @@ public class AdminController {
 	
 	// refunds : get
 	@GetMapping("payments/refunds")
-	public ModelAndView getRefund(ModelAndView mv) throws Exception {
-		List<RefundsVO> ar = refundsService.getList();
+	public ModelAndView getRefund(ModelAndView mv, Pager pager) throws Exception {
+		List<RefundsVO> ar = refundsService.getList(pager);
+		mv.addObject("pager", pager);
 		mv.addObject("refundsVOs", ar);
 		mv.addObject("board", "payments");
 		mv.setViewName("admin/refund");
@@ -204,9 +205,10 @@ public class AdminController {
 	// ------------------ 신고 (report), 정지 (suspend) ------------------
 	// report : getList
 	@GetMapping("report")
-	public ModelAndView getReportList() throws Exception {
+	public ModelAndView getReportList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<ReportVO> ar = reportService.getList();
+		List<ReportVO> ar = reportService.getList(pager);
+		mv.addObject("pager", pager);
 		mv.addObject("reportVOs", ar);
 		mv.addObject("board", "report");
 		mv.setViewName("admin/report_list");
@@ -225,9 +227,10 @@ public class AdminController {
 	
 	// suspend : getList
 	@GetMapping("suspend")
-	public ModelAndView getSuspendList() throws Exception {
+	public ModelAndView getSuspendList(Pager pager) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<SuspendVO> ar = suspendService.getList();
+		List<SuspendVO> ar = suspendService.getList(pager);
+		mv.addObject("pager", pager);
 		mv.addObject("suspendVOs", ar);
 		mv.addObject("board", "report");
 		mv.setViewName("admin/suspend_list");

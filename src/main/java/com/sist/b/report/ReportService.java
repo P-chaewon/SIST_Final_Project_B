@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.b.util.Pager;
+
 @Service
 public class ReportService {
 	
@@ -15,7 +17,13 @@ public class ReportService {
 		return reportRepository.setInsert(reportVO);
 	}
 	
-	public List<ReportVO> getList() throws Exception {
-		return reportRepository.getList();
+	public List<ReportVO> getList(Pager pager) throws Exception {
+		pager.makeRow();
+		
+		// 1. 총 글의 개수 DB에서 조회
+		Long totalCount = reportRepository.getTotalCount();
+		pager.makeNum(totalCount);
+		
+		return reportRepository.getList(pager);
 	}
 }

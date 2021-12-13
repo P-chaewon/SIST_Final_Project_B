@@ -58,6 +58,18 @@
 					</tr>
 				</c:forEach>
 			</table>
+			
+			<!-- 페이징 처리 -->
+			<button class="p" data-list-pn="${pager.startNum-1}" type="button">Pre</button>
+			
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<span class="p" data-list-pn="${i}" >${i}</span>
+			</c:forEach>
+			
+			<c:if test="${!pager.lastCheck}">
+			<button class="p" data-list-pn="${pager.lastNum+1}" type="button">Next</button>
+			</c:if>
+			
 		</form>
 		
 		<div class="b">
@@ -120,4 +132,6 @@
 	</script>
 	<script type="text/javascript" src="../static/js/admin/report_list.js"></script>
 </body>
+<!-- footer -->
+<c:import url="../temp/nav_footer.jsp"></c:import>
 </html>
