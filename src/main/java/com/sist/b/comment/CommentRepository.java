@@ -12,11 +12,5 @@ public interface CommentRepository {
 	public Long getCommentCount(CommentVO commentVO)throws Exception;
 	
 	public int setCommentDel(CommentVO commentVO)throws Exception;
-	
-	public int setReplyInsert(CommentVO commentVO)throws Exception;
-	
-	public int setRefUpdate(CommentVO commentVO)throws Exception;
-	
-	public int setReplyUpdate(CommentVO commentVO)throws Exception;
 
 }

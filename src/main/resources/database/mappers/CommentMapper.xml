@@ -39,26 +39,7 @@
 		DELETE FROM comment WHERE commentNum = #{commentNum}
 	</delete>
 	
-	<insert id="setReplyInsert" useGeneratedKeys="true" keyProperty="commentNum" parameterType="CommentVO">
-		INSERT INTO comment
-			VALUES(null, #{postNum}, #{userNum}, #{writer}, #{commentContents}, 
-  	(select R.ref from(select * from comment where commentNum=#{commentNum})R),
-  	(select S.step+1 from(select * from comment where commentNum=#{commentNum})S),
-  	(select D.depth+1 from(select * from comment where commentNum=#{commentNum})D),
-  	now())
 	
-	</insert>
-	
-<update id="setReplyUpdate" parameterType="CommentVO">
-  	UPDATE comment SET step=step+1
-  	 WHERE ref=(select ref from comment where commentNum=#{commentNum}) 
-  	 and step > (select step from comment where commentNum=#{commentNum})
-  	
-  </update>
-  
-  <update id="setRefUpdate" parameterType="CommentVO">
-  	UPDATE comment SET ref=#{commentNum} WHERE commentNum=#{commentNum}
-  </update>
 	
  	
  	

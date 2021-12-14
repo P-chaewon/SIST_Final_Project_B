@@ -204,22 +204,7 @@ public class PostController {
 	}
 	
 	
-	@PostMapping("reply")
-	public ModelAndView setReplyInsert(@RequestParam Long postNum, CommentVO commentVO, HttpSession session) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
-		  SecurityContextImpl sc = (SecurityContextImpl)object;
-		  org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
-		  UserVO userVO = (UserVO)authentication.getPrincipal();
-		  
-		commentVO.setUserNum(userVO.getUserNum());
-		commentVO.setPostNum(postNum);
-		int result = commentService.setReplyInsert(commentVO);
-		mv.setViewName("post/ajaxResult");
-		mv.addObject("result", result);
-		
-		return mv;
-	}
+
 	
 
 	

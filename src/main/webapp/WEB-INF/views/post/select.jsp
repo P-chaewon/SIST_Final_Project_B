@@ -63,15 +63,17 @@
 			            		<span class="tag" style="color: #00376b; cursor: pointer;"> ${postVO.tag }</span></span> 
 			            	
 			            	</div>
+			            	
 			        
-		
-					<div class="comment_section"  id="commentList" data-board-num="${postVO.postNum }" style="height: 260px; border-top:0.5px solid #E2E2E2; overflow-y:scroll; ">
+			            	
+			           <div class="comment_section"  id="commentList" data-board-num="${postVO.postNum }" style="height: 260px; border-top:0.5px solid #E2E2E2; overflow-y:scroll; ">
 			         
 			             <c:forEach items="${postVO.commentList}" var="commentList">
 			             
 			             <!-- comment 작성시 -->
-
-				  			<ul class="comments" style="margin-top: 15px;">
+			             <c:if test="${not empty commentList.commentContents }">
+			             
+			             <ul class="comments" style="margin-top: 15px;">
 							                <li style="height: 17px;">
 							                  <span class="point_span nickname" style="font-weight: bold;">${commentList.writer}</span><span style="margin-left: 5px;">${commentList.commentContents}</span>
 							<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:50px; font-size:12px; background-color:#fff; border-style: none;">삭제</button>
@@ -84,7 +86,7 @@
 							 </div>
 							 
 							 
-							 <div class="comment_re" data-commentNum= ${commentList.commentNum } style="display:none; width: 330px; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
+							 <div class="comment_re" style="display:none; width: 330px; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
 							          
 							          <input type="hidden" class="form-control" name="writer" id="writer_re" value="${username}" placeholder="Enter Writer" readonly="readonly">
 					
@@ -92,17 +94,17 @@
 						
 							     <button type="button" class="submit_re" id="comment_re" disabled>게시</button>
 							        
-				<%-- 	 <c:catch>
-							<c:forEach begin="1" end="${commentList.depth}">
-								--
-							</c:forEach>
-						</c:catch> --%>
-							        
 							          
 							  </div>
+			             
+			             </c:if>
+
+				  			
 				</c:forEach>
 
 			        </div>
+			   
+			
 			            	</div>
 			            </div>
 						</div>
@@ -385,109 +387,13 @@
 		let postNum = $("#commentList").attr("data-board-num");
 		let writer =$("#writer").val();
 		
-		$.ajax({
-			type: "POST",
-			url : "./comment",
-			data : {
-				postNum: postNum, 
-				writer:writer, 
-				commentContents:commentContents,
-			},
-			success: function(result) {
-				result = result.trim();
-				
-				if(result>0){
-					$("#input_comment").val('');
-					location.href="./selectOne?postNum=${postVO.postNum}"
-					
-				}else{
-				
-				}
-				
-			},
-			error: function() {
-				alert('삭제 실패');
-			}
+		$.post('./comment', {postNum: postNum, writer:writer, commentContents:commentContents}, function(result) {
+			console.log(result.trim());
 			
-		});
-		
+			$("#input_comment").val('');
+			location.href="./selectOne?postNum=${postVO.postNum}"
+		} );
 	});
-	
-	$('#comment').click(function () {
-		//작성자, 내용 콘솔 출력	
-
-		let commentContents = $("#input_comment").val();
-		let postNum = $("#commentList").attr("data-board-num");
-		let writer =$("#writer").val();
-		
-		$.ajax({
-			type: "POST",
-			url : "./comment",
-			data : {
-				postNum: postNum, 
-				writer:writer, 
-				commentContents:commentContents,
-			},
-			success: function(result) {
-				result = result.trim();
-				
-				if(result>0){
-					$("#input_comment").val('');
-					location.href="./selectOne?postNum=${postVO.postNum}"
-					
-				}else{
-				
-				}
-				
-			},
-			error: function() {
-				alert('실패');
-			}
-			
-		});
-		
-	});
-/* 	
-	$("#comment_re").click(function () {
-		//작성자, 내용 콘솔 출력	
-		alert('hi');
-
-		let commentContents = $("#input_comment_re").val();
-		let postNum = $("#commentList").attr("data-board-num");
-		let commentNum = $(".comment_re").attr("data-commentNum");
-		let writer =$("#writer_re").val();
-		
-		$.ajax({
-			type: "POST",
-			url : "./reply",
-			data : {
-				postNum:postNum, 
-				commentNum:commentNum
-				writer:writer, 
-				commentContents:commentContents,
-			},
-			success: function(result) {
-				result = result.trim();
-				
-				if(result>0){
-					
-					location.href="./selectOne?postNum=${postVO.postNum}"
-					
-				}else{
-				
-				}
-				
-			},
-			error: function() {
-				alert('실패');
-			}
-			
-		});
-		
-	});
-	
-	 */
-
 	
 
   $('#chat').click(function(){
