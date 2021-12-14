@@ -14,13 +14,22 @@ public class CommentService {
 	private CommentRepository commentRepository;
 	
 	public int setComment(CommentVO commentVO)throws Exception{
-		return commentRepository.setComment(commentVO);
+		int result = commentRepository.setComment(commentVO);
+		result = commentRepository.setRefUpdate(commentVO);
+		
+		return result;
 	}
 
 	public int setCommentDel(CommentVO commentVO)throws Exception{
 		return commentRepository.setCommentDel(commentVO);
 	}
 	
+	public int setReplyInsert(CommentVO commentVO)throws Exception{
+		int result = commentRepository.setRefUpdate(commentVO);
+		result = commentRepository.setReplyInsert(commentVO);
+		
+		return result;
+	}
 	
 
 	

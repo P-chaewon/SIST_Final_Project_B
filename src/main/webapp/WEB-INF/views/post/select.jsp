@@ -69,31 +69,37 @@
 			         
 			             <c:forEach items="${postVO.commentList}" var="commentList">
 			             
-			          
-			      
+			             <!-- comment 작성시 -->
 
 				  			<ul class="comments" style="margin-top: 15px;">
 							                <li style="height: 17px;">
 							                  <span class="point_span nickname" style="font-weight: bold;">${commentList.writer}</span><span style="margin-left: 5px;">${commentList.commentContents}</span>
-							<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:30px; font-size:12px; background-color:#fff; border-style: none;">삭제</button>
+							<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:50px; font-size:12px; background-color:#fff; border-style: none;">삭제</button>
 							                </li>
-							                <!-- input 값 여기에 추가 -->
 							</ul>
 							
-							<div class="description" id="comment_re" style="margin-top: 7px;">
+							<div class="description" id="comment_reply" style="margin-top: 7px;">
 								   <span class="sub" style="font-size: 12px; width: 60px; float: left;">${commentList.regDate}</span> 
-							       <span class="sub_span" id="re" style="cursor: pointer; float: left; margin-left: 5px;">답글달기</span>
+							       <span class="sub_span" id="reply" style="cursor: pointer; float: left; margin-left: 5px;">답글달기</span>
 							 </div>
 							 
 							 
-							 <div class="comment_re" style="width: 330px; display:none; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
-							          <!-- 이모지 추가 -->
-					
-							            <input id="input_comment_re" name="commentContents" style="width: 270px; height:30px; margin-left: 5px;"  class="input_comment" type="text" placeholder="답글 달기..." >
-						
-							            <button type="button" class="submit_re" id="comment_re" disabled>게시</button>
+							 <div class="comment_re" data-commentNum= ${commentList.commentNum } style="display:none; width: 330px; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
 							          
-							          </div>
+							          <input type="hidden" class="form-control" name="writer" id="writer_re" value="${username}" placeholder="Enter Writer" readonly="readonly">
+					
+							     <input id="input_comment_re" name="commentContents" style="width: 270px; height:30px; margin-left: 5px;"  class="input_comment" type="text" placeholder="답글 달기..." >
+						
+							     <button type="button" class="submit_re" id="comment_re" disabled>게시</button>
+							        
+				<%-- 	 <c:catch>
+							<c:forEach begin="1" end="${commentList.depth}">
+								--
+							</c:forEach>
+						</c:catch> --%>
+							        
+							          
+							  </div>
 				</c:forEach>
 
 			        </div>
@@ -324,13 +330,25 @@
   	    });
   	});
   	
- 	$(function() {
+	 
+  	$(function() {
   	    $("#input_comment_re").on("keyup", function() {
   	        var flag = true;
   	        flag = $(this).val().length > 0 ? false : true;
   	        $(".submit_re").attr("disabled", flag);
   	    });
   	});
+  	
+ 
+ 	
+	$(document).on("click", "#reply", function() {
+		if($(this).parent().next().css("display")=="none"){
+			$(this).parent().next().show();
+		}else{
+			$(this).parent().next().hide();	
+		}
+	
+	}); 
   
 	//Del click event
 	$("#commentList").on("click", ".commentDel", function() {
@@ -367,23 +385,111 @@
 		let postNum = $("#commentList").attr("data-board-num");
 		let writer =$("#writer").val();
 		
-		$.post('./comment', {postNum: postNum, writer:writer, commentContents:commentContents}, function(result) {
-			console.log(result.trim());
+		$.ajax({
+			type: "POST",
+			url : "./comment",
+			data : {
+				postNum: postNum, 
+				writer:writer, 
+				commentContents:commentContents,
+			},
+			success: function(result) {
+				result = result.trim();
+				
+				if(result>0){
+					$("#input_comment").val('');
+					location.href="./selectOne?postNum=${postVO.postNum}"
+					
+				}else{
+				
+				}
+				
+			},
+			error: function() {
+				alert('삭제 실패');
+			}
 			
-			$("#input_comment").val('');
-			location.href="./selectOne?postNum=${postVO.postNum}"
-		} );
+		});
+		
 	});
 	
-	$(document).on("click", "#re", function() {
-		if($(this).parent().next().css("display")=="none"){
-			$(this).parent().next().show();
-		}else{
-			$(this).parent().next().hide();	
-		}
-	
+	$('#comment').click(function () {
+		//작성자, 내용 콘솔 출력	
+
+		let commentContents = $("#input_comment").val();
+		let postNum = $("#commentList").attr("data-board-num");
+		let writer =$("#writer").val();
+		
+		$.ajax({
+			type: "POST",
+			url : "./comment",
+			data : {
+				postNum: postNum, 
+				writer:writer, 
+				commentContents:commentContents,
+			},
+			success: function(result) {
+				result = result.trim();
+				
+				if(result>0){
+					$("#input_comment").val('');
+					location.href="./selectOne?postNum=${postVO.postNum}"
+					
+				}else{
+				
+				}
+				
+			},
+			error: function() {
+				alert('실패');
+			}
+			
+		});
+		
+	});
+/* 	
+	$("#comment_re").click(function () {
+		//작성자, 내용 콘솔 출력	
+		alert('hi');
+
+		let commentContents = $("#input_comment_re").val();
+		let postNum = $("#commentList").attr("data-board-num");
+		let commentNum = $(".comment_re").attr("data-commentNum");
+		let writer =$("#writer_re").val();
+		
+		$.ajax({
+			type: "POST",
+			url : "./reply",
+			data : {
+				postNum:postNum, 
+				commentNum:commentNum
+				writer:writer, 
+				commentContents:commentContents,
+			},
+			success: function(result) {
+				result = result.trim();
+				
+				if(result>0){
+					
+					location.href="./selectOne?postNum=${postVO.postNum}"
+					
+				}else{
+				
+				}
+				
+			},
+			error: function() {
+				alert('실패');
+			}
+			
+		});
+		
 	});
 	
+	 */
+
+	
+
   $('#chat').click(function(){
 	  $("#input_comment").focus();
   })

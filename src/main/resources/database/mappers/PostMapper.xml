@@ -131,7 +131,7 @@
         
   		WHERE postNum = #{postNum}
   		
-  		order by commentNum desc
+  		ORDER BY ref DESC, step asc, commentNum desc
   	
   	</select>
   	

@@ -1,7 +1,5 @@
 package com.sist.b.comment;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -15,5 +13,10 @@ public interface CommentRepository {
 	
 	public int setCommentDel(CommentVO commentVO)throws Exception;
 	
+	public int setReplyInsert(CommentVO commentVO)throws Exception;
+	
+	public int setRefUpdate(CommentVO commentVO)throws Exception;
+	
+	public int setReplyUpdate(CommentVO commentVO)throws Exception;
 
 }
