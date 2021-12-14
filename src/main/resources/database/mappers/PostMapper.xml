@@ -135,6 +135,17 @@
   	
   	</select>
   	
+  	<!-- my post -->
+  	
+  	<select id="getMyPost" parameterType="PostVO" resultMap="selectResult">
+  		SELECT * FROM post
+  		LEFT JOIN postfiles
+  		USING(postNum)
+  		WHERE userNum = #{userNum}
+  		ORDER BY postNum DESC
+  	</select>
+  	
+  	
   	<!-- delete post -->
   	<delete id="setDeletePost" parameterType="PostVO">
   		DELETE

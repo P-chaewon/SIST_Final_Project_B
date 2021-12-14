@@ -48,7 +48,7 @@ $(document).ready(function() { // 페이지가 준비되면
 							${list.userVO.username}
 							</span>
 					
-						<img class="icon_react icon_more" id="more" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 			
 						</div>
 					</header>
@@ -256,6 +256,34 @@ $(document).ready(function() { // 페이지가 준비되면
 			
 			
 		</main>
+		
+		<div class="modal">
+		<div class="modal_content">
+			<button type="button" id="suspend">
+				<h1>신고</h1>
+			</button>
+			<button type="button" id="cancel">취소</button>
+		</div>
+	</div>
+	
+	<div class="modal2">
+		<div class="modal_content2">
+			<div id="d1">
+				<span class="c">
+					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
+					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
+				</span>
+			</div>
+			<div id="d2">
+				<h1 class="c" id="d2_del">신고</h1>
+			</div>
+			<div id="d3">
+				<span class="c" id="d3_can">취소</span>
+			</div>
+		</div>
+	</div>
+	
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript">
@@ -439,7 +467,35 @@ $(document).ready(function() { // 페이지가 준비되면
 
    	});
   	
-   	 
+  	var postNum = 0;
+  	 
+  	$(document).on("click", "#more",function(){
+  		$(".modal").fadeIn();
+  		// 스크롤 제한 on
+  		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  		postNum = (this).getAttribute('data-postNum');
+  	});
+
+  	$("#cancel").click(function(){
+  		$(".modal").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+
+  	$("#suspend").click(function(){
+  		$(".modal2").fadeIn();
+  	});
+
+  	$("#d2").click(function(){
+  		/* 신고게시판 이동 */
+  	});
+
+  	$("#d3").click(function(){
+  		$(".modal").fadeOut();
+  		$(".modal2").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
   	
 
 

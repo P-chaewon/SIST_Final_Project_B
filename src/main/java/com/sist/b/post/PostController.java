@@ -58,6 +58,8 @@ public class PostController {
 		 
 		  postVO.setUserNum(userVO.getUserNum());
 		  
+		  String username = userVO.getUsername();
+		  
 		  int result = postService.setPostUpload(postVO, files);
 		  
 		  System.out.println(result);
@@ -67,7 +69,7 @@ public class PostController {
 		for(MultipartFile multipartFile:files) {
 			System.out.println(multipartFile.getOriginalFilename());
 		}
-		return "redirect:../";
+		return "redirect:../"+username;
 	}
 	
 	@GetMapping("selectOne")
@@ -97,6 +99,19 @@ public class PostController {
 		return mv;
 	}
 	
+	@GetMapping("delete")
+	public String setDelete(PostVO postVO, HttpSession session)throws Exception{
+		
+		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		  SecurityContextImpl sc = (SecurityContextImpl)object;
+		  org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		  UserVO userVO = (UserVO)authentication.getPrincipal();
+		  
+		  String username = userVO.getUsername();
+		
+		int result = postService.setPostDelete(postVO);
+		return "redirect:../../"+username;
+	}
 	
 	@ResponseBody
 	@GetMapping("insertLikes.do")

@@ -50,7 +50,7 @@
 						<span class="bullet">•</span>
 						<button class="following" type="button">팔로잉</button>
 				
-						<img class="icon_react icon_more" id="more" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						<img class="icon_react icon_more" id="more" data-postNum="${postVO.postNum}" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 						
 					</div>
 					
@@ -190,6 +190,32 @@
 		
 		
 	</main>
+	
+			<div class="modal">
+		<div class="modal_content">
+			<button type="button" id="delete">
+				<h1>삭제</h1>		
+			</button>
+			<button type="button" id="cancel">취소</button>
+		</div>
+	</div>
+	
+	<div class="modal2">
+		<div class="modal_content2">
+			<div id="d1">
+				<span class="c">
+					<h1 id="d1_t1">게시물을 삭제할까요?</h1> 
+					<span id="d1_t2">이 게시물을 삭제하시겠어요?</span>
+				</span>
+			</div>
+			<div id="d2">
+				<h1 class="c" id="d2_del">삭제</h1>
+			</div>
+			<div id="d3">
+				<span class="c" id="d3_can">취소</span>
+			</div>
+		</div>
+	</div>
 
 
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -400,7 +426,38 @@
 	  $("#input_comment").focus();
   })
 
+  	 var postNum = 0;
+  	 
+  	$(document).on("click", "#more",function(){
+  		$(".modal").fadeIn();
+  		// 스크롤 제한 on
+  		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  		postNum = (this).getAttribute('data-postNum');
+  	});
+
+  	$("#cancel").click(function(){
+  		$(".modal").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+
+  	$("#delete").click(function(){
+  		$(".modal2").fadeIn();
+  	});
+
+  	$("#d2").click(function(){
+  		location.href = "./post/delete?postNum="+postNum;
+  	});
+
+  	$("#d3").click(function(){
+  		$(".modal").fadeOut();
+  		$(".modal2").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
   	
+
+
  	
    	</script>  	 
 </body>

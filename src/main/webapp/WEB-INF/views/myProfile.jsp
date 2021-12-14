@@ -88,13 +88,13 @@
 						</section>
 					</header>
 					<div class="profile-tablist" role="tablist">
-						<a aria-selected="true" class="tab-entity tab-selected" role="tab" href="/kopc_adopt/" tabindex="0">
+						<a aria-selected="true" class="tab-entity tab-selected" id="post" role="tab" tabindex="0">
 							<span class="tab-info">
 								<img alt="" src="${pageContext.request.contextPath}/static/icons/grid.png" class="post-icon">
 								<span class="tab-name">게시물</span>
 							</span>
 						</a>
-						<a aria-selected="false" class="tab-entity" role="tab" href="/kopc_adopt/channel/" tabindex="0">
+						<a aria-selected="false" class="tab-entity" id="bookmark" role="tab" tabindex="0">
 							<span class="tab-info">
 								<img alt="" src="${pageContext.request.contextPath}/static/icons/bookmark.png" class="bookmark-icon">
 								<span class="tab-name">저장됨</span>
@@ -102,64 +102,157 @@
 						</a>
 					</div>
 					<!-- 게시글 보여주는 곳 -->
-					<div class="post-space">
+					
+					
+				
+					<div class="post-space" style="display: block;" id="view_post">
 						<article class="post-article">
 							<div>
 								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+									
 									<div class="post-one-row">
+									
+											<c:choose>
+						<c:when test="${empty postList}">
+						
+							<div class="one-post">
+
+												<div class="post-img-space">
+													<div class="post-image-div">
+														
+														<img alt="" class="post-img" src="${pageContext.request.contextPath}/static/images/profileHome/no_post.jpg" style="object-fit: cover;">
+														
+													</div>
+													<div class="img-background"></div>
+												</div>
+											
+										</div>
+											<div class="one-post">
+										
+											
+												<div class="post-img-space" style="background-color: #fafafa;">
+													
+													<div style="text-align: center; margin-top: 80px;">
+														<span style="font-weight: bold; font-size: 20px;">소중한 순간을 </span>
+														<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 포착하여 공유해보세요.</span>
+													
+													<span style="font-size: 15px; margin-top: 20px;">첫 게시물을 공유해보세요.</span>
+													</div>
+													
+													<button class="blue-btn-small update-btn" onclick="location.href='./post/upload' "style="margin: 0 auto; margin-top: 40px;" type="button">게시물 공유</button>
+													
+												</div>
+					
+										</div>
+						</c:when>
+					
+					<c:otherwise>
+									
+									<c:forEach items="${postList}" var="list">
+									
 										<div class="one-post">
-											<a href="/p/CW2nv6IJPFJ/" tabindex="0">
+										
+											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
 												<div class="post-img-space">
 													<div class="post-image-div">
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg1.jpg" style="object-fit: cover;">
+													<c:forEach items="${list.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
+														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
+														</c:forEach>
 													</div>
 													<div class="img-background"></div>
 												</div>
 											</a>
 										</div>
-										<div class="one-post">
-											<a href="/p/CW2RkSWJM9C/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg2.jpg" style="object-fit: cover;">
-													</div>
-													<div class="img-background"></div>
-												</div>
-											</a>
-										</div>
-										<div class="one-post one-last">
-											<a href="/p/CW1ylvzPrTH/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg3.jpg" style="object-fit: cover;">
-													</div>
-													<div class="img-background"></div>
-												</div>
-											</a>
-										</div>
+									
+									
+									</c:forEach>
+						</c:otherwise>
+				
+					</c:choose>
+										
 									</div>
+				
 								</div>
 							</div>
-							<div class="_4emnV">
-								<div class="qF0y9 Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME" data-visualcompletion="loading-state" style="height: 32px; width: 32px;">
-									<svg aria-label="읽어들이는 중..." class="By4nA" viewBox="0 0 100 100">
-									<rect fill="#555555" height="6" opacity="0" rx="3" ry="3" transform="rotate(-90 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.08333333333333333" rx="3" ry="3" transform="rotate(-60 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.16666666666666666" rx="3" ry="3" transform="rotate(-30 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.25" rx="3" ry="3" transform="rotate(0 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.3333333333333333" rx="3" ry="3" transform="rotate(30 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.4166666666666667" rx="3" ry="3" transform="rotate(60 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.5" rx="3" ry="3" transform="rotate(90 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.5833333333333334" rx="3" ry="3" transform="rotate(120 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.6666666666666666" rx="3" ry="3" transform="rotate(150 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.75" rx="3" ry="3" transform="rotate(180 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.8333333333333334" rx="3" ry="3" transform="rotate(210 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.9166666666666666" rx="3" ry="3" transform="rotate(240 50 50)" width="25" x="72" y="47"></rect>
-									</svg>
-								</div>
-							</div>
+						
 						</article>
-					</div>
+					</div>	
+					
+					<!-- bookmark -->
+					
+						<div class="post-space" id="view_bookmark" style="display: none;">
+						<article class="post-article">
+							<div>
+								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
+									
+									<div class="post-one-row">
+									
+											<c:choose>
+						<c:when test="${empty postList}">
+						
+							<div class="one-post">
+
+												<div class="post-img-space">
+													<div class="post-image-div">
+														<img alt="" class="post-img" src="${pageContext.request.contextPath}/static/images/profileHome/no_post.jpg" style="object-fit: cover;">
+														
+													</div>
+													<div class="img-background"></div>
+												</div>
+											
+										</div>
+											<div class="one-post">
+										
+											
+												<div class="post-img-space" style="background-color: #fafafa;">
+													
+													<div style="text-align: center; margin-top: 80px;">
+														<span style="font-weight: bold; font-size: 20px;">소중한 순간을 </span>
+														<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 포착하여 공유해보세요.</span>
+													
+													<span style="font-size: 15px; margin-top: 20px;">첫 게시물을 공유해보세요.</span>
+													</div>
+													
+													<button class="blue-btn-small update-btn" onclick="location.href='./post/upload' "style="margin: 0 auto; margin-top: 40px;" type="button">게시물 공유</button>
+													
+												</div>
+					
+										</div>
+						</c:when>
+					
+					<c:otherwise>
+									
+									<c:forEach items="${postList}" var="list">
+									
+										<div class="one-post">
+									
+											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
+												<div class="post-img-space">
+													<div class="post-image-div">
+													<c:forEach items="${list.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
+														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
+														</c:forEach>
+													</div>
+													<div class="img-background"></div>
+												</div>
+											</a>
+										</div>
+									
+									
+									</c:forEach>
+						</c:otherwise>
+				
+					</c:choose>
+										
+									</div>
+				
+								</div>
+							</div>
+						
+						</article>
+					</div>	
+					
+					
 				</div>
 			</main>
 			<c:import url="./temp/footer.jsp"></c:import>
@@ -239,5 +332,23 @@
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profileEdit.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
+	<script type="text/javascript">
+	$("#post").click(function() {
+		$(this).addClass("tab-selected");
+		$(".tab-entity").not(this).removeClass("tab-selected");
+		$("#view_post").css("display","block");
+		$("#view_bookmark").css("display","none");
+		
+	});
+	
+	 $("#bookmark").click(function() {
+		$(this).addClass("tab-selected");
+		$(".tab_sub").not(this).removeClass("ch");
+		$(".tab-entity").not(this).removeClass("tab-selected");
+		$("#view_bookmark").css("display","block");
+		$("#view_post").css("display","none");
+		});
+	
+	</script>
 </body>
 </html>
