@@ -22,4 +22,14 @@
 	<select id="getTotalCount" resultType="Long">
 		select count(reportNum) from report
 	</select>
+	
+	<select id="getReportCount" resultType="Long">
+		select  toUserNum from report 
+		group by toUserNum 
+		having count(*) > 10;
+	</select>
+	
+	<delete id="setDelete" parameterType="UserVO">
+		delete from report where toUserNum = #{userNum}	
+	</delete>
 </mapper>

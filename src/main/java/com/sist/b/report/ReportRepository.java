@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.sist.b.user.UserVO;
 import com.sist.b.util.Pager;
 
 @Mapper
@@ -17,4 +18,10 @@ public interface ReportRepository {
 	
 	// getTotalCount
 	public Long getTotalCount() throws Exception;
+	
+	// getReportCount
+	public List<Long> getReportCount() throws Exception;
+	
+	// setDelete
+	public int setDelete(UserVO userVO) throws Exception;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.b.user.UserVO;
 import com.sist.b.util.Pager;
 
 @Service
@@ -25,5 +26,13 @@ public class ReportService {
 		pager.makeNum(totalCount);
 		
 		return reportRepository.getList(pager);
+	}
+	
+	public List<Long> getReportCount() throws Exception {
+		return reportRepository.getReportCount();
+	}
+	
+	public int setDelete(UserVO userVO) throws Exception {
+		return reportRepository.setDelete(userVO);
 	}
 }

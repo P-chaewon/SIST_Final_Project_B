@@ -53,17 +53,18 @@
 				</c:if>
 			</table>
 			
-			<!-- 페이징 처리 -->
-			<button class="p" data-list-pn="${pager.startNum-1}" type="button">Pre</button>
-			
-			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-				<span class="p" data-list-pn="${i}" >${i}</span>
-			</c:forEach>
-			
-			<c:if test="${!pager.lastCheck}">
-			<button class="p" data-list-pn="${pager.lastNum+1}" type="button">Next</button>
+			<c:if test="${not empty refundsVOs}">
+				<!-- 페이징 처리 -->
+				<div class="pagination">
+					<a href="./refunds?pn=${pager.startNum-1} class="p" data-list-pn="${pager.startNum-1}">&laquo;</a>
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						<a href="./refunds?pn=${i}"><span class="p" data-list-pn="${i}">${i}</span></a>
+					</c:forEach>
+					<c:if test="${!pager.lastCheck}">
+						<a href="./refunds?pn=${pager.lastNum+1}" class="p" data-list-pn="${pager.lastNum+1}">&raquo;</a>
+					</c:if>
+				</div>
 			</c:if>
-			
 		</form>
 			<div class="b">
 				<button type="button" id="done">환불완료</button>

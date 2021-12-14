@@ -206,3 +206,20 @@ footer {
 	left: 0;
 	top: 0;
 }
+
+/* paging */
+.pagination {
+	margin-top: 30px;
+	text-align: center;
+}
+
+.pagination a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}

@@ -35,6 +35,7 @@
   				and paymentsCk = 'd'
   			</when>
   		</choose>
+  		order by merchant_uid desc
   		limit #{startRow}, #{perPage}
   	</select>
   	
