@@ -39,7 +39,7 @@ public class SuspendService {
 		// 사용자 번호
 		suspendVO.setUserNum(userVO.getUserNum());
 		// 정지 이유
-		suspendVO.setSuspendReason("자동 정지 : 신고 횟수 초과");
+		suspendVO.setSuspendReason("자동 정지: 신고 횟수 초과");
 		return suspendRepository.setInsert(suspendVO);
 	}
 	
