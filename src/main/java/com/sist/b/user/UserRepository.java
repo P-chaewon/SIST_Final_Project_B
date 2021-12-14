@@ -1,5 +1,6 @@
 package com.sist.b.user;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -34,5 +35,9 @@ public interface UserRepository {
 	public int setUnenabled(UserVO userVO) throws Exception;
 	//관리자 : 계정 차단 해제
 	public int setEnabled(UserVO userVO) throws Exception;
+	
+	
+	//아이디로 유저 검색
+	public List<UserVO> getSearchUser(String searchText) throws Exception;
 
 }

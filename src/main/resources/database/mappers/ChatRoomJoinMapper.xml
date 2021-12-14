@@ -11,11 +11,12 @@
   		<result column="exitDate" property="exitDate" />
   		<association property="userVO" javaType="UserVO">
   			<result column="username" property="username"/>
+  			<result column="fileName" property="fileName"/>
   		</association>
   	</resultMap>
   
   	<select id="getChatUserList" parameterType="UserVO" resultMap="getChatUserListResult">
-  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username
+  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username, U.fileName
 		FROM CHATROOMJOIN CRJ
 		JOIN USER U
 		ON (U.userNum = CRJ.userNum)
