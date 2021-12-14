@@ -150,6 +150,10 @@ public class HomeController {
 		
 		mv.addObject("postList", ar);
 		
+		List<PostVO> ar2 = postService.getBookmarkList(postVO);
+		
+		mv.addObject("bookmarkList", ar2);
+		
 
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
 		//팔로우가 1이면 내가 팔로우 하고있는 사람

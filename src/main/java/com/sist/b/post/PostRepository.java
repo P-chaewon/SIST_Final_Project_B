@@ -28,5 +28,7 @@ public interface PostRepository {
 	public int setFilesInsert(PostFilesVO postFilesVO)throws Exception;
 	
 	public List<PostVO> getMyPost(PostVO postVO)throws Exception;
+	
+	public List<PostVO> getBookmarkList(PostVO postVO)throws Exception;
 
 }

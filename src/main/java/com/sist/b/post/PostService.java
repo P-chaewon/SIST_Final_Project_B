@@ -64,4 +64,7 @@ public class PostService {
 		return postRepository.getMyPost(postVO);
 	}
 	
+	public List<PostVO> getBookmarkList(PostVO postVO)throws Exception{
+		return postRepository.getBookmarkList(postVO);
+	}
 }

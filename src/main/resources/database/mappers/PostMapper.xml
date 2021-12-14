@@ -160,12 +160,14 @@
   		VALUES (null, #{postNum}, #{postfileName}, #{oriName})
   	</insert>
   	
+  	<!-- bookmark list -->
   	
-  	<!-- tag list -->
- 	<select id="getTagList" parameterType="PostVO" resultMap="selectResult">
- 		SELECT * from post
- 		where tag like concat('%', #{tag},'%')
- 	
- 	</select>
- 
+  	<select id="getBookmarkList" parameterType="PostVO" resultMap="selectResult">
+  		<![CDATA[select P.*, PF.*, B.* from post P 
+  		left join postfiles PF on(p.postNum = pf.postNum) 
+  		left join bookmark B on(P.postNum = B.postNum) 
+  		where B.userNum = #{userNum} and bookmarkNum > 0;
+  	]]>
+  	</select>
+  	
   </mapper>

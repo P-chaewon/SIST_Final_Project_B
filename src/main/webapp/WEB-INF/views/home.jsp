@@ -84,7 +84,6 @@ $(document).ready(function() { // 페이지가 준비되면
 								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 								</a>
-								
 							</c:when>
 							
 							<c:otherwise>

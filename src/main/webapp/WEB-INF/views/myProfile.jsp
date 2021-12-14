@@ -101,53 +101,39 @@
 							</span>
 						</a>
 					</div>
-					<!-- 게시글 보여주는 곳 -->
 					
+					<!-- 게시글 보여주는 곳 -->
 					
 				
 					<div class="post-space" style="display: block;" id="view_post">
 						<article class="post-article">
 							<div>
 								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-									
 									<div class="post-one-row">
 									
-											<c:choose>
+					<c:choose>
 						<c:when test="${empty postList}">
-						
 							<div class="one-post">
-
-												<div class="post-img-space">
-													<div class="post-image-div">
-														
-														<img alt="" class="post-img" src="${pageContext.request.contextPath}/static/images/profileHome/no_post.jpg" style="object-fit: cover;">
-														
-													</div>
-													<div class="img-background"></div>
-												</div>
-											
-										</div>
+										<div class="post-img-space">
+											<div class="post-image-div">
+												<img alt="" class="post-img" src="${pageContext.request.contextPath}/static/images/profileHome/no_post.jpg" style="object-fit: cover;">	
+											</div>
+										<div class="img-background"></div>
+										</div>	
+								</div>
 											<div class="one-post">
-										
-											
 												<div class="post-img-space" style="background-color: #fafafa;">
-													
-													<div style="text-align: center; margin-top: 80px;">
+													<div style="text-align: center; margin-top: 52px;">
 														<span style="font-weight: bold; font-size: 20px;">소중한 순간을 </span>
 														<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 포착하여 공유해보세요.</span>
-													
 													<span style="font-size: 15px; margin-top: 20px;">첫 게시물을 공유해보세요.</span>
 													</div>
-													
-													<button class="blue-btn-small update-btn" onclick="location.href='./post/upload' "style="margin: 0 auto; margin-top: 40px;" type="button">게시물 공유</button>
-													
+													<img alt="" style="width: 70px; height: 70px; margin-left: 111px; margin-top: 10px;" src="${pageContext.request.contextPath}/static/icons/instant-camera.png">
+													<button class="blue-btn-small update-btn" onclick="location.href='./post/upload' "style="margin: 0 auto; margin-top: 10px;" type="button">게시물 공유</button>
 												</div>
-					
 										</div>
-						</c:when>
-					
-					<c:otherwise>
-									
+							</c:when>
+							<c:otherwise>	
 									<c:forEach items="${postList}" var="list">
 									
 										<div class="one-post">
@@ -163,73 +149,44 @@
 												</div>
 											</a>
 										</div>
-									
-									
 									</c:forEach>
-						</c:otherwise>
-				
-					</c:choose>
-										
-									</div>
-				
+							</c:otherwise>
+							</c:choose>						
 								</div>
 							</div>
-						
+							</div>
 						</article>
 					</div>	
 					
 					<!-- bookmark -->
 					
 						<div class="post-space" id="view_bookmark" style="display: none;">
-						<article class="post-article">
-							<div>
-								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-									
+							<article class="post-article">
+								<div>
+									<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">	
 									<div class="post-one-row">
-									
-											<c:choose>
-						<c:when test="${empty postList}">
-						
-							<div class="one-post">
-
+									<span style="font-size: 10px; margin-left: -1px; color:#8e8e8e;">저장한 내용은 회원님만 볼 수 있습니다</span>	
+						<c:choose>
+							<c:when test="${empty bookmarkList}">
+							<div class="one-post" style="margin-left: -35px;">
+									<div class="post-img-space" style="background-color: #fafafa; margin-top: 20px;">
+									<img alt="" style="width: 70px; height: 70px; margin-left: 111px; margin-top: 30px;" src="${pageContext.request.contextPath}/static/icons/mybookmark.png">
+										<div style="text-align: center; margin-top: 10px;">
+										<span style="font-weight: bold; font-size: 30px; margin-bottom: 20px;">저장 </span>
+												<span style="font-size: 15px; margin-top: 5px;">다시 보고 싶은 사진과 게시물을 저장하세요.</span>
+												<span style="font-size: 15px; margin-top: 5px;">저장해도 다른 사람에게 알림이 전송되지 않으며,</span>
+												<span style="font-size: 15px; margin-top: 5px;">저장된 콘텐츠는 회원님만 볼 수 있습니다.</span>
+										</div>			
+									</div>
+								</div>
+							</c:when>
+						<c:otherwise>
+								<c:forEach items="${bookmarkList}" var="marklist">
+										<div class="one-post" style="margin-top: 30px;">
+											<a href="./post/selectOne?postNum=${marklist.postNum}" tabindex="0">
 												<div class="post-img-space">
 													<div class="post-image-div">
-														<img alt="" class="post-img" src="${pageContext.request.contextPath}/static/images/profileHome/no_post.jpg" style="object-fit: cover;">
-														
-													</div>
-													<div class="img-background"></div>
-												</div>
-											
-										</div>
-											<div class="one-post">
-										
-											
-												<div class="post-img-space" style="background-color: #fafafa;">
-													
-													<div style="text-align: center; margin-top: 80px;">
-														<span style="font-weight: bold; font-size: 20px;">소중한 순간을 </span>
-														<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 포착하여 공유해보세요.</span>
-													
-													<span style="font-size: 15px; margin-top: 20px;">첫 게시물을 공유해보세요.</span>
-													</div>
-													
-													<button class="blue-btn-small update-btn" onclick="location.href='./post/upload' "style="margin: 0 auto; margin-top: 40px;" type="button">게시물 공유</button>
-													
-												</div>
-					
-										</div>
-						</c:when>
-					
-					<c:otherwise>
-									
-									<c:forEach items="${postList}" var="list">
-									
-										<div class="one-post">
-									
-											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
-													<c:forEach items="${list.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
+													<c:forEach items="${marklist.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
 														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
 														</c:forEach>
 													</div>
@@ -237,22 +194,14 @@
 												</div>
 											</a>
 										</div>
-									
-									
 									</c:forEach>
 						</c:otherwise>
-				
-					</c:choose>
-										
+						</c:choose>
 									</div>
-				
 								</div>
 							</div>
-						
 						</article>
 					</div>	
-					
-					
 				</div>
 			</main>
 			<c:import url="./temp/footer.jsp"></c:import>
@@ -332,23 +281,5 @@
 	</div>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profileEdit.js"></script>	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/profile.js"></script>
-	<script type="text/javascript">
-	$("#post").click(function() {
-		$(this).addClass("tab-selected");
-		$(".tab-entity").not(this).removeClass("tab-selected");
-		$("#view_post").css("display","block");
-		$("#view_bookmark").css("display","none");
-		
-	});
-	
-	 $("#bookmark").click(function() {
-		$(this).addClass("tab-selected");
-		$(".tab_sub").not(this).removeClass("ch");
-		$(".tab-entity").not(this).removeClass("tab-selected");
-		$("#view_bookmark").css("display","block");
-		$("#view_post").css("display","none");
-		});
-	
-	</script>
 </body>
 </html>

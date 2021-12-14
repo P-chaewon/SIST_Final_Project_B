@@ -2,6 +2,8 @@ package com.sist.b.post;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +35,18 @@ class PostMapperTest {
 			int result = postRepository.setFilesInsert(postFilesVO);
 			
 			assertNotEquals(0, result);
+		}
+		
+		//@Test
+		void bookmark()throws Exception{
+			PostVO postVO = new PostVO();
+			postVO.setUserNum(3L);
+			
+			List<PostVO> ar = postRepository.getBookmarkList(postVO);
+			
+			
+			assertNotNull(ar.size());
+			
 		}
 
 	
