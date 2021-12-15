@@ -16,6 +16,8 @@
 <body>
 	
 	<main>
+	<sec:authentication property="principal.username" var="username"/>
+	<sec:authentication property="principal.userNum" var="userNum"/>
 		
 		<div class="user_post">
 			<div class="post_img">
@@ -23,7 +25,6 @@
 			
 							
 						<div class="swiper-wrapper">
-						<sec:authentication property="principal.username" var="username"/>
 						<c:forEach items="${postVO.fileList}" var="fileVO">
 							
 							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
@@ -100,13 +101,17 @@
 			             <ul class="comments" style="margin-top: 15px;">
 							                <li style="height: 17px;">
 							                  <span class="point_span nickname" style="font-weight: bold;">${commentList.writer}</span><span style="margin-left: 5px;">${commentList.commentContents}</span>
-							<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:50px; font-size:12px; background-color:#fff; border-style: none;">삭제</button>
+							
 							                </li>
+							
 							</ul>
 							
 							<div class="description" id="comment_reply" style="margin-top: 7px;">
 								   <span class="sub" style="font-size: 12px; width: 60px; float: left;">${commentList.regDate}</span> 
 							       <span class="sub_span" id="reply" style="cursor: pointer; float: left; margin-left: 5px;">답글달기</span>
+							<c:if test="${username eq commentList.writer}">
+								<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:160px; border:1px solid #000000; font-size:12px; background-color:#fff;">삭제</button>
+							</c:if>
 							 </div>
 							 
 							 
@@ -137,7 +142,6 @@
 					
 					<div class="icons_react">
 						<div class="icons_left">
-							<sec:authentication property="principal.username" var="username"/>
 							<c:choose>
 						
 							<c:when test="${empty postVO.likesVO.count}">
@@ -215,11 +219,22 @@
 		
 	</main>
 	
-			<div class="modal">
+		<div class="modal">
 		<div class="modal_content">
+			<c:choose>
+			
+			<c:when test="${userNum eq postVO.userNum }">
 			<button type="button" id="delete">
 				<h1>삭제</h1>		
 			</button>
+			</c:when>
+			<c:otherwise>
+			<button type="button" id="suspend">
+				<h1>신고</h1>
+			</button>
+			
+			</c:otherwise>
+			</c:choose>
 			<button type="button" id="cancel">취소</button>
 		</div>
 	</div>
@@ -227,14 +242,38 @@
 	<div class="modal2">
 		<div class="modal_content2">
 			<div id="d1">
-				<span class="c">
-					<h1 id="d1_t1">게시물을 삭제할까요?</h1> 
-					<span id="d1_t2">이 게시물을 삭제하시겠어요?</span>
+			<c:choose>
+			<c:when test="${userNum eq postVO.userNum }">
+				<span class="z">
+					<h1 id="z1_t1">게시물을 삭제할까요?</h1> 
+					<span id="z1_t2">이 게시물을 삭제하시겠어요?</span>
+				</span>	
+			</c:when>
+			<c:otherwise>
+			<span class="c">
+					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
+					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
 				</span>
+			</c:otherwise>
+			</c:choose>
+				
+				
 			</div>
+			
+			<c:choose>
+			<c:when test="${userNum eq postVO.userNum }">
+				<div id="z2">
+				<h1 class="c" id="z2_del">삭제</h1>
+			</div>	
+			
+			</c:when>
+			<c:otherwise>
 			<div id="d2">
-				<h1 class="c" id="d2_del">삭제</h1>
+				<h1 class="c" id="d2_del">신고</h1>
 			</div>
+			</c:otherwise>
+			</c:choose>
+			
 			<div id="d3">
 				<span class="c" id="d3_can">취소</span>
 			</div>
@@ -450,6 +489,8 @@
 	  $("#input_comment").focus();
   })
 
+  
+  /* 모달- 신고, 삭제 */
   	 var postNum = 0;
   	 
   	$(document).on("click", "#more",function(){
@@ -469,7 +510,7 @@
   		$(".modal2").fadeIn();
   	});
 
-  	$("#d2").click(function(){
+  	$("#z2").click(function(){
   		location.href = "./post/delete?postNum="+postNum;
   	});
 
@@ -480,7 +521,16 @@
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
   	
+  	
+  	/* 신고 버튼 */
+	
+  	$(document).on("click", "#suspend", function(){
+  		$(".modal2").fadeIn();
+  	});
 
+  	$("#d2").click(function(){
+  		/* 신고게시판 이동 */
+  	});
 
  	
    	</script>  	 

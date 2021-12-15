@@ -322,6 +322,13 @@ button.submit_re:focus {
 	border-bottom: 1px solid #E2E2E2;
 }
 
+#z2 {
+	height: 50px;
+	text-align: center;
+	position: relative;
+	border-bottom: 1px solid #E2E2E2;
+}
+
 #d3 {
 	height: 50px;
 	text-align: center;
@@ -344,7 +351,29 @@ button.submit_re:focus {
 	color: #8e8e8e;
 }
 
+.z {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+}
+
+#z1_t1 {
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#z1_t2 {
+	color: #8e8e8e;
+}
+
 #d2_del {
+	color: #ed4956;
+	font-size: 16px;
+	margin-top: 18px;
+}
+
+#z2_del {
 	color: #ed4956;
 	font-size: 16px;
 	margin-top: 18px;
@@ -356,6 +385,17 @@ button.submit_re:focus {
 }
 
 #delete {
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #E2E2E2;
+	background-color:transparent;
+	color: #ed4956;
+	font-size: 16px;
+}
+
+#suspend {
 	width: 400px;
 	height: 50px;
 	text-align: center;
