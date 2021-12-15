@@ -137,7 +137,7 @@ $(document).ready(function() { // 페이지가 준비되면
 				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
 								</div>
 								<!-- tag -->
-			            			<div class="tag_${list.postNum}" style="margin-top: 10px;">
+			            			<div class="tag_${list.postNum}" style="margin-top: 10px; cursor: pointer;">
 
 			            			</div>
 
@@ -301,6 +301,30 @@ $(document).ready(function() { // 페이지가 준비되면
 			</div>
 			<div id="d3">
 				<span class="c" id="d3_can">취소</span>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="follower-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="팔로잉" class="follow-modal" role="dialog">
+			<div class="follow-modal-contents">
+				<div>
+					<div class="follow-modal-header">
+						<div class="follow-modal-blank"></div>
+						<h1 class="follow-modal-name">팔로워</h1>
+						<div class="follow-modal-close-space">
+							<button class="follow-modal-close-btn" type="button">
+								<div class="follow-modal-close">
+									<span class="follow-modal-close-txt">&times;</span>
+								</div>
+							</button>
+						</div>
+					</div>
+				</div>
+				<div class="follower-modal-list">
+					
+				</div>
 			</div>
 		</div>
 	</div>
@@ -519,10 +543,28 @@ $(document).ready(function() { // 페이지가 준비되면
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
   	
+  	
   	$(document).on("click", "#count_text", function(){
-  		var no = $(this).data('idx');
-  		alert(no);
+  		let username=$(this).attr("data-user-name");
+    	let url = "/gram/"+username+"/followers"
+    	console.log(url);
+    	$.ajax({
+    		type : "GET",
+    		url : "/gram/"+username+"/followers",
+    		success : function(result){
+    			result = result.trim();
+    			$(".follower-modal-list").html(result);
+    			$(".follower-modal-container").show();
+    		}
+    	})
   	})
+  	
+  	  $(".follow-modal-close-txt").click(function(){
+    	$(".following-modal-container").hide();
+    	$(".follower-modal-container").hide();
+    	location.reload(true);
+    })
+    
   	
 
 
