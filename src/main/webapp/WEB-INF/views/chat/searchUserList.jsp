@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:forEach items="${searchUserList}" var="list">
-	<div class="searchResult" onclick="location.href='/gram/chat/newChat'" data-userNum="${list.userNum}">
+	<div class="searchResult" data-usernum="${list.userNum}">
 		<div class="suImg">
 			<img alt="유저이미지" src="${pageContext.request.contextPath}/static/upload/user/${list.fileName}">
 		</div>

@@ -86,8 +86,8 @@ function connect() {
     //setConnected(true);
     //console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/'+userNum, function (chat) {
-		console.log('chat.body:'+JSON.parse(chat.body));
-    	showChat(JSON.parse(chat.body));
+		//console.log('chat.body:'+JSON.parse(chat.body));
+    	showChat(JSON.parse(chat.body), 'l');
     });
   });
 }
@@ -107,18 +107,18 @@ function disconnect() {
 function sendChat() {
 	let data = {'userNum':userNum, 'receiverNum':receiverNum, 'contents':$("#chatMessage").val()};
 	stompClient.send("/app/chat", {}, JSON.stringify(data));
-	showChat(data);
+	showChat(data, 'r');
 	$("#chatMessage").val("").focus();
 }
 
 
 /* 채팅 메시지 view */
-function showChat(chat) {
-	console.log('showChat');
+function showChat(chat, gbn) {
+
 	$("#chatContentsArea").append(
 		"<div class='contents-row'>"
-			+ "<div class='r-row'>"
-				+ "chat" + " : " + chat.contents
+			+ "<div class='"+gbn+"-row'>"
+				+ "<div class='chatContent'>"+ chat.contents+"</div>"
 		+ "</div>"
 		+ "</div>");
 }

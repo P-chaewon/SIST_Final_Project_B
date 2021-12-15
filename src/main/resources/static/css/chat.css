@@ -78,6 +78,7 @@
 
 .chat-user-list-area {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	padding-top: 10px;
 }
@@ -208,12 +209,24 @@
 .contents-row {
 	display: flex;
 	flex-direction: column;
-	padding: 8px;
 	margin: 8px;
+}
+
+.r-row, .l-row {
+	display: flex;
+	padding: 8px;
+	box-sizing: border-box;
+	border-radius: 22px;
+}
+
+.l-row {
+	border: 1px solid #dbdbdb;
+	align-self: flex-start;
 }
 
 .r-row {
 	background-color: #dbdbdb;
+	align-self: flex-end;
 }
 
 .message-input-area {

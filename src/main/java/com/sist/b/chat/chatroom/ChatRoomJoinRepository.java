@@ -4,10 +4,14 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.sist.b.chat.ChatMessageVO;
 import com.sist.b.user.UserVO;
 
 @Mapper
 public interface ChatRoomJoinRepository {
+	
+	// 채팅 메시지 저장
+	public int setChatMessage(ChatMessageVO chatMessageVO) throws Exception;
 	
 	// 자신과 함께 채팅에 참여하고 있는 유저 리스트 출력
 	// --가장 최근에 채팅 한 사람이 우선으로 나올 수 있도록 출력해야함

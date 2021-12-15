@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.sist.b.chat.ChatMessageVO;
 import com.sist.b.user.UserRepository;
 import com.sist.b.user.UserVO;
 
@@ -16,6 +17,15 @@ public class ChatRoomJoinService {
 
 	@Autowired
 	private UserRepository userRepository;
+	
+	
+	/*
+	 * setChatMessage
+	 * 채팅 메시지 저장
+	 */
+	public int setChatMessage(ChatMessageVO chatMessageVO) throws Exception {
+		return chatRoomJoinRepository.setChatMessage(chatMessageVO);
+	}
 	
 	
 	/*
@@ -45,13 +55,9 @@ public class ChatRoomJoinService {
 	 */
 	public Long newChatRoom(ChatRoomJoinVO chatRoomJoinVO, Long myUserNum) throws Exception {
 		// test용 객체 나중에 세션으로 적용하고 지우기 //
-		if (myUserNum == 3L) {
-			chatRoomJoinVO.setUserNum(4L);
-		} else {
-			chatRoomJoinVO.setUserNum(3L);
-		}
-		 //채팅하려는 사람 유저번호
-		
+	
+		//채팅하려는 사람 유저번호
+		System.out.println("userNum::::"+chatRoomJoinVO.getUserNum());
 		
 		
 		// 채팅방번호
