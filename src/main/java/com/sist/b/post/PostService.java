@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.sist.b.post.util.PostFileManager;
 import com.sist.b.user.UserVO;
 
@@ -66,5 +65,13 @@ public class PostService {
 	
 	public List<PostVO> getBookmarkList(PostVO postVO)throws Exception{
 		return postRepository.getBookmarkList(postVO);
+	}
+	
+	public Long getSearchTagCount(PostVO postVO)throws Exception{
+		return postRepository.getSearchTagCount(postVO);
+	}
+	
+	public List<PostVO> getTagList(PostVO postVO)throws Exception{
+		return postRepository.getTagList(postVO);
 	}
 }

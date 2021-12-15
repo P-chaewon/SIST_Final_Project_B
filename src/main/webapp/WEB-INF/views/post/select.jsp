@@ -68,7 +68,7 @@
 			            		var url = '\'/gram/search/tag/';
 			            		var pid = '${postVO.postNum}';
 			            		var a = '';
-			            		var arr = original.split(', '); // ,를 기준으로 나눈당
+			            		var arr = original.split(', '); // ,를 기준으로 나눔
 
 			            		for (var i = 0; i < arr.length; i++) {
 			            			a += '<span style="color:#007AFF;" onclick="location.href='

@@ -30,5 +30,9 @@ public interface PostRepository {
 	public List<PostVO> getMyPost(PostVO postVO)throws Exception;
 	
 	public List<PostVO> getBookmarkList(PostVO postVO)throws Exception;
+	
+	public Long getSearchTagCount(PostVO postVO)throws Exception;
+	
+	public List<PostVO> getTagList(PostVO postVO)throws Exception;
 
 }

@@ -170,4 +170,19 @@
   	]]>
   	</select>
   	
+  	<!-- search tag -->
+  	
+  	<select id="getSearchTagCount" parameterType="PostVO" resultType="Long">
+  		SELECT count(*) FROM post
+  		WHERE tag LIKE concat('%', #{tag},'%')
+  		
+  	</select>
+  	
+  	<select id="getTagList" parameterType="PostVO" resultMap="selectResult">
+  		SELECT * FROM post
+  		LEFT JOIN postfiles
+  		USING(postNum)
+  		WHERE tag LIKE concat('%', #{tag},'%')
+  	</select>
+  	
   </mapper>

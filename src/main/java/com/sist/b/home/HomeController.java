@@ -284,7 +284,18 @@ public class HomeController {
 	@RequestMapping("/search/tag/{word}")
 	public ModelAndView serachTag(@PathVariable("word") String word)throws Exception{
 		ModelAndView mv = new ModelAndView();
+
+		PostVO postVO = new PostVO();
+		postVO.setTag(word);
 		
+		Long tag_cnt = postService.getSearchTagCount(postVO);
+		
+		
+		List<PostVO> tagList = postService.getTagList(postVO);
+		
+		mv.addObject("tag_cnt", tag_cnt);
+		mv.addObject("tag", tagList);
+		mv.addObject("word", word);
 		mv.setViewName("tag");
 		
 		return mv;

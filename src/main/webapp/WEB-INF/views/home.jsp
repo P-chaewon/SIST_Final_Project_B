@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
 <c:import url="./temp/head.jsp"></c:import>
-
+<c:import url="./temp/nav2.jsp"></c:import>
 <script type="text/javascript">
 $(document).ready(function() { // 페이지가 준비되면
 	likeview(); // 함수 likeview ㄱ
@@ -21,9 +21,7 @@ $(document).ready(function() { // 페이지가 준비되면
 
 </head>
 <body>
-
    
-	<c:import url="./temp/nav2.jsp"></c:import>
 		<script type="text/javascript">
 			$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
 		</script>
@@ -138,6 +136,7 @@ $(document).ready(function() { // 페이지가 준비되면
 			            	<div class="description">
 				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
 								</div>
+								<!-- tag -->
 			            			<div class="tag_${list.postNum}" style="margin-top: 10px;">
 
 			            			</div>
@@ -147,7 +146,7 @@ $(document).ready(function() { // 페이지가 준비되면
 			            		var url = '\'/gram/search/tag/';
 			            		var pid = '${list.postNum}';
 			            		var a = '';
-			            		var arr = original.split(', '); // ,를 기준으로 나눈당
+			            		var arr = original.split(', '); // ,를 기준으로 나눔
 
 			            		for (var i = 0; i < arr.length; i++) {
 			            			a += '<span style="color:#007AFF;" onclick="location.href='
