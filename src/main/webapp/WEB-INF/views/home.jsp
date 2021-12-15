@@ -131,14 +131,38 @@ $(document).ready(function() { // 페이지가 준비되면
 					<div class="reaction">
 			            <div class="liked_people">
 			       
-			              <p id="count_text"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
+			              <p id="count_text" data-idx ="${list.postNum}"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
 			    
 			            </div>
 			            <div class="box">
 			            	<div class="description">
 				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
-			            		<span class="tag">${list.tag }</span>
-			            	</div>
+								</div>
+			            			<div class="tag_${list.postNum}" style="margin-top: 10px;">
+
+			            			</div>
+
+			            		<script type="text/javascript">
+			            	    var original = '${list.tag}';
+			            		var url = '\'/gram/search/tag/';
+			            		var pid = '${list.postNum}';
+			            		var a = '';
+			            		var arr = original.split(', '); // ,를 기준으로 나눈당
+
+			            		for (var i = 0; i < arr.length; i++) {
+			            			a += '<span style="color:#007AFF;" onclick="location.href='
+			            				+ url 
+			            				+ arr[i].replace("#", "") 
+			            				+ '\'' 
+			            				+ '">'
+			            				+ arr[i]
+			            				+ ' </span>';
+			            			}
+			            		$(".tag_" + pid).html(a);
+			            	    
+			            	</script>
+			            			
+			            	
 			            </div>
 			            
 			            <!-- comments -->
@@ -495,6 +519,11 @@ $(document).ready(function() { // 페이지가 준비되면
   		// 스크롤 제한 off
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
+  	
+  	$(document).on("click", "#count_text", function(){
+  		var no = $(this).data('idx');
+  		alert(no);
+  	})
   	
 
 

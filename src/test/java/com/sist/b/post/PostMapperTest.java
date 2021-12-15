@@ -48,6 +48,6 @@ class PostMapperTest {
 			assertNotNull(ar.size());
 			
 		}
-
-	
+		
+		
 }

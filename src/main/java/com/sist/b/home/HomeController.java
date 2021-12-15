@@ -280,6 +280,15 @@ public class HomeController {
 		mv.setViewName("profile");
 		return mv;
 	}
+	
+	@RequestMapping("/search/tag/{word}")
+	public ModelAndView serachTag(@PathVariable("word") String word)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("tag");
+		
+		return mv;
+	}
 
 
 }

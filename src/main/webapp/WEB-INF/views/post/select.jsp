@@ -60,8 +60,32 @@
 			            	<div class="description">
 			            	<div style="height: 50px;">
 				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}
-			            		<span class="tag" style="color: #00376b; cursor: pointer;"> ${postVO.tag }</span></span> 
+			            		<span class="tag_${postVO.postNum }" style="color: #00376b; cursor: pointer;"> </span>
+			            		
+
+			            	<script type="text/javascript">
+			            	    var original = '${postVO.tag}';
+			            		var url = '\'/gram/search/tag/';
+			            		var pid = '${postVO.postNum}';
+			            		var a = '';
+			            		var arr = original.split(', '); // ,를 기준으로 나눈당
+
+			            		for (var i = 0; i < arr.length; i++) {
+			            			a += '<span style="color:#007AFF;" onclick="location.href='
+			            				+ url 
+			            				+ arr[i].replace("#", "") 
+			            				+ '\'' 
+			            				+ '">'
+			            				+ arr[i]
+			            				+ ' </span>';
+			            			}
+			            		$(".tag_" + pid).html(a);
+			            	    
+			            	</script>
+			            		
+			            		</span> 
 			            	
+			            	</div>
 			            	</div>
 			            	
 			        
@@ -105,7 +129,7 @@
 			        </div>
 			   
 			
-			            	</div>
+			            	
 			            </div>
 						</div>
 					
