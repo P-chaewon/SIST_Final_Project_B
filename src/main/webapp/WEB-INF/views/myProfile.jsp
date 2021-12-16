@@ -101,7 +101,7 @@
 					<!-- 게시글 보여주는 곳 -->
 					
 				
-					<div class="post-space" style="display: block;" id="view_post">
+					<div class="post-space" style="display: block;width: 935px;" id="view_post">
 						<article class="post-article">
 							<div>
 								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
@@ -130,8 +130,8 @@
 										</div>
 							</c:when>
 							<c:otherwise>	
-									<c:forEach items="${postList}" var="list">
 									
+									<c:forEach items="${postList}" var="list">
 										<div class="one-post">
 										
 											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
@@ -156,7 +156,7 @@
 					
 					<!-- bookmark -->
 					
-						<div class="post-space" id="view_bookmark" style="display: none;">
+						<div class="post-space" id="view_bookmark" style="display: none;width: 935px;">
 							<article class="post-article">
 								<div>
 									<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">	

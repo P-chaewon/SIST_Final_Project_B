@@ -98,6 +98,15 @@
 		SELECT userNum, nickName, username, fileName FROM USER
 		WHERE username LIKE CONCAT('%', #{searchText}, '%')
 	</select>
+	
+	<insert id="setLoginlog" parameterType="UserVO">
+		insert into userlog (userlogNum, userNum, loginDate, loginCheck) 
+		values (null, #{userNum}, now(), 1);
+	</insert>
+	
+	<update id="setLogoutlog" parameterType="UserVO">
+		update userlog set loginCheck=0 where userNum=#{userNum}
+	</update>
 
   </mapper>
   
