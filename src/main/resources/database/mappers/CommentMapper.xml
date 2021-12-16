@@ -6,8 +6,8 @@
   <mapper namespace="com.sist.b.comment.CommentRepository">
   	
 	<insert id="setComment" parameterType="CommentVO" useGeneratedKeys="true" keyProperty="commentNum">
-		INSERT INTO comment
-		VALUES( #{commentNum}, #{postNum}, #{userNum}, #{writer}, #{commentContents}, #{commentNum}, 0,0,now())
+		INSERT INTO comment 
+		VALUES(#{commentNum}, #{postNum}, #{userNum}, #{writer}, #{commentContents}, #{commentNum}, 0,0,now())
 	
 	</insert>
 	

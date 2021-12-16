@@ -74,4 +74,8 @@ public class PostService {
 	public List<PostVO> getTagList(PostVO postVO)throws Exception{
 		return postRepository.getTagList(postVO);
 	}
+	
+	public Long getUserNum(Long postNum) throws Exception {
+		return postRepository.getUserNum(postNum);
+	}
 }

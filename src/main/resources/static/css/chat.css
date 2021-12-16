@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+body {
+	overflow-y: scroll;
+	background-color: #fafafa;
+}
+
 .chat-wrap {
 	display: flex;
 	height: 100vh;

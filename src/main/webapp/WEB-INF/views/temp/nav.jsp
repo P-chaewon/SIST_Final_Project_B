@@ -29,20 +29,20 @@
 				
 				<!-- icon -->
 				<div class="nav_icon">
-					<img id="home" onclick="javascript:location.href='${pageContext.request.contextPath}'" alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
-					<img alt="DM" onclick="javascript:location.href='${pageContext.request.contextPath}/chat/inbox'" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
+					<img id="home" class="icon" onclick="javascript:location.href='${pageContext.request.contextPath}'" alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
+					<img alt="DM" class="icon" onclick="javascript:location.href='${pageContext.request.contextPath}/chat/inbox'" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 
-					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
-					<img id="explore" alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'" src="${pageContext.request.contextPath}/static/icons/global.png">
+					<img id="upload" class="icon" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
+					<img id="explore" class="icon" alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'" src="${pageContext.request.contextPath}/static/icons/global.png">
 
 					<span class="alarm_img" style="margin-right: 20px; height: 24px;">
-						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
+						<img id ="alarm" class="icon" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
 					</span>
 					<div id="alarm_contents" hidden="hidden">
 					</div>
 					<div class="profile_border">
 						<div class="profile_img">
-							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
+							<img alt="마이페이지" class="icon" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
 								
 						</div>
 						<div class="nav_profile" id="" style="display: none;">

@@ -9,6 +9,10 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
 	flex-shrink: 0; margin: 0; padding: 0; position: relative; border-collapse: collapse;
 }
+.d {
+	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
+	flex-shrink: 0; margin: 0; padding: 0; position: relative; border-collapse: collapse;
+}
 #react-root{z-index: 0;}
 .profile-photo{display: none;}
 .profile-home-section{display: flex; flex-direction: column; flex-grow: 1; min-height: 100vh; overflow: hidden;}

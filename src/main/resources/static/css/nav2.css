@@ -20,6 +20,82 @@ nav a {
 	text-decoration: none;
 }
 
+.c {
+    padding-left: 15px;
+    height: 50px;
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+/* 알림창 말풍선 */
+#alarm_contents{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px #B2B2B2;
+    position: fixed;
+    display: none;
+
+	width: 500px;
+	height: auto;
+	left: 745px;
+	top: 35px;
+	
+	z-index: 1000;
+    margin: 20px;
+    
+    flex-direction: column;
+}
+
+#alarm_contents:before {
+	position: fixed;
+    background-color: white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    content: "\00a0";
+    display: block;
+    height: 15px;
+    left: 404px;
+    position: relative;
+    top: -5px;
+    transform:             rotate( 135deg );
+        -moz-transform:    rotate( 135deg );
+        -ms-transform:     rotate( 135deg );
+        -o-transform:      rotate( 135deg );
+        -webkit-transform: rotate( 135deg );
+    width: 15px;
+}
+
+.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 100px;
+	margin-right: 10px;
+}
+
+.c {
+	padding-left: 15px;
+	height: 50px;
+	width: 100%;
+	position: relative;
+	top: 10px;
+    margin-left: 10px;
+}
+
+.text {
+	position: relative;
+	top: 0px;
+}
+
+.day {
+	margin-left: 7px;
+	color: #8E8E8E;
+}
+
+.profile {
+	position: relative;
+	top: 30%;
+}
+
 .nav_container{
 	width:100%;
 	display: flex;
@@ -50,12 +126,13 @@ nav a {
 	margin: 1px;
 }
 
-.nav_icon img{
+.icon {
 	width: 24px;
 	height: 24px;
 	margin-right: 20px;
 	cursor: pointer;
 }
+
 .nav_icon img:last-child{
 	margin: 0;
 }
@@ -235,4 +312,13 @@ nav a {
 /* 검색창 배경지우기 */
 input:-webkit-autofill {
    box-shadow:  0 0 0 1000px white inset;
+}
+
+.blue_circle {
+	width: 8px;
+	height: 8px;
+	border-radius: 100px;
+	background-color: #0095F6;
+	display: inline-block;
+	margin-left: 10px;
 }

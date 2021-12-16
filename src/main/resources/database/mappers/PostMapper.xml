@@ -188,4 +188,8 @@
   		WHERE tag LIKE concat('%', #{tag},'%')
   	</select>
   	
+  	<!-- post num으로 user num 조회 -->
+  	<select id="getUserNum" parameterType="Long" resultType="Long">
+  		SELECT userNum FROM post WHERE postNum = #{postNum}
+  	</select>
   </mapper>

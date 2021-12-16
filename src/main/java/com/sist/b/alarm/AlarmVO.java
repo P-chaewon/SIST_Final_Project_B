@@ -2,6 +2,7 @@ package com.sist.b.alarm;
 
 import java.sql.Date;
 
+import com.sist.b.post.PostFilesVO;
 import com.sist.b.user.UserVO;
 
 import lombok.Data;
@@ -18,4 +19,6 @@ public class AlarmVO {
 	
 	private UserVO userVO;
 	private Long diff;
+	
+	private PostFilesVO postFilesVO;
 }
