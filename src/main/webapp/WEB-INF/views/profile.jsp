@@ -11,27 +11,20 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/profile.css">
 </head>
 <body class="" style="">
-	<c:import url="./temp/nav2.jsp"></c:import>
 	<sec:authentication property="principal.username" var="username"/>
 	<sec:authentication property="principal.userNum" var="userNum"/>
 	<div id="react-root">
 		<section class="profile-home-section">
 			<div></div>
 			<main class="profile-home-main" role="main">
+			
 				<div class="profile-homepage">
 					<header class="profile-info-header">
 						<div class="profile-img-space">
 							<div class="profile-img-div" aria-disabled="true" role="button" tabindex="-1">
 								<canvas class="profile-img-canvas" height="168" width="168" style="position: absolute; top: -9px; left: -9px; width: 168px; height: 168px;"></canvas>
 								<span class="profile-img-span" role="link" tabindex="-1" style="width: 150px; height: 150px;">
-									<c:choose>
-										<c:when test="${not empty userVO.fileName }">
-											<img alt="${userVO.username}님의 프로필 사진" class="profile-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
-										</c:when>
-										<c:otherwise>
-											<img alt="${userVO.username}님의 프로필 사진" class="profile-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-										</c:otherwise>
-									</c:choose>
+									<img alt="${userVO.username}님의 프로필 사진" class="profile-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
 								</span>
 							</div>
 						</div>
@@ -191,28 +184,12 @@
 									</div>
 								</div>
 							</div>
-							<div class="_4emnV">
-								<div class="qF0y9 Igw0E IwRSH YBx95 _4EzTm _9qQ0O ZUqME" data-visualcompletion="loading-state" style="height: 32px; width: 32px;">
-									<svg aria-label="읽어들이는 중..." class="By4nA" viewBox="0 0 100 100">
-									<rect fill="#555555" height="6" opacity="0" rx="3" ry="3" transform="rotate(-90 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.08333333333333333" rx="3" ry="3" transform="rotate(-60 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.16666666666666666" rx="3" ry="3" transform="rotate(-30 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.25" rx="3" ry="3" transform="rotate(0 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.3333333333333333" rx="3" ry="3" transform="rotate(30 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.4166666666666667" rx="3" ry="3" transform="rotate(60 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.5" rx="3" ry="3" transform="rotate(90 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.5833333333333334" rx="3" ry="3" transform="rotate(120 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.6666666666666666" rx="3" ry="3" transform="rotate(150 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.75" rx="3" ry="3" transform="rotate(180 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.8333333333333334" rx="3" ry="3" transform="rotate(210 50 50)" width="25" x="72" y="47"></rect>
-									<rect fill="#555555" height="6" opacity="0.9166666666666666" rx="3" ry="3" transform="rotate(240 50 50)" width="25" x="72" y="47"></rect>
-									</svg>
-								</div>
-							</div>
+			
 						</article>
 					</div>
 				</div>
 			</main>
+			<c:import url="./temp/nav2.jsp"></c:import>
 			<c:import url="./temp/footer.jsp"></c:import>
 		</section>
 	</div>

@@ -29,21 +29,14 @@
 					<img alt="DM" onclick="javascript:location.href='${pageContext.request.contextPath}/chat/inbox'" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
 					<img id="explore" alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'"  src="${pageContext.request.contextPath}/static/icons/global.png">
-					<span class="alarm_img">
+					<span class="alarm_img" style="margin-right: 20px; height: 24px;">
 						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
 					</span>
 					<div id="alarm_contents" hidden="hidden">
 					</div>
 					<div class="profile_border">
 						<div class="profile_img">
-							<c:choose>
-								<c:when test="${not empty userVO.fileName }">
-									<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
-								</c:when>
-								<c:otherwise>
-									<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
-								</c:otherwise>
-							</c:choose>
+							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
 						</div>
 						<div class="nav_profile" id="" style="display: none;">
 							<div class="list_space"></div>
@@ -59,22 +52,6 @@
 												<div class="profile_link">
 													<div class="nav_profile_text" >
 														프로필
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</a>
-								<a class="profile_list" href="/user_424/saved/" tabindex="0">
-									<div class="list_middle">
-										<div class="list_img">
-											<img alt="" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
-										</div>
-										<div class="profile_name">
-											<div class="profile_area" id="fdc085a66556f8">
-												<div class="profile_link">
-													<div class="nav_profile_text" style="height: 28px; width: 170px;">
-														저장됨
 													</div>
 												</div>
 											</div>

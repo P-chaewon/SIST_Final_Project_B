@@ -23,14 +23,7 @@
 							<div class="profile-edit-space">
 								<div class="profile-edit">
 									<button class="icon-btn" title="프로필 사진 추가" data-user-fileName="${userVO.fileName }">
-										<c:choose>
-											<c:when test="${not empty userVO.fileName }">
-												<img alt="${userVO.username}님의 프로필 사진" class="input-icon" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
-											</c:when>
-											<c:otherwise>
-												<img alt="${userVO.username}님의 프로필 사진" class="input-icon" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-											</c:otherwise>
-										</c:choose>
+										<img alt="${userVO.username}님의 프로필 사진" class="input-icon" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
 									</button>
 									<div>
 										<form enctype="multipart/form-data" action="./edit/fileUpdate" method="POST" role="presentation" class="profile-form">
