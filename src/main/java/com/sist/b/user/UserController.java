@@ -205,11 +205,11 @@ public class UserController {
 			int result = userService.setPasswordUpdate(userVO);
 			
 			String email = userVO.getEmail();
-			String title = "[~gram] "+userVO.getUsername()+" 님의 임시 비밀번호를 보냅니다.";
+			String title = "[WithUs] "+userVO.getUsername()+" 님의 임시 비밀번호를 보냅니다.";
 			String content = "";
 			content += "<table border='0' width='440px' cellspacing='0' cellpadding='0' style='border-collapse:collapse; font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif; margin: 0 auto;'>";
 			content += "<tbody><tr>";
-			content += "<td style='margin:10px 0 10px 0;color:#565a5c;font-size:20px'>[~gram] 임시 비밀번호 메일입니다.</td></tr>";
+			content += "<td style='margin:10px 0 10px 0;color:#565a5c;font-size:20px'>[WithUs] 임시 비밀번호 메일입니다.</td></tr>";
 			content += "<tr><td style='margin:10px 0 10px 0;color:#565a5c;font-size:18px'>";
 			content += "<p>안녕하세요, "+ userVO.getUsername()+ " 님</p>";
 			content += "<p>요청하신 임시 비밀번호는 다음과 같습니다.</p>";
@@ -250,20 +250,20 @@ public class UserController {
 		ModelAndView mv = new ModelAndView();
 		authkey = userService.getRandomNum();
 		int result = userService.getAuthkey(username, authkey);
-		String title = "[~gram] "+username+" 님의 회원가입 인증번호를 보냅니다.";
+		String title = "[WithUs] "+username+" 님의 회원가입 인증번호를 보냅니다.";
 		String content = "";
 		content += "<table border='0' width='440px' cellspacing='0' cellpadding='0' style='border-collapse:collapse; font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif; margin: 0 auto;'>";
 		content += "<tbody><tr>";
-		content += "<td style='margin:10px 0 10px 0;color:#565a5c;font-size:20px'>[~gram] 가입 인증 메일입니다.</td></tr>";
+		content += "<td style='margin:10px 0 10px 0;color:#565a5c;font-size:20px'>[WithUs] 가입 인증 메일입니다.</td></tr>";
 		content += "<tr><td style='margin:10px 0 10px 0;color:#565a5c;font-size:18px'>";
 		content += "<p>안녕하세요, "+ username+ " 님</p>";
-		content += "<p>~gram의 회원 가입을 진심으로 환영합니다.</p>";
+		content += "<p>WithUs의 회원 가입을 진심으로 환영합니다.</p>";
 		content += "<p></p>";
 		content += "<p>아래의 인증번호를 입력하여 가입인증을 하시면 회원 가입이 완료됩니다.</p>";
 		content += "</td></tr><tr>";
 		content += "<td style='padding:10px;color:#565a5c;font-size:32px;font-weight:500;text-align:center;padding-bottom:25px'>"+authkey+"</td></tr>";
 		content += "<tr><td style='margin:10px 0 10px 0;color:#565a5c;font-size:18px'>";
-		content += "<p>~gram을 이용해 주셔서 감사합니다.</p>";
+		content += "<p>WithUs를 이용해 주셔서 감사합니다.</p>";
 		content += "<p>더 나은 서비스를 제공하기 위해 항상 최선을 다하겠습니다.</p></td>";
 		content += "</tr></tbody></table>";
 		

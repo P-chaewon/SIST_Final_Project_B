@@ -47,7 +47,7 @@ nav a {
 	height: 24px;
 	width: 24px;
 	border-radius: 50%;
-	margin: 2px;
+	margin: 1px;
 }
 
 .nav_icon img{
@@ -94,7 +94,7 @@ nav a {
 .nav_list{
 	background-color: #fff;
 	border-radius: 6px;
-	height: 153px;
+	height: 115px;
 	overflow-x: hidden;
 	overflow-y: auto;
 	position: relative;

@@ -66,35 +66,37 @@
 	
 		<select id="getPostList" parameterType="UserVO" resultMap="selectResult">
   		SELECT * 
-  		FROM post
+  		FROM post P
   		
-  		LEFT JOIN user
-  		USING(userNum)
+  		LEFT JOIN user U
+  		ON(P.userNum = U.userNum)
   		
-  		LEFT JOIN likes
-  		USING(postNum)
+  		LEFT JOIN likes L
+  		ON(P.postNum = L.postNum)
         
-        LEFT JOIN bookmark
-        USING(postNum)
+        LEFT JOIN bookmark B
+        ON(P.postNum = B.postNum)
   		
-  		LEFT JOIN postfiles 
-  		USING(postNum)
+  		LEFT JOIN postfiles PF
+  		ON(P.postNum = PF.postNum)
   		
   		LEFT JOIN
   		(select postNum, count(*) count
  		from likes
  		where userNum = #{userNum}
         group by postNum)cnt
-        USING(postNum)
+        ON(P.postNum = cnt.postNum) 
         
         LEFT JOIN
   		(select postNum, count(*) chk
  		from bookmark
  		where userNum = #{userNum}
         group by postNum)chk
-        USING(postNum) 
+        ON(P.postNum = chk.postNum) 
+        
+        where U.userNum in (select followNum from follow where userNum=#{userNum}) 
   		
-  		ORDER BY postNum DESC
+  		ORDER BY P.postNum DESC
   	</select>
   	
   <!-- select post -->

@@ -43,6 +43,7 @@ import com.sist.b.report.ReportVO;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.user.RoleVO;
 import com.sist.b.user.UserService;
 
 import com.sist.b.user.UserVO;
@@ -78,6 +79,14 @@ public class HomeController {
 		Authentication authentication = sc.getAuthentication();
 		UserVO userVO = (UserVO)authentication.getPrincipal();
 		
+		List<RoleVO> admin = userVO.getRoles();
+		String viewname = "home";
+		for(RoleVO roleVO: admin) {
+			if(roleVO.getRoleName().equals("ROLE_ADMIN")) {
+				viewname="redirect:admin/home";
+			}
+		}
+		
 		ModelAndView mv = new ModelAndView();
 	
 		List<PostVO> ar = postService.getPostList(userVO);
@@ -98,7 +107,7 @@ public class HomeController {
 		mv.addObject("postList", ar);
 		
 		mv.addObject("users", users);
-		mv.setViewName("home");			
+		mv.setViewName(viewname);			
 
 		return mv;
 	}

@@ -127,23 +127,18 @@
 							
 							<div class="description" id="comment_reply" style="margin-top: 7px;">
 								   <span class="sub" style="font-size: 12px; width: 60px; float: left;">${commentList.regDate}</span> 
-							       <span class="sub_span" id="reply" style="cursor: pointer; float: left; margin-left: 5px;">답글달기</span>
+							       <c:choose>
+							       	<c:when test="${username eq commentList.writer}">
+										<button class="commentDel" id="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">삭제</button>
+							       	</c:when>
+							       	<c:otherwise>
+							       		<button class="commentDel suspend" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">신고</button>
+							       	</c:otherwise>
+							       </c:choose>
 							<c:if test="${username eq commentList.writer}">
-								<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:160px; border:1px solid #000000; font-size:12px; background-color:#fff;">삭제</button>
 							</c:if>
 							 </div>
 							 
-							 
-							 <div class="comment_re" style="display:none; width: 330px; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
-							          
-							          <input type="hidden" class="form-control" name="writer" id="writer_re" value="${username}" placeholder="Enter Writer" readonly="readonly">
-					
-							     <input id="input_comment_re" name="commentContents" style="width: 270px; height:30px; margin-left: 5px;"  class="input_comment" type="text" placeholder="답글 달기..." >
-						
-							     <button type="button" class="submit_re" id="comment_re" disabled>게시</button>
-							        
-							          
-							  </div>
 			             
 			             </c:if>
 
@@ -298,6 +293,34 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<!--  신고-->
+		<!-- <div class="modal">
+		<div class="modal_content">
+			<button type="button" id="suspend">
+				<h1>신고</h1>
+			</button>
+			<button type="button" id="cancel">취소</button>
+		</div>
+	</div>
+	
+	<div class="modal2">
+		<div class="modal_content2">
+			<div id="d1">
+				<span class="c">
+					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
+					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
+				</span>
+			</div>
+			<div id="d2">
+				<h1 class="c" id="d2_del">신고</h1>
+			</div>
+			<div id="d3">
+				<span class="c" id="d3_can">취소</span>
+			</div>
+		</div>
+	</div> -->
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -480,7 +503,7 @@
 	}); 
   
 	//Del click event
-	$("#commentList").on("click", ".commentDel", function() {
+	$("#commentList").on("click", "#commentDel", function() {
 		let commentNum = $(this).attr("data-comment-del");
 		console.log(commentNum);
 		$.ajax({
@@ -561,15 +584,32 @@
   	
   	
   	/* 신고 버튼 */
-	
-  	$(document).on("click", "#suspend", function(){
+	/* 수정 */
+  	  	$(document).on("click", "suspend",function(){
+  		$(".modal2").fadeIn();
+  		// 스크롤 제한 on
+  		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  		commentNum = (this).getAttribute('data-commentNum');
+  	});
+
+  	$("#cancel").click(function(){
+  		$(".modal").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+
+  	$("#delete").click(function(){
   		$(".modal2").fadeIn();
   	});
 
-  	$("#d2").click(function(){
-  		/* 신고게시판 이동 */
+  
+  	$("#d3").click(function(){
+  		$(".modal").fadeOut();
+  		$(".modal2").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
-
+  	
  	
    	</script>  	 
 </body>

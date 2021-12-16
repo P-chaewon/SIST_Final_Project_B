@@ -17,7 +17,11 @@
 				
 				<!-- logo 추가 -->
 				<div class="nav_logo">
+				<a href="/gram">
+				
 					<img class="logo_img" alt="logo" src="${pageContext.request.contextPath}/static/icons/instagram_logo.png">
+				</a>
+					
 				</div>
 				
 				<!-- 검색창 -->

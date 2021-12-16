@@ -30,7 +30,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(WebSecurity web) throws Exception {
 		// 정적 자원 요청 URL은 Security 거치지 않고 통과
 		web.ignoring()
-					.antMatchers("/gram/admin/**")
 					.antMatchers("/css/**")
 					.antMatchers("/js/**")
 					.antMatchers("/images/**")
@@ -58,7 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								.antMatchers("/account/recovery").permitAll()
 								.antMatchers("/account/mail").permitAll()
 								.antMatchers("/account/clause").permitAll()
+								.antMatchers("/post/**").hasRole("USER")
+								.antMatchers("/search/tag/**").hasRole("USER")
+								.antMatchers("/explore/**").hasRole("USER")
 								.antMatchers("/account/**").hasRole("USER")
+								.antMatchers("/admin/**").hasRole("ADMIN")
 								.antMatchers("/friendships/**").hasRole("USER")
 								.antMatchers("/*").hasRole("USER")
 								.antMatchers("/chat/**").hasRole("USER")

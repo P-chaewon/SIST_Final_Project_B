@@ -35,6 +35,15 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="main_feed">
 				
 				<!-- post foreach, db 추가 -->
+				<c:choose>
+				<c:when test="${followCount eq 0 }">
+						<div>
+							<img alt="" src="${pageContext.request.contextPath}/static/icons/follow_add.png" style="display:block; margin: 45px auto;">
+							<div style="margin: 10px auto; text-align: center;">친구를 팔로우하여 그 사람의 게시물을 확인하세요</div>
+						</div>
+					</c:when>
+				
+				<c:otherwise>
 				
 				<c:forEach items="${postList}" var="list">
 				<article style="   border: 1px solid #DBDBDB; margin-bottom: 60px;">
@@ -175,6 +184,8 @@ $(document).ready(function() { // 페이지가 준비되면
 				</article>
 			
 				</c:forEach>
+				</c:otherwise>
+				</c:choose>
 			
 				<!--//post  -->
 				

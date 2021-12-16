@@ -334,18 +334,12 @@ button.submit_re:focus {
 	border-bottom: 1px solid #E2E2E2;
 }
 
-#z2 {
-	height: 50px;
-	text-align: center;
-	position: relative;
-	border-bottom: 1px solid #E2E2E2;
-}
-
 #d3 {
 	height: 50px;
 	text-align: center;
 	position: relative;
 }
+
 
 .c {
 	position: absolute;
@@ -361,6 +355,47 @@ button.submit_re:focus {
 
 #d1_t2 {
 	color: #8e8e8e;
+}
+
+#d2_del {
+	color: #ed4956;
+	font-size: 16px;
+	margin-top: 18px;
+}
+
+#d3_can {
+	font-size: 16px;
+	margin-top: 18px;
+}
+
+#cancel {
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	background-color:transparent;
+	font-size: 16px;
+}
+
+#suspend {
+	width: 400px;
+	height: 50px;
+	text-align: center;
+	border: none;
+	border-bottom: 1px solid #E2E2E2;
+	background-color:transparent;
+	color: #ed4956;
+	font-size: 16px;
+}
+
+
+/* 삭제 */
+
+#z2 {
+	height: 50px;
+	text-align: center;
+	position: relative;
+	border-bottom: 1px solid #E2E2E2;
 }
 
 .z {
@@ -379,22 +414,12 @@ button.submit_re:focus {
 	color: #8e8e8e;
 }
 
-#d2_del {
-	color: #ed4956;
-	font-size: 16px;
-	margin-top: 18px;
-}
-
 #z2_del {
 	color: #ed4956;
 	font-size: 16px;
 	margin-top: 18px;
 }
 
-#d3_can {
-	font-size: 16px;
-	margin-top: 18px;
-}
 
 #delete {
 	width: 400px;
@@ -407,25 +432,8 @@ button.submit_re:focus {
 	font-size: 16px;
 }
 
-#suspend {
-	width: 400px;
-	height: 50px;
-	text-align: center;
-	border: none;
-	border-bottom: 1px solid #E2E2E2;
-	background-color:transparent;
-	color: #ed4956;
-	font-size: 16px;
-}
+/* 댓글 신고 */
 
-#cancel {
-	width: 400px;
-	height: 50px;
-	text-align: center;
-	border: none;
-	background-color:transparent;
-	font-size: 16px;
-}
 
  .swiper-button-next {
  
