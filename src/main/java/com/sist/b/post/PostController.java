@@ -1,6 +1,7 @@
 package com.sist.b.post;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -20,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.sist.b.bookmark.BookmarkService;
 import com.sist.b.bookmark.BookmarkVO;
 import com.sist.b.follow.FollowService;
+import com.sist.b.comment.CommentService;
+import com.sist.b.comment.CommentVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
 import com.sist.b.user.UserVO;
@@ -39,6 +42,10 @@ public class PostController {
 	
 	@Autowired
 	private FollowService followService;
+
+	@Autowired
+	private CommentService commentService;
+
 	
 	@GetMapping("upload")
 	public String setPostUpload()throws Exception{
@@ -56,6 +63,8 @@ public class PostController {
 		 
 		  postVO.setUserNum(userVO.getUserNum());
 		  
+		  String username = userVO.getUsername();
+		  
 		  int result = postService.setPostUpload(postVO, files);
 		  
 		  System.out.println(result);
@@ -65,7 +74,7 @@ public class PostController {
 		for(MultipartFile multipartFile:files) {
 			System.out.println(multipartFile.getOriginalFilename());
 		}
-		return "redirect:../";
+		return "redirect:../"+username;
 	}
 	
 	@GetMapping("selectOne")
@@ -108,6 +117,19 @@ public class PostController {
 		return mv;
 	}
 	
+	@GetMapping("delete")
+	public String setDelete(PostVO postVO, HttpSession session)throws Exception{
+		
+		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		  SecurityContextImpl sc = (SecurityContextImpl)object;
+		  org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		  UserVO userVO = (UserVO)authentication.getPrincipal();
+		  
+		  String username = userVO.getUsername();
+		
+		int result = postService.setPostDelete(postVO);
+		return "redirect:../../"+username;
+	}
 	
 	@ResponseBody
 	@GetMapping("insertLikes.do")
@@ -188,6 +210,35 @@ public class PostController {
 	}
 	
 	
+	@PostMapping("comment")
+	public ModelAndView setComment(@RequestParam Long postNum, CommentVO commentVO, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		  Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		  SecurityContextImpl sc = (SecurityContextImpl)object;
+		  org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
+		  UserVO userVO = (UserVO)authentication.getPrincipal();
+		  
+		commentVO.setUserNum(userVO.getUserNum());
+		commentVO.setPostNum(postNum);
+		int result = commentService.setComment(commentVO);
+		mv.setViewName("post/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
+	}
+	
+	@PostMapping("commentDel")
+	public ModelAndView setCommentDel(CommentVO commentVO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = commentService.setCommentDel(commentVO);
+		mv.setViewName("post/ajaxResult");
+		mv.addObject("result", result);
+		return mv;
+	}
+	
 	
 
+	
+
+	
 }

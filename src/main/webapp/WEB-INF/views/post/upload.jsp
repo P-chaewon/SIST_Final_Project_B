@@ -76,7 +76,7 @@
 				</tr>
 				<tr>
 					<td class="tbl_td">
-						<textarea class="tag" name="tag" rows="" cols="" placeholder="태그 추가" style="resize: none;"></textarea>
+						<textarea class="tag" name="tag" rows="" cols="" placeholder="태그 추가" style="resize: none; color: #007AFF"></textarea>
 						
 					</td>
 				</tr>

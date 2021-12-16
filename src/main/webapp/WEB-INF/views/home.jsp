@@ -12,7 +12,7 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
 <c:import url="./temp/head.jsp"></c:import>
-
+<c:import url="./temp/nav2.jsp"></c:import>
 <script type="text/javascript">
 $(document).ready(function() { // 페이지가 준비되면
 	likeview(); // 함수 likeview ㄱ
@@ -21,9 +21,7 @@ $(document).ready(function() { // 페이지가 준비되면
 
 </head>
 <body>
-
    
-	<c:import url="./temp/nav2.jsp"></c:import>
 		<script type="text/javascript">
 			$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
 		</script>
@@ -36,11 +34,27 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="main_feed">
 				
 				<!-- post foreach, db 추가 -->
+
 				<c:choose>
 					<c:when test="${followCount eq 0 }">
 						<div>
 							<img alt="" src="${pageContext.request.contextPath}/static/icons/follow_add.png" style="display:block; margin: 45px auto;">
 							<div style="margin: 10px auto; text-align: center;">친구를 팔로우하여 그 사람의 게시물을 확인하세요</div>
+
+				
+				<c:forEach items="${postList}" var="list">
+				<article style="   border: 1px solid #DBDBDB; margin-bottom: 60px;">
+					<!-- post header -img, nickname, more -->
+					<header>
+						<div class="post_profile">
+							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+							<span class="nickname main_nickname point_span">
+								
+							${list.userVO.username}
+							</span>
+					
+						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+	
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -86,7 +100,12 @@ $(document).ready(function() { // 페이지가 준비되면
 		      					<div class="swiper-button-prev"></div>
 		      					<div class="swiper-pagination"></div>		
 							</div>
-		
+
+							<c:when test="${empty list.likesVO.count}">
+								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
+								</a>
+							</c:when>
 							
 							<!-- post icon -->
 							<div class="icons_react">
@@ -179,10 +198,62 @@ $(document).ready(function() { // 페이지가 준비되면
 					
 						</article>
 					
+
 						</c:forEach>
 					</c:otherwise>
 				</c:choose>
+
+					<!-- text  -->
+					<div class="reaction">
+			            <div class="liked_people">
+			       
+			              <p id="count_text" data-idx ="${list.postNum}"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
+			    
+			            </div>
+			            <div class="box">
+			            	<div class="description">
+				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
+								</div>
+								<!-- tag -->
+			            			<div class="tag_${list.postNum}" style="margin-top: 10px;">
+
+			            			</div>
+
+			            		<script type="text/javascript">
+			            	    var original = '${list.tag}';
+			            		var url = '\'/gram/search/tag/';
+			            		var pid = '${list.postNum}';
+			            		var a = '';
+			            		var arr = original.split(', '); // ,를 기준으로 나눔
+
+			            		for (var i = 0; i < arr.length; i++) {
+			            			a += '<span style="color:#007AFF;" onclick="location.href='
+			            				+ url 
+			            				+ arr[i].replace("#", "") 
+			            				+ '\'' 
+			            				+ '">'
+			            				+ arr[i]
+			            				+ ' </span>';
+			            			}
+			            		$(".tag_" + pid).html(a);
+			            	    
+			            	</script>
+			            			
+			            	
+			            </div>
+			            
+			            <!-- comments -->
+			  
+			              <div class="time_log" style="margin-top: 10px; margin-bottom: 10px;">
+			                <span>${list.regDate}</span>
+			              </div>
+			          </div>   
+			          
 			
+				</article>
+			
+				</c:forEach>
+
 				<!--//post  -->
 				
 						
@@ -195,14 +266,16 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="right_contents">
 				
 				<div class="myProfile">
+				
 					<c:choose>
 						<c:when test="${not empty userVO.fileName }">
 							<a href="/gram/${userVO.username}">
 								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
+							
 							</a>
 						</c:when>
 						<c:otherwise>
-							<a href="/gram/${userVO.username }">
+							<a href="/gram/${userVO.username}">
 								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
 							</a>
 						</c:otherwise>
@@ -225,8 +298,7 @@ $(document).ready(function() { // 페이지가 준비되면
 						<a class="all_recommend_list" href="/gram/friendships/people" tabindex="0">
 							<div class="all-recommend-title">모두 보기</div>
 						</a>
-					</div>		
-					
+					</div>							
 					<!-- recommend list -->
 					<ul class="recommend_list">
 						<c:forEach items="${users}" var="user">
@@ -284,6 +356,34 @@ $(document).ready(function() { // 페이지가 준비되면
 			
 			
 		</main>
+		
+		<div class="modal">
+		<div class="modal_content">
+			<button type="button" id="suspend">
+				<h1>신고</h1>
+			</button>
+			<button type="button" id="cancel">취소</button>
+		</div>
+	</div>
+	
+	<div class="modal2">
+		<div class="modal_content2">
+			<div id="d1">
+				<span class="c">
+					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
+					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
+				</span>
+			</div>
+			<div id="d2">
+				<h1 class="c" id="d2_del">신고</h1>
+			</div>
+			<div id="d3">
+				<span class="c" id="d3_can">취소</span>
+			</div>
+		</div>
+	</div>
+	
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript">
@@ -466,8 +566,45 @@ $(document).ready(function() { // 페이지가 준비되면
 
 
    	});
-   	 
+  	
+  	var postNum = 0;
+  	 
+  	$(document).on("click", "#more",function(){
+  		$(".modal").fadeIn();
+  		// 스크롤 제한 on
+  		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  		postNum = (this).getAttribute('data-postNum');
+  	});
 
+  	$("#cancel").click(function(){
+  		$(".modal").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+
+  	$("#suspend").click(function(){
+  		$(".modal2").fadeIn();
+  	});
+
+  	$("#d2").click(function(){
+  		/* 신고게시판 이동 */
+  	});
+
+  	$("#d3").click(function(){
+  		$(".modal").fadeOut();
+  		$(".modal2").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+  	
+  	$(document).on("click", "#count_text", function(){
+  		var no = $(this).data('idx');
+  		alert(no);
+  	})
+  	
+
+
+	
  </script>
 
 

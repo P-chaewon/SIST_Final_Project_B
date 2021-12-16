@@ -28,7 +28,7 @@
 					<img id="home" onclick="javascript:location.href='${pageContext.request.contextPath}'" alt="홈" src="${pageContext.request.contextPath}/static/icons/home.png">
 					<img alt="DM" onclick="javascript:location.href='${pageContext.request.contextPath}/chat'" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
-					<img alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'"  src="${pageContext.request.contextPath}/static/icons/global.png">
+					<img id="explore" alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'"  src="${pageContext.request.contextPath}/static/icons/global.png">
 					<img alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
 					<div class="profile_border">
 						<div class="profile_img">

@@ -29,7 +29,7 @@
 					<img alt="DM" onclick="javascript:location.href='${pageContext.request.contextPath}/chat'" alt="dm" src="${pageContext.request.contextPath}/static/icons/dm.png">
 
 					<img id="upload" onclick="javascript:location.href='${pageContext.request.contextPath}/post/upload'" alt="post" src="${pageContext.request.contextPath}/static/icons/add.png">
-					<img alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'" src="${pageContext.request.contextPath}/static/icons/global.png">
+					<img id="explore" alt="탐색" onclick="javascript:location.href='${pageContext.request.contextPath}/explore'" src="${pageContext.request.contextPath}/static/icons/global.png">
 
 					<span class="alarm_img">
 						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">

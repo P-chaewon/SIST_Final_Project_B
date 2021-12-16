@@ -53,6 +53,19 @@ $(".modal-close").click(function(){
 })
 /*unfollow modal*/
 
-
+$("#post").click(function() {
+	$(this).addClass("tab-selected");
+	$(".tab-entity").not(this).removeClass("tab-selected");
+	$("#view_post").css("display","block");
+	$("#view_bookmark").css("display","none");
+});
+	
+$("#bookmark").click(function() {
+	$(this).addClass("tab-selected");
+	$(".tab_sub").not(this).removeClass("ch");
+	$(".tab-entity").not(this).removeClass("tab-selected");
+	$("#view_bookmark").css("display","block");
+	$("#view_post").css("display","none");
+});
 
 

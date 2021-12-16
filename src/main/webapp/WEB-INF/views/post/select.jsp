@@ -16,6 +16,8 @@
 <body>
 	<sec:authentication property="principal.userNum" var="userNum"/>
 	<main>
+	<sec:authentication property="principal.username" var="username"/>
+	<sec:authentication property="principal.userNum" var="userNum"/>
 		
 		<div class="user_post">
 			<div class="post_img">
@@ -53,6 +55,7 @@
 						
 							${postVO.userVO.username}</span>
 						
+
 						<c:choose>
 							<c:when test="${follow eq 0 }">
 								<span class="bullet">•</span>
@@ -66,27 +69,101 @@
 							</c:when>
 						</c:choose>
 						<img class="icon_react icon_more" id="more" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
-						
+
+						<span class="bullet">•</span>
+						<button class="following" type="button">팔로잉</button>
+				
+						<img class="icon_react icon_more" id="more" data-postNum="${postVO.postNum}" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+
 					</div>
 					
 					<div class="contents_area">
 						<div class="contents">
 							<div class="box">
 			            	<div class="description">
+			            	<div style="height: 50px;">
 				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}
-			            		<span class="tag" style="color: #00376b; cursor: pointer;"> ${postVO.tag }</span></span> 
+			            		<span class="tag_${postVO.postNum }" style="color: #00376b; cursor: pointer;"> </span>
+			            		
+
+			            	<script type="text/javascript">
+			            	    var original = '${postVO.tag}';
+			            		var url = '\'/gram/search/tag/';
+			            		var pid = '${postVO.postNum}';
+			            		var a = '';
+			            		var arr = original.split(', '); // ,를 기준으로 나눔
+
+			            		for (var i = 0; i < arr.length; i++) {
+			            			a += '<span style="color:#007AFF;" onclick="location.href='
+			            				+ url 
+			            				+ arr[i].replace("#", "") 
+			            				+ '\'' 
+			            				+ '">'
+			            				+ arr[i]
+			            				+ ' </span>';
+			            			}
+			            		$(".tag_" + pid).html(a);
+			            	    
+			            	</script>
+			            		
+			            		</span> 
+			            	
 			            	</div>
-			            </div>
-						</div>
-						<div class="contents_comment">
+			            	</div>
+			            	
+			        
+			            	
+			           <div class="comment_section"  id="commentList" data-board-num="${postVO.postNum }" style="height: 260px; border-top:0.5px solid #E2E2E2; overflow-y:scroll; ">
+			         
+			             <c:forEach items="${postVO.commentList}" var="commentList">
+			             
+			             <!-- comment 작성시 -->
+			             <c:if test="${not empty commentList.commentContents }">
+			             
+			             <ul class="comments" style="margin-top: 15px;">
+							                <li style="height: 17px;">
+							                  <span class="point_span nickname" style="font-weight: bold;">${commentList.writer}</span><span style="margin-left: 5px;">${commentList.commentContents}</span>
+							
+							                </li>
+							
+							</ul>
+							
+							<div class="description" id="comment_reply" style="margin-top: 7px;">
+								   <span class="sub" style="font-size: 12px; width: 60px; float: left;">${commentList.regDate}</span> 
+							       <span class="sub_span" id="reply" style="cursor: pointer; float: left; margin-left: 5px;">답글달기</span>
+							<c:if test="${username eq commentList.writer}">
+								<button class="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:160px; border:1px solid #000000; font-size:12px; background-color:#fff;">삭제</button>
+							</c:if>
+							 </div>
+							 
+							 
+							 <div class="comment_re" style="display:none; width: 330px; height:40px; margin-top:5px; border: 1px solid #DBDBDB;">
+							          
+							          <input type="hidden" class="form-control" name="writer" id="writer_re" value="${username}" placeholder="Enter Writer" readonly="readonly">
+					
+							     <input id="input_comment_re" name="commentContents" style="width: 270px; height:30px; margin-left: 5px;"  class="input_comment" type="text" placeholder="답글 달기..." >
 						
+							     <button type="button" class="submit_re" id="comment_re" disabled>게시</button>
+							        
+							          
+							  </div>
+			             
+			             </c:if>
+
+				  			
+				</c:forEach>
+
+			        </div>
+			   
+			
+			            	
+			            </div>
 						</div>
 					
 					</div>
 					
 					<div class="icons_react">
 						<div class="icons_left">
-							
 							<c:choose>
 						
 							<c:when test="${empty postVO.likesVO.count}">
@@ -105,7 +182,7 @@
 						
 						</c:choose>
 						
-							<img class="icon_react" style="margin-left: 5px;" alt="speech" src="/gram/static/icons/bubble-chat.png">
+							<img class="icon_react" style="margin-left: 5px;" id="chat" alt="speech" src="/gram/static/icons/bubble-chat.png">
 						</div>
 					
 						<c:choose>
@@ -138,14 +215,19 @@
 			            </div>
 			            
 			          <div class="time_log">
-			                <span>1일전</span>
+			                <span>${postVO.regDate }</span>
 			           </div>
 			           
-			           <div class="comment">
+			             <div class="comment">
 			          <!-- 이모지 추가 -->
-			            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기...">
-			            <button type="submit" class="submit_comment" style="margin-top: 20px;" disabled="">게시</button>
-			          </div>  
+			          
+			          <input type="hidden" class="form-control" name="writer" id="writer" value="${username}" placeholder="Enter Writer" readonly="readonly">
+			
+			            <input id="input_comment" name="commentContents" class="input_comment" type="text" placeholder="댓글 달기..." >
+		
+			            <button  type="button" class="submit_comment" id="comment" disabled>게시</button>
+			          
+			          </div>
 					
 				</header>
 			
@@ -158,6 +240,67 @@
 		
 		
 	</main>
+	
+		<div class="modal">
+		<div class="modal_content">
+			<c:choose>
+			
+			<c:when test="${userNum eq postVO.userNum }">
+			<button type="button" id="delete">
+				<h1>삭제</h1>		
+			</button>
+			</c:when>
+			<c:otherwise>
+			<button type="button" id="suspend">
+				<h1>신고</h1>
+			</button>
+			
+			</c:otherwise>
+			</c:choose>
+			<button type="button" id="cancel">취소</button>
+		</div>
+	</div>
+	
+	<div class="modal2">
+		<div class="modal_content2">
+			<div id="d1">
+			<c:choose>
+			<c:when test="${userNum eq postVO.userNum }">
+				<span class="z">
+					<h1 id="z1_t1">게시물을 삭제할까요?</h1> 
+					<span id="z1_t2">이 게시물을 삭제하시겠어요?</span>
+				</span>	
+			</c:when>
+			<c:otherwise>
+			<span class="c">
+					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
+					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
+				</span>
+			</c:otherwise>
+			</c:choose>
+				
+				
+			</div>
+			
+			<c:choose>
+			<c:when test="${userNum eq postVO.userNum }">
+				<div id="z2">
+				<h1 class="c" id="z2_del">삭제</h1>
+			</div>	
+			
+			</c:when>
+			<c:otherwise>
+			<div id="d2">
+				<h1 class="c" id="d2_del">신고</h1>
+			</div>
+			</c:otherwise>
+			</c:choose>
+			
+			<div id="d3">
+				<span class="c" id="d3_can">취소</span>
+			</div>
+		</div>
+	</div>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -291,6 +434,7 @@
 
    	});
  	
+
   	$(".following").click(function () {
   		let followNum=${postVO.userNum}
   		let userNum=${userNum}
@@ -308,6 +452,127 @@
 			$(this).siblings(".following").show();
 		}
 	})
+
+  	 
+  	$(function() {
+  	    $("#input_comment").on("keyup", function() {
+  	        var flag = true;
+  	        flag = $(this).val().length > 0 ? false : true;
+  	        $(".submit_comment").attr("disabled", flag);
+  	    });
+  	});
+  	
+	 
+  	$(function() {
+  	    $("#input_comment_re").on("keyup", function() {
+  	        var flag = true;
+  	        flag = $(this).val().length > 0 ? false : true;
+  	        $(".submit_re").attr("disabled", flag);
+  	    });
+  	});
+  	
+ 
+ 	
+	$(document).on("click", "#reply", function() {
+		if($(this).parent().next().css("display")=="none"){
+			$(this).parent().next().show();
+		}else{
+			$(this).parent().next().hide();	
+		}
+	
+	}); 
+  
+	//Del click event
+	$("#commentList").on("click", ".commentDel", function() {
+		let commentNum = $(this).attr("data-comment-del");
+		console.log(commentNum);
+		$.ajax({
+			type: "POST",
+			url : "./commentDel",
+			data : {
+				commentNum:commentNum
+			},
+			success: function(result) {
+				result = result.trim();
+				
+				if(result>0){
+					location.href="./selectOne?postNum=${postVO.postNum}"
+					
+				}else{
+				
+				}
+				
+			},
+			error: function() {
+				alert('삭제 실패');
+			}
+			
+		});
+	});
+	
+	$('#comment').click(function () {
+		//작성자, 내용 콘솔 출력	
+
+		let commentContents = $("#input_comment").val();
+		let postNum = $("#commentList").attr("data-board-num");
+		let writer =$("#writer").val();
+		
+		$.post('./comment', {postNum: postNum, writer:writer, commentContents:commentContents}, function(result) {
+			console.log(result.trim());
+			
+			$("#input_comment").val('');
+			location.href="./selectOne?postNum=${postVO.postNum}"
+		} );
+	});
+	
+
+  $('#chat').click(function(){
+	  $("#input_comment").focus();
+  })
+
+  
+  /* 모달- 신고, 삭제 */
+  	 var postNum = 0;
+  	 
+  	$(document).on("click", "#more",function(){
+  		$(".modal").fadeIn();
+  		// 스크롤 제한 on
+  		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  		postNum = (this).getAttribute('data-postNum');
+  	});
+
+  	$("#cancel").click(function(){
+  		$(".modal").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+
+  	$("#delete").click(function(){
+  		$(".modal2").fadeIn();
+  	});
+
+  	$("#z2").click(function(){
+  		location.href = "./post/delete?postNum="+postNum;
+  	});
+
+  	$("#d3").click(function(){
+  		$(".modal").fadeOut();
+  		$(".modal2").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+  	
+  	
+  	/* 신고 버튼 */
+	
+  	$(document).on("click", "#suspend", function(){
+  		$(".modal2").fadeIn();
+  	});
+
+  	$("#d2").click(function(){
+  		/* 신고게시판 이동 */
+  	});
+
  	
    	</script>  	 
 </body>

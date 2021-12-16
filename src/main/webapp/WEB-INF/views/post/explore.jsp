@@ -12,12 +12,18 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/explore.css">
 </head>
 <body>
-	<c:import url="../temp/nav2.jsp"></c:import>
 	<div class="wrapper">
+	<c:import url="../temp/nav.jsp"></c:import>
+	<script type="text/javascript">
+	$("#explore").attr("src", "${pageContext.request.contextPath}/static/icons/global-click.png");
+</script>
 	
 	<section id="container">
 	<div id="content">
 	<div class="explore_list" >
+	<div style="margin-top: 30px; margin-left: 5px;">
+	<span style="color: #8E8E8E; font-size: 14px; font-weight: bold;">최근 게시물</span>
+	</div>
 	<ul id="exploreListArea">
 		<c:forEach items="${postList}" var="list">
 		
@@ -41,34 +47,12 @@
 	
 		</c:forEach>
 
-	 <img class="top" alt="top" onclick="clickme()" src="${pageContext.request.contextPath}/static/icons/top.png">
 		</ul>
 	</div>
 	</div>
 	</section>
 	
 	</div>
-	
-	
-	<script type="text/javascript">
-	$(".img_wrap").mouseenter(function(){
-		$(this).css("background-color", "red");
-		
-	};
 
- 	function clickme() {
- 	   	  window.scrollTo({top:0, left:0, behavior:'smooth'});
- 	   	}
- 	   	
- 	   	$( window ).scroll( function() {
- 	   		if ( $( this ).scrollTop() > 200 ) {
- 	   			$( '.top' ).fadeIn("fast");
- 	   		} else {
- 	   			$( '.top' ).fadeOut("fast");
- 	   		}
- 	   	} );
- 	   	
-	
-	</script>
 </body>
 </html>

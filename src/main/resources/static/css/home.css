@@ -116,7 +116,7 @@ header {
 
 .box{
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 .description {
 	word-break:break-all;
@@ -183,10 +183,26 @@ button.submit_comment {
     font-weight: 600;
 }
 
+
 .submit_comment:disabled {
     color: #B9DFFC;
 }
 button.submit_comment:focus {
+    outline: none;
+}
+
+button.submit_re {
+    color: #0095f6;
+    background-color: #fff;
+    border-style: none;
+    height: 40px;
+    width: 40px;
+    padding: 4px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+button.submit_re:focus {
     outline: none;
 }
 
@@ -354,10 +370,11 @@ footer p {
 
 /* modal */
 
+
 .modal {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;	
 	background: rgba(0,0,0,0.8);
 	top: 0;
 	left: 0;
@@ -372,15 +389,16 @@ footer p {
 	transform:translate(-50%, -50%);
 	background-color: white;
 	width: 400px;
+	height: 100px;
 	border: 1px solid #E2E2E2;
 	border-radius: 10px;
 	background-color: white;
 }
 
 .modal2 {
-	position: absolute;
-	width: 100%;
-	height: 100%;
+	position: fixed;
+	width: 100vw;
+	height: 100vh;	
 	background: rgba(0,0,0,0.0);
 	top: 0;
 	left: 0;
@@ -446,7 +464,7 @@ footer p {
 	font-size: 16px;
 }
 
-#declaration {
+#suspend {
 	width: 400px;
 	height: 50px;
 	text-align: center;
@@ -457,17 +475,6 @@ footer p {
 	font-size: 16px;
 }
 
-#move {
-	width: 400px;
-	height: 50px;
-	text-align: center;
-	border: none;
-	background-color:transparent;
-	border-bottom: 1px solid #E2E2E2;
-	font-size: 16px;
-}
-
-
 #cancel {
 	width: 400px;
 	height: 50px;
@@ -476,13 +483,6 @@ footer p {
 	background-color:transparent;
 	font-size: 16px;
 }
-
-.more{
-	text-decoration: none;
-	color: #8e8e8e;
-}
-
-
 /* slider */
 
          
@@ -534,3 +534,10 @@ footer p {
 	user-select: none;
 }
 
+.comment_section {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.comment_section::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+}

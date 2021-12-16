@@ -32,6 +32,7 @@
   	
   	<typeAlias type="com.sist.b.bookmark.BookmarkVO" alias="bookmarkVO"/>
   	
+  	<typeAlias type="com.sist.b.comment.CommentVO" alias="CommentVO"/>
 
   	<typeAlias type="com.sist.b.user.UserlogVO" alias="UserlogVO"/>
   	<typeAlias type="com.sist.b.follow.FollowVO" alias="FollowVO"/>

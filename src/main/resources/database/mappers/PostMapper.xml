@@ -52,6 +52,14 @@
 			<result column="oriName" property="oriName"/>
 		</collection>
 		
+		<collection property="commentList" javaType="List" ofType="CommentVO">
+			<id column="commentNum" property="commentNum"/>
+			<result column="writer" property="writer"/>
+			<result column="commentContents" property="commentContents"/>
+			<result column="postNum" property="postNum"/>
+			<result column="userNum" property="userNum"/>
+			<result column="regDate" property="regDate"/>
+		</collection>
 		
 	
 	</resultMap>
@@ -86,7 +94,7 @@
         group by postNum)chk
         USING(postNum) 
   		
-  		ORDER BY postNum DESC;
+  		ORDER BY postNum DESC
   	</select>
   	
   <!-- select post -->
@@ -119,10 +127,25 @@
  		where userNum = #{userNum}
         group by postNum)chk
         USING(postNum) 
-  		
+        
+        left join comment using(postNum)
+        
   		WHERE postNum = #{postNum}
+  		
+  		ORDER BY ref DESC, step asc, commentNum desc
   	
   	</select>
+  	
+  	<!-- my post -->
+  	
+  	<select id="getMyPost" parameterType="PostVO" resultMap="selectResult">
+  		SELECT * FROM post
+  		LEFT JOIN postfiles
+  		USING(postNum)
+  		WHERE userNum = #{userNum}
+  		ORDER BY postNum DESC
+  	</select>
+  	
   	
   	<!-- delete post -->
   	<delete id="setDeletePost" parameterType="PostVO">
@@ -138,12 +161,29 @@
   		VALUES (null, #{postNum}, #{postfileName}, #{oriName})
   	</insert>
   	
+  	<!-- bookmark list -->
   	
-  	<!-- tag list -->
- 	<select id="getTagList" parameterType="PostVO" resultMap="selectResult">
- 		SELECT * from post
- 		where tag like concat('%', #{tag},'%')
- 	
- 	</select>
- 
+  	<select id="getBookmarkList" parameterType="PostVO" resultMap="selectResult">
+  		<![CDATA[select P.*, PF.*, B.* from post P 
+  		left join postfiles PF on(p.postNum = pf.postNum) 
+  		left join bookmark B on(P.postNum = B.postNum) 
+  		where B.userNum = #{userNum} and bookmarkNum > 0;
+  	]]>
+  	</select>
+  	
+  	<!-- search tag -->
+  	
+  	<select id="getSearchTagCount" parameterType="PostVO" resultType="Long">
+  		SELECT count(*) FROM post
+  		WHERE tag LIKE concat('%', #{tag},'%')
+  		
+  	</select>
+  	
+  	<select id="getTagList" parameterType="PostVO" resultMap="selectResult">
+  		SELECT * FROM post
+  		LEFT JOIN postfiles
+  		USING(postNum)
+  		WHERE tag LIKE concat('%', #{tag},'%')
+  	</select>
+  	
   </mapper>
