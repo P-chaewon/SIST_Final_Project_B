@@ -64,6 +64,12 @@
 	justify-content: flex-end;
 }
 
+.chat-write-area button {
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
 .chat-write-area img {
 	font-size: 0;
 	width: 30px;
@@ -72,6 +78,7 @@
 
 .chat-user-list-area {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
 	padding-top: 10px;
 }
@@ -89,9 +96,14 @@
 	display: flex;
 	width: 56px;
 	height: 56px;
+	border: 1px solid #dbdbdb;
+	border-radius: 50%;
 }
 
-.user-list-img {
+.user-img img {
+	display: flex;
+	width: 56px;
+	height: 56px;
 	border: 1px solid #dbdbdb;
 	border-radius: 50%;
 }
@@ -107,8 +119,9 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	flex: auto;
+	flex: 1 1 auto;
 	height: 100%;
+	min-height: 0; min-width: 0;
 }
 
 
@@ -167,42 +180,75 @@
 	display: flex;
 	position: absolute;
 	flex-direction: column;
-	width: 100%;
+	width: 100%; height: 60px;
 	border-bottom: 1px solid #dbdbdb;
 	box-sizing: border-box;
 }
 
 .chat-other-user-space {
 	display: flex;
-	height: 60px;
+	height: 60px; width: 100%;
 	padding: 0 20px;
 	align-items: center;
+	box-sizing: border-box;
+	background: #ffffff;
 	z-index: 3;
+}
+
+.receiver-area {
+	display: flex;
+	width: 100%;
+}
+
+.chat-container {
+	display: flex;
+	width: 100%; height: 100%;
+	min-width: 0; min-height: 0;
 }
 
 .chat-contents-wrap {
 	display: flex;
 	height: 100%;
 	width: 100%;
+	padding: 20px 20px 0;
+	box-sizing: border-box;
+	overflow-y: auto;
 }
 
 .chat-contents-area {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding-top: 45px;
 	box-sizing: border-box;
 }
 
 .contents-row {
 	display: flex;
 	flex-direction: column;
-	padding: 8px;
 	margin: 8px;
 }
 
+.r-row, .l-row {
+	display: flex;
+	padding: 16px;
+	box-sizing: border-box;
+	border-radius: 22px;
+	max-width: 236px;
+}
+
+.l-row {
+	border: 1px solid #efefef;
+	align-self: flex-start;
+}
+
 .r-row {
-	background-color: #dbdbdb;
+	background-color: #efefef;
+	align-self: flex-end;
+}
+
+.chatContent {
+	font-size: 14px;
+	color: #262626;
 }
 
 .message-input-area {
@@ -257,3 +303,144 @@
 	cursor: pointer;
 }
 
+
+
+
+
+/* ---------------  modal --------------- */
+
+.modal {
+	position: fixed;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+	width: 100%; height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	top: 0; left: 0;
+	z-index: 99;
+	display: none;
+}
+
+.modal-area {
+	display: flex;
+	flex-direction: column;
+	width: 400px; height:65%;
+	background: #fff; 
+	border-radius:12px;
+	position: relative;
+	text-align: center;
+	box-sizing: border-box;
+	overflow: hidden;
+}
+
+.modal-header {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	box-sizing: border-box;
+	border-bottom: 1px solid #dbdbdb;
+	height: 43px;
+}
+
+.modal-close-area {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+.modalCloseBtn {
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+}
+
+.modal-close-area img {
+	width: 14px; height: 14px;
+}
+
+.newMessageLetter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	font-family: 'Apple SD Bold', 'Apple SD';
+}
+
+
+.modal-content {
+	display: flex;
+	height: 100%;
+	flex: 1 1 auto;
+	flex-direction: column;
+	border-bottom: 1px solid #dbdbdb;
+}
+
+.modalSearchArea {
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+	overflow-y: auto;
+	border-bottom: 1px solid #dbdbdb;
+	box-sizing: border-box;
+}
+
+.searchBox {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin: 8px 0 8px 0;
+}
+
+.searchUserName input {
+	border: 0;
+}
+
+.searchUserName input:focus {
+	outline: none;
+}
+
+
+.modalSearchResultArea {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+
+.searchResult {
+	display: flex;
+	margin: 8px 0 8px 0;
+	padding: 0 16px 0 16px;
+	box-sizing: border-box;
+	cursor: pointer;
+}
+
+.suImg {
+	margin-right: 12px;	
+}
+
+.suImg img {
+	display: flex;
+	width: 44px;
+	height: 44px;
+	border: 1px solid #dbdbdb;
+	border-radius: 50%;
+}
+
+.suInfo {
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.suId {
+	font-family: 'Apple SD Bold', 'Apple SD';
+}
+
+.suNick {
+	color: #8e8e8e;
+}

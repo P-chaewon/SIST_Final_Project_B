@@ -94,6 +94,11 @@
  		update user set authkey=#{authkey} where username=#{username}
  	</update>
 
+	<select id="getSearchUser" resultType="UserVO" parameterType="String">
+		SELECT userNum, nickName, username, fileName FROM USER
+		WHERE username LIKE CONCAT('%', #{searchText}, '%')
+	</select>
+
   </mapper>
   
  

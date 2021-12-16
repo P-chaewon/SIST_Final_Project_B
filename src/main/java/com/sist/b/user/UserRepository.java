@@ -1,5 +1,6 @@
 package com.sist.b.user;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -32,6 +33,7 @@ public interface UserRepository {
 	public int setEnabled(UserVO userVO) throws Exception;
 	//메일 인증 번호 DB 저장
 	public int getAuthkey(Map<String, String> mailMap) throws Exception;
-	
+	//아이디로 유저 검색
+	public List<UserVO> getSearchUser(String searchText) throws Exception;
 
 }

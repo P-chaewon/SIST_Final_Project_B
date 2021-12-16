@@ -5,21 +5,35 @@
   
   <mapper namespace="com.sist.b.chat.chatroom.ChatRoomJoinRepository">
   
+  	<select id="getChatMessage" parameterType="ChatMessageVO" resultType="ChatMessageVO">
+  		SELECT * FROM CHATMESSAGE
+  		WHERE ROOMNUM = #{roomNum}
+  	</select>
+  
+  	<insert id="setChatMessage" parameterType="ChatMessageVO">
+  		INSERT INTO CHATMESSAGE (MESSAGENUM, ROOMNUM, USERNUM, CONTENTS, SENDDATE, READDATE)
+  		VALUES (0, #{roomNum}, #{userNum}, #{contents}, now(), null)
+  	</insert>
+  
+  
   	<resultMap type="ChatRoomJoinVO" id="getChatUserListResult">
   		<id column="userNum" property="userNum" />
   		<result column="roomNum" property="roomNum" />
   		<result column="exitDate" property="exitDate" />
   		<association property="userVO" javaType="UserVO">
   			<result column="username" property="username"/>
+  			<result column="fileName" property="fileName"/>
   		</association>
   	</resultMap>
   
   	<select id="getChatUserList" parameterType="UserVO" resultMap="getChatUserListResult">
-  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username
-		FROM CHATROOMJOIN CRJ
-		JOIN USER U
+  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username, U.fileName FROM USER U
+		JOIN (SELECT * FROM 
+			CHATROOMJOIN 
+			WHERE ROOMNUM IN (
+			SELECT roomNum FROM CHATROOMJOIN WHERE USERNUM = #{userNum}) 
+			AND USERNUM NOT IN (#{userNum})) CRJ
 		ON (U.userNum = CRJ.userNum)
-		WHERE CRJ.userNum NOT IN (#{userNum})
   	</select>
   
   	<insert id="setChatRoomJoin" parameterType="ChatRoomJoinVO">

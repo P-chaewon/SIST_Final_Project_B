@@ -14,6 +14,6 @@ public class ChatMessageVO {
 	private Date sendDate;
 	private Date readDate;
 	
-	private Long reciverNum;
+	private Long receiverNum;
 	
 }
