@@ -132,7 +132,7 @@ public class HomeController {
 	
 
 	@GetMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, HttpSession session) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, PostVO postVO, HttpSession session) throws Exception {
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		Map<String, Long> count = new HashMap<String, Long>();
@@ -148,16 +148,17 @@ public class HomeController {
 	
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
-		PostVO postVO = new PostVO();
-	
+		//게시물 userNum
 		postVO.setUserNum(userVO.getUserNum());
 		
 		ModelAndView mv= new ModelAndView();
 		
+		//bookmarklist 불러오기
 		List<PostVO> ar2 = postService.getBookmarkList(postVO);
 		
 		mv.addObject("bookmarkList", ar2);
 		
+		//profile postList 불러오기
 		List<PostVO> ar = postService.getUserProfile(postVO);;
 		
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
