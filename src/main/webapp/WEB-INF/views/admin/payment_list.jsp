@@ -66,7 +66,18 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<input id="st" type="hidden" value="${pager.status}">	
+		<input id="st" type="hidden" value="${pager.status}">
+		
+		<!-- 페이징 처리 -->
+		<div class="pagination">
+			<a href="./payments?pn=${pager.startNum-1}&status=${pager.status}" class="p" data-list-pn="${pager.startNum-1}">&laquo;</a>
+			<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+				<a href="./payments?pn=${i}&status=${pager.status}"><span class="p" data-list-pn="${i}">${i}</span></a>
+			</c:forEach>
+			<c:if test="${!pager.lastCheck}">
+				<a href="./list?pn=${pager.lastNum+1}&status=${pager.status}" class="p" data-list-pn="${pager.lastNum+1}">&raquo;</a>
+			</c:if>
+		</div>
 	</main>
 	
 	<!-- 우측 고정바 -->
@@ -126,4 +137,5 @@
 	<script type="text/javascript" src="../static/js/admin/list.js"></script>
 	
 </body>
+<c:import url="../temp/nav_footer.jsp"></c:import>
 </html>

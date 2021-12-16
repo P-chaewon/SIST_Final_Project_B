@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+body {
+	overflow-y: scroll;
+	background-color: #fafafa;
+}
 
 #text{
 	width: 50px;

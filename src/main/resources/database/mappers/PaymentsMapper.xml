@@ -35,6 +35,8 @@
   				and paymentsCk = 'd'
   			</when>
   		</choose>
+  		order by merchant_uid desc
+  		limit #{startRow}, #{perPage}
   	</select>
   	
   	<resultMap type="PaymentsVO" id="getListResult">
@@ -97,6 +99,25 @@
   		update payments set paymentsCk = 'd'
   		where merchant_uid = #{merchant_uid}
   	</update>
+  	
+  	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+		select count(merchant_uid) from payments
+		where paymentsCk != 'q'
+  		<choose>
+  			<when test="status == 'yes'">
+  				and paymentsCk = 'y'
+  			</when>
+  			<when test="status == 'no'">
+  				and paymentsCk = 'n'
+  			</when>
+  			<when test="status == 'wait'">
+  				and paymentsCk = 'w'
+  			</when>
+  			<when test="status == 'done'">
+  				and paymentsCk = 'd'
+  			</when>
+  		</choose>
+	</select>
 </mapper>
   
  

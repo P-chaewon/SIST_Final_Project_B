@@ -33,7 +33,6 @@
 
 					<span class="alarm_img">
 						<img id ="alarm" alt="알림" src="${pageContext.request.contextPath}/static/icons/bell.png">
-						
 					</span>
 					<div id="alarm_contents" hidden="hidden">
 					</div>
@@ -109,6 +108,15 @@
 							</div>
 						</div>
 					</div>
+		
+					<c:choose>
+						<c:when test="${not empty userVO.fileName }">
+							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
+						</c:when>
+						<c:otherwise>
+							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
+						</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
 		</nav>

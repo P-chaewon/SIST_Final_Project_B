@@ -52,6 +52,19 @@
 					</c:forEach>
 				</c:if>
 			</table>
+			
+			<c:if test="${not empty refundsVOs}">
+				<!-- 페이징 처리 -->
+				<div class="pagination">
+					<a href="./refunds?pn=${pager.startNum-1} class="p" data-list-pn="${pager.startNum-1}">&laquo;</a>
+					<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+						<a href="./refunds?pn=${i}"><span class="p" data-list-pn="${i}">${i}</span></a>
+					</c:forEach>
+					<c:if test="${!pager.lastCheck}">
+						<a href="./refunds?pn=${pager.lastNum+1}" class="p" data-list-pn="${pager.lastNum+1}">&raquo;</a>
+					</c:if>
+				</div>
+			</c:if>
 		</form>
 			<div class="b">
 				<button type="button" id="done">환불완료</button>
@@ -114,4 +127,6 @@
 	
 	<script type="text/javascript" src="../../static/js/admin/refund.js"></script>
 </body>
+<!-- footer -->
+<c:import url="../temp/nav_footer.jsp"></c:import>
 </html>

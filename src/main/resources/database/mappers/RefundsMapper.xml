@@ -16,4 +16,8 @@
 	<delete id="setDelete" parameterType="Long">
 		delete from refunds where merchant_uid = #{merchant_uid}
 	</delete>
+	
+	<select id="getTotalCount" resultType="Long" parameterType="Pager">
+		select count(merchant_uid) from refunds
+	</select>
 </mapper>

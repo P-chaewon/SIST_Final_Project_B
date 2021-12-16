@@ -127,5 +127,5 @@
 	<script type="text/javascript" src="../static/js/ad/list.js"></script>
 </body>
 <!-- footer -->
-<c:import url="../temp/nav_footer.jsp"></c:import>
+<%-- <c:import url="../temp/nav_footer.jsp"></c:import> --%>
 </html>

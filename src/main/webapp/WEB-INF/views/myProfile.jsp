@@ -12,6 +12,7 @@
 </head>
 <body class="" style="">
 	<sec:authentication property="principal.username" var="username"/>
+	<c:import url="./temp/nav2.jsp"></c:import>
 	<div id="react-root">
 		<section class="profile-home-section">
 			<div></div>
@@ -203,12 +204,6 @@
 					</div>	
 				</div>
 			</main>
-			<!-- my profile nav begin -->
-			<c:import url="./temp/nav2.jsp"></c:import>
-			<script type="text/javascript">
-				$(".profile_border").css("border", "1px solid black");
-			</script>
-			<!-- my profile nav end -->
 			<c:import url="./temp/footer.jsp"></c:import>
 		</section>
 	</div>

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/home.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/alarm_home.css">
 <c:import url="./temp/head.jsp"></c:import>
 <c:import url="./temp/nav2.jsp"></c:import>
 <script type="text/javascript">

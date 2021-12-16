@@ -4,8 +4,9 @@ html, body, #react-root{height: 100%;}
 div {display: block;}
 a {text-decoration: none; color: #00376b;}
 body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px;}
-#react-root, article, div, footer, header, main, section {
-	align-items: stretch; border: 0 solid #000; display: flex; flex-direction: column;
+
+#react-root, article,div, footer, header, main, nav, section {
+	align-items: stretch; border: 0 solid #000; box-sizing: border-box; display: flex; flex-direction: column;
 	flex-shrink: 0; margin: 0; padding: 0; position: relative; border-collapse: collapse;
 }
 #react-root{z-index: 0;}

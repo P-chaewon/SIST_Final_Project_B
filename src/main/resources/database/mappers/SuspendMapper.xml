@@ -4,11 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.sist.b.suspend.SuspendRepository">
-	<select id="getList" resultType="SuspendVO">
+	<select id="getList" resultType="SuspendVO" parameterType="Pager">
 		select S.*, U.username
 		from suspend S left join user U
 		on (S.userNum = U.userNum)
 		order by suspendNum desc
+		limit #{startRow}, #{perPage}
 	</select>
 	
 	<insert id="setInsert" parameterType="SuspendVO">
@@ -20,4 +21,8 @@
 		delete from suspend 
 		where userNum = #{userNum}
 	</delete>
+	
+	<select id="getTotalCount" resultType="Long">
+		select count(suspendNum) from suspend
+	</select>
 </mapper>

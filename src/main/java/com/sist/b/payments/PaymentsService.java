@@ -22,6 +22,12 @@ public class PaymentsService {
 	}
 	
 	public List<PaymentsVO> getList(Pager pager) throws Exception {		
+		pager.makeRow();
+		
+		// 1. 총 글의 개수 DB에서 조회
+		Long totalCount = paymentsRepository.getTotalCount(pager);
+		pager.makeNum(totalCount);
+		
 		return paymentsRepository.getList(pager);
 	}
 	
