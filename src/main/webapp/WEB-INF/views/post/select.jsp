@@ -69,9 +69,6 @@
 							</c:when>
 						</c:choose>
 						<img class="icon_react icon_more" id="more" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
-
-						<span class="bullet">•</span>
-						<button class="following" type="button">팔로잉</button>
 				
 						<img class="icon_react icon_more" id="more" data-postNum="${postVO.postNum}" style="cursor: pointer; position:absolute; margin-left: 315px;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 

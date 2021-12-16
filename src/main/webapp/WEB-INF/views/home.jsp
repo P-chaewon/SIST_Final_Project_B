@@ -34,13 +34,6 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="main_feed">
 				
 				<!-- post foreach, db 추가 -->
-
-				<c:choose>
-					<c:when test="${followCount eq 0 }">
-						<div>
-							<img alt="" src="${pageContext.request.contextPath}/static/icons/follow_add.png" style="display:block; margin: 45px auto;">
-							<div style="margin: 10px auto; text-align: center;">친구를 팔로우하여 그 사람의 게시물을 확인하세요</div>
-
 				
 				<c:forEach items="${postList}" var="list">
 				<article style="   border: 1px solid #DBDBDB; margin-bottom: 60px;">
@@ -54,155 +47,84 @@ $(document).ready(function() { // 페이지가 준비되면
 							</span>
 					
 						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
-	
+			
 						</div>
-					</c:when>
-					<c:otherwise>
-						<c:forEach items="${postList}" var="list">
-						<article style="   border: 1px solid #DBDBDB; margin-bottom: 60px;">
-							<!-- post header -img, nickname, more -->
-							<header>
-								<div class="post_profile">
-									<c:choose>
-										<c:when test="${not empty list.userVO.fileName}">
-											<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${list.userVO.fileName}">
-										</c:when>
-										<c:otherwise>
-											<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-										</c:otherwise>
-									</c:choose>
-									<span class="nickname main_nickname point_span">
-										
-									${list.userVO.username}
-									</span>
-							
-								<img class="icon_react icon_more" id="more" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+					</header>
+					<!--//header  -->
 					
-								</div>
-							</header>
-							<!--//header  -->
-							
-							
-							
-							<!-- post image -->
-							<div class="post_image swiper mySwiper" style="margin-left: -1px; width: 613px;">
 					
-									
-								<div class="swiper-wrapper">
-								<c:forEach items="${list.fileList}" var="fileVO">
-									
-									<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
-									
-								</c:forEach>
-									</div>
-						
-								<div class="swiper-button-next"></div>
-		      					<div class="swiper-button-prev"></div>
-		      					<div class="swiper-pagination"></div>		
+					
+					<!-- post image -->
+					<div class="post_image swiper mySwiper" style="margin-left: -1px; width: 613px;">
+			
+							
+						<div class="swiper-wrapper">
+						<c:forEach items="${list.fileList}" var="fileVO">
+							
+							<img class="post swiper-slide" alt="post" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}">
+							
+						</c:forEach>
 							</div>
+				
+						<div class="swiper-button-next"></div>
+      					<div class="swiper-button-prev"></div>
+      					<div class="swiper-pagination"></div>		
+					</div>
 
+					
+					<!-- post icon -->
+					<div class="icons_react">
+						<div class="icons_left">
+					
+						<c:choose>
+						
 							<c:when test="${empty list.likesVO.count}">
 								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
 									<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
 								</a>
 							</c:when>
 							
-							<!-- post icon -->
-							<div class="icons_react">
-								<div class="icons_left">
-							
-								<c:choose>
+							<c:otherwise>
 								
-									<c:when test="${empty list.likesVO.count}">
-										<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
-											<img class="icon_react like_untouched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart.png">
-										</a>
-										
-									</c:when>
-									
-									<c:otherwise>
-										
-										<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
-											<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
-										</a>
-									</c:otherwise>
-								
-								</c:choose>
-						
-									
-								<a href="./post/selectOne?postNum=${list.postNum}">
-									<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
+								<a data-idx ="${list.postNum}" class="heart-click heart_icon${list.postNum}"> 
+									<img class="icon_react like_touched" id="like" alt="heart" src="${pageContext.request.contextPath}/static/icons/heart-click.png">
 								</a>
-								</div>
-								
-									<c:choose>
-								
-									<c:when test="${empty list.bookmarkVO.chk}">
-										<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
-											
-											<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
-										</a>
-										
-									</c:when>
+							</c:otherwise>
+						
+						</c:choose>
+				
+							
+						<a href="./post/selectOne?postNum=${list.postNum}">
+							<img class="icon_react" alt="speech" src="${pageContext.request.contextPath}/static/icons/bubble-chat.png">
+						</a>
+						</div>
+						
+							<c:choose>
+						
+							<c:when test="${empty list.bookmarkVO.chk}">
+								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
 									
-									<c:otherwise>
-										
-										<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
-											
-											<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
-										</a>
-									</c:otherwise>
+									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
+								</a>
 								
-								</c:choose>
-						
+							</c:when>
+							
+							<c:otherwise>
 								
+								<a data-idx ="${list.postNum}" class="bookmark-click bookmark_icon${list.postNum}"> 
+									
+									<img class="icon_react bookmark_untouched" alt="bookmark" src="${pageContext.request.contextPath}/static/icons/bookmark-click.png">
+								</a>
+							</c:otherwise>
 						
-							
-							
-							</div>
-							
-							<!-- text  -->
-							<div class="reaction">
-					            <div class="liked_people">
-					       
-					              <p id="count_text"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
-					    
-					            </div>
-					            <div class="box">
-					            	<div class="description">
-						              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
-					            		<span class="tag">${list.tag }</span>
-					            	</div>
-					            </div>
-					            
-					            <!-- comments -->
-					            <div class="comment_section">
-					              <ul class="comments">
-					                <li>
-					                  <span><span class="point_span nickname">ch196</span>단추ㅠ</span>
-					                </li>
-					                <!-- input 값 여기에 추가 -->
-					              </ul>
-					              <div class="time_log">
-					                <span>${list.regDate}</span>
-					              </div>
-					            </div>
-					          </div>
-					          <div class="hl"></div>
-					          <div class="comment">
-					          <!-- 이모지 추가 -->
-					            <input id="input_comment" class="input_comment" type="text" placeholder="댓글 달기..." >
-					            <button type="submit" class="submit_comment" disabled>게시</button>
-					          </div>
-					          
+						</c:choose>
+				
+						
+				
 					
-						</article>
 					
-
-						</c:forEach>
-					</c:otherwise>
-				</c:choose>
-
+					</div>
+					
 					<!-- text  -->
 					<div class="reaction">
 			            <div class="liked_people">
@@ -225,7 +147,6 @@ $(document).ready(function() { // 페이지가 준비되면
 			            		var pid = '${list.postNum}';
 			            		var a = '';
 			            		var arr = original.split(', '); // ,를 기준으로 나눔
-
 			            		for (var i = 0; i < arr.length; i++) {
 			            			a += '<span style="color:#007AFF;" onclick="location.href='
 			            				+ url 
@@ -253,7 +174,7 @@ $(document).ready(function() { // 페이지가 준비되면
 				</article>
 			
 				</c:forEach>
-
+			
 				<!--//post  -->
 				
 						
@@ -393,7 +314,6 @@ $(document).ready(function() { // 페이지가 준비되면
         var content_txt = content.text();
         var content_txt_short = content_txt.substring(0,100)+"...";
         var btn_more = $('<a href="javascript:void(0)" class="more">더보기</a>');
-
         
         $(this).append(btn_more);
         
@@ -406,7 +326,6 @@ $(document).ready(function() { // 페이지가 준비되면
         
         btn_more.click(toggle_content);
       
-
         function toggle_content(){
             if($(this).hasClass('short')){
                 // 접기 상태
@@ -418,7 +337,6 @@ $(document).ready(function() { // 페이지가 준비되면
                 $(this).html('접기');
                 content.html(content_txt);
                 $(this).addClass('short');
-
             }
         }
     });
@@ -452,15 +370,12 @@ $(document).ready(function() { // 페이지가 준비되면
    	 
    	 
    	$(".heart-click").click(function() {
-
    	    // 게시물번호 idx로 전달받아 저장
    	    var no = $(this).data('idx');
    	    console.log(no);
-
    	    // 빈하트를 눌렀을때
    	    if($(this).children('img').attr('class') == "icon_react like_untouched"){
    	        console.log("빈하트 클릭" + no);
-
    	        $.ajax({
    	            url : './insertLikes.do',
    	            type : 'get',
@@ -479,12 +394,9 @@ $(document).ready(function() { // 페이지가 준비되면
    	                alert('서버 에러');
    	            }
    	        });
-
    	        $(this).html("<img class='icon_react like_touched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart-click.png'>");
-
    	    // 꽉찬 하트를 눌렀을 때
    	    }else if($(this).children('img').attr('class') == "icon_react like_touched"){
-
    	        $.ajax({
    	            url : './deleteLikes.do',
    	            type : 'get',
@@ -502,26 +414,19 @@ $(document).ready(function() { // 페이지가 준비되면
    	                alert('서버 에러');
    	            }
    	        });
-
    	        // 빈하트로 바꾸기
    	      
    	     $(this).html("<img class='icon_react like_untouched' id='like' alt='heart' src='${pageContext.request.contextPath}/static/icons/heart.png'>");
    	    }
-
-
-
    	});
    	
    	
   	$(".bookmark-click").click(function() {
-
    	    // 게시물번호 idx로 전달받아 저장
    	    var no = $(this).data('idx');
    	    console.log(no);
-
    	    if($(this).children('img').attr('class') == "icon_react bookmark_untouched"){
    	  
-
    	        $.ajax({
    	            url : './insertBookmark.do',
    	            type : 'get',
@@ -539,9 +444,7 @@ $(document).ready(function() { // 페이지가 준비되면
    	        });
    	        
    	        $(this).html("<img class='icon_react bookmark_touched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark-click.png'>");
-
    	    }else if($(this).children('img').attr('class') == "icon_react bookmark_touched"){
-
    	        $.ajax({
    	            url : './deleteBookmark.do',
    	            type : 'get',
@@ -549,7 +452,6 @@ $(document).ready(function() { // 페이지가 준비되면
    	                no : no,
    	            },
    	            success : function(data) {
-
    	            	console.log("북마크 삭제");
    	            	
    	            },
@@ -557,14 +459,10 @@ $(document).ready(function() { // 페이지가 준비되면
    	                alert('서버 에러');
    	            }
    	        });
-
    	      
    	      
    	     $(this).html("<img class='icon_react bookmark_untouched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark.png'>");
    	    }
-
-
-
    	});
   	
   	var postNum = 0;
@@ -575,21 +473,17 @@ $(document).ready(function() { // 페이지가 준비되면
   		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
   		postNum = (this).getAttribute('data-postNum');
   	});
-
   	$("#cancel").click(function(){
   		$(".modal").fadeOut();
   		// 스크롤 제한 off
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
-
   	$("#suspend").click(function(){
   		$(".modal2").fadeIn();
   	});
-
   	$("#d2").click(function(){
   		/* 신고게시판 이동 */
   	});
-
   	$("#d3").click(function(){
   		$(".modal").fadeOut();
   		$(".modal2").fadeOut();
@@ -602,8 +496,6 @@ $(document).ready(function() { // 페이지가 준비되면
   		alert(no);
   	})
   	
-
-
 	
  </script>
 
