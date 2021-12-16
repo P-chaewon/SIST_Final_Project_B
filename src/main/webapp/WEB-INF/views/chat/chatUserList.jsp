@@ -12,7 +12,7 @@
 		</div>
 		
 		<div class="user-list-nick">
-			<p>${list.userVO.username}</p>
+			<p class="user-id">${list.userVO.username}</p>
 			<p>***</p>
 		</div>
 	</div>

@@ -63,21 +63,22 @@
 					<!-- 채팅 우측 상단 -->
 					 <div class="chat-other-user-box">
 						<div class="chat-other-user-space">
-							<p>test01</p>
+							<div class="receiver-area">
+								<p class="receiverIdText">${receiverUserId}님</p>
+							</div>
 						</div>
 					</div>
 					<!-- chat-other-user-box end -->
 					
 					<!-- 채팅 우측 하단 (채팅부분) -->
+					<div class="chat-container">
+					
 					<div class="chat-contents-wrap">
 						<div id="chatContentsArea" class="chat-contents-area">
-							<div class="contents-row">
-								<dlv class="r-row">
-									chat message test
-								</dlv>
-							</div>
+							
 							
 						</div>
+					</div>
 					</div>
 					<!-- chat-contents-wrap end -->
 					
@@ -116,7 +117,7 @@
 <script type="text/javascript">
 	let userNum = '${userVO.userNum}';
 	let receiverNum = '${receiverNum}';
-	console.log('reciverNum:'+receiverNum);
+	let roomNum = '${roomNum}';
 </script>
 
 <script src="${pageContext.request.contextPath}/static/js/chat/chatForm.js"></script>

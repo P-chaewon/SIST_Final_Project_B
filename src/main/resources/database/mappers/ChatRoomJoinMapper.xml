@@ -6,13 +6,13 @@
   <mapper namespace="com.sist.b.chat.chatroom.ChatRoomJoinRepository">
   
   	<select id="getChatMessage" parameterType="ChatMessageVO" resultType="ChatMessageVO">
-  		SELECT * FROM
+  		SELECT * FROM CHATMESSAGE
   		WHERE ROOMNUM = #{roomNum}
   	</select>
   
   	<insert id="setChatMessage" parameterType="ChatMessageVO">
   		INSERT INTO CHATMESSAGE (MESSAGENUM, ROOMNUM, USERNUM, CONTENTS, SENDDATE, READDATE)
-  		VALUES (0, #{roomNum}, #{userNum}, #{contents}, now(), 0)
+  		VALUES (0, #{roomNum}, #{userNum}, #{contents}, now(), null)
   	</insert>
   
   

@@ -119,8 +119,9 @@
 	display: flex;
 	flex-direction: column;
 	position: relative;
-	flex: auto;
+	flex: 1 1 auto;
 	height: 100%;
+	min-height: 0; min-width: 0;
 }
 
 
@@ -179,30 +180,45 @@
 	display: flex;
 	position: absolute;
 	flex-direction: column;
-	width: 100%;
+	width: 100%; height: 60px;
 	border-bottom: 1px solid #dbdbdb;
 	box-sizing: border-box;
 }
 
 .chat-other-user-space {
 	display: flex;
-	height: 60px;
+	height: 60px; width: 100%;
 	padding: 0 20px;
 	align-items: center;
+	box-sizing: border-box;
+	background: #ffffff;
 	z-index: 3;
+}
+
+.receiver-area {
+	display: flex;
+	width: 100%;
+}
+
+.chat-container {
+	display: flex;
+	width: 100%; height: 100%;
+	min-width: 0; min-height: 0;
 }
 
 .chat-contents-wrap {
 	display: flex;
 	height: 100%;
 	width: 100%;
+	padding: 20px 20px 0;
+	box-sizing: border-box;
+	overflow-y: auto;
 }
 
 .chat-contents-area {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	padding-top: 45px;
 	box-sizing: border-box;
 }
 
@@ -214,19 +230,25 @@
 
 .r-row, .l-row {
 	display: flex;
-	padding: 8px;
+	padding: 16px;
 	box-sizing: border-box;
 	border-radius: 22px;
+	max-width: 236px;
 }
 
 .l-row {
-	border: 1px solid #dbdbdb;
+	border: 1px solid #efefef;
 	align-self: flex-start;
 }
 
 .r-row {
-	background-color: #dbdbdb;
+	background-color: #efefef;
 	align-self: flex-end;
+}
+
+.chatContent {
+	font-size: 14px;
+	color: #262626;
 }
 
 .message-input-area {
@@ -308,6 +330,7 @@
 	position: relative;
 	text-align: center;
 	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .modal-header {
@@ -348,6 +371,7 @@
 
 .modal-content {
 	display: flex;
+	height: 100%;
 	flex: 1 1 auto;
 	flex-direction: column;
 	border-bottom: 1px solid #dbdbdb;
@@ -357,8 +381,9 @@
 	display: flex;
 	flex-direction: column;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	border-bottom: 1px solid #dbdbdb;
+	box-sizing: border-box;
 }
 
 .searchBox {

@@ -20,6 +20,15 @@ public class ChatRoomJoinService {
 	
 	
 	/*
+	 * getChatMessage
+	 * 채팅 메시지 불러오기
+	 */
+	public List<ChatMessageVO> getChatMessage(ChatMessageVO chatMessageVO) throws Exception {
+		return chatRoomJoinRepository.getChatMessage(chatMessageVO);
+	}
+	
+	
+	/*
 	 * setChatMessage
 	 * 채팅 메시지 저장
 	 */

@@ -5,25 +5,49 @@
  
 var stompClient = null;
 
+/*
+ 채팅방 이동
+ goChatRoom
+ 
+ roomNum : 채팅방번호
+ userNum : 상대방-
+*/
+function goChatRoom(roomNum, userNum, userId) {
+	url='./'+roomNum; 
 
-// 채팅 폼 출력 --필요
-function getChatForm() {
-	console.log("rn:"+$(this).data('roomNum'));
+	let $form = $('<form></form>'); 
+	$form.attr('action', url); 
+	$form.attr('method', 'post'); 
+	$form.appendTo('body'); 
 	
+	let hd1 = $('<input type="hidden" value="'+roomNum+'" name="roomNum">'); 
+	let hd2 = $('<input type="hidden" value="'+userNum+'" name="userNum">'); 
+	let hd3 = $('<input type="hidden" value="'+userId+'" name="receiverUserId">'); 
+
+	$form.append(hd1).append(hd2).append(hd3);
+	
+	$form.submit();
+}
+
+
+
+/*
+새로운 채팅방 개설
+*/
+function newChat(userNum) {
+	console.log('newChat');
 	$.ajax({
 		type: "GET"
-		, url: "./getChatForm"
+		, url: "../newChat"
 		, data: {
-			
+			userNum: userNum
 		}
+		, async: false
 		, success: function(result) {
 			result = result.trim();
-			$("#chat-right-area").html(result);
+			console.log(result);
 		}
-		, error: function(error) {
-			console.log(error);
-		}
-	})
+	});
 }
 
 
@@ -40,6 +64,11 @@ function getSearchUser(text) {
 		, success: function(result) {
 			result = result.trim();
 			$("#modalSearchResultArea").html(result);
+			
+			$(".searchResult").on("click", function() {
+				let userNum = $(this).data('usernum');
+				newChat(userNum);
+			});
 		}, error: function(error) {
 			console.log(error);
 		}
@@ -58,6 +87,14 @@ function getChatUserList() {
 		, success: function(result) {
 			result = result.trim();
 			$("#chatUserList").html(result);
+			
+			$(".chat-user-list-box").on("click", function() {
+				let roomNum = $(this).data('roomnum');
+				let userNum = $(this).data('usernum');
+				let userId = $(this).find('.user-id').text();
+				
+				goChatRoom(roomNum, userNum, userId);
+			});
 		}, error: function(error) {
 			console.log(error);
 		}
@@ -74,7 +111,6 @@ function setConnected(connected) {
   else {
     //X
   }
-  $("#greetings").html("");
 }
 
 // 소켓 연결
@@ -87,7 +123,7 @@ function connect() {
     //console.log('Connected: ' + frame);
     stompClient.subscribe('/topic/'+userNum, function (chat) {
 		//console.log('chat.body:'+JSON.parse(chat.body));
-    	showChat(JSON.parse(chat.body), 'l');
+    	showChat(JSON.parse(chat.body).contents, 'l');
     });
   });
 }
@@ -102,12 +138,41 @@ function disconnect() {
 }
 
 
+/* 기존 채팅 메시지 db에서 불러와서 html 렌더링 */
+function getChatLog() {
+	console.log('roomNum:'+roomNum);
+	$.ajax({
+		type: "POST"
+		, url: "../getChatMessage"
+		, data: {
+			roomNum : roomNum
+		}
+		, success: function(result) {
+			$.each (result, function(key, value) {
+				console.log("con:"+value.contents);
+				
+				if (userNum == value.userNum) {
+					showChat(value.contents, 'r');
+				} else {
+					showChat(value.contents, 'l');
+				}
+			})
+		}, error: function(error) {
+			console.log(error);
+		}
+	})
+}
+
 
 /* 채팅 메시지 보냄 */
 function sendChat() {
-	let data = {'userNum':userNum, 'receiverNum':receiverNum, 'contents':$("#chatMessage").val()};
-	stompClient.send("/app/chat", {}, JSON.stringify(data));
-	showChat(data, 'r');
+	let contents = $("#chatMessage").val();
+	let data = {'roomNum': roomNum, 'userNum':userNum, 'receiverNum':receiverNum, 'contents':contents};
+	
+	if (contents.trim().length != 0) {
+		stompClient.send("/app/chat", {}, JSON.stringify(data));
+		showChat(data.contents, 'r');
+	}
 	$("#chatMessage").val("").focus();
 }
 
@@ -118,11 +183,10 @@ function showChat(chat, gbn) {
 	$("#chatContentsArea").append(
 		"<div class='contents-row'>"
 			+ "<div class='"+gbn+"-row'>"
-				+ "<div class='chatContent'>"+ chat.contents+"</div>"
+				+ "<div class='chatContent'>"+ chat +"</div>"
 		+ "</div>"
 		+ "</div>");
 }
-
 
 
 
@@ -136,10 +200,18 @@ $(function () {
   
   getChatUserList();
   
+  getChatLog();
+  
   /* $( "#connect" ).click(function() { connect(); }); */
   /* $( "#disconnect" ).click(function() { disconnect(); }); */
   /* $( "#send" ).click(function() { sendName(); }); */
+  /* 채팅전송 */
   $("#chatSend").click(function(){ sendChat(); });
+  $("#chatMessage").keyup(function(e) {
+		if (e.keyCode == 13) { //엔터키
+			sendChat();
+		}
+	});
 
 
 /* modal event */

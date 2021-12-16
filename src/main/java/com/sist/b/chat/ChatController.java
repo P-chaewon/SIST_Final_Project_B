@@ -16,7 +16,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -59,24 +61,40 @@ public class ChatController {
 	/****************************************************/
 	
 	
+	
+	/************** 채팅 로그 가져오기 *****************/
+	@PostMapping("/chat/getChatMessage")
+	@ResponseBody
+	public List<ChatMessageVO> getChatMessage(ChatMessageVO chatMessageVO, HttpSession session) throws Exception {
+	    List<ChatMessageVO> messageList = chatRoomJoinService.getChatMessage(chatMessageVO);
+
+	    return messageList;
+	}
+	/****************************************************/
+	
+	
+	
+	
 	/***************************** 채팅방 *****************************/
 	@RequestMapping("/chat/t/{chatRoomNum}")
 	public ModelAndView goChat(@PathVariable("chatRoomNum") Long chatRoomNum, 
-			HttpSession session, ChatRoomJoinVO chatRoomJoinVO, HttpServletRequest request) throws Exception {
+			HttpSession session, ChatRoomJoinVO chatRoomJoinVO, String receiverUserId,
+			HttpServletRequest request) throws Exception {
 		System.out.println("go Chat");
 		
 		ModelAndView mv = new ModelAndView();
 		
-		/* ************** GET으로 들어왔을 때 ************** */
+		// GET으로 들어올 경우 페이지 리다이렉트
 		if (request.getHeader("REFERER") == null) {			
 			mv.setViewName("redirect:../inbox");
 			return mv;
 		}
-		/* ************************************************* */
+	
 		
 		
 		
 		System.out.println("chatRoomJoinVO"+chatRoomJoinVO);
+		System.out.println("userId:"+receiverUserId);
 		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    SecurityContextImpl sc = (SecurityContextImpl)object;
@@ -87,15 +105,20 @@ public class ChatController {
 		
 	    mv.addObject("userVO", userVO);
 	    mv.addObject("receiverNum", chatRoomJoinVO.getUserNum());
+	    mv.addObject("roomNum", chatRoomJoinVO.getRoomNum());
+	    mv.addObject("receiverUserId", receiverUserId);
 	    mv.setViewName("chat/chatForm");
 	    
 		return mv;
 	}
+	/* ******************************************************************* */
+	
 	
 
-	
+	/***************************** 채팅방 생성 *****************************/
 	@GetMapping("/chat/newChat")
-	public String getChatRoom(HttpSession session, ChatRoomJoinVO chatRoomJoinVO, Long myUserNum, RedirectAttributes rttr) throws Exception {
+	@ResponseBody
+	public Long getChatRoom(HttpSession session, ChatRoomJoinVO chatRoomJoinVO, Long myUserNum, RedirectAttributes rttr) throws Exception {
 		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    SecurityContextImpl sc = (SecurityContextImpl)object;
@@ -107,19 +130,12 @@ public class ChatController {
 		Long chatRoomNum = chatRoomJoinService.newChatRoom(chatRoomJoinVO, userVO.getUserNum());
 		
 		rttr.addFlashAttribute("chatRoomJoinVO", chatRoomJoinVO);
-		return "redirect:/chat/t/"+chatRoomNum;
-	}
-	
-	/*********** 채팅폼 -- 사용 X 삭제  *********************/
-	@GetMapping("/getChatForm")
-	public ModelAndView getChatForm() throws Exception {
-		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("chat/chatForm");
-		
-		return mv;
+		return chatRoomNum;
+//		return "redirect:/chat/t/"+chatRoomNum;
 	}
-	/*******************************************************/
+	/* *************************************************************** */
+
 	
 	/* 채팅하고있는 유저 리스트 가져옴 */
 	@GetMapping("/chat/getChatUserList")
@@ -161,19 +177,16 @@ public class ChatController {
 	}
 	
 	
+	/* 채팅 메시지 send */
 	@MessageMapping("/chat")
 	public void sendMessage(ChatMessageVO chatMessageVO) throws Exception {
 		//System.out.println("nickname: " + chatMessageVO.getUserNickName() + ", contents: " + chatMessageVO.getContents());
 
-		//String receiver = message.getReceiver();
-	    //chatMessageService.save(message);
-	    //simpMessagingTemplate.convertAndSend("/topic/" + receiver,message);
 		
-		System.out.println("chat test!");
-		System.out.println("chat Receiver:"+chatMessageVO.getReceiverNum());
-		System.out.println("chat message:"+chatMessageVO.getContents());
+		System.out.println("send Chat ~ chatMessagVO:"+chatMessageVO);
+		
+		chatRoomJoinService.setChatMessage(chatMessageVO);
 		simpMessagingTemplate.convertAndSend("/topic/"+chatMessageVO.getReceiverNum(), chatMessageVO);
-		
 		
 	}
 	

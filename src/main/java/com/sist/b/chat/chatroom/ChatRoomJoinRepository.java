@@ -10,6 +10,9 @@ import com.sist.b.user.UserVO;
 @Mapper
 public interface ChatRoomJoinRepository {
 	
+	// 채팅 메시지 불러오기 
+	public List<ChatMessageVO> getChatMessage(ChatMessageVO chatMessageVO) throws Exception;
+	
 	// 채팅 메시지 저장
 	public int setChatMessage(ChatMessageVO chatMessageVO) throws Exception;
 	
