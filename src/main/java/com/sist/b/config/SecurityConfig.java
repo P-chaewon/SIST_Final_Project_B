@@ -13,11 +13,15 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.util.UrlPathHelper;
+
+import com.sist.b.user.UserVO;
 
 import lombok.AllArgsConstructor;
 
@@ -72,11 +76,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								.and()
 			.formLogin()
 						.loginPage("/account/login")
-						.defaultSuccessUrl("/")
+						.successHandler(new AuthenticationSuccessHandler() {
+							
+							@Override
+							public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+									Authentication authentication) throws IOException, ServletException {
+								UserVO userVO = (UserVO)authentication.getPrincipal();
+								System.out.println(userVO.getUsername() + " - LOGIN SUCCESS");
+								
+								response.sendRedirect("/gram");
+								
+							}
+						})
 						.permitAll()
 						.failureHandler(new AuthenticationFailureHandler() {
 							
 							@Override
+							//로그인 실패 시
 							public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 									AuthenticationException exception) throws IOException, ServletException {
 								// TODO Auto-generated method stub

@@ -10,5 +10,6 @@ public class UserlogVO {
 	private Long userlogNum;
 	private Long userNum;
 	private Date loginDate;
+	private boolean loginCheck;
 
 }
