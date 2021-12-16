@@ -108,7 +108,7 @@
 								<li class="info-li">
 									<span class="info-name">
 										게시물 
-										<span class="info-total">2,731</span>
+										<span class="info-total">${postcount}</span>
 									</span>
 								</li>
 								<li class="info-li">
@@ -153,7 +153,7 @@
 									<div class="post-one-row">
 													
 					<c:choose>
-						<c:when test="${empty postList}">
+						<c:when test="${empty postlist}">
 											<div class="one-post">
 												<div class="post-img-space" style="background-color: #fafafa; margin-left: 104px;">
 													<div style="text-align: center; margin-top: 52px;">
@@ -165,14 +165,14 @@
 										</div>
 							</c:when>
 							<c:otherwise>	
-									<c:forEach items="${postList}" var="list">
+									<c:forEach items="${postlist}" var="post">
 									
 										<div class="one-post">
 										
-											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
+											<a href="./post/selectOne?postNum=${post.postNum}" tabindex="0">
 												<div class="post-img-space">
 													<div class="post-image-div">
-													<c:forEach items="${list.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
+													<c:forEach items="${post.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
 														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
 														</c:forEach>
 													</div>

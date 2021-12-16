@@ -14,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/select.css">
 </head>
 <body>
-	<sec:authentication property="principal.userNum" var="userNum"/>
 	<main>
 	<sec:authentication property="principal.username" var="username"/>
 	<sec:authentication property="principal.userNum" var="userNum"/>
@@ -135,8 +134,6 @@
 							       		<button class="commentDel suspend" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">신고</button>
 							       	</c:otherwise>
 							       </c:choose>
-							<c:if test="${username eq commentList.writer}">
-							</c:if>
 							 </div>
 							 
 			             

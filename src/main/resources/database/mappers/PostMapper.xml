@@ -102,53 +102,42 @@
   <!-- select post -->
   	<select id="getUserPost" parameterType="PostVO" resultMap="selectResult">
   		SELECT * 
-  		FROM post
+  		FROM post P
   		
-  		LEFT JOIN user
-  		USING(userNum)
+  		LEFT JOIN user U
+  		ON(P.userNum = U.userNum)
   		
-  		LEFT JOIN likes
-  		USING(postNum)
+  		LEFT JOIN likes L
+  		ON(P.postNum = L.postNum)
+        
+        LEFT JOIN bookmark B
+        ON(P.postNum = B.postNum)
   		
-  		LEFT JOIN bookmark
-        USING(postNum)
-  		
-  		LEFT JOIN postfiles
-  		USING(postNum) 
+  		LEFT JOIN postfiles PF
+  		ON(P.postNum = PF.postNum)
   		
   		LEFT JOIN
   		(select postNum, count(*) count
  		from likes
  		where userNum = #{userNum}
         group by postNum)cnt
-        USING(postNum)
-  		
-  		LEFT JOIN
+        ON(P.postNum = cnt.postNum) 
+        
+        LEFT JOIN
   		(select postNum, count(*) chk
  		from bookmark
  		where userNum = #{userNum}
         group by postNum)chk
-        USING(postNum) 
+        ON(P.postNum = chk.postNum) 
         
-        left join comment using(postNum)
+        left join comment C ON(P.postNum = C.postNum)
         
-  		WHERE postNum = #{postNum}
+  		WHERE P.postNum = #{postNum}
   		
   		ORDER BY ref DESC, step asc, commentNum desc
   	
   	</select>
-  	
-  	<!-- my post -->
-  	
-  	<select id="getMyPost" parameterType="PostVO" resultMap="selectResult">
-  		SELECT * FROM post
-  		LEFT JOIN postfiles
-  		USING(postNum)
-  		WHERE userNum = #{userNum}
-  		ORDER BY postNum DESC
-  	</select>
-  	
-  	
+  
   	<!-- delete post -->
   	<delete id="setDeletePost" parameterType="PostVO">
   		DELETE
@@ -188,11 +177,14 @@
   		WHERE tag LIKE concat('%', #{tag},'%')
   	</select>
   	
-  	<!-- 다른 사람 post -->
+  	
+
+  	
+  	<!--  post -->
   	  
   	  <select id="getUserProfile" parameterType="PostVO" resultMap="selectResult">
   		SELECT * FROM post
-  		LEFT JOIN postfiles
+  		LEFT JOIN postfiles 
   		USING(postNum)
   		WHERE userNum = #{userNum}
   		ORDER BY postNum DESC

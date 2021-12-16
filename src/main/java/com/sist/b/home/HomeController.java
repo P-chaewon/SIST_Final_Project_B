@@ -132,7 +132,7 @@ public class HomeController {
 	
 
 	@GetMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, PostVO postVO, HttpSession session) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session) throws Exception {
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		Map<String, Long> count = new HashMap<String, Long>();
@@ -148,24 +148,23 @@ public class HomeController {
 	
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
+		PostVO postVO = new PostVO();
+	
+		postVO.setUserNum(userVO.getUserNum());
+		
 		ModelAndView mv= new ModelAndView();
-		
-		postVO.setUserNum(loginUserVO.getUserNum());
-		
-		List<PostVO> ar = postService.getMyPost(postVO);
-		
-		mv.addObject("postList", ar);
 		
 		List<PostVO> ar2 = postService.getBookmarkList(postVO);
 		
 		mv.addObject("bookmarkList", ar2);
 		
-
+		List<PostVO> ar = postService.getUserProfile(postVO);;
+		
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
 		//팔로우가 1이면 내가 팔로우 하고있는 사람
 		int follow = 0;
-		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
-				mv.setViewName("myProfile");
+		if(userVO.getUsername().equals(loginUserVO.getUsername())) {	
+			mv.setViewName("myProfile");
 		} else {
 			if(followService.followCheck(userVO, session)) {
 				follow = 1;
@@ -173,6 +172,10 @@ public class HomeController {
 			mv.addObject("follow", follow);
 			mv.setViewName("profile");
 		}
+		
+		mv.addObject("postcount", ar.size());
+		
+		mv.addObject("postlist", ar);
 
 		mv.addObject("count", count);
 
@@ -265,22 +268,16 @@ public class HomeController {
 	
 
 	@PostMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO, PostVO postVO) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session,ReportVO reportVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
-		
-		postVO.setUserNum(userVO.getUserNum());
-		
-		List<PostVO> ar = postService.getUserProfile(postVO);
-		
 		// 신고 정보 insert
 		int result = reportService.setInsert(reportVO);
 		
-		mv.addObject("postList", ar);
 		mv.addObject("userVO", userVO);
 		mv.setViewName("profile");
 		return mv;

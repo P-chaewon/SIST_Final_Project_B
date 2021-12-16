@@ -50,7 +50,7 @@
 								<li class="info-li">
 									<span class="info-name">
 										게시물 
-										<span class="info-total">2,731</span>
+										<span class="info-total">${postcount }</span>
 									</span>
 								</li>
 								<li class="info-li">
@@ -105,7 +105,7 @@
 									<div class="post-one-row">
 									
 					<c:choose>
-						<c:when test="${empty postList}">
+						<c:when test="${empty postlist}">
 							<div class="one-post">
 										<div class="post-img-space">
 											<div class="post-image-div">
@@ -127,7 +127,7 @@
 										</div>
 							</c:when>
 							<c:otherwise>	
-									<c:forEach items="${postList}" var="list">
+									<c:forEach items="${postlist}" var="list">
 									
 										<div class="one-post">
 										
