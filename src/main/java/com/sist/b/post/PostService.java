@@ -77,5 +77,9 @@ public class PostService {
 	
 	public List<PostVO> getUserProfile(PostVO postVO)throws Exception{
 		return postRepository.getUserProfile(postVO);
+
+	public Long getUserNum(Long postNum) throws Exception {
+		return postRepository.getUserNum(postNum);
+
 	}
 }

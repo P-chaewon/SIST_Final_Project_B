@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.alarm.AlarmService;
+import com.sist.b.alarm.AlarmVO;
 import com.sist.b.bookmark.BookmarkService;
 import com.sist.b.bookmark.BookmarkVO;
 import com.sist.b.follow.FollowService;
@@ -45,6 +47,9 @@ public class PostController {
 
 	@Autowired
 	private CommentService commentService;
+	
+	@Autowired
+	private AlarmService alarmService;
 
 	
 	@GetMapping("upload")
@@ -139,7 +144,7 @@ public class PostController {
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		org.springframework.security.core.Authentication authentication =sc.getAuthentication(); 
 		UserVO userVO = (UserVO)authentication.getPrincipal();
-
+		
 	
 		
 		likesVO.setUserNum(userVO.getUserNum());
@@ -147,6 +152,21 @@ public class PostController {
 	
 		PostVO postVO = likesService.setLikesInsert(likesVO);
 		
+		// 알림 추가
+		AlarmVO alarmVO = new AlarmVO();
+		// 좋아요 알림 : 1
+		alarmVO.setAlarmType(1);
+		alarmVO.setFromUserNum(userVO.getUserNum());
+
+		// userNum 조회
+		Long toUserNum = postService.getUserNum(no);
+
+		alarmVO.setToUserNum(toUserNum);
+		alarmVO.setTargetPostNum(no);
+
+		// 좋아요 알림 insert
+		int result = alarmService.setInsert(alarmVO);
+				
 		return postVO;
 		
 	}
@@ -221,6 +241,22 @@ public class PostController {
 		commentVO.setUserNum(userVO.getUserNum());
 		commentVO.setPostNum(postNum);
 		int result = commentService.setComment(commentVO);
+		
+		// 알림 추가
+		AlarmVO alarmVO = new AlarmVO();
+		// 댓글 알림 : 2
+		alarmVO.setAlarmType(2);
+		alarmVO.setFromUserNum(userVO.getUserNum());
+
+		// userNum 조회
+		Long toUserNum = postService.getUserNum(postNum);
+
+		alarmVO.setToUserNum(toUserNum);
+		alarmVO.setTargetPostNum(postNum);
+
+		// 댓글 알림 insert
+		result = alarmService.setInsert(alarmVO);
+		
 		mv.setViewName("post/ajaxResult");
 		mv.addObject("result", result);
 		

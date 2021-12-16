@@ -130,6 +130,10 @@
 		$("#membership_insert").click(function(){
 			window.open('/gram/admin/membership/create', '', 'status=no, height=' + popupHeight  + ', width=' + popupWidth  + ', left='+ popupX + ', top='+ popupY);
 		});
+		
+		$("#chg").click(function(){
+			location.href = "/gram/account/logout";
+		});
 	</script>
 	<script type="text/javascript" src="../static/js/admin/report_list.js"></script>
 </body>

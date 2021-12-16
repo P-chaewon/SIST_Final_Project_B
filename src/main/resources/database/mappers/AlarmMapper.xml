@@ -10,7 +10,7 @@
 	</insert>
 	
 	<select id="getList" parameterType="AlarmVO" resultMap="getListResult">
-		select A.*, U.username
+		select A.*, U.username, U.fileName
 		from alarm A inner join user U
 		on (A.fromUserNum = U.userNum)
 		where toUserNum = #{toUserNum}
@@ -27,6 +27,7 @@
 		<result column="alarmDate" property="alarmDate"/>
 		<association property="userVO" javaType="UserVO">
 			<result column="username" property="username"/>
+			<result column="fileName" property="fileName"/>
 		</association>
 	</resultMap>
 	

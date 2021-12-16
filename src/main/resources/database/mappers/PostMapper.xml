@@ -177,9 +177,6 @@
   		WHERE tag LIKE concat('%', #{tag},'%')
   	</select>
   	
-  	
-
-  	
   	<!--  post -->
   	  
   	  <select id="getUserProfile" parameterType="PostVO" resultMap="selectResult">
@@ -190,6 +187,8 @@
   		ORDER BY postNum DESC
   	</select>
   	
-  	
-  	
+  	<!-- post num으로 user num 조회 -->
+  	<select id="getUserNum" parameterType="Long" resultType="Long">
+  		SELECT userNum FROM post WHERE postNum = #{postNum}
+  	</select>
   </mapper>

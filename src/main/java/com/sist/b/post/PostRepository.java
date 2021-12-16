@@ -37,4 +37,6 @@ public interface PostRepository {
 	
 	public List<PostVO> getUserProfile(PostVO postVO)throws Exception;
 
+	public Long getUserNum(Long postNum) throws Exception;
+
 }
