@@ -34,7 +34,7 @@ function goChatRoom(roomNum, userNum, userId) {
 /*
 새로운 채팅방 개설
 */
-function newChat(userNum) {
+function newChat(userNum, userId) {
 	console.log('newChat');
 	$.ajax({
 		type: "GET"
@@ -42,10 +42,11 @@ function newChat(userNum) {
 		, data: {
 			userNum: userNum
 		}
-		, async: false
 		, success: function(result) {
-			result = result.trim();
-			console.log(result);
+			
+			goChatRoom(result, userNum, userId);
+		}, error: function(error) {
+			console.log(error);
 		}
 	});
 }
@@ -67,7 +68,9 @@ function getSearchUser(text) {
 			
 			$(".searchResult").on("click", function() {
 				let userNum = $(this).data('usernum');
-				newChat(userNum);
+				let userId = $(this).find('.suId').text();
+				
+				newChat(userNum, userId);
 			});
 		}, error: function(error) {
 			console.log(error);

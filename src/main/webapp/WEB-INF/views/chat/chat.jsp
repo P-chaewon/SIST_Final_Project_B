@@ -92,7 +92,9 @@
 <c:import url="./newChatModal.jsp"></c:import>
 <!-- --------------------------- modal end --------------------------- -->
 
-
+<script type="text/javascript">
+	$("#dm").attr("src", "${pageContext.request.contextPath}/static/icons/dm-click.png");
+</script>
 <script src="${pageContext.request.contextPath}/static/js/chat/chat.js"></script>
 
 </body>

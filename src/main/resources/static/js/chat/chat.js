@@ -42,7 +42,6 @@ function newChat(userNum, userId) {
 			userNum: userNum
 		}
 		, success: function(result) {
-			alert(result + "," + userNum + ",");
 			
 			goChatRoom(result, userNum, userId);
 		}, error: function(error) {
@@ -113,6 +112,8 @@ function getChatUserList() {
 
 // 다큐먼트 실행 시
 $(function () {
+	
+	
   getChatUserList();
 
 	$(".newChatBtn").click(function() {

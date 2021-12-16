@@ -37,13 +37,7 @@ public class ChatRoomJoinService {
 	}
 	
 	
-	/*
-	 * getSearchUser
-	 * 새로운 채팅 -- 유저 아이디 검색
-	 */
-	public List<UserVO> getSaerchUser(String searchText) throws Exception {
-		return userRepository.getSearchUser(searchText);
-	}
+	
 	
 	
 	/*
