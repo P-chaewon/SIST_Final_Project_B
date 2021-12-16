@@ -23,11 +23,12 @@
   		<association property="userVO" javaType="UserVO">
   			<result column="username" property="username"/>
   			<result column="fileName" property="fileName"/>
+  			<result column="nickname" property="nickname"/>
   		</association>
   	</resultMap>
   
   	<select id="getChatUserList" parameterType="UserVO" resultMap="getChatUserListResult">
-  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username, U.fileName FROM USER U
+  		SELECT CRJ.userNum, CRJ.roomNum, CRJ.exitDate, U.username, U.nickname, U.fileName FROM USER U
 		JOIN (SELECT * FROM 
 			CHATROOMJOIN 
 			WHERE ROOMNUM IN (

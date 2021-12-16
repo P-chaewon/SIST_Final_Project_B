@@ -15,6 +15,8 @@ public interface UserRepository {
 	public UserVO getLogin(String username) throws Exception;
 	//회원 정보 가져오기
 	public UserVO getSelectOne(String username) throws Exception;
+	//회원 정보 (parameter: usernum)
+	public UserVO getUserInfo(Long userNum) throws Exception;
 	//회원 정보 수정하기
 	public int setUpdate(UserVO userVO) throws Exception;
 	//아이디 중복 검사

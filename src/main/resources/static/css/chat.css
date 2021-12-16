@@ -112,6 +112,10 @@
 	margin-left: 14px;
 }
 
+.user-nick {
+	color: #828282;
+}
+
 
 /* 우측 */
 
@@ -198,6 +202,29 @@
 .receiver-area {
 	display: flex;
 	width: 100%;
+	align-items: center;
+}
+
+.receiverUserImg {
+	width: 24px; height: 24px;
+	border-radius: 50%;
+}
+
+.receiverIdText {
+	font-family: 'Apple SD Bold', 'Apple SD';
+	margin-left: 10px;
+}
+
+.detail-info-area {
+	display: flex;
+	cursor: pointer;
+	background: transparent; border: none;
+	margin-left: auto;
+}
+
+.detail-info-area img {
+	width: 24px;
+	height: 24px;
 }
 
 .chat-container {
@@ -274,6 +301,7 @@
 	overflow: hidden;
 	justify-content: center;
 	align-items: center;
+	margin-left: 10px;
 }
 
 .message-input-text {

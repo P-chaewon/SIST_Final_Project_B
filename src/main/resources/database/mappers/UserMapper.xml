@@ -42,6 +42,10 @@
  		select * from user where username=#{username}
  	</select>
  	
+ 	<select id="getUserInfo" parameterType="Long" resultType="UserVO">
+ 		SELECT * FROM USER WHERE USERNUM = ${userNum}
+ 	</select>
+ 	
  	<update id="setUpdate" parameterType="UserVO">
  		update user set phone=#{phone}, email=#{email}, nickname=#{nickname}, website=#{website}, introduction=#{introduction} 
  		where userNum=#{username}

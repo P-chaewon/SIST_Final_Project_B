@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.b.chat.chatroom.ChatRoomJoinService;
 import com.sist.b.chat.chatroom.ChatRoomJoinVO;
+import com.sist.b.user.UserService;
 import com.sist.b.user.UserVO;
 
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,9 @@ public class ChatController {
 	
 	@Autowired
 	private ChatRoomJoinService chatRoomJoinService;
+
+	@Autowired
+	private UserService userService;
 	
 	private final SimpMessagingTemplate simpMessagingTemplate;
 
@@ -52,7 +56,7 @@ public class ChatController {
 	    UserVO userVO = (UserVO)authentication.getPrincipal(); 
 		
 //		System.out.println("searchText:" + searchText);
-		List<UserVO> list = chatRoomJoinService.getSaerchUser(searchText);
+		List<UserVO> list = userService.getSaerchUser(searchText);
 		
 		mv.addObject("searchUserList", list);
 		mv.setViewName("chat/searchUserList");
@@ -80,7 +84,7 @@ public class ChatController {
 	public ModelAndView goChat(@PathVariable("chatRoomNum") Long chatRoomNum, 
 			HttpSession session, ChatRoomJoinVO chatRoomJoinVO, String receiverUserId,
 			HttpServletRequest request) throws Exception {
-		System.out.println("go Chat");
+		System.out.println(chatRoomNum+"chatRoom접속");
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -90,23 +94,19 @@ public class ChatController {
 			return mv;
 		}
 	
-		
-		
-		
-		System.out.println("chatRoomJoinVO"+chatRoomJoinVO);
-		System.out.println("userId:"+receiverUserId);
-		
+
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 	    SecurityContextImpl sc = (SecurityContextImpl)object;
 	    Authentication authentication = sc.getAuthentication();
 	    UserVO userVO = (UserVO)authentication.getPrincipal(); 
 	    
-//	    System.out.println(chatRoomJoinVO.getUserNum());
-		
-	    mv.addObject("userVO", userVO);
-	    mv.addObject("receiverNum", chatRoomJoinVO.getUserNum());
+	    //채팅 상대 정보
+	    UserVO receiverUserVO = userService.getUserInfo(chatRoomJoinVO.getUserNum());
+	    
+	    
 	    mv.addObject("roomNum", chatRoomJoinVO.getRoomNum());
-	    mv.addObject("receiverUserId", receiverUserId);
+	    mv.addObject("userVO", userVO);
+	    mv.addObject("receiverUserVO", receiverUserVO);
 	    mv.setViewName("chat/chatForm");
 	    
 		return mv;

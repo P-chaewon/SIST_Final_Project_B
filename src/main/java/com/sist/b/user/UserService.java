@@ -3,6 +3,7 @@ package com.sist.b.user;
 import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
@@ -88,6 +89,10 @@ public class UserService implements UserDetailsService{
 	
 	public UserVO getSelectOne(String username) throws Exception {		
 		return userRepository.getSelectOne(username);
+	}
+	
+	public UserVO getUserInfo(Long userNum) throws Exception {
+		return userRepository.getUserInfo(userNum);
 	}
 	
 	public UserVO getIdCheck(UserVO userVO) throws Exception {
@@ -259,6 +264,14 @@ public class UserService implements UserDetailsService{
 	
 	public int setEnabled(UserVO userVO) throws Exception {
 		return userRepository.setEnabled(userVO);
+	}
+	
+	/*
+	 * getSearchUser
+	 * 새로운 채팅 -- 유저 아이디 검색
+	 */
+	public List<UserVO> getSaerchUser(String searchText) throws Exception {
+		return userRepository.getSearchUser(searchText);
 	}
 	
 }

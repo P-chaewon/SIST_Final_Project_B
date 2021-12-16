@@ -64,7 +64,11 @@
 					 <div class="chat-other-user-box">
 						<div class="chat-other-user-space">
 							<div class="receiver-area">
-								<p class="receiverIdText">${receiverUserId}님</p>
+								<img class="receiverUserImg" src="${pageContext.request.contextPath}/static/upload/user/${receiverUserVO.fileName}">
+								<p class="receiverIdText">${receiverUserVO.username}님</p>
+								<button class="detail-info-area">
+									<img src="${pageContext.request.contextPath}/static/icons/info.png">
+								</button>
 							</div>
 						</div>
 					</div>
@@ -115,6 +119,8 @@
 <!-- --------------------------- modal end --------------------------- -->
 
 <script type="text/javascript">
+	$("#dm").attr("src", "${pageContext.request.contextPath}/static/icons/dm-click.png");
+
 	let userNum = '${userVO.userNum}';
 	let receiverNum = '${receiverNum}';
 	let roomNum = '${roomNum}';
