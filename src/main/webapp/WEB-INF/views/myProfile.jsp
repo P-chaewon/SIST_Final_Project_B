@@ -130,7 +130,7 @@
 										</div>
 							</c:when>
 							<c:otherwise>									
-									<c:forEach items="${postList}" var="list">
+									<c:forEach items="${postlist}" var="list">
 										<div class="one-post">
 										
 											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">

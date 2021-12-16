@@ -19,7 +19,7 @@
 				<div class="nav_logo">
 					<a href="/gram">
 					
-					<img class="logo_img" alt="logo" src="${pageContext.request.contextPath}/static/icons/instagram_logo.png">
+					<img class="logo_img" alt="logo" style="width: 100px; height:80px; margin-top: 35px;"src="${pageContext.request.contextPath}/static/icons/WithUs-logo.png">
 					</a>
 				</div>
 				
