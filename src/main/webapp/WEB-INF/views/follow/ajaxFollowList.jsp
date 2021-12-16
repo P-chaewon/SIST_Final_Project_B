@@ -13,15 +13,8 @@
 						<div class="follow-user-img-space">
 							<div class="follow-user-img-background" aria-disabled="true" role="button" tabindex="-1">
 								<canvas class="follow-user-img-canvas" height="40" width="40" style="position: absolute; top: -5px; left: -5px; width: 40px; height: 40px;"></canvas>
-								<a class="follow-user-img-link" href="/${userVO.username}" tabindex="0" style="width: 30px; height: 30px; display: block;">
-									<c:choose>
-										<c:when test="${not empty userVO.fileName}">
-											<img alt="${userVO.username}님의 프로필 사진" class="follow-user-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
-										</c:when>
-										<c:otherwise>
-											<img alt="${userVO.username}님의 프로필 사진" class="follow-user-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-										</c:otherwise>
-									</c:choose>
+								<a class="follow-user-img-link" href="/gram/${userVO.username}" tabindex="0" style="width: 30px; height: 30px; display: block;">
+									<img alt="${userVO.username}님의 프로필 사진" class="follow-user-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
 								</a>
 							</div>
 						</div>

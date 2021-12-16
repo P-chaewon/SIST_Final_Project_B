@@ -135,6 +135,7 @@ public class HomeController {
 	public ModelAndView getProfile(@PathVariable String username, PostVO postVO, HttpSession session) throws Exception {
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
+		System.out.println("fileName : "+userVO.getFileName());
 		Map<String, Long> count = new HashMap<String, Long>();
 		Long followCount = followService.followCount(userVO.getUserNum());
 		Long followerCount = followService.follwerCount(userVO.getUserNum());

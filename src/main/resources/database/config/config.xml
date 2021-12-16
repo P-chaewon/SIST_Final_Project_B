@@ -12,7 +12,7 @@
   	<typeAlias type="java.util.Map" alias="Map"/>
   	<typeAlias type="com.sist.b.user.UserVO" alias="UserVO"/>
   	<typeAlias type="com.sist.b.user.RoleVO" alias="RoleVO"/>
-
+	<typeAlias type="com.sist.b.user.UserlogVO" alias="UserlogVO"/>
   	
   	<typeAlias type="com.sist.b.util.Pager" alias="Pager"/>
   	<typeAlias type="com.sist.b.ad.AdVO" alias="AdVO"/>

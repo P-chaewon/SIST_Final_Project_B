@@ -42,7 +42,7 @@
 					</div>
 					<div class="profile_border">
 						<div class="profile_img">
-							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
+							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
 								
 						</div>
 						<div class="nav_profile" id="" style="display: none;">

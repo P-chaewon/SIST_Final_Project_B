@@ -5,8 +5,8 @@
   
   <mapper namespace="com.sist.b.user.UserRepository">
   	<insert id="setSignup" parameterType="UserVO" useGeneratedKeys="true" keyProperty="userNum">
-  		insert into user (userNum, phone, email, nickname, username, password, enabled) 
-  		values (#{userNum}, #{phone}, #{email}, #{nickname}, #{username}, #{password}, 0)
+  		insert into user (userNum, phone, email, nickname, username, password, fileName,enabled) 
+  		values (#{userNum}, #{phone}, #{email}, #{nickname}, #{username}, #{password}, 'user.jpg',0)
   	</insert>
   	
   	<insert id="setRoleInsert" parameterType="Map">
@@ -56,7 +56,7 @@
  	</update>
  	
  	<update id="setFileDelte" parameterType="UserVO">
- 		update user set fileName=null where username=#{username}
+ 		update user set fileName='user.jpg' where username=#{username}
  	</update>
  	
  	<update id="setPasswordUpdate" parameterType="UserVO">

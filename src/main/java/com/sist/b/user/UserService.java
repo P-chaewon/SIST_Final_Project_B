@@ -81,7 +81,6 @@ public class UserService implements UserDetailsService{
 			System.out.println("LOGIN FAIL");
 			throw new UsernameNotFoundException(username);
 		}
-		System.out.println("LOGIN SUCCESS");
 		
 		return userVO;
 	}
@@ -137,7 +136,9 @@ public class UserService implements UserDetailsService{
 		String realPath = servletContext.getRealPath("upload/user/");
 		File file = new File(realPath, userVO.getFileName());
 		file.delete();
-		
+		//session에 저장
+		userVO.setFileName("user.jpg");
+		//DB에 저장
 		return userRepository.setFileDelte(userVO);
 	}
 	
@@ -216,7 +217,7 @@ public class UserService implements UserDetailsService{
 		
 		return number;
 	}
-	
+		
 	public String getUserIp() throws Exception {
 		
         String ip = null;

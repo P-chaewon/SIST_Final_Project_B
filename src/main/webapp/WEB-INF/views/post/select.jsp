@@ -43,14 +43,7 @@
 			<div class="post_contents">
 				<header class="head">
 					<div class="post_profile">
-						<c:choose>
-							<c:when test="${not empty postVO.userVO.fileName }">
-								<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
-							</c:when>
-							<c:otherwise>
-								<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							</c:otherwise>
-						</c:choose>
+							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
 							<span class="nickname main_nickname point_span" style="margin-left: 5px;">
 						
 							${postVO.userVO.username}</span>

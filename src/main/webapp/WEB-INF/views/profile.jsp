@@ -52,16 +52,6 @@
 																	</div>
 																</button>
 															</span>
-															<span class="arrow-btn-space">
-																<button class="recommend-btn">
-																	<div class="recommend-icon-space">
-																		<div class="arrow-icon-background">
-																			<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down.png">
-																			<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up.png" style="display: none;">
-																		</div>
-																	</div>
-																</button>
-															</span>
 														</span>
 													</div>
 												</div>
@@ -73,16 +63,6 @@
 															<span class="unfollow-btn-space">
 																<button class="fol-btn" type="button"  data-user-num="${userNum}" data-follow-num="${userVO.userNum}">
 																	<div class="fol-btn-txt">팔로우</div>
-																</button>
-															</span>
-															<span class="arrow-btn-space">
-																<button class="fol-recommend-btn">
-																	<div class="recommend-icon-space">
-																		<div class="arrow-icon-background">
-																			<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down-white.png">
-																			<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up-white.png" style="display: none;">
-																		</div>
-																	</div>
 																</button>
 															</span>
 														</span>
@@ -275,14 +255,7 @@
 					<div class="unfollow-modal-img-space">
 						<div class="unfollow-modal-img-div">
 							<div class="unfollow-modal-img">
-								<c:choose>
-									<c:when test="${not empty userVO.fileName }">
-										<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" style="height: 90px; width: 90px;">
-									</c:when>
-									<c:otherwise>
-										<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg" style="height: 90px; width: 90px;">
-									</c:otherwise>
-								</c:choose>
+								<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" style="height: 90px; width: 90px;">
 							</div>
 						</div>
 					</div>
@@ -379,6 +352,10 @@
 			if(follow(false, followNum, userNum)==0){
 				location.reload(true);	
 			}
+		})
+		
+		$(".dm-btn").click(function () {
+			location.href="http://localhost/gram/chat/inbox";
 		})
 	</script>
 </body>

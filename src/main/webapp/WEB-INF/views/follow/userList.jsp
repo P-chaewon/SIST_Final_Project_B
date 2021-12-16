@@ -31,14 +31,7 @@
 												<div class="user-img-btn" aria-disabled="true" role="button" tabindex="-1">
 													<canvas class="user-img-canvas" height="54" width="54" style="position: absolute; top: -5px; left: -5px; width: 54px; height: 54px;"></canvas>
 													<a class="user-img-link" href="/dlwlrma/" tabindex="0" style="width: 44px; height: 44px; display: block;">
-														<c:choose>
-															<c:when test="${not empty userVO.fileName }">
-																<img alt="dlwlrma님의 프로필 사진" class="user-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">						
-															</c:when>
-															<c:otherwise>
-																<img alt="dlwlrma님의 프로필 사진" class="user-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-															</c:otherwise>						
-														</c:choose>
+														<img alt="dlwlrma님의 프로필 사진" class="user-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">						
 													</a>
 												</div>
 											</div>
