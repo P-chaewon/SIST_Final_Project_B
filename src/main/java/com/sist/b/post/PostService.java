@@ -83,4 +83,8 @@ public class PostService {
 		return postRepository.getUserNum(postNum);
 
 	}
+	
+	public List<PostVO> getAllList(UserVO userVO)throws Exception{
+		return postRepository.getAllList(userVO);
+	}
 }

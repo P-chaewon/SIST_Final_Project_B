@@ -99,6 +99,40 @@
   		ORDER BY P.postNum DESC
   	</select>
   	
+  	<select id="getAllList" parameterType="UserVO" resultMap="selectResult">
+  		SELECT * 
+  		FROM post P
+  		
+  		LEFT JOIN user U
+  		ON(P.userNum = U.userNum)
+  		
+  		LEFT JOIN likes L
+  		ON(P.postNum = L.postNum)
+        
+        LEFT JOIN bookmark B
+        ON(P.postNum = B.postNum)
+  		
+  		LEFT JOIN postfiles PF
+  		ON(P.postNum = PF.postNum)
+  		
+  		LEFT JOIN
+  		(select postNum, count(*) count
+ 		from likes
+ 		where userNum = #{userNum}
+        group by postNum)cnt
+        ON(P.postNum = cnt.postNum) 
+        
+        LEFT JOIN
+  		(select postNum, count(*) chk
+ 		from bookmark
+ 		where userNum = #{userNum}
+        group by postNum)chk
+        ON(P.postNum = chk.postNum)
+		
+  		ORDER BY P.postNum DESC
+  	</select>
+  	
+  	
   <!-- select post -->
   	<select id="getUserPost" parameterType="PostVO" resultMap="selectResult">
   		SELECT * 

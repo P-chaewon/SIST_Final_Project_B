@@ -124,7 +124,7 @@ public class HomeController {
 		Authentication authentication = sc.getAuthentication();
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
-		List<PostVO> ar = postService.getPostList(loginUserVO);
+		List<PostVO> ar = postService.getAllList(loginUserVO);
 		
 		mv.addObject("postList", ar);
 		mv.setViewName("post/explore");
