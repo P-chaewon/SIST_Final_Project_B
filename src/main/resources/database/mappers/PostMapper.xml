@@ -188,4 +188,16 @@
   		WHERE tag LIKE concat('%', #{tag},'%')
   	</select>
   	
+  	<!-- 다른 사람 post -->
+  	  
+  	  <select id="getUserProfile" parameterType="PostVO" resultMap="selectResult">
+  		SELECT * FROM post
+  		LEFT JOIN postfiles
+  		USING(postNum)
+  		WHERE userNum = #{userNum}
+  		ORDER BY postNum DESC
+  	</select>
+  	
+  	
+  	
   </mapper>

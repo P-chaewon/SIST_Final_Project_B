@@ -46,5 +46,22 @@
  	
  	</select>
  	
+ 	 	
+  	<resultMap type="LikesVO" id="selectResult">
+	  	<id column="likesNum" property="likesNum"/>
+	  	<result column="postNum" property="postNum"/>
+	  	<result column="userNum" property="userNum"/>
+	  	<collection property="likeUsers" javaType="List" ofType="UserVO">
+	  		<result column="userNum" property="userNum"/>
+	  		<result column="nickname" property="nickname"/>
+	  		<result column="username" property="username"/>
+	  		<result column="fileName" property="fileName"/>
+	  	</collection>
+  	</resultMap>
+ 	
+ 	<!-- 좋아요 누른 사람 리스트  -->
+ 	<select id="getLikeUser" parameterType="LikesVO" resultMap="selectResult">
+ 		select * from likes L left join user U ON(L.userNum = U.userNum) where L.postNum = #{postNum} 
+ 	</select>
  	
   </mapper>

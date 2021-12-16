@@ -74,4 +74,8 @@ public class PostService {
 	public List<PostVO> getTagList(PostVO postVO)throws Exception{
 		return postRepository.getTagList(postVO);
 	}
+	
+	public List<PostVO> getUserProfile(PostVO postVO)throws Exception{
+		return postRepository.getUserProfile(postVO);
+	}
 }

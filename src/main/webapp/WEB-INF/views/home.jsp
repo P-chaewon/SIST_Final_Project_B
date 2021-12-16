@@ -50,11 +50,15 @@ $(document).ready(function() { // 페이지가 준비되면
 					<!-- post header -img, nickname, more -->
 					<header>
 						<div class="post_profile">
+						<a href="/gram/${list.userVO.username}">
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							<span class="nickname main_nickname point_span">
+						</a>
+							<span class="nickname main_nickname point_span" style="cursor: pointer;" onclick="location.href='/gram/${list.userVO.username}'">
 								
 							${list.userVO.username}
 							</span>
+						
+						
 					
 						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 			

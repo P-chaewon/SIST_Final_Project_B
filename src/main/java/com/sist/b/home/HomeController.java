@@ -265,7 +265,7 @@ public class HomeController {
 	
 
 	@PostMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO, PostVO postVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
@@ -273,9 +273,14 @@ public class HomeController {
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
 		
+		postVO.setUserNum(userVO.getUserNum());
+		
+		List<PostVO> ar = postService.getUserProfile(postVO);
+		
 		// 신고 정보 insert
 		int result = reportService.setInsert(reportVO);
 		
+		mv.addObject("postList", ar);
 		mv.addObject("userVO", userVO);
 		mv.setViewName("profile");
 		return mv;
