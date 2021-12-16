@@ -4,7 +4,9 @@ import java.io.File;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +14,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -39,7 +44,9 @@ public class UserService implements UserDetailsService{
 	@Autowired
 	private FileManager fileManager;
 	@Autowired
-	private ServletContext servletContext;                    
+	private ServletContext servletContext;   
+	@Autowired
+	private JavaMailSender javaMailSender;
 		
 	public int setSignup(UserVO userVO) throws Exception {
 		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
@@ -61,14 +68,17 @@ public class UserService implements UserDetailsService{
 		try {
 			userVO = userRepository.getLogin(username);
 			if(!userVO.isEnabled()) {
-				int result = userRepository.setEnabledInsert(userVO);
+				
+				int result = userRepository.setEnabled(userVO);
 				userVO.setEnabled(true);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			System.out.println("LOGIN FAIL");
 			e.printStackTrace();
 		}
 		if(userVO == null) {
+			System.out.println("LOGIN FAIL");
 			throw new UsernameNotFoundException(username);
 		}
 		System.out.println("LOGIN SUCCESS");
@@ -146,7 +156,7 @@ public class UserService implements UserDetailsService{
 		}
 		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 		persistance.setPassword(userVO.getPassword());
-				
+		System.out.println("PASSWORD UPDATE SUCCESS");
 		return userRepository.setPasswordUpdate(userVO);
 	}
 	
@@ -160,10 +170,51 @@ public class UserService implements UserDetailsService{
 		
 		return check;
 	}
+		
+	public int getAuthkey(String username, String authkey) throws Exception {
+		Map<String, String> mailMap = new HashMap<String, String>();
+		mailMap.put("username", username);
+		mailMap.put("authkey", authkey);
+		return userRepository.getAuthkey(mailMap);
+	}
 	
-	public int setDeleteTemporary(UserVO userVO) throws Exception {
-		int result = userRepository.setDeleteTemporary(userVO);
-		return result;
+	//메일 보내기 email : to user, title : 메일 제목, content : 메일 내용
+	public void sendMail(String email, String title,String content) throws Exception {
+		MimeMessage message = javaMailSender.createMimeMessage();
+		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true);
+		
+		messageHelper.setFrom("sist.final@gmail.com");
+		messageHelper.setTo(email);
+		messageHelper.setSubject(title);
+		message.setContent(content, "text/html;charset=euc-kr");
+		javaMailSender.send(message);
+		System.out.println("MAIL SUCCESS");
+	}
+	
+	//임시 비밀번호 설정
+	public String getTempPassword(int length) {
+		int index = 0;
+		char [] chars = new char [] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 
+			'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 
+			'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 
+			'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 
+			'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+		
+		StringBuffer sb = new StringBuffer();
+		for(int i=0;i<length; i++) {
+			index = (int) (chars.length * Math.random());
+			sb.append(chars[index]);
+		}
+		
+		return sb.toString();
+	}
+	
+	public String getRandomNum() {
+		Random random = new Random();
+		int num = random.nextInt(999999);
+		String number = Integer.toString(num);
+		
+		return number;
 	}
 	
 	public String getUserIp() throws Exception {
@@ -209,4 +260,5 @@ public class UserService implements UserDetailsService{
 	public int setEnabled(UserVO userVO) throws Exception {
 		return userRepository.setEnabled(userVO);
 	}
+	
 }

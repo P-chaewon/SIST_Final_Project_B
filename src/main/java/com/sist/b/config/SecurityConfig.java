@@ -57,6 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 								.antMatchers("/account/challenge").permitAll()
 								.antMatchers("/account/recovery").permitAll()
 								.antMatchers("/account/mail").permitAll()
+								.antMatchers("/account/clause").permitAll()
 								.antMatchers("/account/**").hasRole("USER")
 								.antMatchers("/friendships/**").hasRole("USER")
 								.antMatchers("/*").hasRole("USER")

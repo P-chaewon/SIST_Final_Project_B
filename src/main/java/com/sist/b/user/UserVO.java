@@ -25,8 +25,13 @@ public class UserVO implements UserDetails{
 	private String website;
 	private String introduction;
 	private boolean enabled;
+	//가입 인증 번호
+	private String authkey;
+	//follow 여부 확인
 	private boolean following;
+	//userlist 개수
 	private Integer userCount;
+	
 	
 	private List<RoleVO> roles;
 

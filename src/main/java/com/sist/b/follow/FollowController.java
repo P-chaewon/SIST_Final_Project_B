@@ -94,7 +94,6 @@ public class FollowController {
 	@GetMapping("/{username}/followers")
 	public ModelAndView myFollowingList(@PathVariable String username,UserVO userVO, HttpSession session) throws Exception {
 		userVO = userService.getSelectOne(username);
-		System.out.println(userVO.getUserNum());
 		List<UserVO> follows = followService.myFollowerList(userVO);
 		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
@@ -119,8 +118,5 @@ public class FollowController {
 		
 		return mv;
 	}
-	
-	
-	
 	
 }

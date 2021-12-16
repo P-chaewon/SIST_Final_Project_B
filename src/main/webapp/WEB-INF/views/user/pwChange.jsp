@@ -105,18 +105,6 @@
 									</div>
 								</div>
 							</div>
-							<div class="edit-data">
-								<aside class="data-name">
-									<label></label>
-								</aside>
-								<div class="input-change">
-									<div class="pw-change-space">
-										<div class="pw-change">
-											<a class="pw-txt-btn" href="/gram/account/password/reset" tabindex="0">비밀번호를 잊으셨나요?</a>
-										</div>
-									</div>
-								</div>
-							</div>
 						</form>
 					</article>
 				</div>

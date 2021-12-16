@@ -1,16 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="../temp/head.jsp"></c:import>
+
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user.css">
-</head>
-<body class="" style="">      
-	<div id="react-root">
+
 		<div style="width: 100%; height: 100%;">
 			<div style="width: 100%; height: 100%;">
 				<section class="mail-section">
@@ -27,8 +20,7 @@
 										</div>
 										<div class="rt-space">
 											<div class="send-mail">
-												abcd@gmail.com 주소로 전송된 인증 코드를 입력하세요. 
-												<button class="rt-btn" type="button">코드 재전송</button>
+												${param.email} 주소로 전송된 인증 코드를 입력하세요.
 											</div>
 										</div>
 									</div>
@@ -36,10 +28,11 @@
 										<form method="POST">
 											<div class="confirmation-form" style="max-width: 350px;">
 												<div class="confirmation-code" style="width: 100%;">
-													<input aria-label="인증 코드" autocomplete="false" class="mail-code" maxlength="8" name="email_confirmation_code" placeholder="인증 코드" spellcheck="true" type="text" value="">
+													<input type="hidden" name="username" id="username" value="${param.username}">
+													<input aria-label="인증 코드" class="mail-code" maxlength="6" name="authkey" id="authkey" placeholder="인증 코드" type="text">
 												</div>
 												<div class="next-space" style="width: 100%;">
-													<button class="next-btn" disabled="" type="submit">다음</button>
+													<button class="next-btn" disabled="disabled" type="button">다음</button>
 												</div>
 												<div class="back-space">
 													<button class="back-btn" type="button">돌아가기</button>
@@ -69,15 +62,65 @@
 				</section>
 			</div>
 		</div>
-	</div>
-	<div class="update-message-space">
-		<div class="update-ease-out">
-			<div class="update-message">
-				<div class="update-text-space">
-					<p class="update-text"></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+	<script>
+		$(".back-btn").on("click", function () {
+			location.href = "/gram/account/signup";	
+		})
+		
+		$("#authkey").on("focus", function () {
+			$(this).addClass("mail-code-focus");
+		})
+		
+		$("#authkey").on("blur", function () {
+			$(this).removeClass("mail-code-focus");
+		})
+		
+		$("#authkey").on("input", function () {
+			let authkey = $(this).val();
+			if(authkey!=""){
+				$(".next-btn").removeAttr("disabled");				
+			} else {
+				$(".next-btn").attr("disabled", "disabled");
+			}
+		})
+		
+		$(".next-btn").on("click", function () {
+			let username = $("#username").val();
+			let authkey = $("#authkey").val();
+			$.ajax({
+				type : "POST",
+				url : "/gram/account/mail",
+				data : {
+					username : username,
+					authkey : authkey
+				},
+				success : function (result) {
+					result = result.trim();
+					if(result!=""){
+						$(".code-error-txt").html(result);
+					} else {
+						clause(username);
+					}
+				}
+			})
+		})
+		
+		function clause(username) {
+			$.ajax({
+				type : "GET",
+				url : "/gram/account/clause",
+				data : {
+					username : username
+				},
+				success : function (result) {
+					result = result.trim();
+					$("#react-root").html(result);
+				},
+				error : function (error, xhr, status) {
+					console.log("error 발생");
+				}
+				
+			})
+		}
+		
+	</script>

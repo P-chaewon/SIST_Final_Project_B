@@ -31,9 +31,9 @@ $(".login-input").on("input",function(){
 	let username = $("#login-username").val().length;
 	let password = $("#login-password").val().length;
 	if(username>0 && password>5){
-		$(".login-btn").removeAttr("disabled");
+		$(".login-btn").attr("disabled", false);
 	} else {
-		$(".login-btn").attr("disabled", "disabled");
+		$(".login-btn").attr("disabled", true);
 	}
 })
 
@@ -149,24 +149,11 @@ $("#pwCheck").on("change", function(){
 /*유효성검사 전부 통과하면 button disabled 삭제*/
 $(".signup-input").on("change", function(){
 	if(phonePass==1 && mailPass==1 && nickPass==1 && idPass==1 && pwPass==1 && pwCheckPass==1){
-		$(".signup-btn").removeAttr("disabled");
+		$(".signup-btn").attr("disabled", false);
 	} else {
-		$(".signup-btn").attr("disabled", "disabled");
+		$(".signup-btn").attr("disabled", true);
 	}
 	
-})
-
-
-/* 비밀번호 찾기 후 새 비밀번호 설정 시 버튼 disabled */
-$(".recov-input").on("input", function(){	
-	let recovPw = $("#recover-pw").val().length; 
-	let recovPwCheck = $("#recover-pw-check").val().length;
-			
-	if(recovPw!=0 && recovPwCheck!=0){
-		$(".recov_btn").removeAttr("disabled");
-	} else {
-		$(".recov_btn").attr("disabled", "disabled");
-	}	
 })
 
 

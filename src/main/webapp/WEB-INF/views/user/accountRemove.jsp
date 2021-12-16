@@ -184,7 +184,6 @@
 											<div>
 												<input type="hidden" name="username" id="delUsername" value="${username }">
 												<input class="delete-pw-input" id="password" name="password" required="" spellcheck="true" type="password">
-												<a class="pw-forget-txt" href="/gram/account/password/reset" tabindex="0">비밀번호를 잊으셨나요?</a>
 											</div>
 										</div>
 									</div>

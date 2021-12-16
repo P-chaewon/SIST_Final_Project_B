@@ -49,7 +49,7 @@
 											</div>
 										</div>
 										<div class="form-space btn-space">
-											<button class="account-btn login-btn" disabled="disabled" type="submit">
+											<button class="account-btn login-btn" disabled="" type="submit">
 												<div class="form-space">로그인</div>
 											</button>
 										</div>

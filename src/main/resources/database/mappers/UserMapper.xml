@@ -5,8 +5,8 @@
   
   <mapper namespace="com.sist.b.user.UserRepository">
   	<insert id="setSignup" parameterType="UserVO" useGeneratedKeys="true" keyProperty="userNum">
-  		insert into user (userNum, phone, email, nickname, username, password) 
-  		values (#{userNum}, #{phone}, #{email}, #{nickname}, #{username}, #{password})
+  		insert into user (userNum, phone, email, nickname, username, password, enabled) 
+  		values (#{userNum}, #{phone}, #{email}, #{nickname}, #{username}, #{password}, 0)
   	</insert>
   	
   	<insert id="setRoleInsert" parameterType="Map">
@@ -20,7 +20,8 @@
 			on U.userNum = UR.userNum 
 			inner join role R 
 			on UR.roleNum = R.roleNum 
-		where U.username=#{username}
+		where U.username=#{username} 
+		and U.userNum not in (select userNum from suspend)
   	</select>
   	
   	<resultMap type="UserVO" id="getLoginResult">
@@ -43,7 +44,7 @@
  	
  	<update id="setUpdate" parameterType="UserVO">
  		update user set phone=#{phone}, email=#{email}, nickname=#{nickname}, website=#{website}, introduction=#{introduction} 
- 		where username=#{username}
+ 		where userNum=#{username}
  	</update>
  	
  	<select id="getIdCheck" parameterType="UserVO" resultType="UserVO">
@@ -87,6 +88,10 @@
  	<update id="setEnabled" parameterType="UserVO">
  		update user set enabled = 1
 		where userNum = #{userNum}
+ 	</update>
+ 	
+ 	<update id="getAuthkey" parameterType="Map">
+ 		update user set authkey=#{authkey} where username=#{username}
  	</update>
 
   </mapper>

@@ -37,19 +37,92 @@
 					</span>
 					<div id="alarm_contents" hidden="hidden">
 					</div>
-					<c:choose>
-						<c:when test="${not empty userVO.fileName }">
-							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
-						</c:when>
-						<c:otherwise>
-							<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
-						</c:otherwise>
-					</c:choose>
-
-				
+					<div class="profile_border">
+						<div class="profile_img">
+							<c:choose>
+								<c:when test="${not empty userVO.fileName }">
+									<img alt="마이페이지" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
+								</c:when>
+								<c:otherwise>
+									<img alt="마이페이지" src="${pageContext.request.contextPath}/static/icons/user.jpg" class="pic">
+								</c:otherwise>
+							</c:choose>
+						</div>
+						<div class="nav_profile" id="" style="display: none;">
+							<div class="list_space"></div>
+							<div class="list_rhom"></div>
+							<div class="nav_list">
+								<a class="profile_list" href="/gram/${userVO.username }" tabindex="0">
+									<div class="list_first">
+										<div class="list_img">
+											<img alt="" src="${pageContext.request.contextPath}/static/icons/user.png">
+										</div>
+										<div class="profile_name">
+											<div class="profile_area">
+												<div class="profile_link">
+													<div class="nav_profile_text" >
+														프로필
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a class="profile_list" href="/user_424/saved/" tabindex="0">
+									<div class="list_middle">
+										<div class="list_img">
+											<img alt="" src="${pageContext.request.contextPath}/static/icons/bookmark.png">
+										</div>
+										<div class="profile_name">
+											<div class="profile_area" id="fdc085a66556f8">
+												<div class="profile_link">
+													<div class="nav_profile_text" style="height: 28px; width: 170px;">
+														저장됨
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<a class="profile_list" href="/gram/account/edit/" tabindex="0">
+									<div class="list_middle">
+										<div class="list_img">
+											<img alt="" src="${pageContext.request.contextPath}/static/icons/settings.png">
+										</div>
+										<div class="profile_name">
+											<div class="profile_area">
+												<div class="profile_link">
+													<div class="nav_profile_text" style="height: 28px; width: 170px;">
+														설정
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</a>
+								<hr class="hr">
+								<div class="profile_list" aria-disabled="false" role="button" tabindex="0">
+									<div class="list_last">
+										<a href="/gram/account/logout" class="profile_link">로그아웃</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</nav>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/temp/nav.js"></script>
+<script type="text/javascript">
+	$(".profile_img").click(function () {
+		$(".nav_profile").show();
+		$(".profile_border").css("border", "solid 1px black");
+	})
+	
+	$(".list_space").click(function () {
+		$(".nav_profile").hide();
+		$(".profile_border").css("border", "");
+	})
+</script>
 </body>
 </html>

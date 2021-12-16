@@ -99,7 +99,7 @@
 									</div>
 									<div>
 										<div class="form-space btn-space">
-											<button class="account-btn signup-btn" disabled="disabled" type="submit">가입</button>
+											<button class="account-btn signup-btn" disabled="disabled" type="button">가입</button>
 										</div>
 									</div>
 								</form>
@@ -121,6 +121,63 @@
 			<c:import url="../temp/footer.jsp"></c:import>
 		</section>
 	</div>
+	<div class="update-message-space">
+		<div class="update-ease-out">
+			<div class="update-message">
+				<div class="update-text-space">
+					<p class="update-text"></p>
+				</div>
+			</div>
+		</div>
+	</div>
 <script src="${pageContext.request.contextPath}/static/js/user.js"></script>
+<script type="text/javascript">
+	
+	$(".signup-btn").click(function () {
+		let email = $("#email").val();
+		let phone = $("#phone").val();
+		let nickname = $("#nickname").val();
+		let username = $("#username").val();
+		let password = $("#password").val();
+		
+		$.ajax({
+			type : "POST",
+			url : "/gram/account/signup",
+			data : {
+				email : email,
+				phone : phone,
+				nickname : nickname,
+				username : username,
+				password : password
+			},
+			success : function (result) {
+				result=result.trim();
+				if(result>0){
+					authkeyMail(email, username);					
+				}
+			},
+			error : function (error) {
+				console.log("회원가입 실패");
+			}
+		})
+	})
+	
+	
+	function authkeyMail(email, username) {
+		$.ajax({
+			type : "GET",
+			url : "/gram/account/mail",
+			data : {
+				email : email,
+				username : username
+			},
+			success : function (result) {
+				result = result.trim();
+				$("#react-root").html(result);
+			}
+		})
+		
+	}
+</script>
 </body>
 </html>

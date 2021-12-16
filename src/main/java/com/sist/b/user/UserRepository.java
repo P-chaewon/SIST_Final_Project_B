@@ -26,13 +26,12 @@ public interface UserRepository {
 	public int setPasswordUpdate(UserVO userVO) throws Exception;
 	//화원 탈퇴
 	public int setDelete(UserVO userVO) throws Exception;
-	//비활성 계정으로 전환
-	public int setDeleteTemporary(UserVO userVO) throws Exception;
-	//활성 계정으로 전환
-	public int setEnabledInsert(UserVO userVO) throws Exception;
-	//관리자 : 계정 차단
+	//관리자 : 계정 차단, 비활성 계정으로 전환
 	public int setUnenabled(UserVO userVO) throws Exception;
-	//관리자 : 계정 차단 해제
+	//관리자 : 계정 차단 해제, 활성 계정으로 전환
 	public int setEnabled(UserVO userVO) throws Exception;
+	//메일 인증 번호 DB 저장
+	public int getAuthkey(Map<String, String> mailMap) throws Exception;
+	
 
 }

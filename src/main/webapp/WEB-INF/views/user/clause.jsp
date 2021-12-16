@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 <c:import url="../temp/head.jsp"></c:import>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/user.css">
-</head>
-<body class="" style=""> 
-	<div id="react-root">
+
 		<section class="clause-section">
 			<div></div>
 			<main class="clause-main" role="main">
@@ -40,7 +34,7 @@
 											</div>
 										</div>
 										<div class="checkbox-space" id="f2ea7080328eea4">
-											<input class="agree-checkbox" type="checkbox">
+											<input class="agree-checkbox all-agree" type="checkbox">
 										</div>
 									</div>
 									<hr class="clause-hr">
@@ -64,7 +58,7 @@
 											</div>
 										</div>
 										<div class="checkbox-space" id="f3fed0521cdfb7c">
-											<input class="agree-checkbox" type="checkbox">
+											<input class="agree-checkbox agree" type="checkbox">
 										</div>
 									</div>
 									<div aria-labelledby="f1ae7a5466ae42c f38b1bccf998f48 f28304b5458b3 f3b51cf02c6d4c" class="agreement-object">
@@ -87,7 +81,7 @@
 											</div>
 										</div>
 										<div class="checkbox-space" id="f1ae7a5466ae42c">
-											<input class="agree-checkbox" type="checkbox">
+											<input class="agree-checkbox agree" type="checkbox">
 										</div>
 									</div>
 									<div aria-labelledby="f287075043555d4 f160b3456cbbf44 f214848a194687c fb228278c3ca4c" class="agreement-object">
@@ -110,12 +104,15 @@
 											</div>
 										</div>
 										<div class="checkbox-space" id="f287075043555d4">
-											<input class="agree-checkbox" type="checkbox">
+											<input class="agree-checkbox agree" type="checkbox">
 										</div>
 									</div>
 								</div>
 								<div class="next-space" style="width: 100%;">
-									<button class="next-btn" disabled="" type="submit">다음</button>
+									<form method="post">
+										<input type="hidden" name="username" id="username" value="${param.username }">
+										<button class="next-btn" disabled="" type="button">다음</button>
+									</form>
 								</div>
 								<div class="back-space">
 									<button class="back-btn" type="button">돌아가기</button>
@@ -136,15 +133,52 @@
 				</div>
 			</main>
 		</section>
-	</div>
-	<div class="update-message-space">
-		<div class="update-ease-out">
-			<div class="update-message">
-				<div class="update-text-space">
-					<p class="update-text"></p>
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+	<script>
+		$(".back-btn").on("click", function () {
+			location.href = "/gram/account/signup";	
+		})
+		
+		$(".all-agree").on("change", function () {
+			if($(this).prop("checked")){
+				$(".agree").prop("checked", true);
+				$(".next-btn").attr("disabled", false);
+			} else {
+				$(".agree").prop("checked", false);
+				$(".next-btn").attr("disabled", true);
+			}
+		})
+		
+		$(".agree").click(function(){
+			let result = true;
+			$(".agree").each(function(v1, v2){
+				if(!$(v2).prop("checked")){
+					result=false;
+				}
+			});
+			$(".all-agree").prop("checked", result);
+			$(".next-btn").attr("disabled", !result);
+		});
+		
+		$(".next-btn").on("click", function () {
+			let username = $("#username").val();
+			$.ajax({
+				type : "POST",
+				url : "/gram/account/clause",
+				data : {
+					username : username
+				},
+				success : function (result) {
+					result = result.trim();
+					if(result>0){
+						alert("회원가입이 완료 되었습니다.");
+						location.href = "/gram/account/login";
+					}
+				},
+				error : function (error, xhr, status) {
+					console.log("error");
+				}
+			})
+		})
+		
+		
+	</script>

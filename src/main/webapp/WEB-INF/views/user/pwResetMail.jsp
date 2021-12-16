@@ -41,9 +41,9 @@
 								</div>
 								<div class="challenge_text_area">
 									<div class="challenge_text">
-										계정에 다시 로그인할 수 있는 링크가 포함된 이메일을 
+										계정에 로그인할 수 있는 임시 비밀번호가 포함된 이메일을 
 											<div class="challenge_mail_address">
-												c*******4@gmail.com
+												${param.email}
 											</div> 
 										주소로 보내드렸습니다.
 									</div>
@@ -58,5 +58,10 @@
 			</main>
 		</section>
 	</div>
+	<script type="text/javascript">
+		$(".challenge_btn").click(function () {
+			location.href="/gram";
+		})
+	</script>
 </body>
 </html>

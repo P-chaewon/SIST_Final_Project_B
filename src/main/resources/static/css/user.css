@@ -75,6 +75,8 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .confirmation-form{display: flex; align-content: stretch; align-items: center; justify-content: flex-start; flex: 0 0 auto; margin: 8px auto; padding-left: 40px; padding-right: 40px; max-width: 350px;}
 .confirmation-code{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start;flex: 0 0 auto;}
 .mail-code{border-radius: 6px; border: 1px solid #dbdbdb; color: #262626; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; overflow: visible; padding: 4px 12px; background: #fafafa;}
+.mail-code:focus {outline: none;}
+.mail-code-focus {border-color: #a8a8a8;}
 .next-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 16px;}
 .next-btn{appearance:none; background-color: #0095f6; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; border-radius: 4px; color: #fff; position: relative; width: 100%; border: 1px solid transparent;}
 .next-btn:disabled {opacity: .3;}
@@ -101,7 +103,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .all-agree-txt{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; padding-bottom: 16px; padding-top: 16px;}
 .checkbox-space{display: flex; align-content: stretch; align-items: center; flex-direction: row; justify-content: center; flex: 0 0 auto; margin-left: 8px;}
 .agree-checkbox{appearance:none; background-color: #fff; border: 2px solid #dbdbdb; border-radius: 50%; box-sizing: border-box;height: 24px; margin: 8px; width: 24px;}
-.agree-checkbox:checked{background-color: #0095f6; border-color:#0095f6; }
+.agree-checkbox:checked{background-color: #0095f6; border-color:#0095f6; background-image: url("/gram/static/icons/check_white.png"); background-repeat: no-repeat; background-size: 80%; background-position: center;}
 .clause-hr{background-color: #dbdbdb; border: 0; height: 1px; margin: 0; width: 100%;}
 .agree-txt{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 12px;}
 .agreement-more-div{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 8px;}
@@ -117,6 +119,9 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .update-text{color: #fff; font-size: 14px; line-height: 18px; max-height: 72px; padding: 12px 0; overflow: hidden;}
 
 /* pw reset.jsp */
+.pw_reset_nav{align-items: center; background-color: #fff; border-bottom: 1px solid #dbdbdb; height: 60px; position: fixed; top: 0; width: 100%; z-index: 3;}
+.pw_reset_nav_logo{align-items: center; display: flex; flex-direction: row; height: 60px; justify-content: center; max-width: 975px; padding: 0 20px; width: 100%; z-index: 10;}
+.pw_reset_logo_div{flex: 1 0 127px;}
 .pw-reset-space{flex-grow: 1; justify-content: center; margin: 44px 0; overflow: hidden;}
 .pw-reset{background-color: #fff; border: 1px solid #dbdbdb; border-radius: 3px; margin: 60px auto 0; max-width: 935px; overflow: hidden; }
 .pw_reset_contents{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 5px;}
@@ -146,6 +151,12 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .login-reset-input{border-radius: 6px; flex-grow: 1; font-size: 14px; line-height: 30px; margin: 0; overflow: visible; background-color: #fafafa; border: 0; width: 100%; padding: 8px; padding-bottom: 0; }
 .login-reset-input:disabled {background-color: #efefef; border-color: #8e8e8e; cursor: not-allowed;}
 .login-label{background-color: #efefef; border-color: #dbdbdb; color: #8e8e8e; cursor: not-allowed;}
+.update-message-space{bottom: 0; left: 0; overflow: hidden; position: fixed; right: 0; z-index: 500;}
+.update-ease-in{transition:translateY(0) 2s ease-in-out}
+.update-ease-out{transform:translateY(100%)}
+.update-message{background-color: #262626; flex-direction: row; min-height: 44px; padding: 0 16px; width: 100%; border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-top-left-radius: 2px; border-top-right-radius: 2px; min-width: 500px; width: auto;}
+.update-text-space{flex-grow: 1; flex-shrink: 1; justify-content: center; min-width: 200px;}
+.update-text{color: #fff; font-size: 14px; line-height: 18px; max-height: 72px; padding: 12px 0; overflow: hidden;}
 
 /* pw reset mail jsp */
 .pw-chal-section{display: flex; flex-direction: column; flex-grow: 1; min-height: 100%; overflow: hidden; bottom: env(safe-area-inset-bottom);}

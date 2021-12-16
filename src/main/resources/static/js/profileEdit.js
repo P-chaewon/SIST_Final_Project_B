@@ -144,25 +144,6 @@ $(".delete-btn").click(function () {
 	removePwCheck("계정이 삭제되었습니다.");
 })
 
-/* 비밀번호 찾기 후 새 비밀번호 설정 시 비밀번호 유효성 검사 */
-$(".recov_btn").click(function(){
-	let recovPw = $("#recover-pw").val();
-	let recovPwCheck =  $("#recover-pw-check").val();
-	let username = $("#recover-username").val();
-	if(recovPw.length<6){
-		$(".recover-error-msg").html("6자 이상의 비밀번호를 만드세요.");
-	} else if(recovPw!=recovPwCheck){
-		$(".recover-error-msg").html("두 비밀번호가 일치하는지 확인하세요.");
-	} else if(!passwordCheck(recovPw)){
-		$(".recover-error-msg").html("이 비밀번호는 추측하기가 너무 쉽습니다. 새로운 비밀번호를 만드세요.");
-	} else if(pwChangeCheck(recovPw)) {
-		$(".recover-error-msg").html("현재 비밀번호와 다른 새 비밀번호를 만드세요.");
-	} else {
-		pwChange(username, recovPw);
-		location.href="/gram";	
-	}
-})
-
 
 /*파일 upload 함수 ajax*/
 function uploadFile(){
@@ -180,6 +161,7 @@ function uploadFile(){
 			$(".input-icon").attr("src", "/gram/static/upload/user/"+result.trim());
 			$(".profile-button").attr("data-user-fileName", result.trim());
 			$(".icon-btn").attr("data-user-fileName", result.trim());
+			$(".pic").attr("src","/gram/static/upload/user/"+result.trim());
 			alertMsg("프로필 사진이 추가되었습니다.");
 		},
 		error : function(error, status, xhr) {
