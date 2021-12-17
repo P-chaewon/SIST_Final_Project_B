@@ -5,6 +5,23 @@
  
 var stompClient = null;
 
+
+/*
+ 채팅방 - 정보 
+ */
+function getDetailInfo() {
+	$(".chat-right-area").empty();
+	
+	let $button = $('<button></button>');
+	$button.attr('class', 'aa');
+	$(".chat-right-area").append($button);
+	
+	
+
+}
+
+
+
 /*
  채팅방 이동
  goChatRoom
@@ -31,6 +48,7 @@ function goChatRoom(roomNum, userNum, userId) {
 
 
 
+
 /*
 새로운 채팅방 개설
 */
@@ -52,30 +70,39 @@ function newChat(userNum, userId) {
 }
 
 
+
 /*
 새로운 채팅 -- 유저 검색
 */
 function getSearchUser(text) {
-	$.ajax({
-		type: "GET"
-		, url: "../getSearchUser"
-		, data: {
-			searchText: text
-		}
-		, success: function(result) {
-			result = result.trim();
-			$("#modalSearchResultArea").html(result);
-			
-			$(".searchResult").on("click", function() {
-				let userNum = $(this).data('usernum');
-				let userId = $(this).find('.suId').text();
+	text = text.trim();
+	
+	//검색어 없을 때
+	if (text.length == 0) {
+		$("#modalSearchResultArea").find(".searchResult").remove();
+		$(".noSearchResult").css('display', 'flex');
+	} else {
+		$.ajax({
+			type: "GET"
+			, url: "../getSearchUser"
+			, data: {
+				searchText: text
+			}
+			, success: function(result) {
+				result = result.trim();
+				$("#modalSearchResultArea").html(result);
 				
-				newChat(userNum, userId);
-			});
-		}, error: function(error) {
-			console.log(error);
-		}
-	})
+				$(".searchResult").on("click", function() {
+					let userNum = $(this).data('usernum');
+					let userId = $(this).find('.suId').text();
+					
+					newChat(userNum, userId);
+				});
+			}, error: function(error) {
+				console.log(error);
+			}
+		})
+	}
 }
 
 
@@ -160,10 +187,18 @@ function getChatLog() {
 					showChat(value.contents, 'l');
 				}
 			})
+			
+			chatScrollDown();
 		}, error: function(error) {
 			console.log(error);
 		}
 	})
+}
+
+
+/* 채팅 가장 아래로 스크롤 */
+function chatScrollDown() {
+	$(".chat-contents-wrap").scrollTop($('.chat-contents-wrap')[0].scrollHeight);
 }
 
 
@@ -177,6 +212,8 @@ function sendChat() {
 		showChat(data.contents, 'r');
 	}
 	$("#chatMessage").val("").focus();
+	
+	chatScrollDown();
 }
 
 
@@ -196,28 +233,35 @@ function showChat(chat, gbn) {
 
 // 다큐먼트 실행 시
 $(function () {
-  $("form").on('submit', function (e) {
-    e.preventDefault();
-  });
-  connect();
+	// form 이벤트 해제
+	$("form").on('submit', function (e) {
+		e.preventDefault();
+	});
+	
+	connect();
+		  
+	getChatUserList();
+		  
+	getChatLog();
   
-  getChatUserList();
   
-  getChatLog();
   
-  /* $( "#connect" ).click(function() { connect(); }); */
-  /* $( "#disconnect" ).click(function() { disconnect(); }); */
-  /* $( "#send" ).click(function() { sendName(); }); */
-  /* 채팅전송 */
-  $("#chatSend").click(function(){ sendChat(); });
-  $("#chatMessage").keyup(function(e) {
-		if (e.keyCode == 13) { //엔터키
+
+	/* 채팅전송 */
+	$("#chatSend").click(function(){ sendChat(); });
+	$("#chatMessage").keyup(function(e) {
+	if (e.keyCode == 13) { //엔터키
 			sendChat();
 		}
 	});
+	
+	/* 상세정보 */
+	$("#detailInfoBtn").click(function() {
+		getDetailInfo();
+	})
 
 
-/* modal event */
+	/* *** modal event *** */
 	$(".newChatBtn").click(function() {
 		$(".modal").css('display', 'flex');
 	}) 
@@ -226,9 +270,11 @@ $(function () {
 		$(".modal").css('display', 'none');
 	})
 	
+	//모달검색
 	$("#searchText").on("change keyup paste", function() {
-		console.log('변경!!!:'+$("#searchText").val());
 		getSearchUser($("#searchText").val());
 	});
+	
+	
 
 });
