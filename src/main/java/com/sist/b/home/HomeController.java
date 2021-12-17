@@ -36,7 +36,7 @@ import com.sist.b.comment.CommentService;
 import com.sist.b.comment.CommentVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
-
+import com.sist.b.payments.PaymentsService;
 import com.sist.b.follow.FollowService;
 
 import com.sist.b.post.PostService;
@@ -79,6 +79,9 @@ public class HomeController {
 	@Autowired
 	private AdService adService;
 	
+	@Autowired
+	private PaymentsService paymentsService;
+	
 	@GetMapping("/")
 	public ModelAndView getPostList(HttpSession session)throws Exception{
 
@@ -114,6 +117,16 @@ public class HomeController {
 		} 
 		userVO.setUserCount(5);
 		users = followService.userList(userVO);
+		
+		// 멤버십 가입 여부 확인
+		Long userNum = paymentsService.getPaymentsCk(userVO.getUserNum());
+		
+		if (userNum == null) {
+			mv.addObject("paymentsCk", "n");
+		} else {
+			mv.addObject("paymentsCk", "y");
+		}
+		
 		mv.addObject("postList", ar);
 		
 		mv.addObject("users", users);

@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/head.jsp"></c:import>
-<c:import url="../temp/admin_nav.jsp"></c:import>
+<c:import url="../temp/nav.jsp"></c:import>
 <link rel="stylesheet" type="text/css" href="../static/css/membership/list.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>

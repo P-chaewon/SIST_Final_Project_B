@@ -21,8 +21,12 @@ $(document).ready(function() { // 페이지가 준비되면
 </script>
 
 </head>
-<body onload="window.open('/gram/ad','','width=500px, height=550px, left=30px, top=30px, toolbar=0, status=yes, menubars=0, scrollbars=0, resizable=0, location=0, directories=0')">
-   
+<c:if test="${paymentsCk eq 'y'}">
+	<body>
+</c:if>
+<c:if test="${paymentsCk eq 'n'}">
+	<body onload="window.open('/gram/ad','','width=500px, height=550px, left=30px, top=30px, toolbar=0, status=yes, menubars=0, scrollbars=0, resizable=0, location=0, directories=0')">
+</c:if>   
 		<script type="text/javascript">
 			$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
 		</script>

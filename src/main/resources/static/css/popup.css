@@ -28,7 +28,7 @@ body {
 }
 
 #popup_contents {
-	width: 400px;
+	width: 380px;
 	top: 85%;
 	left: 50%;
 	transform:translate(-50%, 0%); 
