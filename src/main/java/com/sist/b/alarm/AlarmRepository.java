@@ -11,7 +11,7 @@ public interface AlarmRepository {
 	// 사용자별 알림 select
 	public List<AlarmVO> getList(AlarmVO alarmVO) throws Exception;
 	// 알림 읽음 처리
-	public int setUpdate(AlarmVO alarmVO) throws Exception;
+	public int setUpdate(Long alarmNum) throws Exception;
 	// 알림 삭제
 	public int setDelete(AlarmVO alarmVO) throws Exception;
 }

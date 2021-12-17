@@ -51,7 +51,7 @@
 	  	<id column="likesNum" property="likesNum"/>
 	  	<result column="postNum" property="postNum"/>
 	  	<result column="userNum" property="userNum"/>
-	  	<collection property="likeUsers" javaType="List" ofType="UserVO">
+	  	<collection property="userVO" ofType="UserVO">
 	  		<result column="userNum" property="userNum"/>
 	  		<result column="nickname" property="nickname"/>
 	  		<result column="username" property="username"/>

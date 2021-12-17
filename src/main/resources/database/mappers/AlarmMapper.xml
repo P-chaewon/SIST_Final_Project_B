@@ -31,8 +31,8 @@
 		</association>
 	</resultMap>
 	
-	<update id="setUpdate" parameterType="AlarmVO">
-		update alarm set readCk = 1 where alarmNum = #{alarmNum}
+	<update id="setUpdate" parameterType="Long">
+		update alarm set readCheck = 1 where alarmNum = #{alarmNum}
 	</update>
 	
 	<delete id="setDelete" parameterType="AlarmVO">

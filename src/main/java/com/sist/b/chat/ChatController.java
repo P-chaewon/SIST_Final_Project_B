@@ -58,6 +58,9 @@ public class ChatController {
 //		System.out.println("searchText:" + searchText);
 		List<UserVO> list = userService.getSaerchUser(searchText);
 		
+		System.out.println("list.size:"+ list.size());
+		
+		
 		mv.addObject("searchUserList", list);
 		mv.setViewName("chat/searchUserList");
 		return mv;

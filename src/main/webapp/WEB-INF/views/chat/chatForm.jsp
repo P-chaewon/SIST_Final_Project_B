@@ -66,7 +66,7 @@
 							<div class="receiver-area">
 								<img class="receiverUserImg" src="${pageContext.request.contextPath}/static/upload/user/${receiverUserVO.fileName}">
 								<p class="receiverIdText">${receiverUserVO.username}님</p>
-								<button class="detail-info-area">
+								<button id="detailInfoBtn" class="detail-info-area">
 									<img src="${pageContext.request.contextPath}/static/icons/info.png">
 								</button>
 							</div>
@@ -101,6 +101,7 @@
 						</div>
 					</div>
 					
+				
 					
 				</div> <!-- //chat-right-area end -->
 			

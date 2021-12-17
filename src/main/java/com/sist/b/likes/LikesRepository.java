@@ -24,6 +24,6 @@ public interface LikesRepository {
 	
 	public Long getLikesRead(LikesVO likesVO)throws Exception;
 	
-	public List<UserVO> getLikeUser(LikesVO likesVO)throws Exception;
+	public List<LikesVO> getLikeUser(LikesVO likesVO)throws Exception;
 
 }

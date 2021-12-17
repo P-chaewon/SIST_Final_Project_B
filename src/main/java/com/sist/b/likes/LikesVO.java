@@ -1,7 +1,5 @@
 package com.sist.b.likes;
 
-import java.util.List;
-
 import com.sist.b.user.UserVO;
 
 import lombok.Data;
@@ -13,7 +11,7 @@ public class LikesVO {
 	private Long postNum;
 	private Long userNum;
 	
-	private List<UserVO> likeUsers;
+	private UserVO userVO;
 	
 	private Long count;
 	

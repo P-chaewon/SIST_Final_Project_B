@@ -145,7 +145,7 @@ $(document).ready(function() { // 페이지가 준비되면
 					<div class="reaction">
 			            <div class="liked_people">
 			       
-			              <p id="count_text" data-idx ="${list.postNum}"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
+			              <p id="count_text" style="cursor: pointer;" data-idx ="${list.postNum}"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
 			    
 			            </div>
 			            <div class="box">
@@ -169,7 +169,7 @@ $(document).ready(function() { // 페이지가 준비되면
 			            				+ arr[i].replace("#", "") 
 			            				+ '\'' 
 			            				+ '">'
-			            				+ arr[i]
+			            				+ '#'+arr[i]
 			            				+ ' </span>';
 			            			}
 			            		$(".tag_" + pid).html(a);
@@ -264,7 +264,7 @@ $(document).ready(function() { // 페이지가 준비되면
 		            <a href="https://www.instagram.com/directory/profiles/" class="link">인기계정</a> ∙ 
 		            <a href="https://www.instagram.com/directory/hashtags/" class="link">해시태그</a>
 		            <br><br>
-		            © 2020 INSTAGRAM FROM FACEBOOK
+		            © 2020 WithUs FROM FACEBOOK
 		          </p>
 		        </footer>
 		        
@@ -276,7 +276,39 @@ $(document).ready(function() { // 페이지가 준비되면
 			
 		</main>
 		
-		<div class="modal">
+		<!-- 사용자 신고 모달 -->
+<%-- 		<div class="report_modal">
+			<div class="report_modal_content">
+				<button type="button" id="report">
+					<h1>사용자 신고</h1>
+				</button>
+				<button type="button" id="cancel">취소</button>
+			</div>
+		</div>
+		
+		<div class="modal2">
+			<div class="modal_content2">
+				<div id="d1">
+					<h1 class="d1_c">신고</h1>
+					<img class="modal_img" id="img_cancel" alt="cancel" src="${pageContext.request.contextPath}/static/icons/cancel.png">
+				</div>
+				<div id="d2">
+					<h1 id="d2_c">이 계정을 신고하는 이유는 무엇인가요?</h1>
+				</div>
+				<div id="d3">
+					<form id="report_frm" method="post">
+						<input hidden="hidden" name="reportType" value="user">
+						<input type="hidden" name="toUserNum" value="${userVO.userNum}">
+						<input type="hidden" name="fromUserNum" value="${fromUserNum}">
+						<textarea rows="" cols="" name="reason"></textarea>
+					</form>
+					<h1 id="submit_btn">제출</h1>
+				</div>
+			</div>
+		</div> --%>
+
+	<!-- 글 신고 모달 -->
+	<div class="modal">
 		<div class="modal_content">
 			<button type="button" id="suspend">
 				<h1>신고</h1>
@@ -284,25 +316,49 @@ $(document).ready(function() { // 페이지가 준비되면
 			<button type="button" id="cancel">취소</button>
 		</div>
 	</div>
-	
+
 	<div class="modal2">
 		<div class="modal_content2">
 			<div id="d1">
-				<span class="c">
-					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
-					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
-				</span>
+				<h1 class="d1_c">신고</h1>
+				<img class="modal_img" id="img_cancel" alt="cancel"
+					src="${pageContext.request.contextPath}/static/icons/cancel.png">
 			</div>
 			<div id="d2">
-				<h1 class="c" id="d2_del">신고</h1>
+				<h1 id="d2_c">이 게시물을 신고하는 이유는 무엇인가요?</h1>
 			</div>
 			<div id="d3">
-				<span class="c" id="d3_can">취소</span>
+				<form id="report_frm" method="post">
+					<input hidden="hidden" name="reportType" value="user"> <input
+						type="hidden" name="toUserNum" value="${userVO.userNum}">
+					<input type="hidden" name="fromUserNum" value="${fromUserNum}">
+					<textarea rows="" cols="" name="reason"></textarea>
+				</form>
+				<h1 id="submit_btn">제출</h1>
+			</div>
+		</div>
+	</div>
+
+	<!-- 좋아요 리스트 -->
+		<div class="like-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="좋아요" class="like-modal" role="dialog">
+			<div class="like-modal-contents">
+				<div>
+					<div class="like-modal-header">
+						<h1 class="like-modal-name">좋아요</h1>
+						<div class="like-modal-close" style="cursor: pointer;">
+							<span class="like-modal-close-txt">&times;</span>
+						</div>
+					</div>
+				</div>
+				<div class="like-modal-list">
+					
+				</div>
 			</div>
 		</div>
 	</div>
 	
-	
+
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript">
@@ -418,6 +474,38 @@ $(document).ready(function() { // 페이지가 준비되면
    	    }
    	});
    	
+   	$(".like-modal-close-txt").click(function(){
+	$(".like-modal-container").hide();
+	location.reload(true);
+});
+
+  	$(document).on('click', "#count_text",function() {
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).data('idx');
+   	    console.log(no);
+   	
+   	        $.ajax({
+   	            url : './getLikeUser.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(result) {
+   	         	result = result.trim();
+   				$(".like-modal-list").html(result);
+   				$(".like-modal-container").show();
+   				console.log(result);
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	        
+   
+   	});
+  	
+
    	
   	$(".bookmark-click").click(function() {
    	    // 게시물번호 idx로 전달받아 저장
@@ -489,12 +577,7 @@ $(document).ready(function() { // 페이지가 준비되면
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
   	
-  	$(document).on("click", "#count_text", function(){
-  		var no = $(this).data('idx');
-  		alert(no);
-  	})
-  	
-	
+
  </script>
 
 

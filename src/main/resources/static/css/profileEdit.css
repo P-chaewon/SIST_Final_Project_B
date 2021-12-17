@@ -161,3 +161,12 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 .delete-btn-space{flex-direction: row; padding: 18px 0;}
 
 .temporary-check-space{position: relative;}
+
+/* activity */
+.activity-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin: 16px 64px;}
+.activity-name-space{display: flex; align-content: stretch; align-items: stretch; justify-content: flex-start; flex: 0 0 auto; margin-top: 24px; margin-bottom: 16px;}
+.activity-name{font-size: 22px; line-height: 26px; margin: -4px 0 -5px; font-weight: 300; color: #262626; display: block;}
+.activity-table{margin-top: 40px;}
+.activity-table th {border-bottom: 2px solid #dbdbdb; border-top: 2px solid #dbdbdb; height: 45px; line-height: 45px; font-size: 17px; font-weight: 500;}
+.activity-table td {border-bottom: 1px solid #dbdbdb; height: 40px; line-height: 40px; font-size: 14px; text-align: center;}
+.activity-table tr:last-child {border-bottom: 2px solid #dbdbdb;}

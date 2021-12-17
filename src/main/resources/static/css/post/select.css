@@ -342,8 +342,8 @@ button.submit_re:focus {
 
 
 .c {
-	position: absolute;
-	top: 50%;
+	margin-left: 10px;
+	top: 10px;
 	left: 50%;
 	transform:translate(-50%, -50%);
 }
@@ -459,3 +459,31 @@ button.submit_re:focus {
 .swiper-button-prev::after {
   display: none;
 }
+
+
+.like-modal-container {align-items: center; background-color: rgba(0,0,0,.5); bottom: 0; flex-direction: column; left: 0; overflow-y: auto; position: fixed; right: 0; top: 0; z-index: 100; justify-content: space-around;}
+.like-modal{width: 400px; flex: 1 1; margin-left: 38%; margin-top:15%; justify-content: center; max-height: 400px; min-height: 200px;}
+.like-modal-contents{background-color: #fff; border-radius: 12px; max-height: 100%; overflow: hidden;}
+.like-modal-header{border-bottom: 1px solid #dbdbdb; flex-direction: row; height: 38px;}
+.like-modal-name{margin-top: 23px; margin-left:55px; font-size: 16px; width:300px; font-weight: 600; height: 24px; text-align: center;}
+.like-modal-close-space{align-items: center; flex: 0 0 48px; justify-content: center;}
+.like-modal-close-btn{align-items: center; background: 0 0; border: 0; cursor: pointer; padding: 8px; margin-top: -80px; margin-left: 350px;}
+.like-modal-close{width: 20px; margin-left: 370px; margin-top: -32px;}
+.like-modal-close-txt{font-size: 35px; color: rgb(38,38,38); text-align: center; line-height: 34px;}
+.like-modal-list, .like-modal-list{border-radius: 12px; display: block;flex: 1 1; min-height: 120px; margin-top:10px; overflow-y: scroll;}
+.like-list-ul{background-color: #fff; display: flex; flex-direction: column; flex-grow: 1; }
+.like-list-li{display: flex; flex-direction: column; padding: 8px 16px;}
+.like-one-user{flex-direction: row; justify-content: space-between;}
+.like-one-user-info{display: flex; flex: 1 1 100px; flex-direction: row; overflow: hidden;}
+.like-user-img-space{display: block; height: fit-content; width: fit-content; position: relative;}
+.like-user-img-background{align-items: center; align-self: center; display: block; flex: none; justify-content: center; margin: 4px; margin-right: 13px;}
+.like-user-img-canvas{user-select: none;}
+.like-user-img-link{background-color: #fafafa; border-radius: 50%; box-sizing: border-box; flex: 0 0 auto; overflow: hidden; position: relative;}
+.like-user-img{width: 100%; height: 100%;}
+.like-user-name-space{flex: 1 1 70px; margin-top: 3px;}
+.like-username-space{align-content: center; display: flex; flex-direction: row;}
+.like-username{position: relative; display: inline;}
+.like-username-link{color: #262626; font-size: 14px; line-height: 18px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding-left: 5px; margin-left: -5px}
+.like-nickname{color: #8e8e8e; display: block; font-size: 14px; font-weight: 400; line-height: 18px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
+.like-btn-space{flex: 0 0 auto; justify-content: center; margin-left: 15px;}
+.like-modal-btn-css{appearance: none; background: 0 0; box-sizing: border-box; cursor: pointer; display: block; font-weight: 600; padding: 5px 9px; text-align: center; text-transform: inherit; text-overflow: ellipsis; user-select: none; width: auto; border-radius: 4px; color: #fff; position: relative; border: 1px solid transparent; background-color: #0095f6;} 

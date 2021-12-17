@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,7 +22,9 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.web.util.UrlPathHelper;
 
+import com.sist.b.user.UserService;
 import com.sist.b.user.UserVO;
+import com.sist.b.user.UserlogVO;
 
 import lombok.AllArgsConstructor;
 
@@ -30,6 +33,9 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		// 정적 자원 요청 URL은 Security 거치지 않고 통과
@@ -82,10 +88,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 							public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 									Authentication authentication) throws IOException, ServletException {
 								UserVO userVO = (UserVO)authentication.getPrincipal();
-								System.out.println(userVO.getUsername() + " - LOGIN SUCCESS");
-								
+								UserlogVO userlogVO = new UserlogVO();
+								try {
+									userlogVO.setLoginIp(userService.getUserIp());
+									userlogVO.setUserNum(userVO.getUserNum());
+									userlogVO.setLoginCheck(true);
+									int result = userService.setLoginlog(userlogVO);
+									if(result>0) {
+										System.out.println("LOG CREATED");
+									}
+								} catch (Exception e) {
+									e.printStackTrace();
+								}
 								response.sendRedirect("/gram");
-								
 							}
 						})
 						.permitAll()

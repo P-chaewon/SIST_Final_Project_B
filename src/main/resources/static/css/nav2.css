@@ -20,14 +20,6 @@ nav a {
 	text-decoration: none;
 }
 
-.c {
-    padding-left: 15px;
-    height: 50px;
-    width: 100%;
-    position: relative;
-    display: block;
-}
-
 /* 알림창 말풍선 */
 #alarm_contents{
     background-color: white;
@@ -72,18 +64,25 @@ nav a {
 	margin-right: 10px;
 }
 
-.c {
-	padding-left: 15px;
+.nav_c {
 	height: 50px;
 	width: 100%;
 	position: relative;
-	top: 10px;
+	top: -15px;
     margin-left: 10px;
 }
 
 .text {
 	position: relative;
 	top: 0px;
+}
+
+.text > a {
+	color: black;
+}
+
+.text > a:visited {
+	color: black;
 }
 
 .day {

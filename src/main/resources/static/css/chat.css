@@ -369,10 +369,10 @@ body {
 .modal-header {
 	display: flex;
 	flex-direction: row;
-	width: 100%;
+	width: 100%; height: 43px;
 	box-sizing: border-box;
 	border-bottom: 1px solid #dbdbdb;
-	height: 43px;
+	padding: 0 5px 0 5px;
 }
 
 .modal-close-area {
@@ -384,6 +384,7 @@ body {
 }
 
 .modalCloseBtn {
+	display: flex;
 	background: transparent;
 	border: 0;
 	cursor: pointer;
@@ -416,6 +417,7 @@ body {
 	overflow-x: hidden;
 	overflow-y: auto;
 	border-bottom: 1px solid #dbdbdb;
+	padding: 0 10px 0 10px;
 	box-sizing: border-box;
 }
 
@@ -423,11 +425,24 @@ body {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
+	align-items: center;
 	margin: 8px 0 8px 0;
 }
 
+.receiverLetter {
+	font-family: 'Apple SD Bold', 'Apple SD';
+}
+
+.searchUserName {
+	flex-grow: 1;
+	margin-left: 5px;
+	box-sizing: border-box;
+}
+
 .searchUserName input {
+	width: 100%;
 	border: 0;
+	box-sizing: border-box;
 }
 
 .searchUserName input:focus {
@@ -476,4 +491,11 @@ body {
 
 .suNick {
 	color: #8e8e8e;
+}
+
+.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 100px;
+	margin-right: 10px;
 }

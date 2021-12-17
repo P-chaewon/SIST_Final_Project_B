@@ -1,5 +1,7 @@
 package com.sist.b.user;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -228,23 +230,7 @@ public class UserController {
 		return mv;
 	}
 	
-	@GetMapping("manage_access")
-	public String access() throws Exception {
-		return "user/access";
-	}
-	
-	
-	@GetMapping("push/setting")
-	public String pushSetting() throws Exception {
-		return "user/pushSetting";
-	}
-	
-	
-	@GetMapping("privacy_and_security")
-	public String privacy() throws Exception {
-		return "user/privacy";
-	}
-	
+		
 	@GetMapping("mail")
 	public ModelAndView mail(String email, String username, String authkey) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -314,6 +300,25 @@ public class UserController {
 	public String pwResetMail() throws Exception {
 		
 		return "user/pwResetMail";
+	}
+	
+	@GetMapping("activity")
+	public ModelAndView activity(UserVO userVO, HttpSession session) throws Exception {
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+		SecurityContextImpl sc = (SecurityContextImpl)object;
+		Authentication authentication = sc.getAuthentication();
+		userVO = (UserVO)authentication.getPrincipal();
+		
+		List<UserlogVO> userlogs = userService.getUserlog(userVO);
+		if(userlogs.size()>5) {
+			userlogs.remove(userlogs.size()-1);
+			UserlogVO userlogVO = userlogs.get(userlogs.size()-1);
+			int result = userService.setLogDelete(userlogVO);
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("user/loginActivity");
+		mv.addObject("userlog", userlogs);
+		return mv;
 	}
 	
 }

@@ -1,11 +1,9 @@
 @charset "UTF-8";
 
 /* nav */
-
 nav{
 	width: 100%;
 	height: 54px;
-	position: fixed;
 	top: 0;
 	display: flex;
 	flex-direction: row;
@@ -14,10 +12,89 @@ nav{
     border-bottom: 1px solid #DBDBDB;
 }
 
-a{text-decoration: none;}
 nav div{
 	flex-direction: row;
 }
+
+nav a {
+	text-decoration: none;
+}
+
+.nav_c {
+	padding-left: 15px;
+	height: 50px;
+	width: 100%;
+	position: relative;
+	top: -15px;
+}
+
+/* 알림창 말풍선 */
+#alarm_contents{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px #B2B2B2;
+    position: fixed;
+    display: none;
+
+	width: 500px;
+	height: auto;
+	left: 745px;
+	top: 35px;
+	
+	z-index: 1000;
+    margin: 20px;
+    
+    flex-direction: column;
+}
+
+#alarm_contents:before {
+	position: fixed;
+    background-color: white;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    content: "\00a0";
+    display: block;
+    height: 15px;
+    left: 404px;
+    position: relative;
+    top: -5px;
+    transform:             rotate( 135deg );
+        -moz-transform:    rotate( 135deg );
+        -ms-transform:     rotate( 135deg );
+        -o-transform:      rotate( 135deg );
+        -webkit-transform: rotate( 135deg );
+    width: 15px;
+}
+
+.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 100px;
+	margin-right: 10px;
+}
+
+.text {
+	position: relative;
+	top: 55%;
+}
+
+.text > a {
+	color: black;
+}
+
+.text > a:visited {
+	color: black;
+}
+
+.day {
+	margin-left: 7px;
+	color: #8E8E8E;
+}
+
+.profile {
+	position: relative;
+	top: 30%;
+}
+
 .nav_container{
 	width:100%;
 	display: flex;
@@ -33,14 +110,6 @@ nav div{
 
 .nav_icon{
 	justify-content: flex-end;
-}
-
-.logo_img{
-	height: 30px;
-}
-
-.profile_img {
-	vertical-align: bottom;
 }
 
 .profile_border {
@@ -62,6 +131,7 @@ nav div{
 	margin-right: 20px;
 	cursor: pointer;
 }
+
 .nav_icon img:last-child{
 	margin: 0;
 }
@@ -241,86 +311,6 @@ nav div{
 /* 검색창 배경지우기 */
 input:-webkit-autofill {
    box-shadow:  0 0 0 1000px white inset;
-}
-
-
-
-/* ---------- 알림창 css ----------*/
-/* 알림창 말풍선 */
-#alarm_contents{
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 0px 6px #B2B2B2;
-    position: fixed;
-
-	width: 500px;
-	height: auto;
-	left: 745px;
-	top: 35px;
-
-    margin: 20px;
-    font-size: 14px;
-}
-
-#alarm_contents:before {
-	position: fixed;
-    background-color: white;
-    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
-    content: "\00a0";
-    display: block;
-    height: 15px;
-    left: 404px;
-    position: relative;
-    top: -5px;
-    transform:             rotate( 135deg );
-        -moz-transform:    rotate( 135deg );
-        -ms-transform:     rotate( 135deg );
-        -o-transform:      rotate( 135deg );
-        -webkit-transform: rotate( 135deg );
-    width: 15px;
-}
-
-.profile {
-	width: 40px;
-	height: 40px;
-	border-radius: 100px;
-	margin-right: 10px;
-}
-
-.nav_c {
-	padding-left: 15px;
-	height: 50px;
-	width: 100%;
-	position: relative;
-	top: -17px;
-}
-
-.text {
-	position: relative;
-	color: black;
-}
-
-.text > a {
-	color: black;
-}
-
-.text > a:visited {
-	color: black;
-}
-
-.day {
-	margin-left: 7px;
-	color: #8E8E8E;
-}
-
-.profile {
-	position: relative;
-	top: 30%;
-}
-
-.day {
-	color: #8e8e8e;
-	margin-left: 5px;
 }
 
 .blue_circle {
