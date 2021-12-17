@@ -177,50 +177,6 @@
 							</table>
 						</article>
 					</div>
-					<!-- 게시물 수정 end -->
-				<%-- 	<div class="post-space">
-						<article class="post-article">
-							<div>
-								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
-									<div class="post-one-row">
-													
-					<c:choose>
-						<c:when test="${empty postlist}">
-											<div class="one-post">
-												<div class="post-img-space" style="background-color: #fafafa; margin-left: 104px;">
-													<div style="text-align: center; margin-top: 52px;">
-													<img alt="" style="width: 70px; height: 70px; margin-left: 111px; margin-top: 10px;" src="${pageContext.request.contextPath}/static/icons/empty_content.png">
-														<span style="font-weight: bold; font-size: 20px; margin-top: 12px;">등록된 게시물이 </span>
-														<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 없습니다.</span>
-													</div>
-												</div>
-										</div>
-							</c:when>
-							<c:otherwise>	
-									<c:forEach items="${postlist}" var="post">
-									
-										<div class="one-post">
-										
-											<a href="./post/selectOne?postNum=${post.postNum}" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
-													<c:forEach items="${post.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
-														</c:forEach>
-													</div>
-													<div class="img-background"></div>
-												</div>
-											</a>
-										</div>
-									</c:forEach>
-							</c:otherwise>
-							</c:choose>	
-									</div>
-								</div>
-							</div>
-			
-						</article>
-					</div> --%>
 				</div>
 			</main>
 			<c:import url="./temp/nav3.jsp"></c:import>
