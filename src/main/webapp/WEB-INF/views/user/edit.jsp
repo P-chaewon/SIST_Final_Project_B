@@ -26,6 +26,9 @@
 							<a class="edit-list not-selected" href="/gram/account/password/change/" tabindex="0">비밀번호 변경</a>
 						</li>
 						<li>
+							<a class="edit-list not-selected" href="/gram/account/activity/" tabindex="0">로그인 활동</a>
+						</li>
+						<li>
 							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>

@@ -126,7 +126,59 @@
 							</span>
 						</a>
 					</div>
-					<div class="post-space">
+					
+					<!-- 게시물 수정 start -->
+					<div class="post-space" style="display: block;width: 935px;" id="view_post">
+						<article class="post-article">
+							<table style="width: 935px;">
+								<c:choose>
+									<c:when test="${empty postlist}">
+										<tr>
+											<td>
+												<div>
+													<div style="width: 626px; display: inline-block; margin: 0 auto;">
+														<div class="post-img-space" style="background-color: #fafafa;  margin: 0 auto;">
+															<div style="text-align: center; margin-top: 52px;">
+																<img alt="" style="width: 70px; height: 70px; margin-left: 111px; margin-top: 10px;" src="${pageContext.request.contextPath}/static/icons/empty_content.png">
+																<span style="font-weight: bold; font-size: 20px; margin-top: 12px;">등록된 게시물이 </span>
+																<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 없습니다.</span>
+															</div>
+														</div>	
+													</div>
+												</div>
+											
+											</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:set var="i" value="0" />
+										<c:set var="j" value="3" />
+										<c:forEach items="${postlist}" var="list">
+											<c:if test="${i%j == 0 }"> <tr> </c:if>
+											<td>
+												<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
+													<div class="post-img-space">
+														<div class="post-image-div">
+															<c:forEach items="${list.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
+																<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
+															</c:forEach>
+														</div>
+													</div>
+												</a>
+											</td>
+											<c:if test="${i%j != j-1 }"><td width="28px;"></td></c:if>
+											<c:if test="${i%j == j-1 }"></tr><tr height="28px"></tr></c:if>
+											<c:set var="i" value="${i+1 }" />
+										</c:forEach>
+										
+										
+									</c:otherwise>
+								</c:choose>
+							</table>
+						</article>
+					</div>
+					<!-- 게시물 수정 end -->
+				<%-- 	<div class="post-space">
 						<article class="post-article">
 							<div>
 								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
@@ -168,7 +220,7 @@
 							</div>
 			
 						</article>
-					</div>
+					</div> --%>
 				</div>
 			</main>
 			<c:import url="./temp/nav2.jsp"></c:import>

@@ -103,14 +103,26 @@
 		WHERE username LIKE CONCAT('%', #{searchText}, '%')
 	</select>
 	
-	<insert id="setLoginlog" parameterType="UserVO">
-		insert into userlog (userlogNum, userNum, loginDate, loginCheck) 
-		values (null, #{userNum}, now(), 1);
+	<insert id="setLoginlog" parameterType="UserlogVO">
+		insert into userlog (userlogNum, userNum, loginDate, loginIp,loginCheck) 
+		values (null, #{userNum}, now(), #{loginIp},1);
 	</insert>
 	
-	<update id="setLogoutlog" parameterType="UserVO">
-		update userlog set loginCheck=0 where userNum=#{userNum}
+	<update id="setLogoutlog" parameterType="UserlogVO">
+		update userlog set loginCheck=0 where userlogNum = #{userlogNum}
 	</update>
+	
+	<select id="getUserlog" parameterType="UserVO" resultType="userlogVO">
+		select * from userlog where userNum=#{userNum} order by userlogNum desc;
+	</select>
+	
+	<select id="getUserlogRecent" parameterType="UserVO" resultType="Long">
+		select userlogNum from userlog where userNum=#{userNum} order by userlogNum desc limit 1;
+	</select>
+	
+	<delete id="setLogDelete" parameterType="UserlogVO">
+		delete from userlog where userlogNum=#{userlogNum}
+	</delete>
 
   </mapper>
   

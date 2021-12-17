@@ -22,7 +22,7 @@
 									<a href="/gram" tabindex="0">
 										<div class="pw_reset_logo_area">
 											<div class="reset_logo">
-												<img alt="Instagram" class="page_logo" src="${pageContext.request.contextPath}/static/icons/instagram_logo.png">
+												<img alt="Instagram" class="page_logo" src="${pageContext.request.contextPath}/static/icons/WithUs-logo.png" style="width: 100px; height:80px; margin-top: 15px;">
 											</div>
 										</div>
 									</a>

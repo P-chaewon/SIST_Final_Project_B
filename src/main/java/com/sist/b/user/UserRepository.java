@@ -37,5 +37,16 @@ public interface UserRepository {
 	public int getAuthkey(Map<String, String> mailMap) throws Exception;
 	//아이디로 유저 검색
 	public List<UserVO> getSearchUser(String searchText) throws Exception;
+	//로그인 시 저장
+	public int setLoginlog(UserlogVO userlogVO) throws Exception;
+	//로그아웃 시 저장
+	public int setLogoutlog(UserlogVO userlogVO) throws Exception;
+	//로그인한 사용자의 log 기록
+	public List<UserlogVO> getUserlog(UserVO userVO) throws Exception;
+	//log 기록 삭제
+	public int setLogDelete(UserlogVO userlogVO) throws Exception;
+	//로그인한 사용자의 최근 log 번호
+	public Long getUserlogRecent(UserVO userVO) throws Exception;
+	
 
 }

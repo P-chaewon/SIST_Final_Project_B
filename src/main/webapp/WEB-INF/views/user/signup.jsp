@@ -19,7 +19,9 @@
 				<div class="signup-space" style="min-height: 100%;">
 					<div class="input-space">
 						<div class="input-part">
-							<h1 class="sns-name">Instagram</h1>
+							<h1 class="sns-name">
+								<img alt="" src="${pageContext.request.contextPath}/static/icons/WithUs-logo.png" width="180px;" >
+							</h1>
 							<div class="signup-section">
 								<form class="signup-form" method="post">
 									<h2 class="input-text">친구들의 사진을 보려면 가입하세요.</h2>
