@@ -25,8 +25,8 @@
 				</div>
 				
 				<!-- 검색창 -->
-				<input id="search" type="search" autocomplete="off" name="search" placeholder="검색" >
-				
+				<input id="search" type="search" autocomplete="off" name="search" style="cursor: text;"placeholder="검색" >
+		
 				<!-- icon -->
 				<div class="nav_icon">
 
@@ -106,7 +106,9 @@
 	$(".list_space").click(function () {
 		$(".nav_profile").hide();
 		$(".profile_border").css("border", "");
+		
 	})
+
 </script>
 </body>
 </html>

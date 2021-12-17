@@ -70,7 +70,7 @@
 					</div>
 					<div class="footer-object d">
 						<a href="/web/lite/">
-							<div class="object-name d">Instagram Lite</div>
+							<div class="object-name d">WithUs Lite</div>
 						</a>
 					</div>
 				</div>
@@ -179,7 +179,7 @@
 					</span>
 				</div>
 				<div class="sns-company d">
-					<div class="company-info d">© 2021 Instagram from Meta</div>
+					<div class="company-info d">© 2021 WithUs from Meta</div>
 				</div>
 			</div>
 		</div>

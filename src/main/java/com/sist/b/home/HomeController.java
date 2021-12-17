@@ -247,6 +247,23 @@ public class HomeController {
 		
 	}
 	
+	@ResponseBody
+	@GetMapping("getLikeUser.do")
+	public ModelAndView getLikeUser(@RequestParam Long no, LikesVO likesVO)throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		likesVO.setPostNum(no);
+		
+		List<LikesVO> ar = likesService.getLikeUser(likesVO);
+		
+		mv.addObject("likeuser", ar);
+		mv.setViewName("ajaxLikeList");
+		
+		return mv;
+		
+	}
+	
 	
 	
 	@ResponseBody

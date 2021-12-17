@@ -52,7 +52,7 @@ public class LikesService {
 		return likesRepository.getLikesRead(likesVO);
 	}
 	
-	public List<UserVO> getLikeUser(LikesVO likesVO)throws Exception{
+	public List<LikesVO> getLikeUser(LikesVO likesVO)throws Exception{
 		return likesRepository.getLikeUser(likesVO);
 	}
 

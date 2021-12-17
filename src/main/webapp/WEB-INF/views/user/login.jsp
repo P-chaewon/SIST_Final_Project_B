@@ -26,7 +26,7 @@
 					</div>
 					<div class="input-space">
 						<div class="input-part">
-							<h1 class="sns-name">Instagram</h1>
+							<h1 class="sns-name">WithUs</h1>
 							<div class="login-section">
 								<form class="login-form" id="loginForm" method="post">
 									<div class="form-space" style="margin-top: 24px;">
