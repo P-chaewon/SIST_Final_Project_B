@@ -209,6 +209,7 @@
   		LEFT JOIN postfiles
   		USING(postNum)
   		WHERE tag LIKE concat('%', #{tag},'%')
+  		ORDER BY postNum DESC
   	</select>
   	
   	<!--  post -->

@@ -42,8 +42,10 @@
 			<div class="post_contents">
 				<header class="head">
 					<div class="post_profile">
+						<a href="/gram/${postVO.userVO.username}">
 							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
-							<span class="nickname main_nickname point_span" style="margin-left: 5px;">
+						</a>	
+							<span class="nickname main_nickname point_span" style="margin-left: 5px;" onclick="location.href='/gram/${postVO.userVO.username}'">
 						
 							${postVO.userVO.username}</span>
 						
@@ -88,7 +90,7 @@
 			            				+ arr[i].replace("#", "") 
 			            				+ '\'' 
 			            				+ '">'
-			            				+ arr[i]
+			            				+ '#'+arr[i]
 			            				+ ' </span>';
 			            			}
 			            		$(".tag_" + pid).html(a);
@@ -111,7 +113,8 @@
 			             
 			             <ul class="comments" style="margin-top: 15px;">
 							                <li style="height: 17px;">
-							                  <span class="point_span nickname" style="font-weight: bold;">${commentList.writer}</span><span style="margin-left: 5px;">${commentList.commentContents}</span>
+							                  <span class="point_span nickname" style="font-weight: bold; cursor: pointer;" onclick="location.href='/gram/${commentList.writer}'" >${commentList.writer}</span>
+							                  <span style="margin-left: 5px;">${commentList.commentContents}</span>
 							
 							                </li>
 							
@@ -192,7 +195,7 @@
 					
 					<div class="liked_people">
 				     				  
-			              <p id="count_text">총 <span class="point-span" id="m_likes${postVO.postNum }" style="font-weight: bold;">${postVO.likes}</span>명이 좋아합니다</p>
+			              <p id="count_text" style="cursor: pointer;" data-idx = "${postVO.postNum }"><span class="point-span" id="m_likes${postVO.postNum }" style="font-weight: bold;">${postVO.likes}</span>명이 좋아합니다</p>
 
 			            </div>
 			            
@@ -312,6 +315,25 @@
 		</div>
 	</div> -->
 
+<!-- 좋아요 리스트 -->
+		<div class="like-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="좋아요" class="like-modal" role="dialog">
+			<div class="like-modal-contents">
+				<div>
+					<div class="like-modal-header">
+						<h1 class="like-modal-name">좋아요</h1>
+						<div class="like-modal-close" style="cursor: pointer;">
+							<span class="like-modal-close-txt">&times;</span>
+						</div>
+					</div>
+				</div>
+				<div class="like-modal-list">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
@@ -388,7 +410,36 @@
    	    }
 
    	});
+ 	
+  	$(document).on('click', "#count_text",function() {
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).data('idx');
+   	    console.log(no);
    	
+   	        $.ajax({
+   	            url : '../getLikeUser.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(result) {
+   	         	result = result.trim();
+   				$(".like-modal-list").html(result);
+   				$(".like-modal-container").show();
+   				console.log(result);
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	});
+   	
+   	$(".like-modal-close-txt").click(function(){
+   		$(".like-modal-container").hide();
+   		location.reload(true);
+   	});
+  	
   	$(".bookmark-click").click(function() {
 
    	    // 게시물번호 idx로 전달받아 저장
@@ -416,7 +467,7 @@
    	        
    	        $(this).html("<img class='icon_react bookmark_touched' alt='bookmark' src='${pageContext.request.contextPath}/static/icons/bookmark-click.png'>");
 
-   	    // 꽉찬 하트를 눌렀을 때
+   	  
    	    }else if($(this).children('img').attr('class') == "icon_react bookmark_touched"){
 
    	        $.ajax({

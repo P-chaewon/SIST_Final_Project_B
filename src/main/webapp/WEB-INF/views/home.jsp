@@ -145,7 +145,7 @@ $(document).ready(function() { // 페이지가 준비되면
 					<div class="reaction">
 			            <div class="liked_people">
 			       
-			              <p id="count_text" data-idx ="${list.postNum}"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
+			              <p id="count_text" style="cursor: pointer;" data-idx ="${list.postNum}"><span class="point-span" id="m_likes${list.postNum }" style="font-weight: bold;">${list.likes}</span>명이 좋아합니다</p>
 			    
 			            </div>
 			            <div class="box">
@@ -169,7 +169,7 @@ $(document).ready(function() { // 페이지가 준비되면
 			            				+ arr[i].replace("#", "") 
 			            				+ '\'' 
 			            				+ '">'
-			            				+ arr[i]
+			            				+ '#'+arr[i]
 			            				+ ' </span>';
 			            			}
 			            		$(".tag_" + pid).html(a);
@@ -264,7 +264,7 @@ $(document).ready(function() { // 페이지가 준비되면
 		            <a href="https://www.instagram.com/directory/profiles/" class="link">인기계정</a> ∙ 
 		            <a href="https://www.instagram.com/directory/hashtags/" class="link">해시태그</a>
 		            <br><br>
-		            © 2020 INSTAGRAM FROM FACEBOOK
+		            © 2020 WithUs FROM FACEBOOK
 		          </p>
 		        </footer>
 		        
@@ -338,6 +338,26 @@ $(document).ready(function() { // 페이지가 준비되면
 			</div>
 		</div>
 	</div>
+
+	<!-- 좋아요 리스트 -->
+		<div class="like-modal-container" role="presentation" style="display: none;" >
+		<div aria-label="좋아요" class="like-modal" role="dialog">
+			<div class="like-modal-contents">
+				<div>
+					<div class="like-modal-header">
+						<h1 class="like-modal-name">좋아요</h1>
+						<div class="like-modal-close" style="cursor: pointer;">
+							<span class="like-modal-close-txt">&times;</span>
+						</div>
+					</div>
+				</div>
+				<div class="like-modal-list">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -454,6 +474,38 @@ $(document).ready(function() { // 페이지가 준비되면
    	    }
    	});
    	
+   	$(".like-modal-close-txt").click(function(){
+	$(".like-modal-container").hide();
+	location.reload(true);
+});
+
+  	$(document).on('click', "#count_text",function() {
+   	    // 게시물번호 idx로 전달받아 저장
+   	    var no = $(this).data('idx');
+   	    console.log(no);
+   	
+   	        $.ajax({
+   	            url : './getLikeUser.do',
+   	            type : 'get',
+   	            data : {
+   	                no : no,
+   	            },
+   	            success : function(result) {
+   	         	result = result.trim();
+   				$(".like-modal-list").html(result);
+   				$(".like-modal-container").show();
+   				console.log(result);
+   	            
+   	            },
+   	            error : function() {
+   	                alert('서버 에러');
+   	            }
+   	        });
+   	        
+   
+   	});
+  	
+
    	
   	$(".bookmark-click").click(function() {
    	    // 게시물번호 idx로 전달받아 저장
@@ -525,10 +577,7 @@ $(document).ready(function() { // 페이지가 준비되면
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
   	
-  	$(document).on("click", "#count_text", function(){
-  		var no = $(this).data('idx');
-  		alert(no);
-  	});  	
+
  </script>
 
 
