@@ -26,15 +26,6 @@
 							<a class="edit-list not-selected" href="/gram/account/password/change/" tabindex="0">비밀번호 변경</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/manage_access/" tabindex="0">앱 및 웹사이트</a>
-						</li>
-						<li>
-							<a class="edit-list not-selected" href="/gram/account/push/setting/" tabindex="0">푸시 알림</a>
-						</li>
-						<li>
-							<a class="edit-list not-selected" href="/gram/account/privacy_and_security/" tabindex="0">개인정보 및 보안</a>
-						</li>
-						<li>
 							<a class="edit-list selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>
@@ -43,7 +34,6 @@
 						<div class="switch-space">
 							<div class="pro-account">
 								<div class="switch-account ">
-									<a class="switch-address" href="/accounts/convert_to_professional_account/" tabindex="0">프로페셔널 계정으로 전환</a>
 								</div>
 							</div>
 						</div>

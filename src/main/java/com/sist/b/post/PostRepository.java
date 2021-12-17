@@ -34,5 +34,11 @@ public interface PostRepository {
 	public Long getSearchTagCount(PostVO postVO)throws Exception;
 	
 	public List<PostVO> getTagList(PostVO postVO)throws Exception;
+	
+	public List<PostVO> getUserProfile(PostVO postVO)throws Exception;
+
+	public Long getUserNum(Long postNum) throws Exception;
+	
+	public List<PostVO> getAllList(UserVO userVO)throws Exception;
 
 }

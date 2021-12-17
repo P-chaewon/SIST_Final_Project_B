@@ -50,11 +50,17 @@ $(document).ready(function() { // 페이지가 준비되면
 					<!-- post header -img, nickname, more -->
 					<header>
 						<div class="post_profile">
-							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							<span class="nickname main_nickname point_span">
-								
+
+						<a href="/gram/${list.userVO.username}">
+							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${list.userVO.fileName}">
+						</a>
+							<span class="nickname main_nickname point_span" style="cursor: pointer;" onclick="location.href='/gram/${list.userVO.username}'">
+
+							
 							${list.userVO.username}
 							</span>
+						
+						
 					
 						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 			
@@ -199,20 +205,9 @@ $(document).ready(function() { // 페이지가 준비되면
 			<div class="right_contents">
 				
 				<div class="myProfile">
-				
-					<c:choose>
-						<c:when test="${not empty userVO.fileName }">
-							<a href="/gram/${userVO.username}">
-								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
-							
-							</a>
-						</c:when>
-						<c:otherwise>
-							<a href="/gram/${userVO.username}">
-								<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							</a>
-						</c:otherwise>
-					</c:choose>
+					<a href="/gram/${userVO.username}">
+						<img class="pic my_img" alt="myprofile" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
+					</a>
 					<div>
 					
 
@@ -237,18 +232,9 @@ $(document).ready(function() { // 페이지가 준비되면
 						<c:forEach items="${users}" var="user">
 							<li><!-- foreach -->
 								<div class="recommend_profile">
-									<c:choose>
-										<c:when test="${not empty user.fileName }">
-											<a href="/gram/${user.username }">
-												<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/upload/user/${user.fileName}">
-											</a>
-										</c:when>
-										<c:otherwise>
-											<a href="/gram/${user.username }">
-												<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/icons/user.jpg">
-											</a>
-										</c:otherwise>
-									</c:choose>
+									<a href="/gram/${user.username }">
+										<img class="post_profile_img" alt="profile_img" src="${pageContext.request.contextPath}/static/upload/user/${user.fileName}">
+									</a>
 									<div class="profile_text">
 										<a class="nickname point_span username_link" href="/gram/${user.username}">${user.username }</a>
 										<span class="sub_span">${user.nickname}</span>

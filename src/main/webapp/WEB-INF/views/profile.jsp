@@ -52,16 +52,6 @@
 																	</div>
 																</button>
 															</span>
-															<span class="arrow-btn-space">
-																<button class="recommend-btn">
-																	<div class="recommend-icon-space">
-																		<div class="arrow-icon-background">
-																			<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down.png">
-																			<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up.png" style="display: none;">
-																		</div>
-																	</div>
-																</button>
-															</span>
 														</span>
 													</div>
 												</div>
@@ -73,16 +63,6 @@
 															<span class="unfollow-btn-space">
 																<button class="fol-btn" type="button"  data-user-num="${userNum}" data-follow-num="${userVO.userNum}">
 																	<div class="fol-btn-txt">팔로우</div>
-																</button>
-															</span>
-															<span class="arrow-btn-space">
-																<button class="fol-recommend-btn">
-																	<div class="recommend-icon-space">
-																		<div class="arrow-icon-background">
-																			<img alt="" class="down-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-down-white.png">
-																			<img alt="" class="up-arrow-icon"  src="${pageContext.request.contextPath}/static/icons/arrow-up-white.png" style="display: none;">
-																		</div>
-																	</div>
 																</button>
 															</span>
 														</span>
@@ -108,7 +88,7 @@
 								<li class="info-li">
 									<span class="info-name">
 										게시물 
-										<span class="info-total">2,731</span>
+										<span class="info-total">${postcount}</span>
 									</span>
 								</li>
 								<li class="info-li">
@@ -151,36 +131,38 @@
 							<div>
 								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
 									<div class="post-one-row">
+													
+					<c:choose>
+						<c:when test="${empty postlist}">
+											<div class="one-post">
+												<div class="post-img-space" style="background-color: #fafafa; margin-left: 104px;">
+													<div style="text-align: center; margin-top: 52px;">
+													<img alt="" style="width: 70px; height: 70px; margin-left: 111px; margin-top: 10px;" src="${pageContext.request.contextPath}/static/icons/empty_content.png">
+														<span style="font-weight: bold; font-size: 20px; margin-top: 12px;">등록된 게시물이 </span>
+														<span style="font-weight: bold; font-size: 20px; margin-top: 3px;"> 없습니다.</span>
+													</div>
+												</div>
+										</div>
+							</c:when>
+							<c:otherwise>	
+									<c:forEach items="${postlist}" var="post">
+									
 										<div class="one-post">
-											<a href="/p/CW2nv6IJPFJ/" tabindex="0">
+										
+											<a href="./post/selectOne?postNum=${post.postNum}" tabindex="0">
 												<div class="post-img-space">
 													<div class="post-image-div">
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg1.jpg" style="object-fit: cover;">
+													<c:forEach items="${post.fileList }" var="fileVO" varStatus="status" begin="0" end="0">		
+														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/upload/post/${fileVO.postfileName}" style="object-fit: cover;">
+														</c:forEach>
 													</div>
 													<div class="img-background"></div>
 												</div>
 											</a>
 										</div>
-										<div class="one-post">
-											<a href="/p/CW2RkSWJM9C/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg2.jpg" style="object-fit: cover;">
-													</div>
-													<div class="img-background"></div>
-												</div>
-											</a>
-										</div>
-										<div class="one-post one-last">
-											<a href="/p/CW1ylvzPrTH/" tabindex="0">
-												<div class="post-img-space">
-													<div class="post-image-div">
-														<img alt="" class="post-img" crossorigin="anonymous" decoding="auto" src="${pageContext.request.contextPath}/static/images/profileHome/profile_home_postImg3.jpg" style="object-fit: cover;">
-													</div>
-													<div class="img-background"></div>
-												</div>
-											</a>
-										</div>
+									</c:forEach>
+							</c:otherwise>
+							</c:choose>	
 									</div>
 								</div>
 							</div>
@@ -275,14 +257,7 @@
 					<div class="unfollow-modal-img-space">
 						<div class="unfollow-modal-img-div">
 							<div class="unfollow-modal-img">
-								<c:choose>
-									<c:when test="${not empty userVO.fileName }">
-										<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" style="height: 90px; width: 90px;">
-									</c:when>
-									<c:otherwise>
-										<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/icons/user.jpg" style="height: 90px; width: 90px;">
-									</c:otherwise>
-								</c:choose>
+								<img alt="${userVO.username}님의 프로필 사진" class="unfol-img" crossorigin="anonymous" data-testid="user-avatar" draggable="false" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" style="height: 90px; width: 90px;">
 							</div>
 						</div>
 					</div>
@@ -379,6 +354,10 @@
 			if(follow(false, followNum, userNum)==0){
 				location.reload(true);	
 			}
+		})
+		
+		$(".dm-btn").click(function () {
+			location.href="http://localhost/gram/chat/inbox";
 		})
 	</script>
 </body>

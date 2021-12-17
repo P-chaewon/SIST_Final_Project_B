@@ -44,7 +44,7 @@ $(".update-btn").click(function(){
 $(".icon-btn").click(function(){
 	let fileName = $(this).attr("data-user-fileName");
 	console.log(fileName);
-	if(fileName==""){	
+	if(fileName=="user.jpg"){	
 		$("#file").click();
 	} else {
 		$(".modal-container").show();
@@ -54,7 +54,7 @@ $(".icon-btn").click(function(){
 $(".profile-update").click(function(){
 	let fileName = $(this).attr("data-user-fileName");
 	console.log(fileName);
-	if(fileName==""){	
+	if(fileName=="user.jpg"){	
 		$("#file").click();
 	} else {
 		$(".modal-container").show();
@@ -159,7 +159,7 @@ function uploadFile(){
 		success : function(result) {
 			console.log(result)
 			$(".input-icon").attr("src", "/gram/static/upload/user/"+result.trim());
-			$(".profile-button").attr("data-user-fileName", result.trim());
+			$(".profile-update").attr("data-user-fileName", result.trim());
 			$(".icon-btn").attr("data-user-fileName", result.trim());
 			$(".pic").attr("src","/gram/static/upload/user/"+result.trim());
 			alertMsg("프로필 사진이 추가되었습니다.");
@@ -180,8 +180,10 @@ function fileDelete(){
 			console.log(result)
 			if(result.trim()==1){
 				alertMsg("프로필 사진이 삭제되었습니다.");	
-				$(".profile-button").attr("data-user-fileName", "");
-				$(".icon-btn").attr("data-user-fileName", "");			
+				$(".input-icon").attr("src", "/gram/static/upload/user/user.jpg");
+				$(".profile-update").attr("data-user-fileName", "user.jpg");
+				$(".icon-btn").attr("data-user-fileName", "user.jpg");	
+				$(".pic").attr("src","/gram/static/upload/user/user.jpg");		
 			} else {
 				alertMsg("프로필 사진이 삭제되지 못했습니다.");
 			}

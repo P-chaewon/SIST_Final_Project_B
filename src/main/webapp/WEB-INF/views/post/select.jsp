@@ -14,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/select.css">
 </head>
 <body>
-	<sec:authentication property="principal.userNum" var="userNum"/>
 	<main>
 	<sec:authentication property="principal.username" var="username"/>
 	<sec:authentication property="principal.userNum" var="userNum"/>
@@ -43,14 +42,7 @@
 			<div class="post_contents">
 				<header class="head">
 					<div class="post_profile">
-						<c:choose>
-							<c:when test="${not empty postVO.userVO.fileName }">
-								<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
-							</c:when>
-							<c:otherwise>
-								<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
-							</c:otherwise>
-						</c:choose>
+							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
 							<span class="nickname main_nickname point_span" style="margin-left: 5px;">
 						
 							${postVO.userVO.username}</span>
@@ -135,8 +127,6 @@
 							       		<button class="commentDel suspend" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">신고</button>
 							       	</c:otherwise>
 							       </c:choose>
-							<c:if test="${username eq commentList.writer}">
-							</c:if>
 							 </div>
 							 
 			             

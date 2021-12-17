@@ -25,7 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import com.sist.b.alarm.AlarmService;
+import com.sist.b.alarm.AlarmVO;
 import com.sist.b.bookmark.BookmarkService;
 import com.sist.b.bookmark.BookmarkVO;
 import com.sist.b.comment.CommentService;
@@ -68,6 +69,9 @@ public class HomeController {
 	
 	@Autowired
 	private BookmarkService bookmarkService;
+	
+	@Autowired
+	private AlarmService alarmService;
 	
 	@GetMapping("/")
 	public ModelAndView getPostList(HttpSession session)throws Exception{
@@ -120,7 +124,7 @@ public class HomeController {
 		Authentication authentication = sc.getAuthentication();
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
-		List<PostVO> ar = postService.getPostList(loginUserVO);
+		List<PostVO> ar = postService.getAllList(loginUserVO);
 		
 		mv.addObject("postList", ar);
 		mv.setViewName("post/explore");
@@ -135,6 +139,7 @@ public class HomeController {
 	public ModelAndView getProfile(@PathVariable String username, PostVO postVO, HttpSession session) throws Exception {
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
+		System.out.println("fileName : "+userVO.getFileName());
 		Map<String, Long> count = new HashMap<String, Long>();
 		Long followCount = followService.followCount(userVO.getUserNum());
 		Long followerCount = followService.follwerCount(userVO.getUserNum());
@@ -148,24 +153,24 @@ public class HomeController {
 	
 		UserVO loginUserVO = (UserVO)authentication.getPrincipal();
 		
+		//게시물 userNum
+		postVO.setUserNum(userVO.getUserNum());
+		
 		ModelAndView mv= new ModelAndView();
 		
-		postVO.setUserNum(loginUserVO.getUserNum());
-		
-		List<PostVO> ar = postService.getMyPost(postVO);
-		
-		mv.addObject("postList", ar);
-		
+		//bookmarklist 불러오기
 		List<PostVO> ar2 = postService.getBookmarkList(postVO);
 		
 		mv.addObject("bookmarkList", ar2);
 		
-
+		//profile postList 불러오기
+		List<PostVO> ar = postService.getUserProfile(postVO);;
+		
 		//팔로우가 0이면 내가 팔로우 하고 있지 않은 사람
 		//팔로우가 1이면 내가 팔로우 하고있는 사람
 		int follow = 0;
-		if(userVO.getUsername().equals(loginUserVO.getUsername())) {
-				mv.setViewName("myProfile");
+		if(userVO.getUsername().equals(loginUserVO.getUsername())) {	
+			mv.setViewName("myProfile");
 		} else {
 			if(followService.followCheck(userVO, session)) {
 				follow = 1;
@@ -173,6 +178,10 @@ public class HomeController {
 			mv.addObject("follow", follow);
 			mv.setViewName("profile");
 		}
+		
+		mv.addObject("postcount", ar.size());
+		
+		mv.addObject("postlist", ar);
 
 		mv.addObject("count", count);
 
@@ -200,6 +209,21 @@ public class HomeController {
 		likesVO.setPostNum(no);
 	
 		PostVO postVO = likesService.setLikesInsert(likesVO);
+		
+		// 알림 추가
+		AlarmVO alarmVO = new AlarmVO();
+		// 좋아요 알림 : 1
+		alarmVO.setAlarmType(1);
+		alarmVO.setFromUserNum(userVO.getUserNum());
+		
+		// userNum 조회
+		Long toUserNum = postService.getUserNum(no);
+		
+		alarmVO.setToUserNum(toUserNum);
+		alarmVO.setTargetPostNum(no);
+		
+		// 좋아요 알림 insert
+		int result = alarmService.setInsert(alarmVO);
 		
 		return postVO;
 		
@@ -265,14 +289,13 @@ public class HomeController {
 	
 
 	@PostMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session,ReportVO reportVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
-		
 		// 신고 정보 insert
 		int result = reportService.setInsert(reportVO);
 		

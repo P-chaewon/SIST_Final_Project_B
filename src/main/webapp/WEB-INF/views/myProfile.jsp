@@ -13,6 +13,9 @@
 <body class="" style="">
 	<sec:authentication property="principal.username" var="username"/>
 	<c:import url="./temp/nav2.jsp"></c:import>
+	<script type="text/javascript">
+		$(".profile_border").css("border", "1px solid black");
+	</script>
 	<div id="react-root">
 		<section class="profile-home-section">
 			<div></div>
@@ -50,7 +53,7 @@
 								<li class="info-li">
 									<span class="info-name">
 										게시물 
-										<span class="info-total">2,731</span>
+										<span class="info-total">${postcount }</span>
 									</span>
 								</li>
 								<li class="info-li">
@@ -98,14 +101,14 @@
 					<!-- 게시글 보여주는 곳 -->
 					
 				
-					<div class="post-space" style="display: block;" id="view_post">
+					<div class="post-space" style="display: block;width: 935px;" id="view_post">
 						<article class="post-article">
 							<div>
 								<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">
 									<div class="post-one-row">
 									
 					<c:choose>
-						<c:when test="${empty postList}">
+						<c:when test="${empty postlist}">
 							<div class="one-post">
 										<div class="post-img-space">
 											<div class="post-image-div">
@@ -126,9 +129,8 @@
 												</div>
 										</div>
 							</c:when>
-							<c:otherwise>	
-									<c:forEach items="${postList}" var="list">
-									
+							<c:otherwise>									
+									<c:forEach items="${postlist}" var="list">
 										<div class="one-post">
 										
 											<a href="./post/selectOne?postNum=${list.postNum}" tabindex="0">
@@ -153,7 +155,7 @@
 					
 					<!-- bookmark -->
 					
-						<div class="post-space" id="view_bookmark" style="display: none;">
+						<div class="post-space" id="view_bookmark" style="display: none;width: 935px;">
 							<article class="post-article">
 								<div>
 									<div style="flex-direction: column; padding-bottom: 0px; padding-top: 0px;">	

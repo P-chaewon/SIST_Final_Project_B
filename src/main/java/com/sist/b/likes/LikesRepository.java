@@ -1,9 +1,12 @@
 package com.sist.b.likes;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import com.sist.b.post.PostVO;
+import com.sist.b.user.UserVO;
 
 @Repository
 @Mapper
@@ -20,5 +23,7 @@ public interface LikesRepository {
 	public PostVO getLikesCount(PostVO postVO)throws Exception;
 	
 	public Long getLikesRead(LikesVO likesVO)throws Exception;
+	
+	public List<UserVO> getLikeUser(LikesVO likesVO)throws Exception;
 
 }
