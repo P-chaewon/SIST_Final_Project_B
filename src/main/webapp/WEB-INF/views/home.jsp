@@ -153,7 +153,7 @@ $(document).ready(function() { // 페이지가 준비되면
 				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
 								</div>
 								<!-- tag -->
-			            			<div class="tag_${list.postNum}" style="margin-top: 10px;">
+			            			<div class="tag_${list.postNum}" style="margin-top: 10px; cursor: pointer;">
 
 			            			</div>
 
