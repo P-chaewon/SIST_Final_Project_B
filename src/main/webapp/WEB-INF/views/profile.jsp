@@ -223,7 +223,7 @@
 					</div> --%>
 				</div>
 			</main>
-			<c:import url="./temp/nav2.jsp"></c:import>
+			<c:import url="./temp/nav3.jsp"></c:import>
 			<c:import url="./temp/footer.jsp"></c:import>
 		</section>
 	</div>

@@ -42,8 +42,8 @@ public class AlarmService {
 		return ar;
 	}
 	
-	public int setUpdate(AlarmVO alarmVO) throws Exception {
-		return alarmRepository.setUpdate(alarmVO);
+	public int setUpdate(Long alarmNum) throws Exception {
+		return alarmRepository.setUpdate(alarmNum);
 	}
 	
 	public int setDelete(AlarmVO alarmVO) throws Exception {

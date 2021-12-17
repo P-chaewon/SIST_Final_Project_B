@@ -12,7 +12,7 @@
 </head>
 <body class="" style="">
 	<sec:authentication property="principal.username" var="username"/>
-	<c:import url="./temp/nav2.jsp"></c:import>
+	<c:import url="./temp/nav3.jsp"></c:import>
 	<script type="text/javascript">
 		$(".profile_border").css("border", "1px solid black");
 	</script>

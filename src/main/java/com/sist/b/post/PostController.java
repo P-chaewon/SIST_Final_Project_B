@@ -83,7 +83,7 @@ public class PostController {
 	}
 	
 	@GetMapping("selectOne")
-	public ModelAndView getUserPost(PostVO postVO, HttpSession session)throws Exception{
+	public ModelAndView getUserPost(PostVO postVO, Long alarmNum, HttpSession session)throws Exception{
 
 		ModelAndView mv = new ModelAndView();
 		
@@ -114,6 +114,9 @@ public class PostController {
 			}
 		}
 		System.out.println(follow);
+		
+		// 알림 읽음 처리
+		int result = alarmService.setUpdate(alarmNum);
 		
 		mv.addObject("follow", follow);
 		mv.addObject("postVO", postVO);

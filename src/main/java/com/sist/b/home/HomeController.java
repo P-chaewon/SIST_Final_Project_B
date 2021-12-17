@@ -136,7 +136,7 @@ public class HomeController {
 	
 
 	@GetMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, PostVO postVO, HttpSession session) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, PostVO postVO, HttpSession session, Long alarmNum) throws Exception {
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		System.out.println("fileName : "+userVO.getFileName());
@@ -178,6 +178,9 @@ public class HomeController {
 			mv.addObject("follow", follow);
 			mv.setViewName("profile");
 		}
+		
+		// 알림 읽음 처리
+		int result = alarmService.setUpdate(alarmNum);
 		
 		mv.addObject("postcount", ar.size());
 		
