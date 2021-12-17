@@ -13,3 +13,7 @@
 		</div>
 	</div>
 </c:forEach>
+
+<div class="noSearchResult">
+	유저가 존재하지 않습니다.
+</div>

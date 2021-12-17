@@ -56,26 +56,39 @@ function newChat(userNum, userId) {
 새로운 채팅 -- 유저 검색
 */
 function getSearchUser(text) {
-	$.ajax({
-		type: "GET"
-		, url: "../getSearchUser"
-		, data: {
-			searchText: text
-		}
-		, success: function(result) {
-			result = result.trim();
-			$("#modalSearchResultArea").html(result);
-			
-			$(".searchResult").on("click", function() {
-				let userNum = $(this).data('usernum');
-				let userId = $(this).find('.suId').text();
+	text = text.trim();
+	
+	//검색어 없을 때
+	if (text.length == 0) {
+		$("#modalSearchResultArea").find(".searchResult").remove();
+		$(".noSearchResult").css('display', 'flex');
+	} else {
+		$.ajax({
+			type: "GET"
+			, url: "../getSearchUser"
+			, data: {
+				searchText: text
+			}
+			, success: function(result) {
+				result = result.trim();
+				$("#modalSearchResultArea").html(result);
 				
-				newChat(userNum, userId);
-			});
-		}, error: function(error) {
-			console.log(error);
-		}
-	})
+				$(".searchResult").on("click", function() {
+					let userNum = $(this).data('usernum');
+					let userId = $(this).find('.suId').text();
+					
+					newChat(userNum, userId);
+				});
+			}, error: function(error) {
+				console.log(error);
+			}
+		})
+	}
+
+	
+	
+		
+	
 }
 
 
@@ -226,9 +239,14 @@ $(function () {
 		$(".modal").css('display', 'none');
 	})
 	
+	//모달검색
 	$("#searchText").on("change keyup paste", function() {
-		console.log('변경!!!:'+$("#searchText").val());
 		getSearchUser($("#searchText").val());
 	});
+	
+	//상세정보
+	$(".detail-info-area").click(function() {
+		
+	})
 
 });
