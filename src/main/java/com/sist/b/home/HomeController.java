@@ -4,6 +4,7 @@ package com.sist.b.home;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.ad.AdService;
+import com.sist.b.ad.AdVO;
 import com.sist.b.alarm.AlarmService;
 import com.sist.b.alarm.AlarmVO;
 import com.sist.b.bookmark.BookmarkService;
@@ -73,6 +76,9 @@ public class HomeController {
 	@Autowired
 	private AlarmService alarmService;
 	
+	@Autowired
+	private AdService adService;
+	
 	@GetMapping("/")
 	public ModelAndView getPostList(HttpSession session)throws Exception{
 
@@ -113,6 +119,14 @@ public class HomeController {
 		mv.addObject("users", users);
 		mv.setViewName(viewname);			
 
+		return mv;
+	}
+	
+	@PostMapping("/")
+	public ModelAndView postReport(ReportVO reportVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = reportService.setInsert(reportVO);
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
@@ -343,6 +357,14 @@ public class HomeController {
 		
 		return mv;
 	}
-
+	
+	@GetMapping("ad")
+	public ModelAndView getRandomAd() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		AdVO adVO = adService.getRandomAd();
+		mv.addObject("adVO", adVO);
+		mv.setViewName("ad/popup");
+		return mv;
+	}
 
 }

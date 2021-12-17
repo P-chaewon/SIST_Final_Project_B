@@ -21,6 +21,8 @@ public class CommentService {
 		return commentRepository.setCommentDel(commentVO);
 	}
 	
-
+	public Long getUserNum(String writer) throws Exception {
+		return commentRepository.getUserNum(writer);
+	}
 	
 }

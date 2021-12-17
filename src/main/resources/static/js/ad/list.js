@@ -14,7 +14,7 @@ $(".more").click(function(){
 $("#cancel").click(function(){
 	$(".modal").fadeOut();
 	// 스크롤 제한 off
-	$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+	$('html, body').css({'overflow': 'initial', 'height': 'auto'});
 });
 
 $("#delete").click(function(){
@@ -29,6 +29,6 @@ $("#d3").click(function(){
 	$(".modal").fadeOut();
 	$(".modal2").fadeOut();
 	// 스크롤 제한 off
-	$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+	$('html, body').css({'overflow': 'initial', 'height': 'auto'});
 });
 

@@ -27,6 +27,8 @@ import com.sist.b.comment.CommentService;
 import com.sist.b.comment.CommentVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
+import com.sist.b.report.ReportService;
+import com.sist.b.report.ReportVO;
 import com.sist.b.user.UserVO;
 
 @Controller
@@ -50,6 +52,9 @@ public class PostController {
 	
 	@Autowired
 	private AlarmService alarmService;
+	
+	@Autowired
+	private ReportService reportService;
 
 	
 	@GetMapping("upload")
@@ -122,6 +127,14 @@ public class PostController {
 		mv.addObject("postVO", postVO);
 		mv.setViewName("post/select");
 	
+		return mv;
+	}
+	
+	@PostMapping("selectOne")
+	public ModelAndView commentReport(ReportVO reportVO, Long postNum) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = reportService.setInsert(reportVO);
+		mv.setViewName("redirect:./selectOne?postNum="+postNum);
 		return mv;
 	}
 	
@@ -275,7 +288,11 @@ public class PostController {
 		return mv;
 	}
 	
-	
+	@ResponseBody
+	@GetMapping("getToUserNum.do")
+	public Long getUserNum(String writer) throws Exception {
+		return commentService.getUserNum(writer);
+	}
 
 	
 

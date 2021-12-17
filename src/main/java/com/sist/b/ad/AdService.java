@@ -66,4 +66,8 @@ public class AdService {
 		// DB에서 글 삭제 (파일은 cascade)
 		return adRepository.setDelete(adVO);
 	}
+	
+	public AdVO getRandomAd() throws Exception {
+		return adRepository.getRandomAd();
+	}
 }

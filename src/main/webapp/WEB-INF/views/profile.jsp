@@ -297,8 +297,8 @@
 		</div>
 	</div>
 	
-	<div class="modal2">
-		<div class="modal_content2">
+	<div class="report_modal2">
+		<div class="report_modal_content2">
 			<div id="d1">
 				<h1 class="d1_c">신고</h1>
 				<img class="modal_img" id="img_cancel" alt="cancel" src="${pageContext.request.contextPath}/static/icons/cancel.png">
@@ -332,12 +332,12 @@
 		})
 		
 		$("#report").click(function(){
-			$(".modal2").fadeIn();
+			$(".report_modal2").fadeIn();
 		});
 		
 		$("#img_cancel").click(function(){
 			$(".report_modal").fadeOut();
-			$(".modal2").fadeOut();
+			$(".report_modal2").fadeOut();
 			$('html, body').css({'overflow': 'auto', 'height': 'auto'});
 		});
 		

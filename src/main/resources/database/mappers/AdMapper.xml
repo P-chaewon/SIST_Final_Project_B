@@ -49,4 +49,12 @@
 	<delete id="setDelete" parameterType="AdVO">
 		delete from ad where adNum = #{adNum}
 	</delete>
+	
+	<select id="getRandomAd" resultMap="getListResult">
+		select * 
+		from ad A
+			inner join adFile AF
+		using (adNum)
+		order by rand() limit 1
+	</select>
 </mapper>

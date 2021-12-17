@@ -39,7 +39,9 @@
 		DELETE FROM comment WHERE commentNum = #{commentNum}
 	</delete>
 	
-	
+	<select id="getUserNum" parameterType="String" resultType="Long">
+		SELECT distinct userNum FROM comment WHERE writer = #{writer}
+	</select>
 	
  	
  	
