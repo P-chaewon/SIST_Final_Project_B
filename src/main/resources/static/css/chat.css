@@ -477,3 +477,10 @@ body {
 .suNick {
 	color: #8e8e8e;
 }
+
+.profile {
+	width: 40px;
+	height: 40px;
+	border-radius: 100px;
+	margin-right: 10px;
+}

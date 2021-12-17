@@ -276,7 +276,39 @@ $(document).ready(function() { // 페이지가 준비되면
 			
 		</main>
 		
-		<div class="modal">
+		<!-- 사용자 신고 모달 -->
+<%-- 		<div class="report_modal">
+			<div class="report_modal_content">
+				<button type="button" id="report">
+					<h1>사용자 신고</h1>
+				</button>
+				<button type="button" id="cancel">취소</button>
+			</div>
+		</div>
+		
+		<div class="modal2">
+			<div class="modal_content2">
+				<div id="d1">
+					<h1 class="d1_c">신고</h1>
+					<img class="modal_img" id="img_cancel" alt="cancel" src="${pageContext.request.contextPath}/static/icons/cancel.png">
+				</div>
+				<div id="d2">
+					<h1 id="d2_c">이 계정을 신고하는 이유는 무엇인가요?</h1>
+				</div>
+				<div id="d3">
+					<form id="report_frm" method="post">
+						<input hidden="hidden" name="reportType" value="user">
+						<input type="hidden" name="toUserNum" value="${userVO.userNum}">
+						<input type="hidden" name="fromUserNum" value="${fromUserNum}">
+						<textarea rows="" cols="" name="reason"></textarea>
+					</form>
+					<h1 id="submit_btn">제출</h1>
+				</div>
+			</div>
+		</div> --%>
+
+	<!-- 글 신고 모달 -->
+	<div class="modal">
 		<div class="modal_content">
 			<button type="button" id="suspend">
 				<h1>신고</h1>
@@ -284,25 +316,29 @@ $(document).ready(function() { // 페이지가 준비되면
 			<button type="button" id="cancel">취소</button>
 		</div>
 	</div>
-	
+
 	<div class="modal2">
 		<div class="modal_content2">
 			<div id="d1">
-				<span class="c">
-					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
-					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
-				</span>
+				<h1 class="d1_c">신고</h1>
+				<img class="modal_img" id="img_cancel" alt="cancel"
+					src="${pageContext.request.contextPath}/static/icons/cancel.png">
 			</div>
 			<div id="d2">
-				<h1 class="c" id="d2_del">신고</h1>
+				<h1 id="d2_c">이 게시물을 신고하는 이유는 무엇인가요?</h1>
 			</div>
 			<div id="d3">
-				<span class="c" id="d3_can">취소</span>
+				<form id="report_frm" method="post">
+					<input hidden="hidden" name="reportType" value="user"> <input
+						type="hidden" name="toUserNum" value="${userVO.userNum}">
+					<input type="hidden" name="fromUserNum" value="${fromUserNum}">
+					<textarea rows="" cols="" name="reason"></textarea>
+				</form>
+				<h1 id="submit_btn">제출</h1>
 			</div>
 		</div>
 	</div>
-	
-	
+
 	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/follow.js"></script>
 	<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script type="text/javascript">
@@ -492,9 +528,7 @@ $(document).ready(function() { // 페이지가 준비되면
   	$(document).on("click", "#count_text", function(){
   		var no = $(this).data('idx');
   		alert(no);
-  	})
-  	
-	
+  	});  	
  </script>
 
 

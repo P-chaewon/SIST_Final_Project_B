@@ -15,8 +15,12 @@ $(".alarm_img").click(function(){
 			}
 		});
 		$("#alarm_contents").show();
+		// 스크롤 제한 on
+		// $('html, body').css({'overflow': 'hidden', 'height': '100%'});
 	} else {
 		$("#alarm_contents").hide();
+		// 스크롤 제한 off
+		// $('html, body').css({'overflow': 'auto', 'height': 'auto'});
 	}
 });
 

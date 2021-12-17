@@ -373,8 +373,6 @@ footer p {
 }
 
 /* modal */
-
-
 .modal {
 	position: fixed;
 	width: 100vw;
@@ -443,7 +441,7 @@ footer p {
 	position: relative;
 }
 
-.c {
+.modal_c {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -487,6 +485,78 @@ footer p {
 	background-color:transparent;
 	font-size: 16px;
 }
+
+.modal_img {
+	width: 18px;
+	height: 18px;
+}
+
+#d1 {
+	width: 100%;
+	height: 40px;
+	position: relative;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+.d1_c {
+	font-size: 16px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translate(-50%, -50%);
+}
+
+#img_cancel {
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	transform:translate(0%, -50%);
+}
+
+#d2 {
+	width: 100%;
+	height: 50px;
+	position: relative;
+	border-bottom: 1px solid #E2E2E2;
+}
+
+#d2_c {
+	width: 100%;
+	height: 100%;
+	font-size: 16px;
+	padding-top: 15px;
+	padding-left: 15px;
+	text-align: left;
+}
+
+#d3 {
+	width: 100%;
+	height: 110px;
+	position: relative;
+}
+
+textarea {
+	width: 90%;
+	height: 60px;
+	position: absolute;
+	top: 10px;
+	left: 50%;
+	transform:translate(-50%, 0%);
+	border: none;
+	resize: none;
+}
+
+textarea:focus {
+	outline: none;
+}
+
+#submit_btn {
+	position: absolute;
+	color: #0095F6;
+	top: 75%;
+	right: 5%;
+}
+
 /* slider */
 
          
