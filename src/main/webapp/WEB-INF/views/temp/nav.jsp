@@ -45,7 +45,7 @@
 					<div class="profile_border">
 						<div class="profile_img">
 
-							<img alt="마이페이지" class="icon" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}" class="pic">
+							<img alt="마이페이지" class="icon pic" src="${pageContext.request.contextPath}/static/upload/user/${userVO.fileName}">
 								
 						</div>
 						<div class="nav_profile" id="" style="display: none;">
