@@ -43,9 +43,9 @@
 				<header class="head">
 					<div class="post_profile">
 						<a href="/gram/${postVO.userVO.username}">
-							<img class="post_profile_img pic" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
+							<img class="post_profile_img pic" alt="profile" src="${pageContext.request.contextPath}/static/upload/user/${postVO.userVO.fileName}">
 						</a>	
-							<span class="nickname main_nickname point_span" style="margin-left: 5px;" onclick="location.href='/gram/${postVO.userVO.username}'">
+							<span class="nickname main_nickname point_span" style="margin-left: 5px; cursor: pointer;" onclick="location.href='/gram/${postVO.userVO.username}'">
 						
 							${postVO.userVO.username}</span>
 						
@@ -72,8 +72,8 @@
 						<div class="contents">
 							<div class="box">
 			            	<div class="description">
-			            	<div style="height: 50px;">
-				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px;">${postVO.contents}
+			            	<div style="height: 100%; margin-top: 5px;">
+				              <span class="point_span nickname" style="font-weight: 600; float: left;">${postVO.userVO.username }</span><span style="float: left; margin-left: 10px; height: 80px;">${postVO.contents}
 			            		<span class="tag_${postVO.postNum }" style="color: #00376b; cursor: pointer;"> </span>
 			            		
 
@@ -82,7 +82,7 @@
 			            		var url = '\'/gram/search/tag/';
 			            		var pid = '${postVO.postNum}';
 			            		var a = '';
-			            		var arr = original.split(', '); // ,를 기준으로 나눔
+			            		var arr = original.split(' '); // ,를 기준으로 나눔
 
 			            		for (var i = 0; i < arr.length; i++) {
 			            			a += '<span style="color:#007AFF;" onclick="location.href='
@@ -90,7 +90,7 @@
 			            				+ arr[i].replace("#", "") 
 			            				+ '\'' 
 			            				+ '">'
-			            				+ '#'+arr[i]
+			            				+ arr[i]
 			            				+ ' </span>';
 			            			}
 			            		$(".tag_" + pid).html(a);
@@ -104,7 +104,7 @@
 			            	
 			        
 			            	
-			           <div class="comment_section"  id="commentList" data-board-num="${postVO.postNum }" style="height: 260px; border-top:0.5px solid #E2E2E2; overflow-y:scroll; ">
+			           <div class="comment_section"  id="commentList" data-board-num="${postVO.postNum }" style="height: 210px; border-top:0.5px solid #E2E2E2; overflow-y:scroll; ">
 			         
 			             <c:forEach items="${postVO.commentList}" var="commentList">
 			             

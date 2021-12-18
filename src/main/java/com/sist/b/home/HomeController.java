@@ -329,7 +329,8 @@ public class HomeController {
 		ModelAndView mv = new ModelAndView();
 
 		PostVO postVO = new PostVO();
-		postVO.setTag(word);
+		
+		postVO.setTag(word+" ");
 		
 		Long tag_cnt = postService.getSearchTagCount(postVO);
 		
