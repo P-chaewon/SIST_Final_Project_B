@@ -553,7 +553,7 @@ $(document).ready(function() { // 페이지가 준비되면
   	
   	var postNum = 0;
   	 
-  	$(document).on("click", "#more",function(){
+  	$('.post_profile').on("click", "#more",function(){
   		$(".modal").fadeIn();
   		// 스크롤 제한 on
   		$('html, body').css({'overflow': 'hidden', 'height': '100%'});

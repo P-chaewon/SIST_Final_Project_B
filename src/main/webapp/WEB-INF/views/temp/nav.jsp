@@ -96,6 +96,41 @@
 				</div>
 			</div>
 		</nav>
+		
+		
+<!-- 검색창 -->			
+	<div class="search_modal" style="display: none;">
+		<div class="modal-area">
+			<div class="modal-header">
+		
+				<div class="newMessageLetter">
+					<p> 검색 </p>
+			</div>
+			
+			<div class="modal-close-area">
+				<button class="modalCloseBtn">
+					<img alt="modal close" src="${pageContext.request.contextPath}/static/icons/stroke-close.png">
+				</button>
+			</div>
+		</div>
+		
+		<div class="modal-content">
+			<div class="modalSearchArea">
+				<div class="searchBox">
+					<div class="searchUserName">
+						<input id="searchText" type="text" autocomplete="off" placeholder="검색...">
+					</div>
+				</div>
+			</div>
+			
+			<!-- 검색결과 -->
+			<div id="modalSearchResultArea" class="modalSearchResultArea">
+
+			</div>
+		</div>
+	</div>
+</div>
+
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/js/temp/nav.js"></script>
 <script type="text/javascript">
 	$(".profile_img").click(function () {

@@ -34,3 +34,38 @@ $(".alarm_img").click(function(){
 		$("#alarm").show();
 	}
 })*/
+
+
+function getSearchUser(text) {
+	$.ajax({
+		type: "GET"
+		, url: "/gram/getSearchUser"
+		, data: {
+			searchText: text
+		}
+		, success: function(result) {
+			result = result.trim();
+			$("#modalSearchResultArea").html(result);
+		}, error: function(error) {
+			console.log(error);
+		}
+	})
+}
+
+
+	$("#search").click(function() {
+		if($(".search_modal").css('display') == 'none'){
+		$('.search_modal').css({"display": "block"});
+	}else{
+		$('.search_modal').css({"display": "none"});
+	}
+	});
+	
+	$(".modalCloseBtn").click(function() {
+		$(".search_modal").css('display', 'none');
+	});
+	
+	$("#searchText").on("change keyup paste", function() {
+		getSearchUser($("#searchText").val());
+	});
+	

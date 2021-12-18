@@ -168,6 +168,7 @@
 						</c:choose>
 						
 							<img class="icon_react" style="margin-left: 5px;" id="chat" alt="speech" src="/gram/static/icons/bubble-chat.png">
+							
 						</div>
 					
 						<c:choose>
