@@ -366,12 +366,12 @@ $(document).ready(function() { // 페이지가 준비되면
     $('.box').each(function(){
         var content = $(this).children('.description');
         var content_txt = content.text();
-        var content_txt_short = content_txt.substring(0,100)+"...";
+        var content_txt_short = content_txt.substring(0,300)+"...";
         var btn_more = $('<a href="javascript:void(0)" class="more">더보기</a>');
         
         $(this).append(btn_more);
         
-        if(content_txt.length >= 100){
+        if(content_txt.length >= 300){
             content.html(content_txt_short)
             
         }else{

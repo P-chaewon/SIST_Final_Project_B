@@ -66,6 +66,7 @@
 						<span class="nickname main_nickname point_span"><sec:authentication property="principal.nickname" var="nickname"/>	${nickname}</span>
 						
 						</div>
+	
 						<textarea name="contents" class="contents" id="contents" rows="" cols="" placeholder="문구입력..."></textarea>
 						
 						<div>						
@@ -106,10 +107,17 @@
 								<span class="emoji">&#128560;</span>
 								<span class="emoji">&#128561;</span>
 								<span class="emoji">&#128567;</span>
-								<span class="emoji">&#128584;</span>
-								<span class="emoji">&#128585;</span>
-								<span class="emoji">&#128586;</span><br><br>
-								
+								<span class="emoji">&#128578;</span>
+								<span class="emoji">&#128579;</span>
+								<span class="emoji">&#128580;</span>
+								<span class="emoji">&#128566;</span><br><br>
+								<span class="emoji">&#128591;</span>
+								<span class="emoji">&#128170;</span>
+								<span class="emoji">&#128074;</span>
+								<span class="emoji">&#128075;</span>
+								<span class="emoji">&#128077;</span>
+								<span class="emoji">&#128078;</span>
+								<span class="emoji">&#128079;</span><br><br>
 								<span class="emoji">&#128147;</span>
 								<span class="emoji">&#128148;</span>
 								<span class="emoji">&#128149;</span>
@@ -121,21 +129,25 @@
 								<span class="emoji">&#128155;</span>
 								<span class="emoji">&#128156;</span>
 								<span class="emoji">&#128157;</span>
-								<span class="emoji">&#128158;</span><br><br>
-								<span class="emoji">&#128591;</span>
-								<span class="emoji">&#128170;</span>
-								<span class="emoji">&#128074;</span>
-								<span class="emoji">&#128075;</span>
-								<span class="emoji">&#128077;</span>
-								<span class="emoji">&#128078;</span>
-								<span class="emoji">&#128079;</span><br><br>
-								<span class="emoji">&#127881;</span>
-								<span class="emoji">&#127882;</span>
-								<span class="emoji">&#127891;</span>
-								<span class="emoji">&#128172;</span>
-								<span class="emoji">&#128176;</span>
-								<span class="emoji">&#128193;</span>
-								<span class="emoji">&#128194;</span>
+								<span class="emoji">&#128158;</span>
+								<span class="emoji">&#128143;</span>
+								<span class="emoji">&#128145;</span><br><br>
+								<span class="emoji">&#128054;</span>
+								<span class="emoji">&#128057;</span>
+								<span class="emoji">&#128059;</span>
+								<span class="emoji">&#128060;</span>
+								<span class="emoji">&#128047;</span>
+								<span class="emoji">&#128048;</span>
+								<span class="emoji">&#128049;</span><br><br>
+								<span class="emoji">&#128041;</span>
+								<span class="emoji">&#128007;</span>
+								<span class="emoji">&#128035;</span>
+								<span class="emoji">&#128036;</span>
+								<span class="emoji">&#128037;</span>
+								<span class="emoji">&#128034;</span>
+								<span class="emoji">&#128062;</span>
+								
+							
 													
 							
 							</div>
@@ -323,7 +335,7 @@ $(".write").click(function(){
 
 $(document).on('click','.emoji', function(){
 	var emo = $(this).html();
-	$('#contents').prepend(emo);
+	$('#contents').append(emo);
 	
 })
 
