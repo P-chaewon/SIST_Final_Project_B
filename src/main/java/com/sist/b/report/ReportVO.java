@@ -1,5 +1,7 @@
 package com.sist.b.report;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 
 @Data
@@ -8,6 +10,7 @@ public class ReportVO {
 	private String reportType;
 	private Long fromUserNum;
 	private Long toUserNum;
+	@NotBlank
 	private String reason;
 	
 	// getList Join

@@ -314,7 +314,7 @@
 					<input id="toUserNum" type="hidden" name="toUserNum" value="0">
 					<input type="hidden" name="fromUserNum" value="${userNum}">
 					<input type="hidden" name="postNum" value="${param.postNum}">
-					<textarea rows="" cols="" name="reason"></textarea>
+					<textarea id="reason" rows="" cols="" name="reason"></textarea>
 				</form>
 				<h1 id="submit_btn">제출</h1>
 			</div>
@@ -660,21 +660,24 @@
   	$("#submit_btn").click(function(){
 		var result = confirm("신고 접수하시겠습니까?");
 		if (result) {
-			
-			$.ajax({
-   	            url : './getToUserNum.do',
-   	            type : 'get',
-   	            data : {
-   	            	writer : writer,
-   	            },
-   	            success : function(userNum) {
-   	            	$("#toUserNum").val(userNum);
-   	            	$("#report_frm").submit();
-   	            },
-   	            error : function() {
-   	                alert('서버 에러');
-   	            }
-   	        });
+			if ($("#reason").val().length != 0) {
+				$.ajax({
+	   	            url : './getToUserNum.do',
+	   	            type : 'get',
+	   	            data : {
+	   	            	writer : writer,
+	   	            },
+	   	            success : function(userNum) {
+	   	            	$("#toUserNum").val(userNum);
+	   	            	$("#report_frm").submit();
+	   	            },
+	   	            error : function() {
+	   	                alert('서버 에러');
+	   	            }
+	   	        });	
+			} else {
+				alert("신고 이유를 입력해주세요.");	
+			}
 		}
 	});
   	

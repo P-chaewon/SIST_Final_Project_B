@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -18,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -336,16 +338,14 @@ public class HomeController {
 	
 
 	@PostMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, HttpSession session,ReportVO reportVO) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
-		// 신고 정보 insert
-		int result = reportService.setInsert(reportVO);
-		
+
 		mv.addObject("userVO", userVO);
 		mv.setViewName("profile");
 		return mv;

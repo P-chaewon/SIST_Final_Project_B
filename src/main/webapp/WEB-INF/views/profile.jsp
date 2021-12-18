@@ -311,7 +311,7 @@
 					<input hidden="hidden" name="reportType" value="user">
 					<input type="hidden" name="toUserNum" value="${userVO.userNum}">
 					<input type="hidden" name="fromUserNum" value="${fromUserNum}">
-					<textarea rows="" cols="" name="reason"></textarea>
+					<textarea id="reason" rows="" cols="" name="reason"></textarea>
 				</form>
 				<h1 id="submit_btn">제출</h1>
 			</div>
@@ -344,7 +344,11 @@
 		$("#submit_btn").click(function(){
 			var result = confirm("신고 접수하시겠습니까?");
 			if (result) {
-				$("#report_frm").submit();	
+				if ($("#reason").val().length != 0) {
+					$("#report_frm").submit();	
+				} else {
+					alert("신고 이유를 입력해주세요.");
+				}
 			}
 		});
 		
