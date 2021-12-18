@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!-- 검색결과없을 때 -->
+
 <c:choose>
 	<c:when test="${empty searchUserList and tag_count < 1}">
 		
@@ -12,10 +12,9 @@
 	
 	</c:when>
 
-<!-- 검색결과 있을때 -->
+
 <c:otherwise>
 
-<!-- 검색어가 공백이 아닐 경우 -->
 <c:if test="${not empty searchText }">
 	<c:forEach items="${searchUserList}" var="list">
 		<div class="searchResult" data-usernum="${list.userNum}">
@@ -31,7 +30,7 @@
 		</div>
 		
 	</c:forEach>
-	<!-- tag 결과 1개이상일때 -->
+
 	<c:if test="${tag_count > 0}">
 			<div class="searchResult"  onclick="location.href='/gram/search/tag/${searchText}'">
 			<div class="suImg">

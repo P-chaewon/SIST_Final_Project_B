@@ -97,8 +97,8 @@
 		
 <!-- 검색창 -->			
 	<div class="search_modal" style="display: none;">
-		<div class="modal-area">
-			<div class="modal-header">
+		<div class="search-modal-area">
+			<div class="search-modal-header">
 		
 				<div class="newMessageLetter">
 					<p> 검색 </p>
@@ -111,7 +111,7 @@
 			</div>
 		</div>
 		
-		<div class="modal-content">
+		<div class="search-modal-content">
 			<div class="modalSearchArea">
 				<div class="searchBox">
 					<div class="searchUserName">
