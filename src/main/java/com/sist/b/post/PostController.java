@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +29,8 @@ import com.sist.b.comment.CommentService;
 import com.sist.b.comment.CommentVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
+import com.sist.b.report.ReportService;
+import com.sist.b.report.ReportVO;
 import com.sist.b.user.UserVO;
 
 @Controller
@@ -50,6 +54,9 @@ public class PostController {
 	
 	@Autowired
 	private AlarmService alarmService;
+	
+	@Autowired
+	private ReportService reportService;
 
 	
 	@GetMapping("upload")
@@ -122,6 +129,19 @@ public class PostController {
 		mv.addObject("postVO", postVO);
 		mv.setViewName("post/select");
 	
+		return mv;
+	}
+	
+	@PostMapping("selectOne")
+	public ModelAndView commentReport(@Valid ReportVO reportVO, BindingResult bindingResult, Long postNum) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		if (bindingResult.hasErrors()) {
+			mv.setViewName("redirect:./");
+		} else {
+			int result = reportService.setInsert(reportVO);
+			mv.setViewName("redirect:./selectOne?postNum="+postNum);
+		}
 		return mv;
 	}
 	
@@ -275,7 +295,11 @@ public class PostController {
 		return mv;
 	}
 	
-	
+	@ResponseBody
+	@GetMapping("getToUserNum.do")
+	public Long getUserNum(String writer) throws Exception {
+		return commentService.getUserNum(writer);
+	}
 
 	
 

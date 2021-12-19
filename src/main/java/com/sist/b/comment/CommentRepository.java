@@ -12,5 +12,6 @@ public interface CommentRepository {
 	public Long getCommentCount(CommentVO commentVO)throws Exception;
 	
 	public int setCommentDel(CommentVO commentVO)throws Exception;
-
+	
+	public Long getUserNum(String writer) throws Exception;
 }

@@ -50,4 +50,8 @@ public class PaymentsService {
 	public int setUpdateCkDone(Long merchant_uid) throws Exception {
 		return paymentsRepository.setUpdateCkDone(merchant_uid);
 	}
+	
+	public Long getPaymentsCk(Long userNum) throws Exception {
+		return paymentsRepository.getPaymentsCk(userNum);
+	}
 }

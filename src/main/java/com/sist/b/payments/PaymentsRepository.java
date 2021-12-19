@@ -35,4 +35,7 @@ public interface PaymentsRepository {
 	
 	//totalCount
 	public Long getTotalCount(Pager pager)throws Exception;
+	
+	//paymentsCk
+	public Long getPaymentsCk(Long userNum) throws Exception;
 }

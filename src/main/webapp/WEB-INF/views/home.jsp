@@ -21,8 +21,12 @@ $(document).ready(function() { // 페이지가 준비되면
 </script>
 
 </head>
-<body>
-   
+<c:if test="${paymentsCk eq 'y'}">
+	<body>
+</c:if>
+<c:if test="${paymentsCk eq 'n'}">
+	<body onload="window.open('/gram/ad','','width=500px, height=550px, left=30px, top=30px, toolbar=0, status=yes, menubars=0, scrollbars=0, resizable=0, location=0, directories=0')">
+</c:if>   
 		<script type="text/javascript">
 			$("#home").attr("src", "${pageContext.request.contextPath}/static/icons/home-click.png");
 		</script>
@@ -62,7 +66,7 @@ $(document).ready(function() { // 페이지가 준비되면
 						
 						
 					
-						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
+						<img class="icon_react icon_more" id="more" data-postNum="${list.postNum }" data-user-num="${list.userVO.userNum}" style="margin-left: 570px; position:absolute; cursor: pointer;" alt="more" src="${pageContext.request.contextPath}/static/icons/more.png">
 			
 						</div>
 					</header>
@@ -276,37 +280,6 @@ $(document).ready(function() { // 페이지가 준비되면
 			
 		</main>
 		
-		<!-- 사용자 신고 모달 -->
-<%-- 		<div class="report_modal">
-			<div class="report_modal_content">
-				<button type="button" id="report">
-					<h1>사용자 신고</h1>
-				</button>
-				<button type="button" id="cancel">취소</button>
-			</div>
-		</div>
-		
-		<div class="modal2">
-			<div class="modal_content2">
-				<div id="d1">
-					<h1 class="d1_c">신고</h1>
-					<img class="modal_img" id="img_cancel" alt="cancel" src="${pageContext.request.contextPath}/static/icons/cancel.png">
-				</div>
-				<div id="d2">
-					<h1 id="d2_c">이 계정을 신고하는 이유는 무엇인가요?</h1>
-				</div>
-				<div id="d3">
-					<form id="report_frm" method="post">
-						<input hidden="hidden" name="reportType" value="user">
-						<input type="hidden" name="toUserNum" value="${userVO.userNum}">
-						<input type="hidden" name="fromUserNum" value="${fromUserNum}">
-						<textarea rows="" cols="" name="reason"></textarea>
-					</form>
-					<h1 id="submit_btn">제출</h1>
-				</div>
-			</div>
-		</div> --%>
-
 	<!-- 글 신고 모달 -->
 	<div class="modal">
 		<div class="modal_content">
@@ -329,10 +302,10 @@ $(document).ready(function() { // 페이지가 준비되면
 			</div>
 			<div id="d3">
 				<form id="report_frm" method="post">
-					<input hidden="hidden" name="reportType" value="user"> <input
-						type="hidden" name="toUserNum" value="${userVO.userNum}">
-					<input type="hidden" name="fromUserNum" value="${fromUserNum}">
-					<textarea rows="" cols="" name="reason"></textarea>
+					<input hidden="hidden" name="reportType" value="post"> 
+					<input id="toUserNum" type="hidden" name="toUserNum" value="0">
+					<input type="hidden" name="fromUserNum" value="${userVO.userNum}">
+					<textarea id="reason" rows="" cols="" name="reason"></textarea>
 				</form>
 				<h1 id="submit_btn">제출</h1>
 			</div>
@@ -567,16 +540,28 @@ $(document).ready(function() { // 페이지가 준비되면
   	$("#suspend").click(function(){
   		$(".modal2").fadeIn();
   	});
-  	$("#d2").click(function(){
-  		/* 신고게시판 이동 */
-  	});
-  	$("#d3").click(function(){
+  	$("#img_cancel").click(function(){
   		$(".modal").fadeOut();
   		$(".modal2").fadeOut();
   		// 스크롤 제한 off
   		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
   	});
   	
+  	$(".icon_more").click(function(){
+  		toUserNum = (this).getAttribute('data-user-num');
+  		$("#toUserNum").val(toUserNum);
+  	});
+  	
+  	$("#submit_btn").click(function(){
+		var result = confirm("신고 접수하시겠습니까?");
+		if (result) {
+			if ($("#reason").val().length != 0) {
+				$("#report_frm").submit();
+			} else {
+				alert("신고 이유를 입력해주세요.");	
+			}
+		}
+	});
 
  </script>
 

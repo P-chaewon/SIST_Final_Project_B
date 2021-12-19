@@ -118,6 +118,11 @@
   			</when>
   		</choose>
 	</select>
+	
+	<select id="getPaymentsCk" parameterType="Long" resultType="Long">
+		select distinct userNum from payments 
+		where paymentsCk = 'y' and userNum = #{userNum}
+	</select>
 </mapper>
   
  

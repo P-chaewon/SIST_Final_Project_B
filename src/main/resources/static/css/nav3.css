@@ -314,6 +314,7 @@ input:-webkit-autofill {
 }
 
 .blue_circle {
+	margin-top: 4px;
 	width: 8px;
 	height: 8px;
 	border-radius: 100px;

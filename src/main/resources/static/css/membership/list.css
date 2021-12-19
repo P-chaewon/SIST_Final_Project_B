@@ -1,12 +1,17 @@
 @charset "UTF-8";
 
+body {
+	overflow-y: scroll;
+	background-color: #fafafa;
+}
+
 .wrapper {
 	position: absolute;
 	width: 50%;
 	top: 10px;
 	left: 50%;
 	transform:translate(-50%, 0%); 
-	padding: 100px;
+	margin-top: 80px;
 }
 
 .title {
@@ -27,6 +32,7 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	text-align: center;
+	background-color: white;
 }
 
 table, tr {

@@ -4,8 +4,10 @@ package com.sist.b.home;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.sist.b.ad.AdService;
+import com.sist.b.ad.AdVO;
 import com.sist.b.alarm.AlarmService;
 import com.sist.b.alarm.AlarmVO;
 import com.sist.b.bookmark.BookmarkService;
@@ -33,7 +38,7 @@ import com.sist.b.comment.CommentService;
 import com.sist.b.comment.CommentVO;
 import com.sist.b.likes.LikesService;
 import com.sist.b.likes.LikesVO;
-
+import com.sist.b.payments.PaymentsService;
 import com.sist.b.follow.FollowService;
 
 import com.sist.b.post.PostService;
@@ -73,6 +78,12 @@ public class HomeController {
 	@Autowired
 	private AlarmService alarmService;
 	
+	@Autowired
+	private AdService adService;
+	
+	@Autowired
+	private PaymentsService paymentsService;
+	
 	@GetMapping("/")
 	public ModelAndView getPostList(HttpSession session)throws Exception{
 
@@ -108,11 +119,29 @@ public class HomeController {
 		} 
 		userVO.setUserCount(5);
 		users = followService.userList(userVO);
+		
+		// 멤버십 가입 여부 확인
+		Long userNum = paymentsService.getPaymentsCk(userVO.getUserNum());
+		
+		if (userNum == null) {
+			mv.addObject("paymentsCk", "n");
+		} else {
+			mv.addObject("paymentsCk", "y");
+		}
+		
 		mv.addObject("postList", ar);
 		
 		mv.addObject("users", users);
 		mv.setViewName(viewname);			
 
+		return mv;
+	}
+	
+	@PostMapping("/")
+	public ModelAndView postReport(ReportVO reportVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		int result = reportService.setInsert(reportVO);
+		mv.setViewName("redirect:/");
 		return mv;
 	}
 	
@@ -309,16 +338,14 @@ public class HomeController {
 	
 
 	@PostMapping("/{username}")
-	public ModelAndView getProfile(@PathVariable String username, HttpSession session,ReportVO reportVO) throws Exception {
+	public ModelAndView getProfile(@PathVariable String username, HttpSession session, ReportVO reportVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		//파라미터 username으로 가져온 userVO
 		UserVO userVO = userService.getSelectOne(username);
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
-		// 신고 정보 insert
-		int result = reportService.setInsert(reportVO);
-		
+
 		mv.addObject("userVO", userVO);
 		mv.setViewName("profile");
 		return mv;
@@ -343,6 +370,14 @@ public class HomeController {
 		
 		return mv;
 	}
-
+	
+	@GetMapping("ad")
+	public ModelAndView getRandomAd() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		AdVO adVO = adService.getRandomAd();
+		mv.addObject("adVO", adVO);
+		mv.setViewName("ad/popup");
+		return mv;
+	}
 
 }

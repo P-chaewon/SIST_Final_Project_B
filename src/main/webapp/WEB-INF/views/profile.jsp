@@ -321,8 +321,8 @@
 		</div>
 	</div>
 	
-	<div class="modal2">
-		<div class="modal_content2">
+	<div class="report_modal2">
+		<div class="report_modal_content2">
 			<div id="d1">
 				<h1 class="d1_c">신고</h1>
 				<img class="modal_img" id="img_cancel" alt="cancel" src="${pageContext.request.contextPath}/static/icons/cancel.png">
@@ -335,7 +335,7 @@
 					<input hidden="hidden" name="reportType" value="user">
 					<input type="hidden" name="toUserNum" value="${userVO.userNum}">
 					<input type="hidden" name="fromUserNum" value="${fromUserNum}">
-					<textarea rows="" cols="" name="reason"></textarea>
+					<textarea id="reason" rows="" cols="" name="reason"></textarea>
 				</form>
 				<h1 id="submit_btn">제출</h1>
 			</div>
@@ -356,19 +356,23 @@
 		})
 		
 		$("#report").click(function(){
-			$(".modal2").fadeIn();
+			$(".report_modal2").fadeIn();
 		});
 		
 		$("#img_cancel").click(function(){
 			$(".report_modal").fadeOut();
-			$(".modal2").fadeOut();
+			$(".report_modal2").fadeOut();
 			$('html, body').css({'overflow': 'auto', 'height': 'auto'});
 		});
 		
 		$("#submit_btn").click(function(){
 			var result = confirm("신고 접수하시겠습니까?");
 			if (result) {
-				$("#report_frm").submit();	
+				if ($("#reason").val().length != 0) {
+					$("#report_frm").submit();	
+				} else {
+					alert("신고 이유를 입력해주세요.");
+				}
 			}
 		});
 		

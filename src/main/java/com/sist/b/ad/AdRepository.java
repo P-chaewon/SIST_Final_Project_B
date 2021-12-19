@@ -18,4 +18,6 @@ public interface AdRepository {
 	public int setFileInsert(AdFileVO adFileVO) throws Exception;
 	// ad delete
 	public int setDelete(AdVO adVO) throws Exception;
+	// random ad
+	public AdVO getRandomAd() throws Exception;
 }

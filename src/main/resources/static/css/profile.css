@@ -173,7 +173,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 }
 
 /* 시용자 신고 모달 2 */
-.modal2 {
+.report_modal2 {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;	
@@ -184,7 +184,7 @@ body, button, input, textarea{color: #262626; font-size: 14px; line-height: 18px
 	z-index: 1000;
 }
 
-.modal_content2 {
+.report_modal_content2 {
 	position: absolute;
 	top: 50%;
 	left: 50%;

@@ -127,7 +127,7 @@
 										<button class="commentDel" id="commentDel" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">삭제</button>
 							       	</c:when>
 							       	<c:otherwise>
-							       		<button class="commentDel suspend" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">신고</button>
+							       		<button class="commentDel suspend" data-writer="${commentList.writer}" data-comment-del="${commentList.commentNum}" style="margin-left:230px; border:1px solid #000000; font-size:12px; background-color:#fff;">신고 </button>
 							       	</c:otherwise>
 							       </c:choose>
 							 </div>
@@ -288,32 +288,38 @@
 	</div>
 	
 	
-	<!--  신고-->
-		<!-- <div class="modal">
-		<div class="modal_content">
-			<button type="button" id="suspend">
+<!-- 댓글 신고 모달 -->
+	<div class="report_modal">
+		<div class="report_modal_content">
+			<button type="button" id="comment_suspend">
 				<h1>신고</h1>
 			</button>
-			<button type="button" id="cancel">취소</button>
+			<button type="button" id="suspend_cancel">취소</button>
 		</div>
 	</div>
-	
-	<div class="modal2">
-		<div class="modal_content2">
+
+	<div class="report_modal2">
+		<div class="report_modal_content2">
 			<div id="d1">
-				<span class="c">
-					<h1 id="d1_t1">게시물을 신고할까요?</h1> 
-					<span id="d1_t2">이 게시물을 신고하시겠어요?</span>
-				</span>
+				<h1 class="d1_c">신고</h1>
+				<img class="modal_img" id="img_cancel" alt="cancel"
+					src="${pageContext.request.contextPath}/static/icons/cancel.png">
 			</div>
 			<div id="d2">
-				<h1 class="c" id="d2_del">신고</h1>
+				<h1 id="d2_c">이 댓글을 신고하는 이유는 무엇인가요?</h1>
 			</div>
 			<div id="d3">
-				<span class="c" id="d3_can">취소</span>
+				<form id="report_frm" method="post">
+					<input hidden="hidden" name="reportType" value="comment"> 
+					<input id="toUserNum" type="hidden" name="toUserNum" value="0">
+					<input type="hidden" name="fromUserNum" value="${userNum}">
+					<input type="hidden" name="postNum" value="${param.postNum}">
+					<textarea id="reason" rows="" cols="" name="reason"></textarea>
+				</form>
+				<h1 id="submit_btn">제출</h1>
 			</div>
 		</div>
-	</div> -->
+	</div>
 
 <!-- 좋아요 리스트 -->
 		<div class="like-modal-container" role="presentation" style="display: none;" >
@@ -625,6 +631,56 @@
   	
   	
   	/* 신고 버튼 */
+  	$(".suspend").click(function(){
+  		writer = (this).getAttribute('data-writer');
+  		
+  		$(".report_modal").fadeIn();
+  		// 스크롤 제한 on
+  		$('html, body').css({'overflow': 'hidden', 'height': '100%'});
+  		postNum = (this).getAttribute('data-postNum');
+  	});
+  	
+  	$("#suspend_cancel").click(function(){
+  		$(".report_modal").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+  	
+  	$("#comment_suspend").click(function(){
+  		$(".report_modal2").fadeIn();
+  	});
+  	
+  	$("#img_cancel").click(function(){
+  		$(".report_modal").fadeOut();
+  		$(".report_modal2").fadeOut();
+  		// 스크롤 제한 off
+  		$('html, body').css({'overflow': 'auto', 'height': 'auto'});
+  	});
+  	
+  	$("#submit_btn").click(function(){
+		var result = confirm("신고 접수하시겠습니까?");
+		if (result) {
+			if ($("#reason").val().length != 0) {
+				$.ajax({
+	   	            url : './getToUserNum.do',
+	   	            type : 'get',
+	   	            data : {
+	   	            	writer : writer,
+	   	            },
+	   	            success : function(userNum) {
+	   	            	$("#toUserNum").val(userNum);
+	   	            	$("#report_frm").submit();
+	   	            },
+	   	            error : function() {
+	   	                alert('서버 에러');
+	   	            }
+	   	        });	
+			} else {
+				alert("신고 이유를 입력해주세요.");	
+			}
+		}
+	});
+  	
 	/* 수정 */
   	  	$(document).on("click", "suspend",function(){
   		$(".modal2").fadeIn();
