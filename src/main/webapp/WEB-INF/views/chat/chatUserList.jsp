@@ -19,3 +19,4 @@
 	<!-- ${list.userNum}
 	${list.exitDate}  -->
 </c:forEach>
+

@@ -36,7 +36,7 @@ public interface UserRepository {
 	//메일 인증 번호 DB 저장
 	public int getAuthkey(Map<String, String> mailMap) throws Exception;
 	//아이디로 유저 검색
-	public List<UserVO> getSearchUser(String searchText) throws Exception;
+	public List<UserVO> getSearchUser(Map<String, Object> map) throws Exception;
 	//로그인 시 저장
 	public int setLoginlog(UserlogVO userlogVO) throws Exception;
 	//로그아웃 시 저장

@@ -55,27 +55,56 @@ function newChat(userNum, userId) {
 새로운 채팅 -- 유저 검색
 */
 function getSearchUser(text) {
-	$.ajax({
-		type: "GET"
-		, url: "./getSearchUser"
-		, data: {
-			searchText: text
-		}
-		, success: function(result) {
-			result = result.trim();
-			$("#modalSearchResultArea").html(result);
+	text = text.trim();
+	
+	if (text.length == 0) {//검색어 없을 때
+		
+		$.ajax({
+			type: "GET"
+			, url: "./getFollowUser"
+			, success: function(result) {
+				$("#modalSearchResultArea").html(result);
 			
-						
-			$(".searchResult").on("click", function() {
-				let userNum = $(this).data('usernum');
-				let userId = $(this).find('.suId').text();
+				$(".searchResult").on("click", function() {
+					let userNum = $(this).data('usernum');
+					let userId = $(this).find('.suId').text();
+					
+					newChat(userNum, userId);
+				});
+			}
+			, error: function(error) {
+				console.log(error);
+			}
+		})
+	} else {
+		$.ajax({
+			type: "GET"
+			, url: "./getSearchUser"
+			, data: {
+				searchText: text
+			}
+			, success: function(result) {
+				result = result.trim();
 				
-				newChat(userNum, userId);
-			});
-		}, error: function(error) {
-			console.log(error);
-		}
-	})
+				if (!result) {
+					let noResult = "<div class='noSearchResult'> 계정을 찾을 수 없습니다. </div>"
+					$("#modalSearchResultArea").html(noResult);
+				} else {
+					$("#modalSearchResultArea").html(result);
+				
+					$(".searchResult").on("click", function() {
+						let userNum = $(this).data('usernum');
+						let userId = $(this).find('.suId').text();
+						
+						newChat(userNum, userId);
+					});
+				}
+			}, error: function(error) {
+				console.log(error);
+			}
+		})
+	}
+
 }
 
 

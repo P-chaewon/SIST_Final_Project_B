@@ -11,7 +11,7 @@ import com.sist.b.user.UserVO;
 public interface ChatRoomJoinRepository {
 	
 	// 채팅 메시지 불러오기 
-	public List<ChatMessageVO> getChatMessage(ChatMessageVO chatMessageVO) throws Exception;
+	public List<ChatMessageVO> getChatMessage(ChatRoomJoinVO chatRoomJoinVO) throws Exception;
 	
 	// 채팅 메시지 저장
 	public int setChatMessage(ChatMessageVO chatMessageVO) throws Exception;
@@ -19,6 +19,12 @@ public interface ChatRoomJoinRepository {
 	// 자신과 함께 채팅에 참여하고 있는 유저 리스트 출력
 	// --가장 최근에 채팅 한 사람이 우선으로 나올 수 있도록 출력해야함
 	public List<ChatRoomJoinVO> getChatUserList(UserVO userVO) throws Exception;
+	
+	// 채팅방 재입장 (newChat으로)
+	public int setUpdateReChatRoomJoin(ChatRoomJoinVO chatRoomJoinVO) throws Exception;
+	
+	// 채팅방 퇴장
+	public int setUpdateChatRoomJoin(ChatRoomJoinVO chatRoomJoinVO) throws Exception;
 	
 	// 채팅방 관계 만들어주기
 	public int setChatRoomJoin(ChatRoomJoinVO chatRoomJoinVO) throws Exception;

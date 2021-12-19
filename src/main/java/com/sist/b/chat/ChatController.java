@@ -13,6 +13,7 @@ import org.springframework.messaging.simp.annotation.SendToUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sist.b.chat.chatroom.ChatRoomJoinService;
 import com.sist.b.chat.chatroom.ChatRoomJoinVO;
+import com.sist.b.follow.FollowService;
 import com.sist.b.user.UserService;
 import com.sist.b.user.UserVO;
 
@@ -41,13 +43,14 @@ public class ChatController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private FollowService followService;
+	
 	private final SimpMessagingTemplate simpMessagingTemplate;
 
 	
-	
-	/************** 채팅방 모달창 유저 검색 *****************/
-	@GetMapping("/chat/getSearchUser")
-	public ModelAndView getSearchUser(HttpSession session, String searchText) throws Exception {
+	@GetMapping("/chat/getFollowUser")
+	public ModelAndView getFollowUser(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
@@ -55,12 +58,31 @@ public class ChatController {
 	    Authentication authentication = sc.getAuthentication();
 	    UserVO userVO = (UserVO)authentication.getPrincipal(); 
 		
+	    List<UserVO> list = followService.myFollowList(userVO);
+	    
+	    mv.addObject("gbn", "follow");
+	    mv.addObject("searchUserList", list);
+	    mv.setViewName("chat/searchUserList");
+		return mv;
+	}
+	 
+	
+	/************** 채팅방 모달창 유저 검색 *****************/
+	@GetMapping("/chat/getSearchUser")
+	public ModelAndView getSearchUser(HttpSession session, String searchText) throws Exception {
+		ModelAndView mv = new ModelAndView();	
+		
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    SecurityContextImpl sc = (SecurityContextImpl)object;
+	    Authentication authentication = sc.getAuthentication();
+	    UserVO userVO = (UserVO)authentication.getPrincipal(); 
+
 //		System.out.println("searchText:" + searchText);
-		List<UserVO> list = userService.getSaerchUser(searchText);
+		List<UserVO> list = userService.getSaerchUser(userVO, searchText);
 		
 		System.out.println("list.size:"+ list.size());
 		
-		
+		mv.addObject("gbn", "search");
 		mv.addObject("searchUserList", list);
 		mv.setViewName("chat/searchUserList");
 		return mv;
@@ -72,14 +94,26 @@ public class ChatController {
 	/************** 채팅 로그 가져오기 *****************/
 	@PostMapping("/chat/getChatMessage")
 	@ResponseBody
-	public List<ChatMessageVO> getChatMessage(ChatMessageVO chatMessageVO, HttpSession session) throws Exception {
-	    List<ChatMessageVO> messageList = chatRoomJoinService.getChatMessage(chatMessageVO);
+	public List<ChatMessageVO> getChatMessage(ChatRoomJoinVO chatRoomJoinVO, HttpSession session) throws Exception {
+	    List<ChatMessageVO> messageList = chatRoomJoinService.getChatMessage(chatRoomJoinVO);
 
 	    return messageList;
 	}
 	/****************************************************/
 	
-	
+	@PostMapping("/chat/getDetailInfo")
+	public ModelAndView getDetailInfo(UserVO userVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		userVO = userService.getUserInfo(userVO.getUserNum());
+		
+		System.out.println("saddss::"+userVO.getUsername());
+		System.out.println("saddss::"+userVO.getUserNum());
+		
+		mv.addObject("receiverUserVO", userVO);
+		mv.setViewName("chat/chatDetailInfo");
+		return mv;
+	}
 	
 	
 	/***************************** 채팅방 *****************************/
@@ -163,6 +197,14 @@ public class ChatController {
 	}
 	
 	
+	/* 채팅 퇴장 */
+	@PostMapping("/chat/setRemoveChat")
+	@ResponseBody
+	public int setRemoveChat(ChatRoomJoinVO chatRoomJoinVO) throws Exception {
+		return chatRoomJoinService.setUpdateChatRoomJoin(chatRoomJoinVO);
+	}
+	
+	
 	/* 채팅 첫 화면 */
 	@GetMapping("/chat/inbox")
 	public ModelAndView chat(HttpSession session) throws Exception {
@@ -191,6 +233,11 @@ public class ChatController {
 		chatRoomJoinService.setChatMessage(chatMessageVO);
 		simpMessagingTemplate.convertAndSend("/topic/"+chatMessageVO.getReceiverNum(), chatMessageVO);
 		
+		ChatRoomJoinVO chatRoomJoinVO = new ChatRoomJoinVO();
+		chatRoomJoinVO.setRoomNum(chatMessageVO.getRoomNum());
+		chatRoomJoinVO.setUserNum(chatMessageVO.getReceiverNum());
+		//채팅받는 상대 exitYN = N으로
+		chatRoomJoinService.setUpdateReChatRoomJoin(chatRoomJoinVO); 
 	}
 	
 	

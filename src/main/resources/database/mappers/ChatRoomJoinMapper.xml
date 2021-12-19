@@ -5,9 +5,13 @@
   
   <mapper namespace="com.sist.b.chat.chatroom.ChatRoomJoinRepository">
   
-  	<select id="getChatMessage" parameterType="ChatMessageVO" resultType="ChatMessageVO">
+  	
+  
+  
+  	<select id="getChatMessage" parameterType="ChatRoomJoinVO" resultType="ChatMessageVO">
   		SELECT * FROM CHATMESSAGE
-  		WHERE ROOMNUM = #{roomNum}
+		WHERE ROOMNUM = #{roomNum}
+		AND SENDDATE > (SELECT EXITDATE FROM CHATROOMJOIN WHERE ROOMNUM = #{roomNum} AND USERNUM = #{userNum})
   	</select>
   
   	<insert id="setChatMessage" parameterType="ChatMessageVO">
@@ -32,14 +36,26 @@
 		JOIN (SELECT * FROM 
 			CHATROOMJOIN 
 			WHERE ROOMNUM IN (
-			SELECT roomNum FROM CHATROOMJOIN WHERE USERNUM = #{userNum}) 
+			SELECT roomNum FROM CHATROOMJOIN WHERE USERNUM = #{userNum} AND EXITYN = 'N') 
 			AND USERNUM NOT IN (#{userNum})) CRJ
 		ON (U.userNum = CRJ.userNum)
   	</select>
+  	
+  	<update id="setUpdateReChatRoomJoin" parameterType="ChatRoomJoinVO">
+  		UPDATE CHATROOMJOIN
+		SET exitYN = 'N'
+		WHERE USERNUM = #{userNum} AND ROOMNUM = #{roomNum}
+  	</update>
+  	
+  	<update id="setUpdateChatRoomJoin" parameterType="ChatRoomJoinVO">
+  		UPDATE CHATROOMJOIN
+		SET exitDate = now(), exitYN = 'Y'
+		WHERE USERNUM = #{userNum} AND ROOMNUM = #{roomNum}
+  	</update>
   
   	<insert id="setChatRoomJoin" parameterType="ChatRoomJoinVO">
-  		INSERT INTO CHATROOMJOIN (JOINNUM, USERNUM, ROOMNUM, EXITDATE)
-  		VALUES (0, #{userNum}, #{roomNum}, now())
+  		INSERT INTO CHATROOMJOIN (JOINNUM, USERNUM, ROOMNUM, EXITDATE, EXITYN)
+  		VALUES (0, #{userNum}, #{roomNum}, now(), 'N')
   	</insert>
   
   	<insert id="setNewChatRoom" useGeneratedKeys="true" keyProperty="roomNum" parameterType="ChatRoomVO">

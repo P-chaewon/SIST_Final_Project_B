@@ -97,6 +97,10 @@ body {
 	cursor: pointer;
 }
 
+.chat-user-list-box:hover {
+	background-color: #fafafa;
+}
+
 .user-list-img {
 	display: flex;
 	width: 56px;
@@ -340,6 +344,7 @@ body {
 
 
 
+
 /* ---------------  modal --------------- */
 
 .modal {
@@ -458,6 +463,23 @@ body {
 	overflow-y: scroll;
 }
 
+.followText {
+	display: flex;
+    margin: 16px;
+    font-size: 14px;
+    color: #262626;
+    font-family: 'Apple SD Bold', 'Apple SD';
+}
+
+.noSearchResult {
+	display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding: 0 10px 0 10px;
+    font-size: 14px;
+    color: #828282;
+}
+
 .searchResult {
 	display: flex;
 	margin: 8px 0 8px 0;
@@ -487,6 +509,7 @@ body {
 
 .suId {
 	font-family: 'Apple SD Bold', 'Apple SD';
+	margin-bottom: 2px;
 }
 
 .suNick {
@@ -498,4 +521,146 @@ body {
 	height: 40px;
 	border-radius: 100px;
 	margin-right: 10px;
+}
+
+
+
+
+/* ---------------  detailInfo --------------- */
+.chat-other-user-box2 {
+	display: flex;
+	flex-direction: column;
+	width: 100%; height: 60px;
+	border-bottom: 1px solid #dbdbdb;
+	box-sizing: border-box;
+}
+
+.info-container {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.info-member-con {
+	display: flex;
+	border-bottom: 1px solid #dbdbdb;
+	box-sizing: border-box;
+	padding: 20px 0 20px 0;
+}
+
+.info-member-area {
+	display: flex;
+	flex-direction: column;
+	width: 100%;	
+}
+
+.infoText {
+	font-family: 'Apple SD Bold', 'Apple SD';
+	margin: 8px 0 8px 0;
+	padding: 0 16px 0 16px;
+}
+
+.info-menu-con {
+	display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    
+}
+
+.info-btn-area {
+	margin: 16px;
+}
+
+.info-menu-con button {
+	font-size: 14px;
+	background: transparent;
+	border: 0;
+	cursor: pointer;
+	color: #ed4956;
+	padding: 0;
+}
+
+
+
+
+.user-link-area {
+	display: flex;
+	padding: 8px 16px 8px 16px;
+	width: 100%;
+	box-sizing: border-box;
+	align-items: center;
+	cursor: pointer;
+}
+
+.user-link-area:hover {
+	background-color: #fafafa;
+}
+
+.user-list-nick .user-id {
+	font-family: 'Apple SD Bold', 'Apple SD';
+	margin-bottom: 2px;
+}
+
+/* --------------- 채팅 삭제 modal --------------- */
+.remove-modal {
+	position: fixed;
+	justify-content: space-around;
+	align-items: center;
+	flex-direction: column;
+	width: 100%; height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	top: 0; left: 0;
+	z-index: 99;
+	display: none;
+}
+
+.remove-modal .modal-area {
+	height: auto;
+}
+
+.remove-modal .modal-header {
+	display: flex;
+	justify-content: center;
+	height: auto;
+	padding: 32px 0 32px 0;
+}
+
+.mh1 {
+	font-family: 'Apple SD Bold', 'Apple SD';
+	color: #262626;
+	font-size: 18px;
+}
+
+.mh2 {
+    padding-top: 16px;
+    line-height: 18px;
+    font-size: 14px;
+    color: #828282;
+}
+
+.remove-modal .modal-content {
+	display: flex;
+	border: 0;
+}
+
+.remove-modal .modal-content div {
+	display: flex;
+	justify-content: center;
+	min-height: 48px;
+}
+
+.remove-modal .modal-remove-area {
+	border-bottom: 1px solid #dbdbdb;
+}
+
+.remove-modal .chat-remove-btn {
+	color: #ed4956;
+}
+
+.remove-modal .modal-content button {
+	background: transparent;
+	width: 100%;
+	border: 0;
+	cursor: pointer;
 }

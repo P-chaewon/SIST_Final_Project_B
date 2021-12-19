@@ -6,17 +6,73 @@
 var stompClient = null;
 
 
+
+
+
 /*
- 채팅방 - 정보 
+채팅 삭제
+*/
+function setRemoveChat() {
+	$.ajax({
+		type: "POST"
+		, url: "../setRemoveChat"
+		, data: {
+			userNum : userNum
+			, roomNum : roomNum
+		}
+		, success: function(result) {
+			if (result == 1) {
+				location.href = "../inbox";
+			}
+		}, error: function(error) {
+			console.log(error);
+		}
+	})
+}
+
+
+
+/*
+ 채팅방 - 정보 보기
  */
-function getDetailInfo() {
-	$(".chat-right-area").empty();
+function goDetailInfo() {
+
+	$.ajax({
+		type: "POST"
+		, url: "../getDetailInfo"
+		, data: {
+			userNum: receiverNum
+		}
+		, success: function(result) {
+			$(".chat-right-area").empty();
+			$(".chat-right-area").append(result);
+
+			
+			$(".chatRemoveModalBtn").click(function() {
+				$(".remove-modal").css('display', 'flex');
+			});
+
+			$("#chatRemoveBtn").click(function() {
+				setRemoveChat();
+			})
+			
+			$("#chatRemoveCancelBtn").click(function() {
+				$(".remove-modal").css('display', 'none');
+			})
+		}, error: function(error) {
+			console.log(error);
+		}
+	});
+
+	
 	
 	let $button = $('<button></button>');
 	$button.attr('class', 'aa');
 	$(".chat-right-area").append($button);
 	
-	
+	console.log('roomNum:'+roomNum);
+	console.log('receiver:'+receiverNum);
+	console.log('user:'+userNum);
 
 }
 
@@ -30,6 +86,7 @@ function getDetailInfo() {
  userNum : 상대방-
 */
 function goChatRoom(roomNum, userNum, userId) {
+	
 	url='./'+roomNum; 
 
 	let $form = $('<form></form>'); 
@@ -76,12 +133,28 @@ function newChat(userNum, userId) {
 */
 function getSearchUser(text) {
 	text = text.trim();
-	
-	//검색어 없을 때
-	if (text.length == 0) {
-		$("#modalSearchResultArea").find(".searchResult").remove();
-		$(".noSearchResult").css('display', 'flex');
-	} else {
+	console.log("un:"+userNum);
+
+	if (text.length == 0) {//검색어 없을 때
+		
+		$.ajax({
+			type: "GET"
+			, url: "../getFollowUser"
+			, success: function(result) {
+				$("#modalSearchResultArea").html(result);
+			
+				$(".searchResult").on("click", function() {
+					let userNum = $(this).data('usernum');
+					let userId = $(this).find('.suId').text();
+					
+					newChat(userNum, userId);
+				});
+			}
+			, error: function(error) {
+				console.log(error);
+			}
+		})
+	} else {//검색어 있을 때
 		$.ajax({
 			type: "GET"
 			, url: "../getSearchUser"
@@ -90,14 +163,22 @@ function getSearchUser(text) {
 			}
 			, success: function(result) {
 				result = result.trim();
-				$("#modalSearchResultArea").html(result);
 				
-				$(".searchResult").on("click", function() {
-					let userNum = $(this).data('usernum');
-					let userId = $(this).find('.suId').text();
-					
-					newChat(userNum, userId);
-				});
+				if (!result) {
+					let noResult = "<div class='noSearchResult'> 계정을 찾을 수 없습니다. </div>"
+					$("#modalSearchResultArea").html(noResult);
+				} else {
+					$("#modalSearchResultArea").html(result);
+				
+					$(".searchResult").on("click", function() {
+						let userNum = $(this).data('usernum');
+						let userId = $(this).find('.suId').text();
+						
+						newChat(userNum, userId);
+					});
+				}
+				
+				
 			}, error: function(error) {
 				console.log(error);
 			}
@@ -122,8 +203,11 @@ function getChatUserList() {
 				let roomNum = $(this).data('roomnum');
 				let userNum = $(this).data('usernum');
 				let userId = $(this).find('.user-id').text();
+
 				
 				goChatRoom(roomNum, userNum, userId);
+				
+
 			});
 		}, error: function(error) {
 			console.log(error);
@@ -154,6 +238,7 @@ function connect() {
     stompClient.subscribe('/topic/'+userNum, function (chat) {
 		//console.log('chat.body:'+JSON.parse(chat.body));
     	showChat(JSON.parse(chat.body).contents, 'l');
+    	chatScrollDown();
     });
   });
 }
@@ -170,16 +255,15 @@ function disconnect() {
 
 /* 기존 채팅 메시지 db에서 불러와서 html 렌더링 */
 function getChatLog() {
-	console.log('roomNum:'+roomNum);
 	$.ajax({
 		type: "POST"
 		, url: "../getChatMessage"
 		, data: {
-			roomNum : roomNum
+			userNum : userNum
+			, roomNum : roomNum
 		}
 		, success: function(result) {
 			$.each (result, function(key, value) {
-				console.log("con:"+value.contents);
 				
 				if (userNum == value.userNum) {
 					showChat(value.contents, 'r');
@@ -244,8 +328,7 @@ $(function () {
 		  
 	getChatLog();
   
-  
-  
+
 
 	/* 채팅전송 */
 	$("#chatSend").click(function(){ sendChat(); });
@@ -257,7 +340,7 @@ $(function () {
 	
 	/* 상세정보 */
 	$("#detailInfoBtn").click(function() {
-		getDetailInfo();
+		goDetailInfo();
 	})
 
 
@@ -275,6 +358,6 @@ $(function () {
 		getSearchUser($("#searchText").val());
 	});
 	
-	
+
 
 });

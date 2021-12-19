@@ -98,9 +98,11 @@
  		update user set authkey=#{authkey} where username=#{username}
  	</update>
 
-	<select id="getSearchUser" resultType="UserVO" parameterType="String">
-		SELECT userNum, nickName, username, fileName FROM USER
-		WHERE username LIKE CONCAT('%', #{searchText}, '%')
+	<select id="getSearchUser" resultType="UserVO" parameterType="Map">
+		SELECT * FROM
+			(SELECT userNum, nickName, username, fileName FROM USER
+			WHERE username LIKE CONCAT('%', #{searchText}, '%')) U
+		WHERE USERNUM NOT IN (#{userNum})
 	</select>
 	
 	<insert id="setLoginlog" parameterType="UserlogVO">
