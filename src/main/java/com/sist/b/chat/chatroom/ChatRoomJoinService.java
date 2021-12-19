@@ -23,8 +23,8 @@ public class ChatRoomJoinService {
 	 * getChatMessage
 	 * 채팅 메시지 불러오기
 	 */
-	public List<ChatMessageVO> getChatMessage(ChatMessageVO chatMessageVO) throws Exception {
-		return chatRoomJoinRepository.getChatMessage(chatMessageVO);
+	public List<ChatMessageVO> getChatMessage(ChatRoomJoinVO chatRoomJoinVO) throws Exception {
+		return chatRoomJoinRepository.getChatMessage(chatRoomJoinVO);
 	}
 	
 	
@@ -47,6 +47,23 @@ public class ChatRoomJoinService {
 	 */
 	public List<ChatRoomJoinVO> getChatUserList(UserVO userVO) throws Exception {
 		return chatRoomJoinRepository.getChatUserList(userVO);
+	}
+	
+	
+	/* setUpdateReChatRoomJoin
+	 * 채팅방 재접속
+	 */
+	public int setUpdateReChatRoomJoin(ChatRoomJoinVO chatRoomJoinVO) throws Exception {
+		return chatRoomJoinRepository.setUpdateReChatRoomJoin(chatRoomJoinVO);
+	}
+	
+
+	/* 
+	 * setUpdateChatRoomJoin
+	 * 채팅 퇴장할 경우 exitYN = Y로 바꿔줌 
+	 */
+	public int setUpdateChatRoomJoin(ChatRoomJoinVO chatRoomJoinVO) throws Exception {
+		return chatRoomJoinRepository.setUpdateChatRoomJoin(chatRoomJoinVO);
 	}
 	
 	
@@ -79,7 +96,19 @@ public class ChatRoomJoinService {
 				
 				// 같이 참여하는 채팅방 존재
 				if (count > 0) {
+					System.out.println("count>0");
+					
+					
 					chatRoomNum = chatRoomJoinVO.getRoomNum();
+					
+					ChatRoomJoinVO crjVO = new ChatRoomJoinVO();
+					crjVO.setUserNum(myUserNum);
+					crjVO.setRoomNum(chatRoomNum);
+					
+					System.out.println("crjVO:"+crjVO);
+					
+					int r = chatRoomJoinRepository.setUpdateReChatRoomJoin(crjVO);
+					System.out.println("결과: " + r);
 				}
 			}
 		} 

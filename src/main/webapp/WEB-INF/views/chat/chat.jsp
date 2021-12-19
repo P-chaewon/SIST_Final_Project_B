@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>gram | chatting</title>
+<title>withUs | chatting</title>
 
 <c:import url="../temp/head.jsp"></c:import>
 <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
@@ -94,6 +94,8 @@
 
 <script type="text/javascript">
 	$("#dm").attr("src", "${pageContext.request.contextPath}/static/icons/dm-click.png");
+	
+	let userNum = ${userVO.userNum};
 </script>
 <script src="${pageContext.request.contextPath}/static/js/chat/chat.js"></script>
 
