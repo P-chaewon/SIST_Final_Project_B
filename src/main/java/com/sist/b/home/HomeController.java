@@ -345,7 +345,9 @@ public class HomeController {
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
 		SecurityContextImpl sc = (SecurityContextImpl)object;
 		Authentication authentication = sc.getAuthentication();
-
+		// 신고 정보 insert
+		int result = reportService.setInsert(reportVO);
+		
 		mv.addObject("userVO", userVO);
 		mv.setViewName("profile");
 		return mv;
