@@ -148,10 +148,9 @@ public class UserService implements UserDetailsService{
 	}
 	
 	public int setDelete(UserVO userVO) throws Exception {
+		System.out.println(userVO.getPassword());
 		userVO.setPassword(passwordEncoder.encode(userVO.getPassword()));
 		int result = userRepository.setDelete(userVO);
-		System.out.println("Serivce");
-		System.out.println(result);
 		return result;
 	}
 

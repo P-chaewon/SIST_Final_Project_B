@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/post/upload.css">
 </head>
 <body>
+<sec:authentication property="principal.fileName" var="fileName"/>
 <script type="text/javascript">
 	$("#upload").attr("src", "${pageContext.request.contextPath}/static/icons/add-click.png");
 </script>
@@ -60,7 +61,7 @@
 					
 					<div class="post_profile">
 					
-							<img class="post_profile_img pic" style="height: 26px; width: 26px; margin-top: 12px; margin-left: 10px;" alt="profile"  src="${pageContext.request.contextPath}/static/icons/user.jpg">
+							<img class="post_profile_img pic" style="height: 26px; width: 26px; margin-top: 12px; margin-left: 10px;" alt="profile"  src="${pageContext.request.contextPath}/static/upload/user/${fileName}">
 						
 							
 						<span class="nickname main_nickname point_span"><sec:authentication property="principal.nickname" var="nickname"/>	${nickname}</span>

@@ -92,20 +92,44 @@
 									</span>
 								</li>
 								<li class="info-li">
-									<span class="info-name follower" data-user-name="${userVO.username}" style="cursor: pointer;">
-										팔로워 
-										<span class="info-total" title="33,304">
-											${count.followerCount}
-										</span>
-									</span>
+									<c:choose>
+										<c:when test="${count.followerCount eq 0 }">
+											<span class="info-name" data-user-name="${userVO.username}">
+												팔로워 
+												<span class="info-total">
+													${count.followerCount}
+												</span>
+											</span>
+										</c:when>
+										<c:otherwise>
+											<span class="info-name follower" data-user-name="${userVO.username}" style="cursor: pointer;">
+												팔로워 
+												<span class="info-total">
+													${count.followerCount}
+												</span>
+											</span>
+										</c:otherwise>
+									</c:choose>
 								</li>
 								<li class="info-li">
-									<span class="info-name following" data-user-name="${userVO.username}" style="cursor: pointer;">
-										팔로우 
-										<span class="info-total">
-											${count.followCount }
-										</span>
-									</span>
+									<c:choose>
+										<c:when test="${count.followCount eq 0}">
+											<span class="info-name" data-user-name="${userVO.username}" >
+												팔로우 
+												<span class="info-total">
+													${count.followCount}
+												</span>
+											</span>
+										</c:when>
+										<c:otherwise>
+											<span class="info-name following" data-user-name="${userVO.username}" style="cursor: pointer;">
+												팔로우 
+												<span class="info-total">
+													${count.followCount}
+												</span>
+											</span>
+										</c:otherwise>
+									</c:choose>
 								</li>
 							</ul>
 							<div class="profile-etc-info">

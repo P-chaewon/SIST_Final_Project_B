@@ -29,10 +29,10 @@
 							<a class="edit-list not-selected" href="/gram/account/activity/" tabindex="0">로그인 활동</a>
 						</li>
 						<li>
-							<a class="edit-list not-selected" href="/gram/account/remove/temporary/" tabindex="0">계정 비활성화</a>
+							<a class="edit-list not-selected" href="/gram/account/remove/temporary" tabindex="0">계정 비활성화</a>
 						</li>
 						<li>
-							<a class="edit-list selected" href="/gram/account/remove/permanent/" tabindex="0">회원 탈퇴</a>
+							<a class="edit-list selected" href="/gram/account/remove/permanent" tabindex="0">회원 탈퇴</a>
 						</li>
 						<div class="switch-space">
 							<div class="pro-account">
@@ -175,8 +175,8 @@
 										</aside>
 										<div class="input-change">
 											<div>
-												<input type="hidden" name="username" id="delUsername" value="${username }">
-												<input class="delete-pw-input" id="password" name="password" required="" spellcheck="true" type="password">
+												<input type="hidden" name="username" id="username" value="${username }">
+												<input class="delete-pw-input" id="password" name="password"  type="password">
 											</div>
 										</div>
 									</div>

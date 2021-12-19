@@ -100,6 +100,7 @@ public class FollowController {
 		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("follow/ajaxFollowList");
+		mv.addObject("type", "following");
 		mv.addObject("follows", follows);
 		
 		return mv;
@@ -124,12 +125,10 @@ public class FollowController {
 				}
 			}
 		}
-		
-		
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("follow/ajaxFollowList");
 		mv.addObject("follows", follows);
-		
+		mv.addObject("type", "followerg");
 		return mv;
 	}
 	

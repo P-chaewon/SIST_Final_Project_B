@@ -121,7 +121,8 @@ public class UserController {
 	}
 	
 	@PostMapping("remove/permanent")
-	public ModelAndView setDelete(UserVO userVO, HttpSession session) throws Exception {
+	public ModelAndView setDelete(UserVO userVO) throws Exception {
+		System.out.println(userVO.getUsername());
 		int result = userService.setDelete(userVO);
 		System.out.println("Controller : "+result);
 		ModelAndView mv = new ModelAndView();

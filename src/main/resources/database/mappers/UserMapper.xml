@@ -47,8 +47,9 @@
  	</select>
  	
  	<update id="setUpdate" parameterType="UserVO">
- 		update user set phone=#{phone}, email=#{email}, nickname=#{nickname}, website=#{website}, introduction=#{introduction} 
- 		where userNum=#{username}
+ 		update user set phone=#{phone}, email=#{email}, 
+ 		nickname=#{nickname}, website=#{website}, introduction=#{introduction} 
+ 		where username=#{username}
  	</update>
  	
  	<select id="getIdCheck" parameterType="UserVO" resultType="UserVO">
@@ -68,7 +69,7 @@
  	</update>
  	
  	<delete id="setDelete" parameterType="UserVO">
- 		delete from user where username=#{username} and password=#{password}
+ 		delete from user where username=#{username}
  	</delete>
  	
  	<update id="setDeleteTemporary" parameterType="UserVO">
@@ -79,11 +80,6 @@
  		update user set enabled=1 where username=#{username}
  	</update>
  	
- 	<insert id="setLoginLog" parameterType="UserVO">
- 		insert into userlog (userlogNum, userNum, loginDate) 
- 		values (null, #{userNum}, now());
- 	</insert>
-
  	<update id="setUnenabled" parameterType="UserVO">
  		update user set enabled = 0
 		where userNum = #{userNum}
