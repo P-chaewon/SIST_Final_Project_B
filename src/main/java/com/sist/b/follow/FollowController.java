@@ -83,7 +83,7 @@ public class FollowController {
 	
 	
 	@GetMapping("/{username}/following")
-	public ModelAndView myFollowList(@PathVariable String username,UserVO userVO, HttpSession session) throws Exception {
+	public ModelAndView myFollowingList(@PathVariable String username,UserVO userVO, HttpSession session) throws Exception {
 		userVO = userService.getSelectOne(username);
 		List<UserVO> follows = followService.myFollowList(userVO);
 		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
@@ -107,7 +107,7 @@ public class FollowController {
 	}
 	
 	@GetMapping("/{username}/followers")
-	public ModelAndView myFollowingList(@PathVariable String username,UserVO userVO, HttpSession session) throws Exception {
+	public ModelAndView myFollowerList(@PathVariable String username,UserVO userVO, HttpSession session) throws Exception {
 		userVO = userService.getSelectOne(username);
 		List<UserVO> follows = followService.myFollowerList(userVO);
 		
