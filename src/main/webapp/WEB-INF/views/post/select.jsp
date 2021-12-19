@@ -283,7 +283,7 @@
 			</c:choose>
 			
 			<div id="d3">
-				<span class="c" id="d3_can">취소</span>
+				<span class="c" id="d3_can" style="height: 50px;">취소</span>
 			</div>
 		</div>
 	</div>

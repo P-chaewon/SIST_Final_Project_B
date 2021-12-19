@@ -336,9 +336,9 @@ $(".write").click(function(){
 
 $(document).on('click','.emoji', function(){
 	var emo = $(this).html();
-	$('#contents').append(emo);
-	
-})
+	let con = $('#contents').val();
+	$('#contents').val(con+emo);
+});
 
 $("#emoticon").click(function() {
 	if($("#icon_contents").css('display') == 'none'){
