@@ -37,6 +37,7 @@
 						<div class="switch-space">
 							<div class="pro-account">
 								<div class="switch-account ">
+									<a href="/gram/membership/info" style="color: #0095f6">멤버십 결제 내역</a>
 								</div>
 							</div>
 						</div>
