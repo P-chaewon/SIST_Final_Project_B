@@ -55,6 +55,7 @@ function newChat(userNum, userId) {
 새로운 채팅 -- 유저 검색
 */
 function getSearchUser(text) {
+	console.log("st:"+text);
 	text = text.trim();
 	
 	if (text.length == 0) {//검색어 없을 때
@@ -154,6 +155,7 @@ $(function () {
 	});
 	
 	$("#searchText").on("change keyup paste", function() {
+
 		getSearchUser($("#searchText").val());
 	});
 

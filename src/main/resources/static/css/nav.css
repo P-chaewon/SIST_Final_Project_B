@@ -368,7 +368,7 @@ input:-webkit-autofill {
 	padding: 12px;
 }
 
-.modal-close-area {
+.search-modal-close-area {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -377,19 +377,19 @@ input:-webkit-autofill {
 	width: 342px;
 }
 
-.modalCloseBtn {
+.search-modalCloseBtn {
 	display: flex;
 	background: transparent;
 	border: 0;
 	cursor: pointer;
 }
 
-.modal-close-area img {
+.search-modal-close-area img {
 	width: 14px; height: 14px;
 	margin-left: 326px;
 }
 
-.newMessageLetter {
+.search-newMessageLetter {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -408,7 +408,7 @@ input:-webkit-autofill {
 	border-bottom: 1px solid #dbdbdb;
 }
 
-.modalSearchArea {
+.search-modalSearchArea {
 	display: flex;
 	flex-direction: column;
 	border-bottom: 1px solid #dbdbdb;
@@ -416,7 +416,7 @@ input:-webkit-autofill {
 	box-sizing: border-box;
 }
 
-.searchBox {
+.search-searchBox {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -424,28 +424,24 @@ input:-webkit-autofill {
 	margin: 8px 0 8px 0;
 }
 
-.receiverLetter {
-	font-family: 'Apple SD Bold', 'Apple SD';
-}
-
-.searchUserName {
+.search-searchUserName {
 	flex-grow: 1;
 	margin-left: 5px;
 	box-sizing: border-box;
 }
 
-.searchUserName input {
+.search-searchUserName input {
 	width: 100%;
 	border: 0;
 	box-sizing: border-box;
 }
 
-.searchUserName input:focus {
+.search-searchUserName input:focus {
 	outline: none;
 }
 
 
-.modalSearchResultArea {
+.search-modalSearchResultArea {
 	display: flex;
 	flex-direction: column;
 	flex: 1 1 auto;
@@ -454,7 +450,7 @@ input:-webkit-autofill {
 	margin-bottom: 50px;
 }
 
-.searchResult {
+.search-searchResult {
 	display: flex;
 	margin: 8px 0 8px 0;
 	padding: 0 16px 0 16px;
@@ -471,11 +467,11 @@ input:-webkit-autofill {
 }
 
 
-.suImg {
+.search-suImg {
 	margin-right: 12px;	
 }
 
-.suImg img {
+.search-suImg img {
 	display: flex;
 	width: 44px;
 	height: 44px;
@@ -483,17 +479,17 @@ input:-webkit-autofill {
 	border-radius: 50%;
 }
 
-.suInfo {
+.search-suInfo {
 	display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: baseline;
 }
 
-.suId {
+.search-suId {
 	font-family: 'Apple SD Bold', 'Apple SD';
 }
 
-.suNick {
+.search-suNick {
 	color: #8e8e8e;
 }

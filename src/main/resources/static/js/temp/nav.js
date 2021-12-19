@@ -45,7 +45,7 @@ function getSearchUser(text) {
 		}
 		, success: function(result) {
 			result = result.trim();
-			$("#modalSearchResultArea").html(result);
+			$("#search-modalSearchResultArea").html(result);
 		}, error: function(error) {
 			console.log(error);
 		}
@@ -61,7 +61,7 @@ function getSearchUser(text) {
 	}
 	});
 	
-	$(".modalCloseBtn").click(function() {
+	$(".search-modalCloseBtn").click(function() {
 		$(".search_modal").css('display', 'none');
 	});
 	

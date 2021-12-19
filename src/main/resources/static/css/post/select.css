@@ -419,8 +419,8 @@ button.submit_re:focus {
 }
 
 .z {
-	position: absolute;
-	top: 50%;
+	margin-left: 10px;
+	top: 10px;
 	left: 50%;
 	transform:translate(-50%, -50%);
 }

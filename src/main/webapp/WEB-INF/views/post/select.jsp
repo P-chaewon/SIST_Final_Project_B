@@ -249,10 +249,10 @@
 	
 	<div class="modal2">
 		<div class="modal_content2">
-			<div id="d1">
+			<div id="d1" style="height: 100px;">
 			<c:choose>
 			<c:when test="${userNum eq postVO.userNum }">
-				<span class="z">
+				<span class="c">
 					<h1 id="z1_t1">게시물을 삭제할까요?</h1> 
 					<span id="z1_t2">이 게시물을 삭제하시겠어요?</span>
 				</span>	

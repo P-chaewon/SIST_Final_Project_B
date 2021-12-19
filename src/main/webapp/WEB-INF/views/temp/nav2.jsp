@@ -103,28 +103,28 @@
 		<div class="search-modal-area">
 			<div class="search-modal-header">
 		
-				<div class="newMessageLetter">
+				<div class="search-newMessageLetter">
 					<p> 검색 </p>
 			</div>
 			
-			<div class="modal-close-area">
-				<button class="modalCloseBtn">
+			<div class="search-modal-close-area">
+				<button class="search-modalCloseBtn">
 					<img alt="modal close" src="${pageContext.request.contextPath}/static/icons/stroke-close.png">
 				</button>
 			</div>
 		</div>
 		
 		<div class="search-modal-content">
-			<div class="modalSearchArea">
-				<div class="searchBox">
-					<div class="searchUserName">
-						<input id="searchText" type="text" autocomplete="off" placeholder="검색...">
+			<div class="search-modalSearchArea">
+				<div class="search-searchBox">
+					<div class="search-searchUserName">
+						<input id="search-searchText" type="text" autocomplete="off" placeholder="검색...">
 					</div>
 				</div>
 			</div>
 			
 			<!-- 검색결과 -->
-			<div id="modalSearchResultArea" class="modalSearchResultArea">
+			<div id="search-modalSearchResultArea" class="search-modalSearchResultArea">
 
 			</div>
 		</div>

@@ -352,10 +352,15 @@ public class HomeController {
 	}
 	
 	@GetMapping("/getSearchUser")
-	public ModelAndView getSearchUser(String searchText) throws Exception {
+	public ModelAndView getSearchUser(String searchText, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		List<UserVO> list = userService.getSaerchUser(searchText);
+		Object object = session.getAttribute("SPRING_SECURITY_CONTEXT");
+	    SecurityContextImpl sc = (SecurityContextImpl)object;
+	    Authentication authentication = sc.getAuthentication();
+	    UserVO userVO = (UserVO)authentication.getPrincipal(); 
+		
+		List<UserVO> list = userService.getSaerchUser(userVO, searchText);
 		
 		PostVO postVO  = new PostVO();
 		

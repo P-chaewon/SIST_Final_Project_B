@@ -24,7 +24,7 @@
 						<p>받는 사람:</p>
 					</div>
 					<div class="searchUserName">
-						<input id="searchText" type="text" placeholder="검색...">
+						<input id="searchText" autocomplete="off" type="text" placeholder="검색...">
 					</div>
 				</div>
 			</div>
