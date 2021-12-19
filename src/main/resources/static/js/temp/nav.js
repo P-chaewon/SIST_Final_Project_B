@@ -65,7 +65,7 @@ function getSearchUser(text) {
 		$(".search_modal").css('display', 'none');
 	});
 	
-	$("#searchText").on("change keyup paste", function() {
-		getSearchUser($("#searchText").val());
+	$("#search-searchText").on("change keyup paste", function() {
+		getSearchUser($("#search-searchText").val());
 	});
 	
