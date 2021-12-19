@@ -1,12 +1,15 @@
 @charset "UTF-8";
 
+body {
+	background-color: #fafafa;
+}
+
 .wrapper {
 	position: absolute;
 	width: 50%;
-	top: 10px;
+	top: 80px;
 	left: 50%;
 	transform:translate(-50%, 0%); 
-	padding: 100px;
 }
 
 .title {
@@ -21,6 +24,7 @@ hr {
 }
 
 table {
+	background-color: white;
 	width: 100%;
 	border-collapse: collapse;
 	text-align: center;
