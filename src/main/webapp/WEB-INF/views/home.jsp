@@ -157,7 +157,7 @@ $(document).ready(function() { // 페이지가 준비되면
 				              <span class="point_span nickname" style="font-weight: 600;">${list.userVO.username }</span> ${list.contents }
 								</div>
 								<!-- tag -->
-			            			<div class="tag_${list.postNum}" style="margin-top: 10px;">
+			            			<div class="tag_${list.postNum}" style="margin-top: 10px; cursor: pointer;">
 
 			            			</div>
 
@@ -166,14 +166,14 @@ $(document).ready(function() { // 페이지가 준비되면
 			            		var url = '\'/gram/search/tag/';
 			            		var pid = '${list.postNum}';
 			            		var a = '';
-			            		var arr = original.split(', '); // ,를 기준으로 나눔
+			            		var arr = original.split(' '); // ,를 기준으로 나눔
 			            		for (var i = 0; i < arr.length; i++) {
 			            			a += '<span style="color:#007AFF;" onclick="location.href='
 			            				+ url 
 			            				+ arr[i].replace("#", "") 
 			            				+ '\'' 
 			            				+ '">'
-			            				+ '#'+arr[i]
+			            				+ arr[i]
 			            				+ ' </span>';
 			            			}
 			            		$(".tag_" + pid).html(a);
@@ -339,12 +339,12 @@ $(document).ready(function() { // 페이지가 준비되면
     $('.box').each(function(){
         var content = $(this).children('.description');
         var content_txt = content.text();
-        var content_txt_short = content_txt.substring(0,100)+"...";
+        var content_txt_short = content_txt.substring(0,300)+"...";
         var btn_more = $('<a href="javascript:void(0)" class="more">더보기</a>');
         
         $(this).append(btn_more);
         
-        if(content_txt.length >= 100){
+        if(content_txt.length >= 300){
             content.html(content_txt_short)
             
         }else{
@@ -526,7 +526,7 @@ $(document).ready(function() { // 페이지가 준비되면
   	
   	var postNum = 0;
   	 
-  	$(document).on("click", "#more",function(){
+  	$('.post_profile').on("click", "#more",function(){
   		$(".modal").fadeIn();
   		// 스크롤 제한 on
   		$('html, body').css({'overflow': 'hidden', 'height': '100%'});

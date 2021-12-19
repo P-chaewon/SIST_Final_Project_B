@@ -67,11 +67,93 @@
 						<span class="nickname main_nickname point_span"><sec:authentication property="principal.nickname" var="nickname"/>	${nickname}</span>
 						
 						</div>
-						<textarea name="contents" class="contents" rows="" cols="" placeholder="문구입력..."></textarea>
+	
+						<textarea name="contents" class="contents" id="contents" rows="" cols="" placeholder="문구입력..."></textarea>
 						
 						<div>						
 							<div id="result" class="result_txt"><span class="ui_inputLimitCount">0</span>/2,200</div>
-							<img class="icon_react" alt="emoticon" src="${pageContext.request.contextPath}/static/icons/emoticon.png">
+							<img class="icon_react" alt="emoticon" style="cursor: pointer;" id="emoticon" src="${pageContext.request.contextPath}/static/icons/emoticon.png">
+							
+							<div id="icon_contents" style="display: none;">
+							<div style="margin-left:5px; margin-bottom:8px; overflow-y: scroll; height: 168px; ">
+								<br>
+								<span class="emoji">&#128512;</span>
+								<span class="emoji">&#128513;</span>
+								<span class="emoji">&#128514;</span>
+								<span class="emoji">&#128516;</span>
+								<span class="emoji">&#128517;</span>
+								<span class="emoji">&#128518;</span>
+								<span class="emoji">&#128519;</span><br><br>
+								<span class="emoji">&#128520;</span>
+								<span class="emoji">&#128521;</span>
+								<span class="emoji">&#128522;</span>
+								<span class="emoji">&#128523;</span>
+								<span class="emoji">&#128525;</span>
+								<span class="emoji">&#128526;</span>
+								<span class="emoji">&#128528;</span><br><br>
+								<span class="emoji">&#128529;</span>
+								<span class="emoji">&#128531;</span>
+								<span class="emoji">&#128533;</span>
+								<span class="emoji">&#128536;</span>
+								<span class="emoji">&#128539;</span>
+								<span class="emoji">&#128540;</span>
+								<span class="emoji">&#128541;</span><br><br>
+								<span class="emoji">&#128543;</span>
+								<span class="emoji">&#128544;</span>
+								<span class="emoji">&#128545;</span>
+								<span class="emoji">&#128546;</span>
+								<span class="emoji">&#128552;</span>
+								<span class="emoji">&#128557;</span>
+								<span class="emoji">&#128559;</span><br><br>
+								<span class="emoji">&#128560;</span>
+								<span class="emoji">&#128561;</span>
+								<span class="emoji">&#128567;</span>
+								<span class="emoji">&#128578;</span>
+								<span class="emoji">&#128579;</span>
+								<span class="emoji">&#128580;</span>
+								<span class="emoji">&#128566;</span><br><br>
+								<span class="emoji">&#128591;</span>
+								<span class="emoji">&#128170;</span>
+								<span class="emoji">&#128074;</span>
+								<span class="emoji">&#128075;</span>
+								<span class="emoji">&#128077;</span>
+								<span class="emoji">&#128078;</span>
+								<span class="emoji">&#128079;</span><br><br>
+								<span class="emoji">&#128147;</span>
+								<span class="emoji">&#128148;</span>
+								<span class="emoji">&#128149;</span>
+								<span class="emoji">&#128150;</span>
+								<span class="emoji">&#128151;</span>
+								<span class="emoji">&#128152;</span>
+								<span class="emoji">&#128153;</span><br><br>
+								<span class="emoji">&#128154;</span>
+								<span class="emoji">&#128155;</span>
+								<span class="emoji">&#128156;</span>
+								<span class="emoji">&#128157;</span>
+								<span class="emoji">&#128158;</span>
+								<span class="emoji">&#128143;</span>
+								<span class="emoji">&#128145;</span><br><br>
+								<span class="emoji">&#128054;</span>
+								<span class="emoji">&#128057;</span>
+								<span class="emoji">&#128059;</span>
+								<span class="emoji">&#128060;</span>
+								<span class="emoji">&#128047;</span>
+								<span class="emoji">&#128048;</span>
+								<span class="emoji">&#128049;</span><br><br>
+								<span class="emoji">&#128041;</span>
+								<span class="emoji">&#128007;</span>
+								<span class="emoji">&#128035;</span>
+								<span class="emoji">&#128036;</span>
+								<span class="emoji">&#128037;</span>
+								<span class="emoji">&#128034;</span>
+								<span class="emoji">&#128062;</span>
+								
+							
+													
+							
+							</div>
+							
+							</div>
 						</div>
 					</td>
 				</tr>
@@ -252,7 +334,19 @@ $(".write").click(function(){
 	$(".frm").submit();
 });
 
+$(document).on('click','.emoji', function(){
+	var emo = $(this).html();
+	$('#contents').append(emo);
+	
+})
 
+$("#emoticon").click(function() {
+	if($("#icon_contents").css('display') == 'none'){
+		$('#icon_contents').css({"display": "block"});
+	}else{
+		$('#icon_contents').css({"display": "none"});
+	}
+});
 </script>
 </body>
 

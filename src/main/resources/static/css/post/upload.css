@@ -313,6 +313,40 @@ textarea:focus, input:focus {
 }
  
  
+ #icon_contents{
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 6px #B2B2B2;
+    position: fixed;
+	width: 200px;
+	height: auto;
+	left: 460px;
+	top: 130px;
+    margin: 20px;
+    font-size: 14px;
+}
+
+#icon_contents:before {
+	position: fixed;
+    box-shadow: -2px 2px 2px 0 rgba( 178, 178, 178, .4 );
+    content: "\00a0";
+    display: block;
+    height: 15px;
+    left: 6px;
+    position: relative;
+    top: 182px;
+    transform:             rotate( 315deg );
+        -moz-transform:    rotate( 315deg );
+        -ms-transform:     rotate( 315deg );
+        -o-transform:      rotate( 315deg );
+        -webkit-transform: rotate( 315deg );
+    width: 15px;
+}
+
+.emoji{
+	cursor: pointer;
+}
+ 
 .hide {
 	display:inline-block;
 	position:absolute;

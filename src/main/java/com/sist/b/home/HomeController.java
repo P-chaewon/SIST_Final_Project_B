@@ -351,12 +351,36 @@ public class HomeController {
 		return mv;
 	}
 	
+	@GetMapping("/getSearchUser")
+	public ModelAndView getSearchUser(String searchText) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		List<UserVO> list = userService.getSaerchUser(searchText);
+		
+		PostVO postVO  = new PostVO();
+		
+		postVO.setTag(searchText+" ");
+		
+		Long tag_count = postService.getSearchTagCount(postVO);
+		List<PostVO> taglist = postService.getTagList(postVO);
+		
+		
+		mv.addObject("searchUserList", list);
+		mv.addObject("taglist", taglist);
+		mv.addObject("tag_count", tag_count);
+		mv.addObject("searchText", searchText);
+		
+		mv.setViewName("temp/searchUserList");
+		return mv;
+	}
+	
 	@RequestMapping("/search/tag/{word}")
 	public ModelAndView serachTag(@PathVariable("word") String word)throws Exception{
 		ModelAndView mv = new ModelAndView();
 
 		PostVO postVO = new PostVO();
-		postVO.setTag(word);
+		
+		postVO.setTag(word+" ");
 		
 		Long tag_cnt = postService.getSearchTagCount(postVO);
 		
