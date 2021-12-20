@@ -21,7 +21,7 @@ public class BlockSchedule {
 	@Autowired
 	private SuspendService suspendService;
 	
-	//@Scheduled(cron = "*/30 * * * * *")
+	//@Scheduled(cron = "*/10 * * * * *")
 	@Scheduled(cron = "0 0 0 * * *")
 	public void cronScheduleBlock()throws Exception {
 		// 일정 신고 횟수 이상인 userNum 조회

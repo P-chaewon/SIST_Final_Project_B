@@ -6,7 +6,7 @@
 <mapper namespace="com.sist.b.membership.MembershipRepository">
 	<select id="getList" resultType="MembershipVO">
 		select * from membership
-		order by membershipNum asc
+		order by membershipAmount asc
 	</select>
 	<select id="getOne" parameterType="MembershipVO" resultType="MembershipVO">
 		select * from membership
