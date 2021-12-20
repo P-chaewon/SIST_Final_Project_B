@@ -29,9 +29,9 @@ public interface UserRepository {
 	public int setPasswordUpdate(UserVO userVO) throws Exception;
 	//화원 탈퇴
 	public int setDelete(UserVO userVO) throws Exception;
-	//관리자 : 계정 차단, 비활성 계정으로 전환
+	//관리자 : 계정 차단
 	public int setUnenabled(UserVO userVO) throws Exception;
-	//관리자 : 계정 차단 해제, 활성 계정으로 전환
+	//관리자 : 계정 차단 해제
 	public int setEnabled(UserVO userVO) throws Exception;
 	//메일 인증 번호 DB 저장
 	public int getAuthkey(Map<String, String> mailMap) throws Exception;
@@ -47,6 +47,10 @@ public interface UserRepository {
 	public int setLogDelete(UserlogVO userlogVO) throws Exception;
 	//로그인한 사용자의 최근 log 번호
 	public Long getUserlogRecent(UserVO userVO) throws Exception;
+	//계정 비활성화
+	public int setDeactivate(UserVO userVO) throws Exception;
+	//계정 활성화
+	public int setActivate(UserVO userVO) throws Exception;
 	
 
 }

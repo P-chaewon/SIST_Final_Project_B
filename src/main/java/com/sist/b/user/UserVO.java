@@ -27,6 +27,8 @@ public class UserVO implements UserDetails{
 	private boolean enabled;
 	//가입 인증 번호
 	private String authkey;
+	//활성계정 비활성계정 확인
+	private boolean activate;
 	//follow 여부 확인
 	private boolean following;
 	//userlist 개수

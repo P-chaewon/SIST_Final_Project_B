@@ -138,13 +138,13 @@ public class UserController {
 	}
 
 	@GetMapping("remove/temporary")
-	public String setDeleteTemporary() throws Exception {
+	public String setDeactivate() throws Exception {
 		return "user/accountTemporary";
 	}
 	
 	@PostMapping("remove/temporary")
-	public ModelAndView setDeleteTemporary(UserVO userVO) throws Exception {
-		int result = userService.setUnenabled(userVO);
+	public ModelAndView setDeactivate(UserVO userVO) throws Exception {
+		int result = userService.setDeactivate(userVO);
 		ModelAndView mv = new ModelAndView();
 		if(result>0) {
 			mv.setViewName("redirect:/account/logout");

@@ -68,9 +68,9 @@ public class UserService implements UserDetailsService{
 		UserVO userVO = null;
 		try {
 			userVO = userRepository.getLogin(username);
-			if(!userVO.isEnabled()) {
-				
-				int result = userRepository.setEnabled(userVO);
+			System.out.println(!userVO.isActivate());
+			if(!userVO.isActivate()) {
+				int result = userRepository.setActivate(userVO);
 				userVO.setEnabled(true);
 			}
 		} catch (Exception e) {
@@ -298,6 +298,10 @@ public class UserService implements UserDetailsService{
 	
 	public Long getUserlogRecent(UserVO userVO) throws Exception {
 		return userRepository.getUserlogRecent(userVO);
+	}
+	
+	public int setDeactivate(UserVO userVO) throws Exception {
+		return userRepository.setDeactivate(userVO);
 	}
 	
 }

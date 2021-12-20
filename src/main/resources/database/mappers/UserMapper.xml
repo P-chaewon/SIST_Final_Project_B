@@ -32,6 +32,7 @@
   		<result column="password" property="password"/>
   		<result column="fileName" property="fileName"/>
   		<result column="enabled" property="enabled"/>
+  		<result column="activate" property="activate"/>
   		<collection property="roles" javaType="List" ofType="RoleVO">
   			<result column="roleNum" property="roleNum"/>
   			<result column="roleName" property="roleName"/>
@@ -72,12 +73,12 @@
  		delete from user where username=#{username}
  	</delete>
  	
- 	<update id="setDeleteTemporary" parameterType="UserVO">
- 		update user set enabled=0 where username=#{username}
+ 	<update id="setDeactivate" parameterType="UserVO">
+ 		update user set enabled=0, activate=0 where userNum=#{userNum}
  	</update>
  	
- 	<update id="setEnabledInsert" parameterType="UserVO">
- 		update user set enabled=1 where username=#{username}
+ 	<update id="setActivate" parameterType="UserVO">
+ 		update user set enabled=1, activate=1 where userNum=#{userNum}
  	</update>
  	
  	<update id="setUnenabled" parameterType="UserVO">
